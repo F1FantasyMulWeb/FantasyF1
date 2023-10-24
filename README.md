@@ -55,11 +55,9 @@ FantasyF1 es un proyecto de código abierto y valoramos las contribuciones de la
 
 ## Tecnologías utilizadas
 
-- **Node.js**
-- **Express.js**
-- **MongoDB**
-- **React.js**
-- **Socket.io**
+- **Figma**
+- **Flutter**
+- **Firebase**
 
 ## Licencia
 
