@@ -1,68 +1,68 @@
+# FantasyF1
 
-# fantasyf1
-### Table of contents
-- [System requirements](#system-requirements)
-- [Figma design guidelines for better UI accuracy](#figma-design-guideline-for-better-accuracy)
-- [Check the UI of the entire app](#app-navigations)
-- [Application structure](#project-structure)
-- [How to format your code?](#how-you-can-do-code-formatting)
-- [How you can improve code readability?](#how-you-can-improve-the-readability-of-code)
-- [Libraries and tools used](#libraries-and-tools-used)
-- [Support](#support)
+¡Bienvenido a FantasyF1, tu experiencia personalizada de Fantasy F1 Manager! Este proyecto te permite sumergirte en el emocionante mundo de la Fórmula 1, donde puedes convertirte en el director de tu propio equipo de carreras. Desde elegir pilotos hasta desarrollar estrategias, ¡la gloria en la pista está en tus manos!
 
-### System requirements
+## Características destacadas
+  
+- **Desarrolla estrategias:** Planifica estrategias mirando los pilotos, cirtuitos y escuderías para conseguir la mayor  cantidad de puntos posibles.
 
-Dart SDK Version 2.18.0 or greater.
-Flutter SDK Version 3.3.0 or greater.
+- **Compite en tiempo real:** Sigue las carreras en tiempo real, ajusta tu estrategia en función de las condiciones y observa cómo se desenvuelven tus decisiones en la pista.
 
-### Figma design guidelines for better UI accuracy
+- **Liga y competencia:** Compite contra tus amigos en una liga emocionante. Gana puntos en cada carrera y sube en la tabla de clasificación para convertirte en el campeón de la temporada.
 
-Read our guidelines to increase the accuracy of design-to-code conversion by optimizing Figma designs.
-https://docs.dhiwise.com/docs/Designguidelines/intro
+## Capturas de pantalla
 
-### Check the UI of the entire app
+![FantasyF1](link_a_tu_captura_de_pantalla.png)
 
-Check the UI of all the app screens from a single place by setting up the 'initialRoute'  to AppNavigation in the AppRoutes.dart file.
+## Instalación y ejecución
 
-### Application structure
+Para empezar con FantasyF1 en tu máquina local, sigue estos pasos:
 
-After successful build, your application structure should look like this:
+1. **Clona el repositorio:**
+   ```bash
+   git clone https://github.com/tu-usuario/FantasyF1.git
+   ```
 
-```
-.
-├── android                         - It contains files required to run the application on an Android platform.
-├── assets                          - It contains all images and fonts of your application.
-├── ios                             - It contains files required to run the application on an iOS platform.
-├── lib                             - Most important folder in the application, used to write most of the Dart code..
-    ├── main.dart                   - Starting point of the application
-    ├── core
-    │   ├── app_export.dart         - It contains commonly used file imports
-    │   ├── constants               - It contains static constant class file
-    │   └── utils                   - It contains common files and utilities of the application
-    ├── presentation                - It contains widgets of the screens 
-    ├── routes                      - It contains all the routes of the application
-    └── theme                       - It contains app theme and decoration classes
-    └── widgets                     - It contains all custom widget classes
-```
+2. **Accede al directorio del proyecto:**
+   ```bash
+   cd FantasyF1
+   ```
 
-### How to format your code?
+3. **Instala las dependencias:**
+   ```bash
+   npm install
+   ```
 
-- if your code is not formatted then run following command in your terminal to format code
-  ```
-  dart format .
-  ```
+4. **Inicia el servidor:**
+   ```bash
+   npm start
+   ```
 
-### How you can improve code readability?
+5. **Accede a FantasyF1 en tu navegador:**
+   ```
+   http://localhost:3000
+   ```
 
-Resolve the errors and warnings that are shown in the application.
+## Contribuir
 
-### Libraries and tools used
+FantasyF1 es un proyecto de código abierto y valoramos las contribuciones de la comunidad. Si deseas contribuir:
 
-- Riverpod - State management
-  https://riverpod.dev/docs/getting_started
-- cached_network_image - For storing internet image into cache
-  https://pub.dev/packages/cached_network_image
+1. Haz un fork del repositorio FantasyF1.
+2. Crea una nueva rama para tu función o corrección de errores.
+3. Realiza tus cambios y haz commit con mensajes descriptivos.
+4. Haz push a tu rama en el repositorio remoto.
+5. Crea un pull request en GitHub y describe detalladamente tus cambios.
 
-### Support
+## Tecnologías utilizadas
 
-If you have any problems or questions, go to our Discord channel, where we will help you as quickly as possible: https://discord.com/invite/rFMnCG5MZ7
+- **Node.js**
+- **Express.js**
+- **MongoDB**
+- **React.js**
+- **Socket.io**
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+¡Prepárate para la adrenalina de la Fórmula 1 y que gane el mejor equipo en FantasyF1! 🏁✨
