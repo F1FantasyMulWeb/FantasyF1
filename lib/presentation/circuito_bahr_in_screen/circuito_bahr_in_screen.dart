@@ -43,7 +43,7 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                        ImageConstant.imgGroup49,
+                                        ImageConstant.imgGroup36,
                                       ),
                                       fit: BoxFit.cover,
                                     ),
@@ -87,7 +87,7 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                     maxLines: 6,
                                     overflow: TextOverflow.ellipsis,
                                     style: CustomTextStyles
-                                        .bodyMediumJacquesFrancoisPrimary,
+                                        .bodyMediumJacquesFrancois,
                                   ),
                                 ),
                               ),

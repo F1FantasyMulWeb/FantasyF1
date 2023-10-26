@@ -89,8 +89,7 @@ class CircuitoDeAlbertParkScreen extends StatelessWidget {
                             "msg_trazado_circuito2".tr,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
-                            style: CustomTextStyles
-                                .bodyMediumJacquesFrancoisPrimary,
+                            style: CustomTextStyles.bodyMediumJacquesFrancois,
                           ),
                         ),
                         Align(

@@ -58,17 +58,17 @@ class InformaciNScreen extends StatelessWidget {
                             ),
                             TextSpan(
                               text: "msg_al_inicio_de_la".tr,
-                              style: CustomTextStyles.titleSmall_1.copyWith(
+                              style: theme.textTheme.titleSmall!.copyWith(
                                 height: 1.71,
                               ),
                             ),
                             TextSpan(
-                              text: "lbl_pilotos2".tr,
-                              style: CustomTextStyles.titleSmall_1,
+                              text: "lbl_pilotos".tr,
+                              style: theme.textTheme.titleSmall,
                             ),
                             TextSpan(
                               text: "msg_deseados_antes_del".tr,
-                              style: CustomTextStyles.titleSmall_1,
+                              style: theme.textTheme.titleSmall,
                             ),
                           ],
                         ),
@@ -80,9 +80,7 @@ class InformaciNScreen extends StatelessWidget {
                     alignment: Alignment.topCenter,
                     child: SizedBox(
                       width: double.maxFinite,
-                      child: Divider(
-                        color: theme.colorScheme.primary.withOpacity(1),
-                      ),
+                      child: Divider(),
                     ),
                   ),
                 ],

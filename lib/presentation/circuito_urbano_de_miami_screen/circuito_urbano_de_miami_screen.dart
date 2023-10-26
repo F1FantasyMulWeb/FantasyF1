@@ -88,8 +88,7 @@ class CircuitoUrbanoDeMiamiScreen extends StatelessWidget {
                             "msg_trazado_circuito3".tr,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
-                            style: CustomTextStyles
-                                .bodyMediumJacquesFrancoisPrimary,
+                            style: CustomTextStyles.bodyMediumJacquesFrancois,
                           ),
                         ),
                         Align(

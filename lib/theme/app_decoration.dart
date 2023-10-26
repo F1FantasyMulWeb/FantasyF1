@@ -51,12 +51,9 @@ class AppDecoration {
           ),
         ],
       );
-  static BoxDecoration get outlinePrimary1 => BoxDecoration(
+  static BoxDecoration get outlinePrimary1 => BoxDecoration();
+  static BoxDecoration get outlinePrimary2 => BoxDecoration(
         color: appTheme.blueGray100,
-        border: Border.all(
-          color: theme.colorScheme.primary.withOpacity(1),
-          width: 1.h,
-        ),
         boxShadow: [
           BoxShadow(
             color: theme.colorScheme.primary,
@@ -69,50 +66,15 @@ class AppDecoration {
           ),
         ],
       );
-  static BoxDecoration get outlinePrimary2 => BoxDecoration(
+  static BoxDecoration get outlinePrimary3 => BoxDecoration(
         color: theme.colorScheme.onPrimaryContainer,
         border: Border.all(
           color: theme.colorScheme.primary.withOpacity(1),
           width: 1.h,
         ),
       );
-  static BoxDecoration get outlinePrimary3 => BoxDecoration();
   static BoxDecoration get outlinePrimary4 => BoxDecoration(
-        color: appTheme.whiteA700,
-        boxShadow: [
-          BoxShadow(
-            color: theme.colorScheme.primary,
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              4,
-            ),
-          ),
-        ],
-      );
-  static BoxDecoration get outlinePrimary5 => BoxDecoration(
-        border: Border.all(
-          color: theme.colorScheme.primary.withOpacity(0.16),
-          width: 1.h,
-        ),
-      );
-  static BoxDecoration get outlinePrimary6 => BoxDecoration(
         color: appTheme.red400,
-        boxShadow: [
-          BoxShadow(
-            color: theme.colorScheme.primary,
-            spreadRadius: 2.h,
-            blurRadius: 2.h,
-            offset: Offset(
-              0,
-              4,
-            ),
-          ),
-        ],
-      );
-  static BoxDecoration get outlinePrimary7 => BoxDecoration(
-        color: appTheme.blueGray100,
         boxShadow: [
           BoxShadow(
             color: theme.colorScheme.primary,
@@ -130,6 +92,7 @@ class AppDecoration {
         border: Border.all(
           color: appTheme.red400,
           width: 4.h,
+          strokeAlign: strokeAlignOutside,
         ),
       );
 }
@@ -141,16 +104,19 @@ class BorderRadiusStyle {
       );
 
   // Custom borders
-  static BorderRadius get customBorderTL47 => BorderRadius.vertical(
-        top: Radius.circular(47.h),
+  static BorderRadius get customBorderBL50 => BorderRadius.vertical(
+        bottom: Radius.circular(50.h),
+      );
+  static BorderRadius get customBorderTL50 => BorderRadius.vertical(
+        top: Radius.circular(50.h),
       );
 
   // Rounded borders
   static BorderRadius get roundedBorder10 => BorderRadius.circular(
         10.h,
       );
-  static BorderRadius get roundedBorder16 => BorderRadius.circular(
-        16.h,
+  static BorderRadius get roundedBorder15 => BorderRadius.circular(
+        15.h,
       );
   static BorderRadius get roundedBorder19 => BorderRadius.circular(
         19.h,
@@ -158,17 +124,14 @@ class BorderRadiusStyle {
   static BorderRadius get roundedBorder28 => BorderRadius.circular(
         28.h,
       );
-  static BorderRadius get roundedBorder32 => BorderRadius.circular(
-        32.h,
+  static BorderRadius get roundedBorder31 => BorderRadius.circular(
+        31.h,
       );
   static BorderRadius get roundedBorder40 => BorderRadius.circular(
         40.h,
       );
   static BorderRadius get roundedBorder47 => BorderRadius.circular(
         47.h,
-      );
-  static BorderRadius get roundedBorder50 => BorderRadius.circular(
-        50.h,
       );
   static BorderRadius get roundedBorder6 => BorderRadius.circular(
         6.h,
@@ -182,9 +145,9 @@ class BorderRadiusStyle {
 }
 
 // Comment/Uncomment the below code based on your Flutter SDK version.
-    
+
 // For Flutter SDK Version 3.7.2 or greater.
-    
+
 double get strokeAlignInside => BorderSide.strokeAlignInside;
 
 double get strokeAlignCenter => BorderSide.strokeAlignCenter;
@@ -198,4 +161,3 @@ double get strokeAlignOutside => BorderSide.strokeAlignOutside;
 // StrokeAlign get strokeAlignCenter => StrokeAlign.center;
 //
 // StrokeAlign get strokeAlignOutside => StrokeAlign.outside;
-    

@@ -91,7 +91,7 @@ class CustomTextFormField extends StatelessWidget {
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
           autofocus: autofocus!,
-          style: textStyle ?? theme.textTheme.bodyMedium,
+          style: textStyle ?? CustomTextStyles.bodyMediumOnErrorContainer,
           obscureText: obscureText!,
           textInputAction: textInputAction,
           keyboardType: textInputType,
@@ -102,7 +102,7 @@ class CustomTextFormField extends StatelessWidget {
       );
   InputDecoration get decoration => InputDecoration(
         hintText: hintText ?? "",
-        hintStyle: hintStyle ?? theme.textTheme.titleSmall,
+        hintStyle: hintStyle ?? theme.textTheme.bodyMedium,
         prefixIcon: prefix,
         prefixIconConstraints: prefixConstraints,
         suffixIcon: suffix,
@@ -120,7 +120,7 @@ class CustomTextFormField extends StatelessWidget {
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.h),
               borderSide: BorderSide(
-                color: appTheme.blue400,
+                color: theme.colorScheme.onErrorContainer,
                 width: 1,
               ),
             ),
@@ -128,7 +128,7 @@ class CustomTextFormField extends StatelessWidget {
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.h),
               borderSide: BorderSide(
-                color: appTheme.blue400,
+                color: theme.colorScheme.onErrorContainer,
                 width: 1,
               ),
             ),
@@ -136,16 +136,9 @@ class CustomTextFormField extends StatelessWidget {
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.h),
               borderSide: BorderSide(
-                color: theme.colorScheme.onErrorContainer,
+                color: theme.colorScheme.primary.withOpacity(1),
                 width: 1,
               ),
             ),
-      );
-}
-
-/// Extension on [CustomTextFormField] to facilitate inclusion of all types of border style etc
-extension TextFormFieldStyleHelper on CustomTextFormField {
-  static OutlineInputBorder get fillRed => OutlineInputBorder(
-        borderSide: BorderSide.none,
       );
 }

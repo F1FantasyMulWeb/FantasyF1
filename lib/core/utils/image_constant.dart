@@ -3,7 +3,7 @@ class ImageConstant {
   static String imagePath = 'assets/images';
 
   // preLoginScreen images
-  static String imgGroup213 = '$imagePath/img_group213.png';
+  static String imgGroup177 = '$imagePath/img_group177.png';
 
   // Ajustes One images
   static String img12506781 = '$imagePath/img_12506781.png';
@@ -17,17 +17,13 @@ class ImageConstant {
   // Avatar images
   static String imgEdit = '$imagePath/img_edit.svg';
 
-  // Main Screen images
-  static String imgImage8 = '$imagePath/img_image8.png';
-
-  // Lista Grupos Menu Abierto images
-  static String imgBoton = '$imagePath/img_boton.svg';
+  static String imgDownload169x169 = '$imagePath/img_download_169x169.png';
 
   // crearGrupo images
   static String imgUpload = '$imagePath/img_upload.svg';
 
   // Lista Jugadores images
-  static String imgDownload1 = '$imagePath/img_download_1.png';
+  static String imgDownload51x55 = '$imagePath/img_download_51x55.png';
 
   // Lista Pilotos images
   static String imgVerstappen = '$imagePath/img_verstappen.svg';
@@ -37,8 +33,20 @@ class ImageConstant {
 
   static String imgImage26 = '$imagePath/img_image26.png';
 
+  // mainScreenSinLigas images
+  static String imgMenuGray800 = '$imagePath/img_menu_gray_800.svg';
+
+  static String imgDownload31x33 = '$imagePath/img_download_31x33.png';
+
+  static String imgImagencochepiloto = '$imagePath/img_imagencochepiloto.png';
+
+  static String imgImagenpilotoganador =
+      '$imagePath/img_imagenpilotoganador.png';
+
   // Lista Grupos images
-  static String imgBotonRed400 = '$imagePath/img_boton_red_400.svg';
+  static String imgDownload1 = '$imagePath/img_download_1.png';
+
+  static String imgBoton = '$imagePath/img_boton.svg';
 
   // Grupo images
   static String imgGroup = '$imagePath/img_group.svg';
@@ -90,7 +98,7 @@ class ImageConstant {
   static String imgImage30 = '$imagePath/img_image30.png';
 
   // Escuderia Mercedes images
-  static String imgGroup24 = '$imagePath/img_group24.png';
+  static String imgGroup19 = '$imagePath/img_group19.png';
 
   static String imgMercedesphotoroom = '$imagePath/img_mercedesphotoroom.png';
 
@@ -140,48 +148,30 @@ class ImageConstant {
 
   static String imgLogo = '$imagePath/img_logo.png';
 
-  static String imgDownload = '$imagePath/img_download.png';
-
-  static String imgIconmaxverst = '$imagePath/img_iconmaxverst.png';
+  static String imgVector1 = '$imagePath/img_vector1.svg';
 
   static String imgImage29 = '$imagePath/img_image29.png';
 
-  static String imgImage7 = '$imagePath/img_image7.png';
-
-  static String imgImage31 = '$imagePath/img_image31.png';
-
-  static String imgVector1 = '$imagePath/img_vector1.svg';
-
-  static String imgImage2951x89 = '$imagePath/img_image29_51x89.png';
-
-  static String imgDownload169x169 = '$imagePath/img_download_169x169.png';
+  static String imgDownload = '$imagePath/img_download.png';
 
   static String imgElnanopapauntiburon =
       '$imagePath/img_elnanopapauntiburon.png';
 
-  static String imgImage756x128 = '$imagePath/img_image7_56x128.png';
+  static String imgImage7 = '$imagePath/img_image7.png';
 
-  static String imgIconmaxverst81x81 = '$imagePath/img_iconmaxverst_81x81.png';
+  static String imgIconmaxverst = '$imagePath/img_iconmaxverst.png';
 
   static String imgImage12 = '$imagePath/img_image12.png';
 
   static String imgChecoperez = '$imagePath/img_checoperez.png';
 
-  static String imgClose = '$imagePath/img_close.svg';
+  static String imgImage8 = '$imagePath/img_image8.png';
 
-  static String imgPerson = '$imagePath/img_person.png';
-
-  static String imgGroupiconsign = '$imagePath/img_groupiconsign.png';
-
-  static String imgSearch = '$imagePath/img_search.svg';
-
-  static String imgDownload31x33 = '$imagePath/img_download_31x33.png';
-
-  static String imgDownload51x55 = '$imagePath/img_download_51x55.png';
-
-  static String imgFile = '$imagePath/img_file.svg';
+  static String imgUser = '$imagePath/img_user.svg';
 
   static String imgMingcutelockline = '$imagePath/img_mingcutelockline.svg';
+
+  static String imgClose = '$imagePath/img_close.svg';
 
   static String imgImagen20230928115059716 =
       '$imagePath/img_imagen20230928115059716.png';
@@ -191,6 +181,10 @@ class ImageConstant {
 
   static String imgImage32 = '$imagePath/img_image32.png';
 
+  static String imgImage31 = '$imagePath/img_image31.png';
+
+  static String imgImage2951x89 = '$imagePath/img_image29_51x89.png';
+
   static String imgEmail = '$imagePath/img_email.svg';
 
   static String imgComputer = '$imagePath/img_computer.svg';
@@ -199,28 +193,21 @@ class ImageConstant {
 
   static String imgArrowleftPrimary = '$imagePath/img_arrowleft_primary.svg';
 
-  static String imgMenuGray80001 = '$imagePath/img_menu_gray_800_01.svg';
-
-  static String imgImagencochepiloto = '$imagePath/img_imagencochepiloto.png';
-
-  static String imgImagenpilotoganador =
-      '$imagePath/img_imagenpilotoganador.png';
-
-  static String imgFileBlue400 = '$imagePath/img_file_blue_400.svg';
+  static String imgMusic = '$imagePath/img_music.svg';
 
   static String imgArrowleft = '$imagePath/img_arrowleft.svg';
 
-  static String imgGroup6 = '$imagePath/img_group6.png';
+  static String imgGroup3 = '$imagePath/img_group3.png';
 
   static String imgArrowdown = '$imagePath/img_arrowdown.svg';
 
   static String imgArrowup = '$imagePath/img_arrowup.svg';
 
-  static String imgGroup49 = '$imagePath/img_group49.png';
+  static String imgGroup36 = '$imagePath/img_group36.png';
 
   static String imgHome = '$imagePath/img_home.svg';
 
-  static String imgGroup50 = '$imagePath/img_group50.png';
+  static String imgGroup37 = '$imagePath/img_group37.png';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
 }

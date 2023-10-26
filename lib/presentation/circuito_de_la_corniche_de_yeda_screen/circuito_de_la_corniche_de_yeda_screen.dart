@@ -47,7 +47,7 @@ class CircuitoDeLaCornicheDeYedaScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                        ImageConstant.imgGroup49,
+                                        ImageConstant.imgGroup36,
                                       ),
                                       fit: BoxFit.cover,
                                     ),
@@ -71,7 +71,8 @@ class CircuitoDeLaCornicheDeYedaScreen extends StatelessWidget {
                                       ),
                                       SizedBox(height: 7.v),
                                       CustomImageView(
-                                        imagePath: ImageConstant.imgImage29,
+                                        imagePath:
+                                            ImageConstant.imgImage2951x89,
                                         height: 186.v,
                                         width: 321.h,
                                       ),
@@ -94,8 +95,7 @@ class CircuitoDeLaCornicheDeYedaScreen extends StatelessWidget {
                             "msg_trazado_circuito".tr,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
-                            style: CustomTextStyles
-                                .bodyMediumJacquesFrancoisPrimary,
+                            style: CustomTextStyles.bodyMediumJacquesFrancois,
                           ),
                         ),
                         Align(

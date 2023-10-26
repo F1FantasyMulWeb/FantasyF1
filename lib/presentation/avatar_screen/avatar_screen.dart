@@ -74,9 +74,7 @@ class AvatarScreen extends StatelessWidget {
               SizedBox(height: 10.v),
               SizedBox(
                 width: double.maxFinite,
-                child: Divider(
-                  color: theme.colorScheme.primary.withOpacity(1),
-                ),
+                child: Divider(),
               ),
             ],
           ),

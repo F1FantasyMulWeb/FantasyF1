@@ -78,8 +78,7 @@ class BakCityCircuitScreen extends StatelessWidget {
                             "msg_trazado_bak_city".tr,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
-                            style: CustomTextStyles
-                                .bodyMediumJacquesFrancoisPrimary,
+                            style: CustomTextStyles.bodyMediumJacquesFrancois,
                           ),
                         ),
                         Align(

@@ -82,9 +82,9 @@ class ThemeHelper {
         ),
       ),
       dividerTheme: DividerThemeData(
-        thickness: 1,
-        space: 1,
-        color: appTheme.gray800,
+        thickness: 2,
+        space: 2,
+        color: colorScheme.primary.withOpacity(1),
       ),
     );
   }
@@ -106,7 +106,7 @@ class TextThemes {
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: TextStyle(
-          color: colorScheme.onErrorContainer.withOpacity(0.87),
+          color: colorScheme.primary.withOpacity(1),
           fontSize: 14.fSize,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w400,
@@ -137,9 +137,9 @@ class TextThemes {
         ),
         headlineMedium: TextStyle(
           color: colorScheme.primary.withOpacity(1),
-          fontSize: 28.fSize,
-          fontFamily: 'Formula1',
-          fontWeight: FontWeight.w400,
+          fontSize: 27.fSize,
+          fontFamily: 'Inter',
+          fontWeight: FontWeight.w500,
         ),
         headlineSmall: TextStyle(
           color: colorScheme.primary.withOpacity(1),
@@ -227,9 +227,6 @@ class ColorSchemes {
 
 /// Class containing custom colors for a primary theme.
 class PrimaryColors {
-  // Blue
-  Color get blue400 => Color(0XFF44A0FC);
-
   // BlueGray
   Color get blueGray100 => Color(0XFFD9D9D9);
   Color get blueGray400 => Color(0XFF888888);
@@ -242,8 +239,7 @@ class PrimaryColors {
   Color get gray200 => Color(0XFFEAEAEA);
   Color get gray20001 => Color(0XFFF0F0F0);
   Color get gray300 => Color(0XFFDFDFDF);
-  Color get gray800 => Color(0XFF4D4D4D);
-  Color get gray80001 => Color(0XFF49454F);
+  Color get gray800 => Color(0XFF49454F);
   Color get gray900 => Color(0XFF1E1E1E);
   Color get gray90001 => Color(0XFF0B162F);
 

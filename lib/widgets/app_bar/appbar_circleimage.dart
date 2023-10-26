@@ -24,7 +24,7 @@ class AppbarCircleimage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadiusStyle.roundedBorder16,
+      borderRadius: BorderRadiusStyle.roundedBorder15,
       onTap: () {
         onTap?.call();
       },

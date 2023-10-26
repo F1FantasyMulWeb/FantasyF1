@@ -7,35 +7,32 @@ import '../core/app_export.dart';
 
 class CustomTextStyles {
   // Body text style
-  static get bodyMediumFormula1Primary =>
+  static get bodyMediumFormula1 =>
       theme.textTheme.bodyMedium!.formula1.copyWith(
-        color: theme.colorScheme.primary.withOpacity(1),
         fontSize: 15.fSize,
       );
-  static get bodyMediumInter => theme.textTheme.bodyMedium!.inter;
-  static get bodyMediumInterPrimary =>
-      theme.textTheme.bodyMedium!.inter.copyWith(
-        color: theme.colorScheme.primary.withOpacity(1),
+  static get bodyMediumInter => theme.textTheme.bodyMedium!.inter.copyWith(
         fontSize: 15.fSize,
       );
-  static get bodyMediumInterPrimary15 =>
-      theme.textTheme.bodyMedium!.inter.copyWith(
-        color: theme.colorScheme.primary.withOpacity(1),
+  static get bodyMediumInter15 => theme.textTheme.bodyMedium!.inter.copyWith(
         fontSize: 15.fSize,
       );
-  static get bodyMediumInterPrimary_1 =>
+  static get bodyMediumInterOnErrorContainer =>
       theme.textTheme.bodyMedium!.inter.copyWith(
-        color: theme.colorScheme.primary.withOpacity(1),
+        color: theme.colorScheme.onErrorContainer.withOpacity(0.87),
       );
   static get bodyMediumInterRed400 =>
       theme.textTheme.bodyMedium!.inter.copyWith(
         color: appTheme.red400,
         fontSize: 15.fSize,
       );
-  static get bodyMediumJacquesFrancoisPrimary =>
+  static get bodyMediumInter_1 => theme.textTheme.bodyMedium!.inter;
+  static get bodyMediumJacquesFrancois =>
       theme.textTheme.bodyMedium!.jacquesFrancois.copyWith(
-        color: theme.colorScheme.primary.withOpacity(1),
         fontSize: 15.fSize,
+      );
+  static get bodyMediumOnErrorContainer => theme.textTheme.bodyMedium!.copyWith(
+        color: theme.colorScheme.onErrorContainer.withOpacity(0.38),
       );
   // Display text style
   static get displayLarge64 => theme.textTheme.displayLarge!.copyWith(
@@ -85,13 +82,17 @@ class CustomTextStyles {
       theme.textTheme.headlineLarge!.copyWith(
         color: theme.colorScheme.onSecondaryContainer,
       );
-  static get headlineMediumInter =>
-      theme.textTheme.headlineMedium!.inter.copyWith(
-        fontSize: 27.fSize,
-        fontWeight: FontWeight.w500,
+  static get headlineMedium26 => theme.textTheme.headlineMedium!.copyWith(
+        fontSize: 26.fSize,
       );
-  static get headlineMediumMedium => theme.textTheme.headlineMedium!.copyWith(
-        fontWeight: FontWeight.w500,
+  static get headlineMediumFormula1 =>
+      theme.textTheme.headlineMedium!.formula1.copyWith(
+        fontSize: 28.fSize,
+      );
+  static get headlineMediumFormula1Regular =>
+      theme.textTheme.headlineMedium!.formula1.copyWith(
+        fontSize: 28.fSize,
+        fontWeight: FontWeight.w400,
       );
   static get headlineSmallInter =>
       theme.textTheme.headlineSmall!.inter.copyWith(
@@ -135,11 +136,6 @@ class CustomTextStyles {
   static get titleMedium16_1 => theme.textTheme.titleMedium!.copyWith(
         fontSize: 16.fSize,
       );
-  static get titleMediumFormula1WhiteA70001 =>
-      theme.textTheme.titleMedium!.formula1.copyWith(
-        color: appTheme.whiteA70001,
-        fontSize: 16.fSize,
-      );
   static get titleMediumWhiteA70001 => theme.textTheme.titleMedium!.copyWith(
         color: appTheme.whiteA70001,
         fontSize: 16.fSize,
@@ -156,6 +152,7 @@ class CustomTextStyles {
   static get titleSmallOnErrorContainer => theme.textTheme.titleSmall!.copyWith(
         color: theme.colorScheme.onErrorContainer.withOpacity(0.87),
       );
+  static get titleSmallPoppins => theme.textTheme.titleSmall!.poppins;
   static get titleSmallPoppinsOnErrorContainer =>
       theme.textTheme.titleSmall!.poppins.copyWith(
         color: theme.colorScheme.onErrorContainer.withOpacity(0.87),

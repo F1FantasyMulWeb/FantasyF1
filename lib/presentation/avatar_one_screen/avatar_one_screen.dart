@@ -31,9 +31,7 @@ class AvatarOneScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: SizedBox(
                   width: double.maxFinite,
-                  child: Divider(
-                    color: theme.colorScheme.primary.withOpacity(1),
-                  ),
+                  child: Divider(),
                 ),
               ),
             ],
@@ -53,7 +51,7 @@ class AvatarOneScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CustomImageView(
-                    imagePath: ImageConstant.imgDownload169x169,
+                    imagePath: ImageConstant.imgDownload,
                     height: 169.adaptSize,
                     width: 169.adaptSize,
                     radius: BorderRadius.circular(

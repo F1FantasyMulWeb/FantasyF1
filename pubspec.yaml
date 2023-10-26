@@ -32,19 +32,19 @@ flutter:
           weight: 600
     - family: Formula1
       fonts: 
-        - asset: assets/fonts/Formula1DisplayBold.ttf
-          weight: 500
         - asset: assets/fonts/Formula1DisplayRegular.ttf
           weight: 400
+        - asset: assets/fonts/Formula1DisplayBold.ttf
+          weight: 500
+    - family: Roboto
+      fonts: 
+        - asset: assets/fonts/RobotoMedium.ttf
+          weight: 500
     - family: Poppins
       fonts: 
         - asset: assets/fonts/PoppinsRegular.ttf
           weight: 400
         - asset: assets/fonts/PoppinsMedium.ttf
-          weight: 500
-    - family: Roboto
-      fonts: 
-        - asset: assets/fonts/RobotoMedium.ttf
           weight: 500
     - family: Jacques Francois
       fonts: 

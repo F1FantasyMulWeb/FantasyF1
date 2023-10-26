@@ -23,7 +23,7 @@ class ClasificacionroItemWidget extends StatelessWidget {
           horizontal: 12.h,
           vertical: 25.v,
         ),
-        decoration: AppDecoration.outlinePrimary6.copyWith(
+        decoration: AppDecoration.outlinePrimary4.copyWith(
           borderRadius: BorderRadiusStyle.circleBorder24,
         ),
         child: Row(

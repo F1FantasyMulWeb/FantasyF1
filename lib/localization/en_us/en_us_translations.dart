@@ -8,28 +8,9 @@ final Map<String, String> enUs = {
   // Ajustes One Screen
   "lbl_borrar_cuenta": "Borrar cuenta", "lbl_cerrar_sesi_n": "cerrar sesión",
 
-  // Avatar Screen
-  "lbl_editar_perfil": "Editar Perfil",
-
-  // Main Screen Screen
-  "lbl_alonso": "Alonso", "lbl_perez": "Perez", "lbl_puntos_23": "Puntos: 23",
-  "lbl_puntos_33": "Puntos: 33",
-
-  // Lista Grupos Menu Abierto Screen
-  "lbl_a_adir": "Añadir", "lbl_crear": "Crear",
-
-  // crearGrupo Screen
-  "lbl_imagen_de_grupo": "Imagen de Grupo",
-  "lbl_nombre_grupo": "Nombre Grupo",
-  "msg_creaci_n_de_grupo": "Creación de Grupo",
-  "msg_crear_contrase_a": "Crear contraseña acceso",
-
-  // Lista Escuderías Screen
-  "lbl_escuderias": "Escuderias", "lbl_red_bull": "Red Bull",
-
   // Información Screen
   "lbl_c_mo_se_juega": "¿Cómo se juega?\n",
-  "lbl_pilotos2": "pilotos",
+  "lbl_pilotos": "pilotos",
   "msg_al_inicio_de_la":
       "Al inicio de la partida, cada miembro elige un piloto principal y un piloto secundario y 100 millones de saldo (menos el valor del equipo que le haya tocado por defecto).\n\nEl ganador será quien tenga el mayor número de puntos a final de temporada. En caso de empate, el miembro que tenga mayor valor de equipo al inicio de la última jornada será el ganador.\n\nLos puntos se consiguen disputando jornadas en el juego acorde con la realidad de la competición. Al finalizar la jornada siempre se asigna una puntuación\n\nSolamente los pilotos alineados recibirán puntos. Tienes que alinear los ",
   "msg_c_mo_se_juega_al":
@@ -37,8 +18,21 @@ final Map<String, String> enUs = {
   "msg_deseados_antes_del":
       " deseados antes del inicio del gran premio, aunque durante la misma puedes hacer cambios en dicha alineación.",
 
+  // Avatar Screen
+  "lbl_editar_perfil": "Editar Perfil",
+
+  // crearGrupo Screen
+  "lbl_imagen_de_grupo": "Imagen de Grupo",
+  "lbl_nombre_grupo": "Nombre Grupo",
+  "msg_creaci_n_de_grupo": "Creación de Grupo",
+  "msg_establecer_contrase_a": "Establecer Contraseña Acceso",
+
+  // Lista Escuderías Screen
+  "lbl_escuderias": "Escuderias", "lbl_red_bull": "Red Bull",
+
   // Lista Circuitos Screen
-  "lbl_bak": "Bakú", "lbl_miami": "Miami",
+  "lbl_bak": "Bakú", "lbl_circuitos": "Circuitos", "lbl_melbourne": "Melbourne",
+  "lbl_miami": "Miami", "lbl_yeda": "Yeda",
 
   // loginScreen Screen
   "lbl_iniciar_sesi_n": "Iniciar sesión",
@@ -53,8 +47,9 @@ final Map<String, String> enUs = {
 
   // registrarseScreen Screen
   "lbl_acepto_la": "Acepto la",
+  "lbl_f1fantasylover": "F1FantasyLover",
   "lbl_registrarse": "Registrarse",
-  "lbl_usuario": "Usuario",
+  "msg_nombre_de_usuario": "Nombre de Usuario",
   "msg_pol_tica_de_privacidad": "Política de Privacidad",
   "msg_registrarse_con": "Registrarse con Google",
 
@@ -63,12 +58,19 @@ final Map<String, String> enUs = {
   "msg_introduce_el_correo":
       "Introduce el correo electrónico vinculado a tu cuenta",
 
+  // mainScreenSinLigas Screen
+  "lbl_ultima_carrera": "Ultima Carrera",
+  "lbl_unirse_a_grupo": "Unirse a grupo",
+
   // añadirGrupo Screen
-  "lbl3": "***********",
+  "lbl_1234_2222": "1234-2222",
   "lbl_codigo_grupo": "Codigo Grupo",
   "lbl_siguiente": "Siguiente",
   "lbl_unirse_a_grupo2": "Unirse a Grupo",
   "msg_contrase_a_acceso": "Contraseña Acceso",
+
+  // Lista Grupos Screen
+  "lbl_grupos": "Grupos",
 
   // Grupo Screen
   "lbl_c_digo": "Código: []-[]", "lbl_mercado": "Mercado ",
@@ -85,7 +87,9 @@ final Map<String, String> enUs = {
       "Circuito de Sakhir\nFundado en: 2003\nCurvas: 15\nLongitud: 5'412 km\nGrandes Premios disputados: 13\nVueltas: 57",
 
   // cambiarContraseña2Screen Screen
-  "lbl_5_00_minutos": "5:00 minutos",
+  "lbl_0_00": "0:00",
+  "lbl_466_005": "466-005",
+  "lbl_minutos": "minutos",
   "lbl_siguiente_2_3": "Siguiente (2/3)",
   "lbl_tiempo_restante": "Tiempo restante",
   "msg_c_digo_verificaci_n": "Código Verificación",
@@ -113,10 +117,12 @@ final Map<String, String> enUs = {
   "msg_trazado_circuito":
       "Trazado: Circuito de la Corniche de Yeda\nLugar: Yeda, Arabia Saudí\nFecha: Del 17 al 19 de marzo\nLongitud: 6'175 km\nCurvas: 27",
 
-  // cambiarContraseña3Screen Screen
+  // cambiarContraseña3Screen One Screen
   "msg_cambiar_contrase_a2": "Cambiar Contraseña (3/3)",
-  "msg_introduce_la_nueva":
-      "Introduce la nueva contraseña para asignar a la cuenta",
+
+  // cambiarContraseña3Screen Screen
+  "msg_cambiar_contrase_a3": "CAMBIAR CONTRASEÑA",
+  "msg_cambiar_contrase_a4": "Cambiar Contraseña",
 
   // Escuderia Mercedes Screen
   "lbl_mercedes": "Mercedes",
@@ -146,45 +152,38 @@ final Map<String, String> enUs = {
 
   // Common String
   "lbl": "[]",
-  "lbl2": "*********",
+  "lbl2": "********",
+  "lbl3": "*********",
   "lbl_1er_puesto": "1er Puesto\n\n\n[]",
   "lbl_1er_puesto2": "1er Puesto\n",
-  "lbl_466_005": "466-005",
   "lbl_activos": "Activos",
   "lbl_ajustes": "Ajustes",
   "lbl_bahr_in": "Bahréin",
-  "lbl_circuitos": "Circuitos",
   "lbl_clasificaci_n": "Clasificación",
   "lbl_contrase_a": "Contraseña",
   "lbl_crear_grupo": "Crear grupo",
   "lbl_en_garaje": "En Garaje",
-  "lbl_escuder_a": "Escudería",
-  "lbl_grupo_5": "Grupo 5",
-  "lbl_grupos": "Grupos",
   "lbl_informaci_n": "Información",
   "lbl_logros": "Logros",
   "lbl_max_verstappen": "Max Verstappen",
-  "lbl_melbourne": "Melbourne",
-  "lbl_perfil": "Perfil",
-  "lbl_pilotos": "Pilotos",
+  "lbl_pilotos2": "Pilotos",
   "lbl_podio": "Podio\n\n\n[]",
   "lbl_podio2": "Podio\n",
   "lbl_puntos": "Puntos: []",
   "lbl_puntos2": "Puntos\n\n\n[]",
   "lbl_puntos3": "Puntos\n",
-  "lbl_puntos_54": "Puntos: 54",
-  "lbl_ultima_carrera": "Ultima Carrera",
-  "lbl_unirse_a_grupo": "Unirse a grupo",
-  "lbl_yeda": "Yeda",
   "msg_bak_city_circuit": "Bakú City Circuit",
   "msg_cambiar_contrase_a": "Cambiar contraseña",
   "msg_circuito_de_albert": "Circuito de Albert Park",
   "msg_circuito_de_m_naco": "Circuito de Mónaco",
   "msg_circuito_urbano": "Circuito urbano de Miami",
   "msg_correo_electr_nico": "Correo Electrónico",
+  "msg_ejemplo_ejemplo_com": "ejemplo@ejemplo.com",
   "msg_formula_1_fantasy": "Formula 1\nFantasy",
   "msg_full_team_nameoracle":
       "Full Team:  NameOracle Red Bull \nRacing Base:  Milton Keynes, United Kingdom\nTeam Chief:  Christian Horner\nTechnical Chief: Pierre Waché \nChassis:  RB19\nPower Unit:  Honda RBPT\nFirst Team:  Entry1997\nWorld Championships:  6\nHighest Race Finish:  1 (x107)\nPole Positions:  94\nFastest Laps:  93",
+  "msg_introduce_la_nueva":
+      "Introduce la nueva contraseña para asignar a la cuenta",
   "msg_recupera_tu_cuenta": "RECUPERA TU CUENTA",
   "msg_repetir_contrase_a": "Repetir Contraseña",
   "msg_siguiente_carrera": "Siguiente carrera ",
@@ -207,14 +206,14 @@ final Map<String, String> enUs = {
   "lbl_lista_jugadores": "Lista Jugadores",
   "lbl_lista_pilotos": "Lista Pilotos",
   "lbl_loginscreen": "loginScreen",
-  "lbl_main_screen": "Main Screen",
   "lbl_mercado3": "mercado",
   "lbl_perfil_carreras": "Perfil Carreras",
   "lbl_preloginscreen": "preLoginScreen",
   "lbl_tuspilotos2": "tuspilotos",
   "msg_cambiarcontrase_a1screen": "cambiarContraseña1Screen",
   "msg_cambiarcontrase_a2screen": "cambiarContraseña2Screen",
-  "msg_cambiarcontrase_a3screen": "cambiarContraseña3Screen",
+  "msg_cambiarcontrase_a3screen": "cambiarContraseña3Screen One",
+  "msg_cambiarcontrase_a3screen2": "cambiarContraseña3Screen",
   "msg_check_your_app_s":
       "Check your app's UI from the below demo screens of your app.",
   "msg_circuito_bahr_in": "Circuito Bahréin",
@@ -223,11 +222,7 @@ final Map<String, String> enUs = {
   "msg_escuderia_mercedes": "Escuderia Mercedes",
   "msg_escuderia_red_bull": "Escuderia Red Bull",
   "msg_lista_escuder_as": "Lista Escuderías",
-  "msg_lista_grupos_menu": "Lista Grupos Menu Abierto",
-  "msg_main_screen_menu": "Main Screen  - Menu",
-  "msg_mainscreenconligas": "mainScreenConLigas",
-  "msg_mainscreensinligas": "mainScreenSinLigas One",
-  "msg_mainscreensinligas2": "mainScreenSinLigas",
+  "msg_mainscreensinligas": "mainScreenSinLigas",
   "msg_piloto_verstapen": "Piloto Verstapen",
   "msg_registrarsescreen": "registrarseScreen",
 

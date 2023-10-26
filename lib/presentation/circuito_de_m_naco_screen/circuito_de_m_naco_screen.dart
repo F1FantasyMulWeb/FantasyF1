@@ -99,8 +99,7 @@ class CircuitoDeMNacoScreen extends StatelessWidget {
                             "msg_trazado_circuito4".tr,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
-                            style: CustomTextStyles
-                                .bodyMediumJacquesFrancoisPrimary,
+                            style: CustomTextStyles.bodyMediumJacquesFrancois,
                           ),
                         ),
                         SizedBox(height: 21.v),
