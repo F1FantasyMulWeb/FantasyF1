@@ -203,48 +203,37 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                               ),
                                                             ),
                                                             Align(
-                                                              alignment: Alignment
-                                                                  .centerLeft,
-                                                              child: Container(
-                                                                width: 86.h,
-                                                                margin: EdgeInsets
-                                                                    .only(
-                                                                        left: 30
-                                                                            .h),
+                                                              alignment: Alignment.centerLeft,
+                                                              child: Flexible(
                                                                 child: Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.start,
                                                                   children: <Widget>[
                                                                     Checkbox(
-                                                                      value:
-                                                                          _isChecked,
-                                                                      onChanged:
-                                                                          (bool?
-                                                                              value) {
-                                                                        if (value !=
-                                                                            null) {
-                                                                          setState(
-                                                                              () {
-                                                                            _isChecked =
-                                                                                value;
+                                                                      value: _isChecked,
+                                                                      onChanged: (bool? value) {
+                                                                        if (value != null) {
+                                                                          setState(() {
+                                                                            _isChecked = value;
                                                                           });
                                                                         }
                                                                       },
                                                                     ),
-                                                                    Expanded(
-                                                                      child: Text(
-                                                                          "msg_mantener_la_sesion"
-                                                                              .tr,
-                                                                          maxLines:
-                                                                              2,
-                                                                          overflow: TextOverflow
-                                                                              .ellipsis,
-                                                                          style: theme
-                                                                              .textTheme
-                                                                              .labelLarge),
-                                                                    )
+                                                                    Wrap(
+                                                                      alignment: WrapAlignment.start,
+                                                                      children: <Widget>[
+                                                                        Text(
+                                                                          "msg_mantener_la_sesion".tr,
+                                                                          maxLines: 2,
+                                                                          overflow: TextOverflow.ellipsis,
+                                                                          style: theme.textTheme.labelLarge,
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ],
                                                                 ),
                                                               ),
                                                             )
+
                                                           ])))
                                             ])),
                                     SizedBox(height: 23.v),
