@@ -203,29 +203,45 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                               ),
                                                             ),
                                                             Align(
-                                                              alignment: Alignment.centerLeft,
+                                                              alignment: Alignment
+                                                                  .centerLeft,
                                                               child: Flexible(
                                                                 child: Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
                                                                   children: <Widget>[
                                                                     Checkbox(
-                                                                      value: _isChecked,
-                                                                      onChanged: (bool? value) {
-                                                                        if (value != null) {
-                                                                          setState(() {
-                                                                            _isChecked = value;
+                                                                      value:
+                                                                          _isChecked,
+                                                                      onChanged:
+                                                                          (bool?
+                                                                              value) {
+                                                                        if (value !=
+                                                                            null) {
+                                                                          setState(
+                                                                              () {
+                                                                            _isChecked =
+                                                                                value;
                                                                           });
                                                                         }
                                                                       },
                                                                     ),
                                                                     Wrap(
-                                                                      alignment: WrapAlignment.start,
+                                                                      alignment:
+                                                                          WrapAlignment
+                                                                              .start,
                                                                       children: <Widget>[
                                                                         Text(
-                                                                          "msg_mantener_la_sesion".tr,
-                                                                          maxLines: 2,
-                                                                          overflow: TextOverflow.ellipsis,
-                                                                          style: theme.textTheme.labelLarge,
+                                                                          "msg_mantener_la_sesion"
+                                                                              .tr,
+                                                                          maxLines:
+                                                                              2,
+                                                                          overflow:
+                                                                              TextOverflow.ellipsis,
+                                                                          style: theme
+                                                                              .textTheme
+                                                                              .labelLarge,
                                                                         ),
                                                                       ],
                                                                     ),
@@ -233,14 +249,18 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                                 ),
                                                               ),
                                                             )
-
                                                           ])))
                                             ])),
                                     SizedBox(height: 23.v),
                                     CustomElevatedButton(
                                         text: "lbl_iniciar_sesi_n".tr,
                                         onTap: () {
-                                          onTapIniciarsesin(context);
+                                          bool datosValidos =
+                                              comprobarDatosLogin();
+                                          // Si los datos son válidos, navega a la siguiente pantalla
+                                          if (datosValidos) {
+                                            onTapIniciarsesin(context);
+                                          }
                                         }),
                                     SizedBox(height: 15.v),
                                     CustomOutlinedButton(
@@ -274,29 +294,43 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                     ])))));
   }
 
-  /// Navigates to the cambiarcontraseA1screenScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the cambiarcontraseA1screenScreen.
-  onTapTxtOlvidastelacont(BuildContext context) {
+  onTapTxtOlvidastelacont(BuildContextcontext) {
     Navigator.pushNamed(context, AppRoutes.cambiarcontraseA1screenScreen);
   }
 
-  /// Navigates to the mainscreensinligasScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the mainscreensinligasScreen.
+  bool comprobarDatosLogin() {
+    String email= emailController.text;
+    String password = passwordController.text;
+    // Comprueba que el email no esté vacío
+    if (email.isEmpty) {
+      return false;
+    }
+
+    // Comprueba que el formato del email sea correcto
+    if (!RegExp(r'^.+@[a-zA-Z]+\.[a-zA-Z]+$').hasMatch(email)) {
+      return false;
+    }
+
+    // Comprueba que la contraseña no esté vacía
+    if (password.isEmpty) {
+      return false;
+    }
+
+    // Comprueba el valor de la variable _isChecked
+    if (_isChecked) {
+      // Los datos son válidos
+      return true;
+    } else {
+      // Los datos no son válidos
+      return false;
+    }
+  }
+
+
   onTapIniciarsesin(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen);
   }
 
-  /// Navigates to the registrarsescreenScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the registrarsescreenScreen.
   onTapTxtNotienesunacuenta(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.registrarsescreenScreen);
   }
