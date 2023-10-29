@@ -1,4 +1,4 @@
-final Map<String, String> enUs = {
+final Map<String, String> esEs = {
   // preLoginScreen Screen
   "lbl_vamos_all": "Vamos allá!",
   "msg_bienvenido_a_formula": "¡Bienvenido a\nFormula 1 Fantasy!",

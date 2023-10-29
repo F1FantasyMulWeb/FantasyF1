@@ -12,7 +12,7 @@ void main() {
     DeviceOrientation.portraitUp,
   ]);
 
-  ///Please update theme as per your need if required.
+
   ThemeHelper().changeTheme('primary');
   runApp(MyApp());
 }
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: [
         Locale(
-          'en',
+          'es',
           '',
         ),
       ],

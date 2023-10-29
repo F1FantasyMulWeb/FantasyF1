@@ -5,14 +5,20 @@ import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 // ignore_for_file: must_be_immutable
-class LoginscreenScreen extends StatelessWidget {
+class LoginscreenScreen extends StatefulWidget {
   LoginscreenScreen({Key? key}) : super(key: key);
 
+  @override
+  _LoginscreenScreenState createState() => _LoginscreenScreenState();
+}
+
+class _LoginscreenScreenState extends State<LoginscreenScreen> {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -89,25 +95,22 @@ class LoginscreenScreen extends StatelessWidget {
                                                       .textTheme.titleSmall),
                                               SizedBox(height: 7.v),
                                               CustomTextFormField(
-                                                  controller: emailController,
-                                                  hintText:
-                                                      "msg_ejemplo_ejemplo_com"
-                                                          .tr,
-                                                  textInputType: TextInputType
-                                                      .emailAddress,
-                                                  prefix: Container(
-                                                      margin:
-                                                          EdgeInsets.fromLTRB(
-                                                              16.h,
-                                                              14.v,
-                                                              8.h,
-                                                              14.v),
-                                                      child: CustomImageView(
-                                                          svgPath: ImageConstant
-                                                              .imgEmail)),
-                                                  prefixConstraints:
-                                                      BoxConstraints(
-                                                          maxHeight: 48.v)),
+                                                controller: emailController,
+                                                hintText:
+                                                    "msg_ejemplo_ejemplo_com"
+                                                        .tr,
+                                                textInputType:
+                                                    TextInputType.emailAddress,
+                                                prefix: Container(
+                                                    margin: EdgeInsets.fromLTRB(
+                                                        16.h, 14.v, 8.h, 14.v),
+                                                    child: CustomImageView(
+                                                        svgPath: ImageConstant
+                                                            .imgEmail)),
+                                                prefixConstraints:
+                                                    BoxConstraints(
+                                                        maxHeight: 48.v),
+                                              ),
                                               SizedBox(height: 10.v),
                                               Text("lbl_contrase_a".tr,
                                                   style: theme
@@ -159,50 +162,89 @@ class LoginscreenScreen extends StatelessWidget {
                                                       width: 311.h,
                                                       child: Stack(
                                                           alignment: Alignment
-                                                              .centerLeft,
+                                                              .centerRight,
                                                           children: [
                                                             Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                child:
-                                                                    Container(
-                                                                        margin: EdgeInsets.symmetric(
-                                                                            vertical: 1
-                                                                                .v),
-                                                                        padding: EdgeInsets.symmetric(
-                                                                            vertical: 2
-                                                                                .v),
-                                                                        child: Row(
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            children: [
-                                                                              CustomImageView(svgPath: ImageConstant.imgComputer, height: 20.adaptSize, width: 20.adaptSize),
-                                                                              GestureDetector(
-                                                                                  onTap: () {
-                                                                                    onTapTxtOlvidastelacont(context);
-                                                                                  },
-                                                                                  child: Padding(padding: EdgeInsets.only(top: 2.v), child: Text("msg_olvidaste_la_contrase_a".tr, style: CustomTextStyles.titleSmallRed400)))
-                                                                            ]))),
+                                                              alignment: Alignment
+                                                                  .centerRight,
+                                                              child: Container(
+                                                                margin: EdgeInsets
+                                                                    .symmetric(
+                                                                        vertical:
+                                                                            1.v),
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        vertical:
+                                                                            2.v),
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    GestureDetector(
+                                                                      onTap:
+                                                                          () {
+                                                                        onTapTxtOlvidastelacont(
+                                                                            context);
+                                                                      },
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            EdgeInsets.only(top: 2.v),
+                                                                        child: Text(
+                                                                            "msg_olvidaste_la_contrase_a"
+                                                                                .tr,
+                                                                            style:
+                                                                                CustomTextStyles.titleSmallRed400),
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
                                                             Align(
-                                                                alignment: Alignment
-                                                                    .centerLeft,
-                                                                child: Container(
-                                                                    width: 86.h,
-                                                                    margin: EdgeInsets.only(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Container(
+                                                                width: 86.h,
+                                                                margin: EdgeInsets
+                                                                    .only(
                                                                         left: 30
                                                                             .h),
-                                                                    child: Text(
-                                                                        "msg_mantener_la_sesion"
-                                                                            .tr,
-                                                                        maxLines:
-                                                                            2,
-                                                                        overflow:
-                                                                            TextOverflow
-                                                                                .ellipsis,
-                                                                        style: theme
-                                                                            .textTheme
-                                                                            .labelLarge)))
+                                                                child: Row(
+                                                                  children: <Widget>[
+                                                                    Checkbox(
+                                                                      value:
+                                                                          _isChecked,
+                                                                      onChanged:
+                                                                          (bool?
+                                                                              value) {
+                                                                        if (value !=
+                                                                            null) {
+                                                                          setState(
+                                                                              () {
+                                                                            _isChecked =
+                                                                                value;
+                                                                          });
+                                                                        }
+                                                                      },
+                                                                    ),
+                                                                    Expanded(
+                                                                      child: Text(
+                                                                          "msg_mantener_la_sesion"
+                                                                              .tr,
+                                                                          maxLines:
+                                                                              2,
+                                                                          overflow: TextOverflow
+                                                                              .ellipsis,
+                                                                          style: theme
+                                                                              .textTheme
+                                                                              .labelLarge),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            )
                                                           ])))
                                             ])),
                                     SizedBox(height: 23.v),

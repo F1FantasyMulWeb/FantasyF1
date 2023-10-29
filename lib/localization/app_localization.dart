@@ -1,14 +1,14 @@
-import 'en_us/en_us_translations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import '../core/app_export.dart';
+import 'es_es/es_us_translations.dart';
 
 class AppLocalization {
   AppLocalization(this.locale);
 
   Locale locale;
 
-  static final Map<String, Map<String, String>> _localizedValues = {'en': enUs};
+  static final Map<String, Map<String, String>> _localizedValues = {'es': esEs};
 
   static AppLocalization of() {
     return Localizations.of<AppLocalization>(

@@ -85,21 +85,23 @@ class CustomTextFormField extends StatelessWidget {
   }
 
   Widget get textFormFieldWidget => Container(
-        width: width ?? double.maxFinite,
-        margin: margin,
-        child: TextFormField(
-          controller: controller,
-          focusNode: focusNode ?? FocusNode(),
-          autofocus: autofocus!,
-          style: textStyle ?? CustomTextStyles.bodyMediumOnErrorContainer,
-          obscureText: obscureText!,
-          textInputAction: textInputAction,
-          keyboardType: textInputType,
-          maxLines: maxLines ?? 1,
-          decoration: decoration,
-          validator: validator,
-        ),
-      );
+    width: width ?? double.maxFinite,
+    margin: margin,
+    child: TextFormField(
+      controller: controller,
+      focusNode: focusNode ?? FocusNode(),
+      autofocus: autofocus!,
+      style: textStyle ?? TextStyle(color: Colors.black),
+      obscureText: obscureText!,
+      textInputAction: textInputAction,
+      keyboardType: textInputType,
+      maxLines: maxLines ?? 1,
+      decoration: decoration,
+      validator: validator,
+    ),
+  );
+
+
   InputDecoration get decoration => InputDecoration(
         hintText: hintText ?? "",
         hintStyle: hintStyle ?? theme.textTheme.bodyMedium,
