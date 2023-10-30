@@ -35,6 +35,8 @@ final Map<String, String> esEs = {
   "lbl_miami": "Miami", "lbl_yeda": "Yeda",
 
   // loginScreen Screen
+  "lbl_password_error": "Su contraseña es incorrecta",
+  "lbl_correo_error": "El correo introducido es erroneo",
   "lbl_iniciar_sesi_n": "Iniciar sesión",
   "lbl_registrate": "Registrate",
   "msg_iniciar_sesi_n_con": "Iniciar sesión con Google",
