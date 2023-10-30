@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCjXoGWzg93PZi-4QPn9evOmxQIStL0wP4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>221753940404</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fantasyf.app</string>
+	<key>PROJECT_ID</key>
+	<string>fantasyf1-cd80e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fantasyf1-cd80e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:221753940404:ios:50f6ddc2d86300b857fae1</string>
+	<key>DATABASE_URL</key>
+	<string>https://fantasyf1-cd80e-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

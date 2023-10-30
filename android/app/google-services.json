@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "221753940404",
+    "firebase_url": "https://fantasyf1-cd80e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fantasyf1-cd80e",
+    "storage_bucket": "fantasyf1-cd80e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221753940404:android:c158ca74dad6659657fae1",
+        "android_client_info": {
+          "package_name": "com.fantasyf.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAW-BWiOjso6i-P_csiykpxH5vS_-5oek"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
