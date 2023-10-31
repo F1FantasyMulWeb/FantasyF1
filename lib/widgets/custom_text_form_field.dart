@@ -103,44 +103,46 @@ class CustomTextFormField extends StatelessWidget {
 
 
   InputDecoration get decoration => InputDecoration(
-        hintText: hintText ?? "",
-        hintStyle: hintStyle ?? theme.textTheme.bodyMedium,
-        prefixIcon: prefix,
-        prefixIconConstraints: prefixConstraints,
-        suffixIcon: suffix,
-        suffixIconConstraints: suffixConstraints,
-        isDense: true,
-        contentPadding: contentPadding ??
-            EdgeInsets.only(
-              top: 13.v,
-              right: 13.h,
-              bottom: 13.v,
-            ),
-        fillColor: fillColor ?? appTheme.whiteA700,
-        filled: filled,
-        border: borderDecoration ??
-            OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.h),
-              borderSide: BorderSide(
-                color: theme.colorScheme.onErrorContainer,
-                width: 1,
-              ),
-            ),
-        enabledBorder: borderDecoration ??
-            OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.h),
-              borderSide: BorderSide(
-                color: theme.colorScheme.onErrorContainer,
-                width: 1,
-              ),
-            ),
-        focusedBorder: borderDecoration ??
-            OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.h),
-              borderSide: BorderSide(
-                color: theme.colorScheme.primary.withOpacity(1),
-                width: 1,
-              ),
-            ),
-      );
+    hintText: hintText ?? "",
+    hintStyle: hintStyle ?? theme.textTheme.bodyMedium,
+    prefixIcon: prefix,
+    prefixIconConstraints: prefixConstraints,
+    suffixIcon: suffix,
+    suffixIconConstraints: suffixConstraints,
+    isDense: true,
+    contentPadding: contentPadding ??
+        EdgeInsets.only(
+          top: 13.v,
+          right: 13.h,
+          bottom: 13.v,
+        ),
+    fillColor: fillColor ?? appTheme.whiteA700,
+    filled: filled,
+    border: borderDecoration ??
+        OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.h),
+          borderSide: BorderSide(
+            color: theme.colorScheme.onErrorContainer,
+            width: 1,
+          ),
+        ),
+    enabledBorder: borderDecoration ??
+        OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.h),
+          borderSide: BorderSide(
+            color: theme.colorScheme.onErrorContainer,
+            width: 1,
+          ),
+        ),
+    focusedBorder: borderDecoration ??
+        OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.h),
+          borderSide: BorderSide(
+            color: theme.colorScheme.primary.withOpacity(1),
+            width: 1,
+          ),
+        ),
+    errorStyle: TextStyle(color: Colors.red), // Cambia 'Colors.blue' al color que prefieras
+  );
+
 }

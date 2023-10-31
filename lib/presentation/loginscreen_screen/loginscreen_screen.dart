@@ -4,8 +4,7 @@ import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
-import '../../verificacion/FormValidator.dart';
-
+import '../../utils/FormValidatorLogin.dart';
 
 // ignore_for_file: must_be_immutable
 class LoginscreenScreen extends StatefulWidget {
@@ -26,7 +25,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    FormValidator formValidator = FormValidator();
+    FormValidatorLogin formValidator = FormValidatorLogin();
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -115,6 +114,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                 prefixConstraints:
                                                 BoxConstraints(
                                                     maxHeight: 48.v),
+
                                               ),
                                               SizedBox(height: 10.v),
                                               Text("lbl_contrase_a".tr,
@@ -125,6 +125,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                   controller:
                                                   passwordController,
                                                   hintText: "lbl2".tr,
+                                                  validator: formValidator.isValidPass,
                                                   textInputAction:
                                                   TextInputAction.done,
                                                   textInputType: TextInputType
@@ -258,15 +259,14 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                             ])),
                                     SizedBox(height: 23.v),
                                     CustomElevatedButton(
-                                        text: "lbl_iniciar_sesi_n".tr,
-                                        onTap: () {
-                                          bool datosValidos =
-                                          comprobarDatosLogin();
-                                          // Si los datos son válidos, navega a la siguiente pantalla
-                                          if (datosValidos) {
-                                            onTapIniciarsesin(context);
-                                          }
-                                        }),
+                                      text: "lbl_iniciar_sesi_n".tr,
+                                      onTap: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          // Si el formulario es válido, navega a la siguiente pantalla
+                                          onTapIniciarsesin(context);
+                                        }
+                                      },
+                                    ),
                                     SizedBox(height: 15.v),
                                     CustomOutlinedButton(
                                         text: "msg_iniciar_sesi_n_con".tr,
@@ -302,35 +302,6 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   onTapTxtOlvidastelacont(BuildContextcontext) {
     Navigator.pushNamed(context, AppRoutes.cambiarcontraseA1screenScreen);
   }
-
-  bool comprobarDatosLogin() {
-    String email= emailController.text;
-    String password = passwordController.text;
-    // Comprueba que el email no esté vacío
-    if (email.isEmpty) {
-      return false;
-    }
-
-    // Comprueba que el formato del email sea correcto
-    if (!RegExp(r'^.+@[a-zA-Z]+\.[a-zA-Z]+$').hasMatch(email)) {
-      return false;
-    }
-
-    // Comprueba que la contraseña no esté vacía
-    if (password.isEmpty) {
-      return false;
-    }
-
-    // Comprueba el valor de la variable _isChecked
-    if (_isChecked) {
-      // Los datos son válidos
-      return true;
-    } else {
-      // Los datos no son válidos
-      return false;
-    }
-  }
-
 
   onTapIniciarsesin(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen);
