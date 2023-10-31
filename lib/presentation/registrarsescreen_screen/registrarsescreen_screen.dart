@@ -27,6 +27,8 @@ class RegistrarsescreenScreen extends StatefulWidget {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  bool _isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
