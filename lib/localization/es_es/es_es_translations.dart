@@ -228,6 +228,17 @@ final Map<String, String> esEs = {
   "msg_piloto_verstapen": "Piloto Verstapen",
   "msg_registrarsescreen": "registrarseScreen",
 
+
+  //FormValidator
+  "msg_error_email": "Lo que acabas de introducir no es un email",
+  "msg_error_password": "El campo de Contraseña esta vacia",
+  "msg_error_user": "El campo de Usuario esta vacia",
+  "msg_error_pass_min": "La contraseña es muy corta, debe tener al menos 10 caracteres",
+  "msg_error_pass_may": "La contraseña debe contener al menos una letra mayúscula",
+  "msg_error_pass_num": "La contraseña debe contener al menos un número",
+  "msg_error_pass_caraspec": "La contraseña debe contener al menos un carácter especial",
+  "msg_error_pass_space": "Tu contraseña no puede contener espacios",
+  "msg_error_passwords_do_not_match" : "Las contraseñas no coinciden",
 // Network Error String
   "msg_network_err": "Network Error",
   "msg_something_went_wrong": "Something Went Wrong!",
