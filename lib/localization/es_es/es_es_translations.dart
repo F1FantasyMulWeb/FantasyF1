@@ -3,7 +3,7 @@ final Map<String, String> esEs = {
   "lbl_vamos_all": "Vamos allá!",
   "msg_bienvenido_a_formula": "¡Bienvenido a\nFormula 1 Fantasy!",
   "msg_prep_rate_para_vivir":
-      "Prepárate para vivir la emoción y la adrenalina de la Fórmula 1 como nunca antes. ¿Tienes lo que se necesita para llevar a tu equipo a la victoria y convertirte en el campeón?",
+  "Prepárate para vivir la emoción y la adrenalina de la Fórmula 1 como nunca antes. ¿Tienes lo que se necesita para llevar a tu equipo a la victoria y convertirte en el campeón?",
 
   // Ajustes One Screen
   "lbl_borrar_cuenta": "Borrar cuenta", "lbl_cerrar_sesi_n": "cerrar sesión",
@@ -12,11 +12,11 @@ final Map<String, String> esEs = {
   "lbl_c_mo_se_juega": "¿Cómo se juega?\n",
   "lbl_pilotos": "pilotos",
   "msg_al_inicio_de_la":
-      "Al inicio de la partida, cada miembro elige un piloto principal y un piloto secundario y 100 millones de saldo (menos el valor del equipo que le haya tocado por defecto).\n\nEl ganador será quien tenga el mayor número de puntos a final de temporada. En caso de empate, el miembro que tenga mayor valor de equipo al inicio de la última jornada será el ganador.\n\nLos puntos se consiguen disputando jornadas en el juego acorde con la realidad de la competición. Al finalizar la jornada siempre se asigna una puntuación\n\nSolamente los pilotos alineados recibirán puntos. Tienes que alinear los ",
+  "Al inicio de la partida, cada miembro elige un piloto principal y un piloto secundario y 100 millones de saldo (menos el valor del equipo que le haya tocado por defecto).\n\nEl ganador será quien tenga el mayor número de puntos a final de temporada. En caso de empate, el miembro que tenga mayor valor de equipo al inicio de la última jornada será el ganador.\n\nLos puntos se consiguen disputando jornadas en el juego acorde con la realidad de la competición. Al finalizar la jornada siempre se asigna una puntuación\n\nSolamente los pilotos alineados recibirán puntos. Tienes que alinear los ",
   "msg_c_mo_se_juega_al":
-      "¿Cómo se juega?\n\n\nAl inicio de la partida, cada miembro elige un piloto principal y un piloto secundario y 100 millones de saldo (menos el valor del equipo que le haya tocado por defecto).\n\nEl ganador será quien tenga el mayor número de puntos a final de temporada. En caso de empate, el miembro que tenga mayor valor de equipo al inicio de la última jornada será el ganador.\n\nLos puntos se consiguen disputando jornadas en el juego acorde con la realidad de la competición. Al finalizar la jornada siempre se asigna una puntuación\n\nSolamente los pilotos alineados recibirán puntos. Tienes que alinear los pilotos deseados antes del inicio del gran premio, aunque durante la misma puedes hacer cambios en dicha alineación.",
+  "¿Cómo se juega?\n\n\nAl inicio de la partida, cada miembro elige un piloto principal y un piloto secundario y 100 millones de saldo (menos el valor del equipo que le haya tocado por defecto).\n\nEl ganador será quien tenga el mayor número de puntos a final de temporada. En caso de empate, el miembro que tenga mayor valor de equipo al inicio de la última jornada será el ganador.\n\nLos puntos se consiguen disputando jornadas en el juego acorde con la realidad de la competición. Al finalizar la jornada siempre se asigna una puntuación\n\nSolamente los pilotos alineados recibirán puntos. Tienes que alinear los pilotos deseados antes del inicio del gran premio, aunque durante la misma puedes hacer cambios en dicha alineación.",
   "msg_deseados_antes_del":
-      " deseados antes del inicio del gran premio, aunque durante la misma puedes hacer cambios en dicha alineación.",
+  " deseados antes del inicio del gran premio, aunque durante la misma puedes hacer cambios en dicha alineación.",
 
   // Avatar Screen
   "lbl_editar_perfil": "Editar Perfil",
@@ -45,20 +45,21 @@ final Map<String, String> esEs = {
   "msg_no_tienes_una_cuenta2": "¿No tienes una cuenta?",
   "msg_olvidaste_la_contrase_a": "¿Olvidaste la Contraseña?",
   "msg_por_favor_rellene":
-      "Por favor rellene los campos\npara acceder a su cuenta",
+  "Por favor rellene los campos\npara acceder a su cuenta",
 
   // registrarseScreen Screen
+  "msg_nombre_de_fusuario": "Nombre de Usuario",
   "lbl_acepto_la": "Acepto la",
   "lbl_f1fantasylover": "F1FantasyLover",
   "lbl_registrarse": "Registrarse",
   "msg_nombre_de_usuario": "Nombre de Usuario",
-  "msg_pol_tica_de_privacidad": "Política de Privacidad",
+  "msg_pol_tica_de_privacidad": " Política de Privacidad",
   "msg_registrarse_con": "Registrarse con Google",
 
   // cambiarContraseña1Screen Screen
   "lbl_siguiente_1_3": "Siguiente (1/3)",
   "msg_introduce_el_correo":
-      "Introduce el correo electrónico vinculado a tu cuenta",
+  "Introduce el correo electrónico vinculado a tu cuenta",
 
   // mainScreenSinLigas Screen
   "lbl_ultima_carrera": "Ultima Carrera",
@@ -86,7 +87,7 @@ final Map<String, String> esEs = {
 
   // Circuito Bahréin Screen
   "msg_circuito_de_sakhir_fundado":
-      "Circuito de Sakhir\nFundado en: 2003\nCurvas: 15\nLongitud: 5'412 km\nGrandes Premios disputados: 13\nVueltas: 57",
+  "Circuito de Sakhir\nFundado en: 2003\nCurvas: 15\nLongitud: 5'412 km\nGrandes Premios disputados: 13\nVueltas: 57",
 
   // cambiarContraseña2Screen Screen
   "lbl_0_00": "0:00",
@@ -96,7 +97,7 @@ final Map<String, String> esEs = {
   "lbl_tiempo_restante": "Tiempo restante",
   "msg_c_digo_verificaci_n": "Código Verificación",
   "msg_introduce_el_c_digo":
-      "Introduce el código de verificación enviado al correo electrónico\nque has proporcionado",
+  "Introduce el código de verificación enviado al correo electrónico\nque has proporcionado",
   "msg_reenviar_c_digo": "Reenviar código de verificación",
 
   // Escuderia Aston Martin Screen
@@ -117,7 +118,7 @@ final Map<String, String> esEs = {
   // Circuito de la Corniche de Yeda Screen
   "msg_corniche_de_yeda": "Corniche de Yeda",
   "msg_trazado_circuito":
-      "Trazado: Circuito de la Corniche de Yeda\nLugar: Yeda, Arabia Saudí\nFecha: Del 17 al 19 de marzo\nLongitud: 6'175 km\nCurvas: 27",
+  "Trazado: Circuito de la Corniche de Yeda\nLugar: Yeda, Arabia Saudí\nFecha: Del 17 al 19 de marzo\nLongitud: 6'175 km\nCurvas: 27",
 
   // cambiarContraseña3Screen One Screen
   "msg_cambiar_contrase_a2": "Cambiar Contraseña (3/3)",
@@ -138,19 +139,19 @@ final Map<String, String> esEs = {
 
   // Circuito de Albert Park Screen
   "msg_trazado_circuito2":
-      "Trazado: Circuito de Albert Park\nLugar: Melbourne, Australia\nFecha: Del 31 de marzo al 02 de abril\nLongitud: 5'303 km\nCurvas: 16",
+  "Trazado: Circuito de Albert Park\nLugar: Melbourne, Australia\nFecha: Del 31 de marzo al 02 de abril\nLongitud: 5'303 km\nCurvas: 16",
 
   // Bakú City Circuit Screen
   "msg_trazado_bak_city":
-      "Trazado: Bakú City Circuit\nLugar: Bakú, Azerbaiyán\nFecha: Del 28 al 30 de abril\nLongitud: 6'003 km\nCurvas: 20",
+  "Trazado: Bakú City Circuit\nLugar: Bakú, Azerbaiyán\nFecha: Del 28 al 30 de abril\nLongitud: 6'003 km\nCurvas: 20",
 
   // Circuito urbano de Miami Screen
   "msg_trazado_circuito3":
-      "Trazado: Circuito urbano de Miami\nLugar: Miami, Estados Unidos\nFecha: Del 05 al 07 de mayo\nLongitud: 5'410 km\nCurvas: 19",
+  "Trazado: Circuito urbano de Miami\nLugar: Miami, Estados Unidos\nFecha: Del 05 al 07 de mayo\nLongitud: 5'410 km\nCurvas: 19",
 
   // Circuito de Mónaco Screen
   "msg_trazado_circuito4":
-      "Trazado: Circuito de Mónaco\nLugar: Montecarlo, Mónaco\nFecha: Del 26 al 28 de mayo\nLongitud: 3'340 km\nCurvas: 19",
+  "Trazado: Circuito de Mónaco\nLugar: Montecarlo, Mónaco\nFecha: Del 26 al 28 de mayo\nLongitud: 3'340 km\nCurvas: 19",
 
   // Common String
   "lbl": "[]",
@@ -183,14 +184,14 @@ final Map<String, String> esEs = {
   "msg_ejemplo_ejemplo_com": "ejemplo@ejemplo.com",
   "msg_formula_1_fantasy": "Formula 1\nFantasy",
   "msg_full_team_nameoracle":
-      "Full Team:  NameOracle Red Bull \nRacing Base:  Milton Keynes, United Kingdom\nTeam Chief:  Christian Horner\nTechnical Chief: Pierre Waché \nChassis:  RB19\nPower Unit:  Honda RBPT\nFirst Team:  Entry1997\nWorld Championships:  6\nHighest Race Finish:  1 (x107)\nPole Positions:  94\nFastest Laps:  93",
+  "Full Team:  NameOracle Red Bull \nRacing Base:  Milton Keynes, United Kingdom\nTeam Chief:  Christian Horner\nTechnical Chief: Pierre Waché \nChassis:  RB19\nPower Unit:  Honda RBPT\nFirst Team:  Entry1997\nWorld Championships:  6\nHighest Race Finish:  1 (x107)\nPole Positions:  94\nFastest Laps:  93",
   "msg_introduce_la_nueva":
-      "Introduce la nueva contraseña para asignar a la cuenta",
+  "Introduce la nueva contraseña para asignar a la cuenta",
   "msg_recupera_tu_cuenta": "RECUPERA TU CUENTA",
   "msg_repetir_contrase_a": "Repetir Contraseña",
   "msg_siguiente_carrera": "Siguiente carrera ",
   "msg_team_red_bull":
-      "Team:  Red Bull Racing\nCountry:  Netherlands\nPodiums:  92\nPoints:  2411.5\nGrands Prix entered:  179\nWorld Championships: 2\nHighest race finish: 1 (x48)\nDate of birth 30/09/1997\nPlace of birth Hasselt, Belgium",
+  "Team:  Red Bull Racing\nCountry:  Netherlands\nPodiums:  92\nPoints:  2411.5\nGrands Prix entered:  179\nWorld Championships: 2\nHighest race finish: 1 (x48)\nDate of birth 30/09/1997\nPlace of birth Hasselt, Belgium",
 
   // App navigation Screen
   "lbl_a_adirgrupo": "añadirGrupo",
@@ -217,7 +218,7 @@ final Map<String, String> esEs = {
   "msg_cambiarcontrase_a3screen": "cambiarContraseña3Screen One",
   "msg_cambiarcontrase_a3screen2": "cambiarContraseña3Screen",
   "msg_check_your_app_s":
-      "Check your app's UI from the below demo screens of your app.",
+  "Check your app's UI from the below demo screens of your app.",
   "msg_circuito_bahr_in": "Circuito Bahréin",
   "msg_circuito_de_la_corniche": "Circuito de la Corniche de Yeda",
   "msg_escuderia_aston": "Escuderia Aston Martin",
@@ -229,16 +230,8 @@ final Map<String, String> esEs = {
   "msg_registrarsescreen": "registrarseScreen",
 
 
-  //FormValidator
-  "msg_error_email": "Lo que acabas de introducir no es un email",
-  "msg_error_password": "El campo de Contraseña esta vacia",
-  "msg_error_user": "El campo de Usuario esta vacia",
-  "msg_error_pass_min": "La contraseña es muy corta, debe tener al menos 10 caracteres",
-  "msg_error_pass_may": "La contraseña debe contener al menos una letra mayúscula",
-  "msg_error_pass_num": "La contraseña debe contener al menos un número",
-  "msg_error_pass_caraspec": "La contraseña debe contener al menos un carácter especial",
-  "msg_error_pass_space": "Tu contraseña no puede contener espacios",
-  "msg_error_passwords_do_not_match" : "Las contraseñas no coinciden",
+
+
 // Network Error String
   "msg_network_err": "Network Error",
   "msg_something_went_wrong": "Something Went Wrong!",

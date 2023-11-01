@@ -5,6 +5,7 @@ import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/utils/FormValidatorLogin.dart';
+import '../../localization/es_es/es_es_translations_class_spf.dart';
 
 // ignore_for_file: must_be_immutable
 class LoginscreenScreen extends StatefulWidget {
@@ -25,7 +26,8 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    FormValidatorLogin formValidator = FormValidatorLogin();
+    es_es_translations_class_spf customTranslations = es_es_translations_class_spf();
+    FormValidatorLogin formValidator = FormValidatorLogin(customTranslations);
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -54,7 +56,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                             children: [
                                               Align(
                                                   alignment:
-                                                  Alignment.topCenter,
+                                                      Alignment.topCenter,
                                                   child: SizedBox(
                                                       width: 303.h,
                                                       child: Text(
@@ -64,12 +66,12 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           textAlign:
-                                                          TextAlign.center,
+                                                              TextAlign.center,
                                                           style: theme.textTheme
                                                               .displayLarge))),
                                               Align(
                                                   alignment:
-                                                  Alignment.bottomCenter,
+                                                      Alignment.bottomCenter,
                                                   child: SizedBox(
                                                       width: 266.h,
                                                       child: Text(
@@ -79,7 +81,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                           overflow: TextOverflow
                                                               .ellipsis,
                                                           textAlign:
-                                                          TextAlign.center,
+                                                              TextAlign.center,
                                                           style: CustomTextStyles
                                                               .titleLargeInter_1)))
                                             ])),
@@ -88,10 +90,10 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 4.h, vertical: 2.v),
                                         decoration:
-                                        AppDecoration.outlinePrimary1,
+                                            AppDecoration.outlinePrimary1,
                                         child: Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text("msg_correo_electr_nico".tr,
                                                   style: theme
@@ -99,12 +101,13 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                               SizedBox(height: 7.v),
                                               CustomTextFormField(
                                                 controller: emailController,
-                                                validator: formValidator.isValidEmail,
+                                                validator:
+                                                    formValidator.isValidEmail,
                                                 hintText:
-                                                "msg_ejemplo_ejemplo_com"
-                                                    .tr,
+                                                    "msg_ejemplo_ejemplo_com"
+                                                        .tr,
                                                 textInputType:
-                                                TextInputType.emailAddress,
+                                                    TextInputType.emailAddress,
                                                 prefix: Container(
                                                     margin: EdgeInsets.fromLTRB(
                                                         16.h, 14.v, 8.h, 14.v),
@@ -112,9 +115,8 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                         svgPath: ImageConstant
                                                             .imgEmail)),
                                                 prefixConstraints:
-                                                BoxConstraints(
-                                                    maxHeight: 48.v),
-
+                                                    BoxConstraints(
+                                                        maxHeight: 48.v),
                                               ),
                                               SizedBox(height: 10.v),
                                               Text("lbl_contrase_a".tr,
@@ -123,26 +125,27 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                               SizedBox(height: 7.v),
                                               CustomTextFormField(
                                                   controller:
-                                                  passwordController,
+                                                      passwordController,
                                                   hintText: "lbl2".tr,
-                                                  validator: formValidator.isValidPass,
+                                                  validator:
+                                                      formValidator.isValidPass,
                                                   textInputAction:
-                                                  TextInputAction.done,
+                                                      TextInputAction.done,
                                                   textInputType: TextInputType
                                                       .visiblePassword,
                                                   prefix: Container(
                                                       margin:
-                                                      EdgeInsets.fromLTRB(
-                                                          16.h,
-                                                          14.v,
-                                                          8.h,
-                                                          14.v),
+                                                          EdgeInsets.fromLTRB(
+                                                              16.h,
+                                                              14.v,
+                                                              8.h,
+                                                              14.v),
                                                       child: CustomImageView(
                                                           svgPath: ImageConstant
                                                               .imgMingcutelockline)),
                                                   prefixConstraints:
-                                                  BoxConstraints(
-                                                      maxHeight: 48.v),
+                                                      BoxConstraints(
+                                                          maxHeight: 48.v),
                                                   obscureText: true),
                                               SizedBox(height: 14.v)
                                             ])),
@@ -176,16 +179,16 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                               child: Container(
                                                                 margin: EdgeInsets
                                                                     .symmetric(
-                                                                    vertical:
-                                                                    1.v),
+                                                                        vertical:
+                                                                            1.v),
                                                                 padding: EdgeInsets
                                                                     .symmetric(
-                                                                    vertical:
-                                                                    2.v),
+                                                                        vertical:
+                                                                            2.v),
                                                                 child: Row(
                                                                   mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .end,
+                                                                      MainAxisAlignment
+                                                                          .end,
                                                                   children: [
                                                                     GestureDetector(
                                                                       onTap:
@@ -194,14 +197,14 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                                             context);
                                                                       },
                                                                       child:
-                                                                      Padding(
+                                                                          Padding(
                                                                         padding:
-                                                                        EdgeInsets.only(top: 2.v),
+                                                                            EdgeInsets.only(top: 2.v),
                                                                         child: Text(
                                                                             "msg_olvidaste_la_contrase_a"
                                                                                 .tr,
                                                                             style:
-                                                                            CustomTextStyles.titleSmallRed400),
+                                                                                CustomTextStyles.titleSmallRed400),
                                                                       ),
                                                                     )
                                                                   ],
@@ -214,37 +217,37 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                               child: Flexible(
                                                                 child: Row(
                                                                   mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
+                                                                      MainAxisAlignment
+                                                                          .start,
                                                                   children: <Widget>[
                                                                     Checkbox(
                                                                       value:
-                                                                      _isChecked,
+                                                                          _isChecked,
                                                                       onChanged:
                                                                           (bool?
-                                                                      value) {
+                                                                              value) {
                                                                         if (value !=
                                                                             null) {
                                                                           setState(
-                                                                                  () {
-                                                                                _isChecked =
-                                                                                    value;
-                                                                              });
+                                                                              () {
+                                                                            _isChecked =
+                                                                                value;
+                                                                          });
                                                                         }
                                                                       },
                                                                     ),
                                                                     Wrap(
                                                                       alignment:
-                                                                      WrapAlignment
-                                                                          .start,
+                                                                          WrapAlignment
+                                                                              .start,
                                                                       children: <Widget>[
                                                                         Text(
                                                                           "msg_mantener_la_sesion"
                                                                               .tr,
                                                                           maxLines:
-                                                                          2,
+                                                                              2,
                                                                           overflow:
-                                                                          TextOverflow.ellipsis,
+                                                                              TextOverflow.ellipsis,
                                                                           style: theme
                                                                               .textTheme
                                                                               .labelLarge,
@@ -274,7 +277,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                             margin: EdgeInsets.only(right: 8.h),
                                             child: CustomImageView(
                                                 svgPath:
-                                                ImageConstant.imgGoogle))),
+                                                    ImageConstant.imgGoogle))),
                                     SizedBox(height: 23.v),
                                     GestureDetector(
                                         onTap: () {
@@ -284,8 +287,8 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                             text: TextSpan(children: [
                                               TextSpan(
                                                   text:
-                                                  "msg_no_tienes_una_cuenta2"
-                                                      .tr,
+                                                      "msg_no_tienes_una_cuenta2"
+                                                          .tr,
                                                   style: CustomTextStyles
                                                       .bodyMediumInter15),
                                               TextSpan(text: " "),

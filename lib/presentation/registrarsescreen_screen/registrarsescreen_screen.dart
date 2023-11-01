@@ -7,6 +7,9 @@ import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
+import '../../localization/es_es/es_es_translations_class_spf.dart';
+import '../../widgets/CheckboxCustom.dart';
+
 // ignore_for_file: must_be_immutable
 class RegistrarsescreenScreen extends StatefulWidget {
   RegistrarsescreenScreen({Key? key}) : super(key: key);
@@ -15,8 +18,7 @@ class RegistrarsescreenScreen extends StatefulWidget {
   _RegistrarsescreenScreen createState() => _RegistrarsescreenScreen();
 }
 
-  class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
-
+class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController usernameoneController = TextEditingController();
@@ -32,7 +34,8 @@ class RegistrarsescreenScreen extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    FormValidatorRegister formValidator = FormValidatorRegister();
+    es_es_translations_class_spf customTranslations = es_es_translations_class_spf();
+    FormValidatorRegister formValidator = FormValidatorRegister(customTranslations);
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -93,6 +96,8 @@ class RegistrarsescreenScreen extends StatefulWidget {
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                             controller: emailController,
+                                            validator:
+                                            formValidator.isValidEmail,
                                             margin: EdgeInsets.only(
                                                 left: 1.h, top: 7.v),
                                             hintText:
@@ -111,11 +116,13 @@ class RegistrarsescreenScreen extends StatefulWidget {
                                             padding: EdgeInsets.only(
                                                 left: 1.h, top: 13.v),
                                             child: Text(
-                                                "msg_nombre_de_usuario".tr,
+                                                "msg_nombre_de_fusuario".tr,
                                                 style: theme
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                             controller: usernameoneController,
+                                            validator:
+                                            formValidator.isValidUsuario,
                                             margin: EdgeInsets.only(
                                                 left: 1.h, top: 7.v),
                                             hintText: "lbl_f1fantasylover".tr,
@@ -134,21 +141,19 @@ class RegistrarsescreenScreen extends StatefulWidget {
                                                 style: theme
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
-                                            controller: passwordController,
-                                            margin: EdgeInsets.only(
-                                                left: 1.h, top: 7.v),
-                                            hintText: "lbl2".tr,
-                                            textInputType:
-                                                TextInputType.visiblePassword,
-                                            prefix: Container(
-                                                margin: EdgeInsets.fromLTRB(
-                                                    16.h, 14.v, 8.h, 14.v),
-                                                child: CustomImageView(
-                                                    svgPath: ImageConstant
-                                                        .imgMingcutelockline)),
-                                            prefixConstraints:
-                                                BoxConstraints(maxHeight: 48.v),
-                                            obscureText: true),
+                                          controller: passwordController,
+                                          validator: formValidator.isValidPass,
+                                          margin: EdgeInsets.only(left: 1.h, top: 7.v),
+                                          hintText: "lbl2".tr,
+                                          textInputType: TextInputType.visiblePassword,
+                                          prefix: Container(
+                                            margin: EdgeInsets.fromLTRB(16.h, 14.v, 8.h, 14.v),
+                                            child: CustomImageView(svgPath: ImageConstant.imgMingcutelockline),
+                                          ),
+                                          prefixConstraints: BoxConstraints(maxHeight: 48.v),
+                                          obscureText: true,
+                                        )
+                                        ,
                                         Padding(
                                             padding: EdgeInsets.only(
                                                 left: 1.h, top: 14.v),
@@ -158,22 +163,20 @@ class RegistrarsescreenScreen extends StatefulWidget {
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                             controller: passwordController1,
-                                            margin: EdgeInsets.only(
-                                                left: 1.h, top: 6.v),
+                                            validator: (text) {
+                                              return formValidator.isValidRepeatedPassword(text, passwordController.text);
+                                            },
+                                            margin: EdgeInsets.only(left: 1.h, top: 6.v),
                                             hintText: "lbl2".tr,
-                                            textInputAction:
-                                                TextInputAction.done,
-                                            textInputType:
-                                                TextInputType.visiblePassword,
+                                            textInputAction: TextInputAction.done,
+                                            textInputType: TextInputType.visiblePassword,
                                             prefix: Container(
-                                                margin: EdgeInsets.fromLTRB(
-                                                    16.h, 14.v, 8.h, 14.v),
-                                                child: CustomImageView(
-                                                    svgPath: ImageConstant
-                                                        .imgMingcutelockline)),
-                                            prefixConstraints:
-                                                BoxConstraints(maxHeight: 48.v),
-                                            obscureText: true),
+                                                margin: EdgeInsets.fromLTRB(16.h, 14.v, 8.h, 14.v),
+                                                child: CustomImageView(svgPath: ImageConstant.imgMingcutelockline)
+                                            ),
+                                            prefixConstraints: BoxConstraints(maxHeight: 48.v),
+                                            obscureText: true
+                                        ),
                                         SizedBox(height: 28.v),
                                         SizedBox(
                                             height: 22.v,
@@ -182,62 +185,95 @@ class RegistrarsescreenScreen extends StatefulWidget {
                                                 alignment: Alignment.center,
                                                 children: [
                                                   Align(
-                                                      alignment:
-                                                          Alignment.topCenter,
-                                                      child: Container(
-                                                          height: 21.v,
-                                                          width: 311.h,
-                                                          decoration: BoxDecoration(
-                                                              color: appTheme
-                                                                  .whiteA700))),
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: SizedBox(
-                                                          height: 22.v,
-                                                          width: 311.h,
-                                                          child: Stack(
-                                                              alignment: Alignment
-                                                                  .bottomLeft,
-                                                              children: [
-                                                                Align(
+                                                    alignment: Alignment.center,
+                                                    child: SizedBox(
+                                                      height: 22.v,
+                                                      width: 311.h,
+                                                      child: Stack(
+                                                        alignment: Alignment
+                                                            .bottomLeft,
+                                                        children: [
+                                                          Align(
+                                                            alignment: Alignment
+                                                                .centerLeft,
+                                                            child: Flexible(
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: <Widget>[
+                                                                  CheckboxCustom(
+                                                                    initialValue:
+                                                                        _isChecked,
+                                                                    onSaved: (bool?
+                                                                            value) =>
+                                                                        _isChecked =
+                                                                            value ??
+                                                                                false,
+                                                                    validator:
+                                                                        (bool?
+                                                                            value) {
+                                                                      if (value ==
+                                                                          true) {
+                                                                        return null;
+                                                                      } else {
+                                                                        return '';
+                                                                      }
+                                                                    },
+                                                                  ),
+                                                                  Wrap(
                                                                     alignment:
-                                                                        Alignment
-                                                                            .topCenter,
-                                                                    child: Container(
-                                                                        margin: EdgeInsets.only(bottom: 1.v),
-                                                                        padding: EdgeInsets.symmetric(horizontal: 28.h),
-                                                                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                                                          CustomImageView(
-                                                                              svgPath: ImageConstant.imgComputer,
-                                                                              height: 20.adaptSize,
-                                                                              width: 20.adaptSize),
-                                                                          Padding(
-                                                                              padding: EdgeInsets.only(right: 4.h),
-                                                                              child: Text("msg_pol_tica_de_privacidad".tr, style: CustomTextStyles.bodyMediumInterRed400))
-                                                                        ]))),
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .bottomLeft,
-                                                                    child: Padding(
-                                                                        padding: EdgeInsets.only(
-                                                                            left: 55
-                                                                                .h),
-                                                                        child: Text(
-                                                                            "lbl_acepto_la"
-                                                                                .tr,
-                                                                            style:
-                                                                                CustomTextStyles.bodyMediumInter)))
-                                                              ])))
+                                                                        WrapAlignment
+                                                                            .start,
+                                                                    children: <Widget>[
+                                                                      Text(
+                                                                        "lbl_acepto_la"
+                                                                            .tr,
+                                                                        maxLines:
+                                                                            2,
+                                                                        overflow:
+                                                                            TextOverflow.ellipsis,
+                                                                        style: theme
+                                                                            .textTheme
+                                                                            .labelLarge,
+                                                                      ),
+                                                                      GestureDetector(
+                                                                        onTap:
+                                                                            () {
+                                                                          // Aquí puedes manejar el evento de pulsación, por ejemplo, abrir una nueva página web.
+                                                                        },
+                                                                        child:
+                                                                            Text(
+                                                                          'msg_pol_tica_de_privacidad'
+                                                                              .tr,
+                                                                          style: theme
+                                                                              .textTheme
+                                                                              .labelLarge
+                                                                              ?.copyWith(color: Colors.red),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  )
                                                 ])),
                                         CustomElevatedButton(
-                                            text: "lbl_registrarse".tr,
-                                            margin: EdgeInsets.only(
-                                                left: 1.h, top: 24.v),
-                                            onTap: () {
+                                          text: "lbl_registrarse".tr,
+                                          margin: EdgeInsets.only(
+                                              left: 1.h, top: 24.v),
+                                          onTap: () {
+                                            if (_formKey.currentState!
+                                                .validate()) {
                                               onTapRegistrarse(context);
-                                            }),
+                                            }
+                                          },
+                                        ),
                                         CustomOutlinedButton(
                                             text: "msg_registrarse_con".tr,
                                             margin: EdgeInsets.only(
@@ -268,4 +304,6 @@ class RegistrarsescreenScreen extends StatefulWidget {
   onTapRegistrarse(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.loginscreenScreen);
   }
+
 }
+
