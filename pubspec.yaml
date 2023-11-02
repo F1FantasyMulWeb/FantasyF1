@@ -14,8 +14,6 @@ dependencies:
   flutter_svg: ^1.1.6
   flutter_svg_provider: ^1.0.3
   intl: ^0.18.0
-  firebase_core: ^2.20.0
-  firebase_analytics: ^10.6.2
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
