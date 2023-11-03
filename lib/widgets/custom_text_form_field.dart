@@ -92,13 +92,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   );
 
   IconButton? get _suffixIcon {
-    return widget.obscureText != null
+    return widget.obscureText == true
         ? IconButton(
         icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
         onPressed: _toggle)
         : null;
   }
-
   InputDecoration get decoration => InputDecoration(
     hintText: widget.hintText ?? "",
     hintStyle:

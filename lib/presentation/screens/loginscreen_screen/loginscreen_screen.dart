@@ -103,6 +103,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                               SizedBox(height: 7.v),
                                               CustomTextFormField(
                                                 controller: emailController,
+                                                obscureText: false,
                                                 validator:
                                                     formValidator.isValidEmail,
                                                 hintText:

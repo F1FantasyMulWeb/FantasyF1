@@ -18,6 +18,7 @@ import '../presentation/screens/circuito_de_albert_park_screen/circuito_de_alber
 import '../presentation/screens/circuito_de_la_corniche_de_yeda_screen/circuito_de_la_corniche_de_yeda_screen.dart';
 import '../presentation/screens/circuito_de_m_naco_screen/circuito_de_m_naco_screen.dart';
 import '../presentation/screens/circuito_urbano_de_miami_screen/circuito_urbano_de_miami_screen.dart';
+import '../presentation/screens/confirma_usuario_registrado/confirma_usuario_registrado.dart';
 import '../presentation/screens/creargrupo_screen/creargrupo_screen.dart';
 import '../presentation/screens/el_nano_screen/el_nano_screen.dart';
 import '../presentation/screens/escuderia_aston_martin_screen/escuderia_aston_martin_screen.dart';
@@ -41,6 +42,8 @@ import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 
 class AppRoutes {
   static const String  preloginscreenScreen = '/preloginscreen_screen';
+
+  static const String  confirma_usuario_registrado = '/confirma_usuario_registrado';
 
   static const String ajustesOneScreen = '/ajustes_one_screen';
 
@@ -123,6 +126,8 @@ class AppRoutes {
   static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
+
+    confirma_usuario_registrado: (context) => ConfirmaUsuarioRegistrado(),
     preloginscreenScreen: (context) => PreloginscreenScreen(),
     ajustesOneScreen: (context) => AjustesOneScreen(),
     informaciNScreen: (context) => InformaciNScreen(),

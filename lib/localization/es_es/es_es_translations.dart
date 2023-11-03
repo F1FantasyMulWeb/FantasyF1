@@ -1,4 +1,6 @@
 final Map<String, String> esEs = {
+
+  "Confirmar": "Confirmar",
   // preLoginScreen Screen
   "lbl_vamos_all": "Vamos allá!",
   "msg_bienvenido_a_formula": "¡Bienvenido a\nFormula 1 Fantasy!",
