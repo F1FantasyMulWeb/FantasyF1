@@ -103,6 +103,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                               SizedBox(height: 7.v),
                                               CustomTextFormField(
                                                 controller: emailController,
+                                                obscureText: false,
                                                 validator:
                                                     formValidator.isValidEmail,
                                                 hintText:
@@ -128,6 +129,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                               CustomTextFormField(
                                                   controller:
                                                       passwordController,
+                                                  obscureText: true,
                                                   hintText: "lbl2".tr,
                                                   validator:
                                                       formValidator.isValidPass,
@@ -148,7 +150,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                   prefixConstraints:
                                                       BoxConstraints(
                                                           maxHeight: 48.v),
-                                                  obscureText: true),
+                                                  ),
                                               SizedBox(height: 14.v)
                                             ])),
                                     SizedBox(height: 14.v),

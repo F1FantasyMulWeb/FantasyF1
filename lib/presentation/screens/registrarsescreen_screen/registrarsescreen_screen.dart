@@ -1,7 +1,8 @@
-import 'dart:convert';
+
 import 'package:fantasyf1/DataBase/DataBaseControler.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/core/utils/FormValidatorRegister.dart';
+import 'package:fantasyf1/localization/es_es/es_es_translations_class_spf.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
@@ -9,8 +10,6 @@ import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import '../../../localization/es_es/es_es_translations_class_spf.dart';
 import '../../../widgets/CheckboxCustom.dart';
 
 // ignore_for_file: must_be_immutable
@@ -111,6 +110,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                             controller: emailController,
+                                            obscureText: false,
                                             validator:
                                             formValidator.isValidEmail,
                                             margin: EdgeInsets.only(
@@ -136,6 +136,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                             controller: usernameoneController,
+                                            obscureText: false,
                                             validator:
                                             formValidator.isValidUsuario,
                                             margin: EdgeInsets.only(
@@ -157,6 +158,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                           controller: passwordController,
+
                                           validator: formValidator.isValidPass,
                                           margin: EdgeInsets.only(
                                               left: 1.h, top: 7.v),
@@ -183,6 +185,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                             controller: passwordController1,
+
                                             validator: (text) {
                                               return formValidator
                                                   .isValidRepeatedPassword(text,
