@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.fantasyf.app">
+    <!-- ... other tags -->
+    <application>
+        <activity>
+            <!-- ... other tags -->
+            <!-- Add this intent-filter for Deep Links -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                        android:scheme="io.supabase.flutterquickstart"
+                        android:host="profile"/>
+            </intent-filter>
+
+
+        </activity>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
+</manifest>
