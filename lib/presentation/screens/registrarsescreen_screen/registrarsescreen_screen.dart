@@ -1,4 +1,3 @@
-
 import 'package:fantasyf1/DataBase/DataBaseControler.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/core/utils/FormValidatorRegister.dart';
@@ -10,6 +9,7 @@ import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../widgets/CheckboxCustom.dart';
 
 // ignore_for_file: must_be_immutable
@@ -38,18 +38,18 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
     super.initState();
     Client cliente = Client();
     Map<String, String>? redBull;
-    cliente.DataRedBull().whenComplete(() => (redBull = cliente.DataRedBull() as Map<String, String>?));
+    cliente.DataRedBull().whenComplete(
+        () => (redBull = cliente.DataRedBull() as Map<String, String>?));
     print(redBull);
   }
-
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     es_es_translations_class_spf customTranslations =
-    es_es_translations_class_spf();
+        es_es_translations_class_spf();
     FormValidatorRegister formValidator =
-    FormValidatorRegister(customTranslations);
+        FormValidatorRegister(customTranslations);
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -63,17 +63,17 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                           height: 91.v,
                           width: 320.h,
                           child:
-                          Stack(alignment: Alignment.topCenter, children: [
+                              Stack(alignment: Alignment.topCenter, children: [
                             Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Container(
                                     padding:
-                                    EdgeInsets.symmetric(horizontal: 20.h),
+                                        EdgeInsets.symmetric(horizontal: 20.h),
                                     decoration: AppDecoration.outlinePrimary1,
                                     child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                         children: [
                                           SizedBox(height: 1.v),
                                           CustomImageView(
@@ -100,7 +100,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                       left: 24.h, right: 24.h, bottom: 5.v),
                                   child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Padding(
                                             padding: EdgeInsets.only(left: 1.h),
@@ -112,13 +112,13 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                             controller: emailController,
                                             obscureText: false,
                                             validator:
-                                            formValidator.isValidEmail,
+                                                formValidator.isValidEmail,
                                             margin: EdgeInsets.only(
                                                 left: 1.h, top: 7.v),
                                             hintText:
-                                            "msg_ejemplo_ejemplo_com".tr,
+                                                "msg_ejemplo_ejemplo_com".tr,
                                             textInputType:
-                                            TextInputType.emailAddress,
+                                                TextInputType.emailAddress,
                                             prefix: Container(
                                                 margin: EdgeInsets.fromLTRB(
                                                     16.h, 14.v, 8.h, 14.v),
@@ -138,7 +138,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                             controller: usernameoneController,
                                             obscureText: false,
                                             validator:
-                                            formValidator.isValidUsuario,
+                                                formValidator.isValidUsuario,
                                             margin: EdgeInsets.only(
                                                 left: 1.h, top: 7.v),
                                             hintText: "lbl_f1fantasylover".tr,
@@ -147,7 +147,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     16.h, 14.v, 8.h, 14.v),
                                                 child: CustomImageView(
                                                     svgPath:
-                                                    ImageConstant.imgUser)),
+                                                        ImageConstant.imgUser)),
                                             prefixConstraints: BoxConstraints(
                                                 maxHeight: 48.v)),
                                         Padding(
@@ -158,13 +158,12 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                           controller: passwordController,
-
                                           validator: formValidator.isValidPass,
                                           margin: EdgeInsets.only(
                                               left: 1.h, top: 7.v),
                                           hintText: "lbl2".tr,
                                           textInputType:
-                                          TextInputType.visiblePassword,
+                                              TextInputType.visiblePassword,
                                           prefix: Container(
                                             margin: EdgeInsets.fromLTRB(
                                                 16.h, 14.v, 8.h, 14.v),
@@ -173,7 +172,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     .imgMingcutelockline),
                                           ),
                                           prefixConstraints:
-                                          BoxConstraints(maxHeight: 48.v),
+                                              BoxConstraints(maxHeight: 48.v),
                                           obscureText: true,
                                         ),
                                         Padding(
@@ -185,19 +184,18 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     .textTheme.titleSmall)),
                                         CustomTextFormField(
                                             controller: passwordController1,
-
                                             validator: (text) {
                                               return formValidator
                                                   .isValidRepeatedPassword(text,
-                                                  passwordController.text);
+                                                      passwordController.text);
                                             },
                                             margin: EdgeInsets.only(
                                                 left: 1.h, top: 6.v),
                                             hintText: "lbl2".tr,
                                             textInputAction:
-                                            TextInputAction.done,
+                                                TextInputAction.done,
                                             textInputType:
-                                            TextInputType.visiblePassword,
+                                                TextInputType.visiblePassword,
                                             prefix: Container(
                                                 margin: EdgeInsets.fromLTRB(
                                                     16.h, 14.v, 8.h, 14.v),
@@ -205,7 +203,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                     svgPath: ImageConstant
                                                         .imgMingcutelockline)),
                                             prefixConstraints:
-                                            BoxConstraints(maxHeight: 48.v),
+                                                BoxConstraints(maxHeight: 48.v),
                                             obscureText: true),
                                         SizedBox(height: 28.v),
                                         SizedBox(
@@ -229,22 +227,20 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                             child: Flexible(
                                                               child: Row(
                                                                 mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                                children: <
-                                                                    Widget>[
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: <Widget>[
                                                                   CheckboxCustom(
                                                                     initialValue:
-                                                                    _isChecked,
-                                                                    onSaved: (
-                                                                        bool?
-                                                                        value) =>
-                                                                    _isChecked =
-                                                                        value ??
-                                                                            false,
+                                                                        _isChecked,
+                                                                    onSaved: (bool?
+                                                                            value) =>
+                                                                        _isChecked =
+                                                                            value ??
+                                                                                false,
                                                                     validator:
                                                                         (bool?
-                                                                    value) {
+                                                                            value) {
                                                                       if (value ==
                                                                           true) {
                                                                         return null;
@@ -255,18 +251,16 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                                   ),
                                                                   Wrap(
                                                                     alignment:
-                                                                    WrapAlignment
-                                                                        .start,
-                                                                    children: <
-                                                                        Widget>[
+                                                                        WrapAlignment
+                                                                            .start,
+                                                                    children: <Widget>[
                                                                       Text(
                                                                         "lbl_acepto_la"
                                                                             .tr,
                                                                         maxLines:
-                                                                        2,
+                                                                            2,
                                                                         overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
+                                                                            TextOverflow.ellipsis,
                                                                         style: theme
                                                                             .textTheme
                                                                             .labelLarge,
@@ -277,15 +271,13 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                                           // Aquí puedes manejar el evento de pulsación, por ejemplo, abrir una nueva página web.
                                                                         },
                                                                         child:
-                                                                        Text(
+                                                                            Text(
                                                                           'msg_pol_tica_de_privacidad'
                                                                               .tr,
                                                                           style: theme
                                                                               .textTheme
                                                                               .labelLarge
-                                                                              ?.copyWith(
-                                                                              color: Colors
-                                                                                  .red),
+                                                                              ?.copyWith(color: Colors.red),
                                                                         ),
                                                                       ),
                                                                     ],
@@ -303,13 +295,12 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                           text: "lbl_registrarse".tr,
                                           margin: EdgeInsets.only(
                                               left: 1.h, top: 24.v),
-                                          onTap: () {
+                                          onTap: () async {
                                             if (_formKey.currentState!
                                                 .validate()) {
-                                              sendData(
-                                                  emailController.text,
-                                                  passwordController.text,
-                                                  usernameoneController.text);
+                                              final response = await Supabase.instance.client.auth.signUp(
+                                                password: passwordController.text, email: emailController.text,
+                                              );;
                                               onTapRegistrarse(context);
                                             }
                                           },
@@ -320,7 +311,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                 left: 1.h, top: 15.v),
                                             leftIcon: Container(
                                                 margin:
-                                                EdgeInsets.only(right: 8.h),
+                                                    EdgeInsets.only(right: 8.h),
                                                 child: CustomImageView(
                                                     svgPath: ImageConstant
                                                         .imgGoogle)))

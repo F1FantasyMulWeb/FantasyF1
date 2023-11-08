@@ -23,6 +23,7 @@ void main() async {
     url: 'https://tamdfauywqapcyaseriv.supabase.co',
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRhbWRmYXV5d3FhcGN5YXNlcml2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTg5MTQ0MzEsImV4cCI6MjAxNDQ5MDQzMX0.6xbyn2CQDx4XrKk9OiGbs0k6T1Ko21HvyI4wtgFQ9bw',
+    authFlowType: AuthFlowType.pkce,
   );
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

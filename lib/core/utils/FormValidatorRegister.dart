@@ -31,7 +31,7 @@ class FormValidatorRegister {
     if (text == null || text.isEmpty) {
       return customTranslations.get("msg_error_user");
     } else if (text.contains(' ')) {
-      return customTranslations.get("msg_error_user_space");
+      return customTranslations.get("msg_error_pass_space");
     }
     return null;
   }
