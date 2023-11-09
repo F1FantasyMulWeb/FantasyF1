@@ -5,7 +5,6 @@ import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/FormValidatorLogin.dart';
-import '../../../localization/es_es/es_es_translations_class_spf.dart';
 
 
 
@@ -28,8 +27,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    es_es_translations_class_spf customTranslations = es_es_translations_class_spf();
-    FormValidatorLogin formValidator = FormValidatorLogin(customTranslations);
+    FormValidatorLogin formValidator = FormValidatorLogin(AppLocalization.of());
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,

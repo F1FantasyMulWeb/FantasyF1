@@ -1,18 +1,19 @@
+import 'package:fantasyf1/localization/app_localization.dart';
 import 'package:get/get_utils/get_utils.dart';
-import '../../localization/es_es/es_es_translations_class_spf.dart';
+
 
 class FormValidatorLogin {
-  final es_es_translations_class_spf customTranslations;
+  final AppLocalization localization;
 
-  FormValidatorLogin(this.customTranslations);
+  FormValidatorLogin(this.localization);
 
   String? isValidEmail(String? text) {
-    return (text ?? "").isEmail ? null : customTranslations.get("msg_error_email");
+    return (text ?? "").isEmail ? null : LocalizationExtension("msg_error_email").tr;
   }
 
   String? isValidPass(String? text) {
     if (text == null || text.isEmpty) {
-      return customTranslations.get("msg_error_password");
+      return LocalizationExtension("msg_error_password").tr;
     }
     return null;
   }

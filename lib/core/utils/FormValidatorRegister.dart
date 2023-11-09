@@ -1,46 +1,46 @@
+import 'package:fantasyf1/localization/app_localization.dart';
 import 'package:get/get_utils/get_utils.dart';
-import '../../localization/es_es/es_es_translations_class_spf.dart';
 
 class FormValidatorRegister {
-  final es_es_translations_class_spf customTranslations;
+  final AppLocalization localization;
 
-  FormValidatorRegister(this.customTranslations);
+  FormValidatorRegister(this.localization);
 
   String? isValidEmail(String? text) {
-    return (text ?? "").isEmail ? null : customTranslations.get("msg_error_email");
+    return (text ?? "").isEmail ? null : LocalizationExtension("msg_error_email").tr;
   }
 
   String? isValidPass(String? text) {
     if (text == null || text.isEmpty) {
-      return customTranslations.get("msg_error_password");
+      return LocalizationExtension("msg_error_password").tr;
     } else if (text.length < 10) {
-      return customTranslations.get("msg_error_pass_min");
+      return LocalizationExtension("msg_error_pass_min").tr;
     } else if (text.contains(' ')) {
-      return customTranslations.get("msg_error_pass_space");
+      return LocalizationExtension("msg_error_pass_space").tr;
     } else if (!RegExp(r'^(?=.*[a-z])').hasMatch(text)) {
-      return customTranslations.get("msg_error_pass_min");
+      return LocalizationExtension("msg_error_pass_min").tr;
     } else if (!RegExp(r'^(?=.*[A-Z])').hasMatch(text)) {
-      return customTranslations.get("msg_error_pass_may");
+      return LocalizationExtension("msg_error_pass_may").tr;
     } else if (!RegExp(r'^(?=.*\d)').hasMatch(text)) {
-      return customTranslations.get("msg_error_pass_num");
+      return LocalizationExtension("msg_error_pass_num").tr;
     }
     return null;
   }
 
   String? isValidUsuario(String? text) {
     if (text == null || text.isEmpty) {
-      return customTranslations.get("msg_error_user");
+      return LocalizationExtension("msg_error_user").tr;
     } else if (text.contains(' ')) {
-      return customTranslations.get("msg_error_pass_space");
+      return LocalizationExtension("msg_error_pass_space").tr;
     }
     return null;
   }
 
   String? isValidRepeatedPassword(String? text, String? originalPassword) {
     if (text == null || text.isEmpty) {
-      return customTranslations.get("msg_error_password");
+      return LocalizationExtension("msg_error_password").tr;
     } else if (text != originalPassword) {
-      return customTranslations.get("msg_error_passwords_do_not_match");
+      return LocalizationExtension("msg_error_passwords_do_not_match").tr;
     }
     return null;
   }

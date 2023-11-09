@@ -1,7 +1,5 @@
-import 'package:fantasyf1/DataBase/DataBaseControler.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/core/utils/FormValidatorRegister.dart';
-import 'package:fantasyf1/localization/es_es/es_es_translations_class_spf.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
@@ -46,10 +44,10 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    es_es_translations_class_spf customTranslations =
-        es_es_translations_class_spf();
-    FormValidatorRegister formValidator =
-        FormValidatorRegister(customTranslations);
+    //es_es_translations_class_spf customTranslations =
+      //  es_es_translations_class_spf();
+    FormValidatorRegister formValidator = FormValidatorRegister(AppLocalization.of());
+
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
