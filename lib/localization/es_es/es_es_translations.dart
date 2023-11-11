@@ -229,6 +229,9 @@ final Map<String, String> esEs = {
   "msg_piloto_verstapen": "Piloto Verstapen",
   "msg_registrarsescreen": "registrarseScreen",
 
+  //registerScreen
+  "msg_regs_fail": "El registro falló. Es posible que el usuario ya esté autenticado.",
+
 //FormValidator
 "msg_error_email": "Email inválido",
 "msg_error_password": "Contraseña vacía",

@@ -1,8 +1,10 @@
+import 'package:fantasyf1/DataBase/databasecontroller.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/utils/FormValidatorLogin.dart';
 
@@ -23,11 +25,14 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isChecked = false;
+  DataBaseController clientController =
+  DataBaseController(Supabase.instance.client);
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     FormValidatorLogin formValidator = FormValidatorLogin(AppLocalization.of());
+
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -213,53 +218,39 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Align(
-                                                              alignment: Alignment
-                                                                  .centerLeft,
-                                                              child: Flexible(
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .start,
-                                                                  children: <Widget>[
-                                                                    Checkbox(
-                                                                      value:
-                                                                          _isChecked,
-                                                                      onChanged:
-                                                                          (bool?
-                                                                              value) {
-                                                                        if (value !=
-                                                                            null) {
-                                                                          setState(
-                                                                              () {
-                                                                            _isChecked =
-                                                                                value;
-                                                                          });
-                                                                        }
-                                                                      },
-                                                                    ),
-                                                                    Wrap(
-                                                                      alignment:
-                                                                          WrapAlignment
-                                                                              .start,
-                                                                      children: <Widget>[
-                                                                        Text(
-                                                                          "msg_mantener_la_sesion"
-                                                                              .tr,
-                                                                          maxLines:
-                                                                              2,
-                                                                          overflow:
-                                                                              TextOverflow.ellipsis,
-                                                                          style: theme
-                                                                              .textTheme
-                                                                              .labelLarge,
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ],
+                                                            Row(
+                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                              children: <Widget>[
+                                                                Align(
+                                                                  alignment: Alignment.centerLeft,
+                                                                  child: Checkbox(
+                                                                    value: _isChecked,
+                                                                    onChanged: (bool? value) {
+                                                                      if (value != null) {
+                                                                        setState(() {
+                                                                          _isChecked = value;
+                                                                        });
+                                                                      }
+                                                                    },
+                                                                  ),
                                                                 ),
-                                                              ),
+                                                                Align(
+                                                                  alignment: Alignment.centerLeft,
+                                                                  child: Wrap(
+                                                                    alignment: WrapAlignment.start,
+                                                                    children: <Widget>[
+                                                                      Text(
+                                                                        "msg_mantener_la_sesion".tr,
+                                                                        maxLines: 2,
+                                                                        overflow: TextOverflow.ellipsis,
+                                                                        style: theme.textTheme.labelLarge,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             )
+
                                                           ])))
                                             ])),
                                     SizedBox(height: 23.v),
@@ -267,8 +258,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                       text: "lbl_iniciar_sesi_n".tr,
                                       onTap: () {
                                         if (_formKey.currentState!.validate()) {
-                                          // Si el formulario es válido, navega a la siguiente pantalla
-                                          onTapIniciarsesin(context);
+                                          _iniciarSesion(context);
                                         }
                                       },
                                     ),
@@ -303,6 +293,35 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                   ]))))
                     ])))));
   }
+
+
+  Future<void> _iniciarSesion( BuildContext context) async {
+    try {
+      final response = await Supabase.instance.client.auth.signInWithPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      final user = response.user;
+      if (user != null) {
+
+        onTapIniciarsesin(context);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('El usuario no existe'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Ha ocurrido un error durante el inicio de sesión.'),
+        ),
+      );
+    }
+  }
+
+
 
   onTapTxtOlvidastelacont(BuildContextcontext) {
     Navigator.pushNamed(context, AppRoutes.cambiarcontraseA1screenScreen);

@@ -1,3 +1,5 @@
+import 'package:fantasyf1/DataBase/databasecontroller.dart';
+import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/core/utils/FormValidatorRegister.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
@@ -5,9 +7,9 @@ import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
-import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../widgets/CheckboxCustom.dart';
 
 // ignore_for_file: must_be_immutable
@@ -31,6 +33,9 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
 
   bool _isChecked = false;
 
+  DataBaseController clienteController =
+      DataBaseController(Supabase.instance.client);
+
   @override
   void initState() {
     super.initState();
@@ -45,8 +50,9 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     //es_es_translations_class_spf customTranslations =
-      //  es_es_translations_class_spf();
-    FormValidatorRegister formValidator = FormValidatorRegister(AppLocalization.of());
+    //  es_es_translations_class_spf();
+    FormValidatorRegister formValidator =
+        FormValidatorRegister(AppLocalization.of());
 
     return SafeArea(
         child: Scaffold(
@@ -219,71 +225,45 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                         alignment: Alignment
                                                             .bottomLeft,
                                                         children: [
-                                                          Align(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            child: Flexible(
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
+                                                        Align(
+                                                        alignment: Alignment.centerLeft,
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.start,
+                                                          children: <Widget>[
+                                                            CheckboxCustom(
+                                                              initialValue: _isChecked,
+                                                              onSaved: (bool? value) => _isChecked = value ?? false,
+                                                              validator: (bool? value) {
+                                                                if (value == true) {
+                                                                  return null;
+                                                                } else {
+                                                                  return '';
+                                                                }
+                                                              },
+                                                            ),
+                                                            Flexible(
+                                                              child: Wrap(
+                                                                alignment: WrapAlignment.start,
                                                                 children: <Widget>[
-                                                                  CheckboxCustom(
-                                                                    initialValue:
-                                                                        _isChecked,
-                                                                    onSaved: (bool?
-                                                                            value) =>
-                                                                        _isChecked =
-                                                                            value ??
-                                                                                false,
-                                                                    validator:
-                                                                        (bool?
-                                                                            value) {
-                                                                      if (value ==
-                                                                          true) {
-                                                                        return null;
-                                                                      } else {
-                                                                        return '';
-                                                                      }
-                                                                    },
+                                                                  Text(
+                                                                    "lbl_acepto_la".tr,
+                                                                    maxLines: 2,
+                                                                    overflow: TextOverflow.ellipsis,
+                                                                    style: theme.textTheme.labelLarge,
                                                                   ),
-                                                                  Wrap(
-                                                                    alignment:
-                                                                        WrapAlignment
-                                                                            .start,
-                                                                    children: <Widget>[
-                                                                      Text(
-                                                                        "lbl_acepto_la"
-                                                                            .tr,
-                                                                        maxLines:
-                                                                            2,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                        style: theme
-                                                                            .textTheme
-                                                                            .labelLarge,
-                                                                      ),
-                                                                      GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          // Aquí puedes manejar el evento de pulsación, por ejemplo, abrir una nueva página web.
-                                                                        },
-                                                                        child:
-                                                                            Text(
-                                                                          'msg_pol_tica_de_privacidad'
-                                                                              .tr,
-                                                                          style: theme
-                                                                              .textTheme
-                                                                              .labelLarge
-                                                                              ?.copyWith(color: Colors.red),
-                                                                        ),
-                                                                      ),
-                                                                    ],
+                                                                  GestureDetector(
+                                                                    onTap: () {},
+                                                                    child: Text(
+                                                                      'msg_pol_tica_de_privacidad'.tr,
+                                                                      style: theme.textTheme.labelLarge?.copyWith(color: Colors.red),
+                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),
                                                             ),
-                                                          ),
+                                                          ],
+                                                        ),
+                                                      ),
                                                         ],
                                                       ),
                                                     ),
@@ -296,10 +276,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                           onTap: () async {
                                             if (_formKey.currentState!
                                                 .validate()) {
-                                              final response = await Supabase.instance.client.auth.signUp(
-                                                password: passwordController.text, email: emailController.text,
-                                              );;
-                                              onTapRegistrarse(context);
+                                              _registrarUsuario(context);
                                             }
                                           },
                                         ),
@@ -317,19 +294,49 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                     ])))));
   }
 
-  /// Navigates back to the previous screen.
-  ///
-  /// This function takes a [BuildContext] object as a parameter, which is used
-  /// to navigate back to the previous screen.
   onTapArrowleftone(BuildContext context) {
     Navigator.pop(context);
   }
 
-  /// Navigates to the loginscreenScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the loginscreenScreen.
+  Future<void> _registrarUsuario(BuildContext context) async {
+    try {
+      final response = await Supabase.instance.client.auth.signUp(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      if (response.user == null) {
+        print('Sign up failed');
+        _mostrarDialogo(context, "msg_regs_fail".tr);
+      } else {
+        clienteController.sendData(
+            emailController.text, usernameoneController.text);
+        onTapRegistrarse(context);
+      }
+    } catch (e) {
+      _mostrarDialogo(context, e.toString());
+    }
+  }
+
+  void _mostrarDialogo(BuildContext context, String mensaje) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(mensaje),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cerrar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   onTapRegistrarse(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.loginscreenScreen);
   }
