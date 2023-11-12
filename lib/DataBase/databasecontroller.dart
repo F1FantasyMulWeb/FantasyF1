@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:supabase/supabase.dart';
 
 class DataBaseController {
@@ -5,15 +6,28 @@ class DataBaseController {
 
   DataBaseController(this.client);
 
-  Future<void> sendData(String email, String nombre) async {
+  Future<bool> sendData(String email, String nombre) async {
     final response = await client.from('UsuarioApp').insert([
       {'userName': nombre, 'correo': email}
     ]);
-
-    if (response.error != null) {
-      print('Error: ${response.error!.message}');
+    if (response == null) {
+      return true;
     } else {
-      print('Success: ${response.data}');
+      return false;
     }
+
+
   }
+  Future<bool> checkEmail(String email) async {
+    List<dynamic> response = await client.from('UsuarioApp').select().eq('correo', email);
+
+    if (response.isEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+
 }

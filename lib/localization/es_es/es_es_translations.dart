@@ -231,6 +231,11 @@ final Map<String, String> esEs = {
 
   //registerScreen
   "msg_regs_fail": "El registro falló. Es posible que el usuario ya esté autenticado.",
+  "msg_error_de_registro": "Usted ya tiene una cuenta con este correo electrónico\n"
+      "Revise su bandeja de entrada o spam para el correo electrónico de verificación\n."
+      "Si necesita un nuevo correo electrónico de verificación,espere 1 minuto y vuelva a darle aa registrarse.",
+  "msg_registro_exitoso": "El registro se ha realizado con exito,\n"
+      "vaya a su correo y verifique su cuenta",
 
 //FormValidator
 "msg_error_email": "Email inválido",

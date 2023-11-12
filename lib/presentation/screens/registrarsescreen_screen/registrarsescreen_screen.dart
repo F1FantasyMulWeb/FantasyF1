@@ -225,45 +225,69 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                         alignment: Alignment
                                                             .bottomLeft,
                                                         children: [
-                                                        Align(
-                                                        alignment: Alignment.centerLeft,
-                                                        child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.start,
-                                                          children: <Widget>[
-                                                            CheckboxCustom(
-                                                              initialValue: _isChecked,
-                                                              onSaved: (bool? value) => _isChecked = value ?? false,
-                                                              validator: (bool? value) {
-                                                                if (value == true) {
-                                                                  return null;
-                                                                } else {
-                                                                  return '';
-                                                                }
-                                                              },
-                                                            ),
-                                                            Flexible(
-                                                              child: Wrap(
-                                                                alignment: WrapAlignment.start,
-                                                                children: <Widget>[
-                                                                  Text(
-                                                                    "lbl_acepto_la".tr,
-                                                                    maxLines: 2,
-                                                                    overflow: TextOverflow.ellipsis,
-                                                                    style: theme.textTheme.labelLarge,
+                                                          Align(
+                                                            alignment: Alignment
+                                                                .centerLeft,
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: <Widget>[
+                                                                CheckboxCustom(
+                                                                  initialValue:
+                                                                      _isChecked,
+                                                                  onSaved: (bool?
+                                                                          value) =>
+                                                                      _isChecked =
+                                                                          value ??
+                                                                              false,
+                                                                  validator:
+                                                                      (bool?
+                                                                          value) {
+                                                                    if (value ==
+                                                                        true) {
+                                                                      return null;
+                                                                    } else {
+                                                                      return '';
+                                                                    }
+                                                                  },
+                                                                ),
+                                                                Flexible(
+                                                                  child: Wrap(
+                                                                    alignment:
+                                                                        WrapAlignment
+                                                                            .start,
+                                                                    children: <Widget>[
+                                                                      Text(
+                                                                        "lbl_acepto_la"
+                                                                            .tr,
+                                                                        maxLines:
+                                                                            2,
+                                                                        overflow:
+                                                                            TextOverflow.ellipsis,
+                                                                        style: theme
+                                                                            .textTheme
+                                                                            .labelLarge,
+                                                                      ),
+                                                                      GestureDetector(
+                                                                        onTap:
+                                                                            () {},
+                                                                        child:
+                                                                            Text(
+                                                                          'msg_pol_tica_de_privacidad'
+                                                                              .tr,
+                                                                          style: theme
+                                                                              .textTheme
+                                                                              .labelLarge
+                                                                              ?.copyWith(color: Colors.red),
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                  GestureDetector(
-                                                                    onTap: () {},
-                                                                    child: Text(
-                                                                      'msg_pol_tica_de_privacidad'.tr,
-                                                                      style: theme.textTheme.labelLarge?.copyWith(color: Colors.red),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
-                                                      ),
+                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -305,16 +329,25 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
         password: passwordController.text,
       );
 
-      if (response.user == null) {
-        print('Sign up failed');
-        _mostrarDialogo(context, "msg_regs_fail".tr);
-      } else {
-        clienteController.sendData(
-            emailController.text, usernameoneController.text);
-        onTapRegistrarse(context);
+      if (response.user != null) {
+        final checkEmail =
+            await clienteController.checkEmail(emailController.text);
+        if (checkEmail) {
+          final checkSend =await clienteController.sendData(
+              emailController.text, usernameoneController.text);
+          if (checkSend) {
+            _mostrarDialogo(context, "msg_registro_exitoso".tr);
+
+          } else {
+            _mostrarDialogo(context, "msg_error_de_registro".tr);
+          }
+
+        } else {
+          _mostrarDialogo(context, "msg_error_de_registro".tr);
+        }
       }
     } catch (e) {
-      _mostrarDialogo(context, e.toString());
+      _mostrarDialogo(context, "msg_error_de_registro".tr);
     }
   }
 
@@ -329,6 +362,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
               child: Text('Cerrar'),
               onPressed: () {
                 Navigator.of(context).pop();
+                onTapRegistrarse(context);
               },
             ),
           ],
@@ -336,6 +370,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
       },
     );
   }
+
 
   onTapRegistrarse(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.loginscreenScreen);
