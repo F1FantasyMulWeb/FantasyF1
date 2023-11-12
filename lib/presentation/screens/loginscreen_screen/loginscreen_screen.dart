@@ -29,6 +29,13 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   DataBaseController(Supabase.instance.client);
 
   @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     FormValidatorLogin formValidator = FormValidatorLogin(AppLocalization.of());

@@ -33,6 +33,15 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
 
   bool _isChecked = false;
 
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    passwordController1.dispose();
+    usernameoneController.dispose();
+    super.dispose();
+  }
+
   DataBaseController clienteController =
       DataBaseController(Supabase.instance.client);
 

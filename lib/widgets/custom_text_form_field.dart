@@ -31,7 +31,7 @@ class CustomTextFormField extends StatefulWidget {
     this.margin,
     this.controller,
     this.focusNode,
-    this.autofocus = true,
+    this.autofocus = false,
     this.textStyle,
     this.obscureText,
     this.textInputAction = TextInputAction.next,
