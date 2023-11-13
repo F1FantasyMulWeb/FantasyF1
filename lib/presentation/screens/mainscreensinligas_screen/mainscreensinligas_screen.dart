@@ -1,7 +1,6 @@
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_circleimage.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,10 @@ class MainscreensinligasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
+
+    return WillPopScope(
+        onWillPop: () async => false,
+    child:SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
                 leadingWidth: 54.h,
@@ -21,7 +23,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                     margin:
                         EdgeInsets.only(left: 30.h, top: 19.v, bottom: 20.v)),
                 centerTitle: true,
-                title: AppbarImage1(imagePath: ImageConstant.imgLogo),
+
                 actions: [
                   Container(
                       margin: EdgeInsets.symmetric(
@@ -178,7 +180,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                                             ])),
                                     SizedBox(height: 24.v)
                                   ]))
-                        ]))))));
+                        ])))))));
   }
 
   /// Navigates to the avatarScreen when the action is triggered.

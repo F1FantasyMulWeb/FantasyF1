@@ -1273,7 +1273,7 @@ class AppNavigationScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the avatarOneScreen.
   onTapAvatarOne(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.avatarOneScreen);
+    Navigator.pushNamed(context, AppRoutes.editAvatarScreen);
   }
 
   /// Navigates to the listaJugadoresScreen when the action is triggered.

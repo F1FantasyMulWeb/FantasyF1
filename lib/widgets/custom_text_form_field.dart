@@ -68,68 +68,63 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Widget build(BuildContext context) {
     return widget.alignment != null
         ? Align(
-      alignment: widget.alignment ?? Alignment.center,
-      child: textFormFieldWidget,
-    )
+            alignment: widget.alignment ?? Alignment.center,
+            child: textFormFieldWidget,
+          )
         : textFormFieldWidget;
   }
 
   Widget get textFormFieldWidget => Container(
-    width: widget.width ?? double.maxFinite,
-    margin: widget.margin,
-    child: TextFormField(
-      controller: widget.controller,
-      focusNode: widget.focusNode ?? FocusNode(),
-      autofocus: widget.autofocus!,
-      style: widget.textStyle ?? TextStyle(color: Colors.black),
-      obscureText: widget.obscureText ?? true ? _obscureText : false,
-      textInputAction: widget.textInputAction,
-      keyboardType: widget.textInputType,
-      maxLines: widget.maxLines ?? 1,
-      decoration: decoration.copyWith(suffixIcon: _suffixIcon),
-      validator: widget.validator,
-    ),
-  );
+        width: widget.width ?? double.maxFinite,
+        margin: widget.margin,
+        child: TextFormField(
+          controller: widget.controller,
+          focusNode: widget.focusNode ?? FocusNode(),
+          autofocus: widget.autofocus!,
+          style: widget.textStyle ?? TextStyle(color: Colors.black),
+          obscureText: widget.obscureText ?? true ? _obscureText : false,
+          textInputAction: widget.textInputAction,
+          keyboardType: widget.textInputType,
+          maxLines: widget.maxLines ?? 1,
+          decoration: decoration.copyWith(suffixIcon: _suffixIcon),
+          validator: widget.validator,
+        ),
+      );
 
   IconButton? get _suffixIcon {
     return widget.obscureText == true
         ? IconButton(
-        icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
-        onPressed: _toggle)
+            icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
+            onPressed: _toggle)
         : null;
   }
+
   InputDecoration get decoration => InputDecoration(
-    hintText: widget.hintText ?? "",
-    hintStyle:
-    widget.hintStyle ?? theme.textTheme.bodyMedium,
-    prefixIcon: widget.prefix,
-    prefixIconConstraints: widget.prefixConstraints,
-    suffixIconConstraints: widget.suffixConstraints,
-    isDense: true,
-    contentPadding:
-    widget.contentPadding ?? EdgeInsets.only(top: 13.v, right: 13.h, bottom: 13.v),
-    fillColor: widget.fillColor ?? appTheme.whiteA700,
-    filled: widget.filled,
-    border:
-    widget.borderDecoration ?? OutlineInputBorder(borderRadius:
-    BorderRadius.circular(8.h), borderSide:
-    BorderSide(color:
-    theme.colorScheme.onErrorContainer, width:
-    1)),
-    enabledBorder:
-    widget.borderDecoration ?? OutlineInputBorder(borderRadius:
-    BorderRadius.circular(8.h), borderSide:
-    BorderSide(color:
-    theme.colorScheme.onErrorContainer, width:
-    1)),
-    focusedBorder:
-    widget.borderDecoration ?? OutlineInputBorder(borderRadius:
-    BorderRadius.circular(8.h), borderSide:
-    BorderSide(color:
-    theme.colorScheme.primary.withOpacity(1), width:
-    1)),
-    errorStyle:
-    TextStyle(color:
-    Colors.red),
-  );
+        hintText: widget.hintText ?? "",
+        hintStyle: widget.hintStyle ?? theme.textTheme.bodyMedium,
+        prefixIcon: widget.prefix,
+        prefixIconConstraints: widget.prefixConstraints,
+        suffixIconConstraints: widget.suffixConstraints,
+        isDense: true,
+        contentPadding: widget.contentPadding ??
+            EdgeInsets.only(top: 13.v, right: 13.h, bottom: 13.v),
+        fillColor: widget.fillColor ?? appTheme.whiteA700,
+        filled: widget.filled,
+        border: widget.borderDecoration ??
+            OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.h),
+                borderSide: BorderSide(
+                    color: theme.colorScheme.onErrorContainer, width: 1)),
+        enabledBorder: widget.borderDecoration ??
+            OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.h),
+                borderSide: BorderSide(
+                    color: theme.colorScheme.onErrorContainer, width: 1)),
+        focusedBorder: widget.borderDecoration ??
+            OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.h),
+                borderSide: BorderSide(
+                    color: theme.colorScheme.primary.withOpacity(1), width: 1)),
+        errorStyle: TextStyle(color: Colors.red),
+      );
 }

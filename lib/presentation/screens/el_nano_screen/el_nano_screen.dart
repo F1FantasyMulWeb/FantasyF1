@@ -1,17 +1,11 @@
-import 'dart:convert';
-
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 
 class ElNanoScreen extends StatelessWidget {
   const ElNanoScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(

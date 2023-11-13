@@ -1,3 +1,4 @@
+
 import 'package:fantasyf1/DataBase/databasecontroller.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
@@ -7,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/utils/FormValidatorLogin.dart';
-
-
 
 // ignore_for_file: must_be_immutable
 class LoginscreenScreen extends StatefulWidget {
@@ -26,7 +25,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isChecked = false;
   DataBaseController clientController =
-  DataBaseController(Supabase.instance.client);
+      DataBaseController(Supabase.instance.client);
 
   @override
   void dispose() {
@@ -39,6 +38,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     FormValidatorLogin formValidator = FormValidatorLogin(AppLocalization.of());
+
 
     return SafeArea(
         child: Scaffold(
@@ -137,30 +137,25 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                       .textTheme.titleSmall),
                                               SizedBox(height: 7.v),
                                               CustomTextFormField(
-                                                  controller:
-                                                      passwordController,
-                                                  obscureText: true,
-                                                  hintText: "lbl2".tr,
-                                                  validator:
-                                                      formValidator.isValidPass,
-                                                  textInputAction:
-                                                      TextInputAction.done,
-                                                  textInputType: TextInputType
-                                                      .visiblePassword,
-                                                  prefix: Container(
-                                                      margin:
-                                                          EdgeInsets.fromLTRB(
-                                                              16.h,
-                                                              14.v,
-                                                              8.h,
-                                                              14.v),
-                                                      child: CustomImageView(
-                                                          svgPath: ImageConstant
-                                                              .imgMingcutelockline)),
-                                                  prefixConstraints:
-                                                      BoxConstraints(
-                                                          maxHeight: 48.v),
-                                                  ),
+                                                controller: passwordController,
+                                                obscureText: true,
+                                                hintText: "lbl2".tr,
+                                                validator:
+                                                    formValidator.isValidPass,
+                                                textInputAction:
+                                                    TextInputAction.done,
+                                                textInputType: TextInputType
+                                                    .visiblePassword,
+                                                prefix: Container(
+                                                    margin: EdgeInsets.fromLTRB(
+                                                        16.h, 14.v, 8.h, 14.v),
+                                                    child: CustomImageView(
+                                                        svgPath: ImageConstant
+                                                            .imgMingcutelockline)),
+                                                prefixConstraints:
+                                                    BoxConstraints(
+                                                        maxHeight: 48.v),
+                                              ),
                                               SizedBox(height: 14.v)
                                             ])),
                                     SizedBox(height: 14.v),
@@ -226,38 +221,57 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                               ),
                                                             ),
                                                             Row(
-                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
                                                               children: <Widget>[
                                                                 Align(
-                                                                  alignment: Alignment.centerLeft,
-                                                                  child: Checkbox(
-                                                                    value: _isChecked,
-                                                                    onChanged: (bool? value) {
-                                                                      if (value != null) {
-                                                                        setState(() {
-                                                                          _isChecked = value;
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  child:
+                                                                      Checkbox(
+                                                                    value:
+                                                                        _isChecked,
+                                                                    onChanged:
+                                                                        (bool?
+                                                                            value) {
+                                                                      if (value !=
+                                                                          null) {
+                                                                        setState(
+                                                                            () {
+                                                                          _isChecked =
+                                                                              value;
                                                                         });
                                                                       }
                                                                     },
                                                                   ),
                                                                 ),
                                                                 Align(
-                                                                  alignment: Alignment.centerLeft,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
                                                                   child: Wrap(
-                                                                    alignment: WrapAlignment.start,
+                                                                    alignment:
+                                                                        WrapAlignment
+                                                                            .start,
                                                                     children: <Widget>[
                                                                       Text(
-                                                                        "msg_mantener_la_sesion".tr,
-                                                                        maxLines: 2,
-                                                                        overflow: TextOverflow.ellipsis,
-                                                                        style: theme.textTheme.labelLarge,
+                                                                        "msg_mantener_la_sesion"
+                                                                            .tr,
+                                                                        maxLines:
+                                                                            2,
+                                                                        overflow:
+                                                                            TextOverflow.ellipsis,
+                                                                        style: theme
+                                                                            .textTheme
+                                                                            .labelLarge,
                                                                       ),
                                                                     ],
                                                                   ),
                                                                 ),
                                                               ],
                                                             )
-
                                                           ])))
                                             ])),
                                     SizedBox(height: 23.v),
@@ -301,8 +315,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                     ])))));
   }
 
-
-  Future<void> _iniciarSesion( BuildContext context) async {
+  Future<void> _iniciarSesion(BuildContext context) async {
     try {
       final response = await Supabase.instance.client.auth.signInWithPassword(
         email: emailController.text,
@@ -310,7 +323,6 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
       );
       final user = response.user;
       if (user != null) {
-
         onTapIniciarsesin(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -329,8 +341,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   }
 
 
-
-  onTapTxtOlvidastelacont(BuildContextcontext) {
+  onTapTxtOlvidastelacont(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.cambiarcontraseA1screenScreen);
   }
 

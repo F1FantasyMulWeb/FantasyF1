@@ -11,6 +11,10 @@
       <array>
         <string>io.supabase.flutterquickstart</string>
       </array>
+      <key>NSPhotoLibraryUsageDescription</key>
+          <string>Necesitamos acceder a tu galería para seleccionar una imagen.</string>
+          <key>NSCameraUsageDescription</key>
+          <string>Necesitamos acceder a tu cámara para tomar una foto.</string>
     </dict>
   </array>
 	<key>CFBundleDevelopmentRegion</key>

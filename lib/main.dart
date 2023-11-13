@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'core/app_export.dart';
-import 'package:fantasyf1/theme/theme_helper.dart';
-import 'package:fantasyf1/routes/app_routes.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+
+import 'core/app_export.dart';
 
 class Client {
   final http.Client _client = http.Client();
@@ -21,7 +20,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
     url: 'https://kxtuosdudsktnozweafv.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4dHVvc2R1ZHNrdG5vendlYWZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkyODM1NTAsImV4cCI6MjAxNDg1OTU1MH0.DBdpyDx8VhRnc7x1xb1K64daQ5w7KA7HA2iAEcAIiLA',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4dHVvc2R1ZHNrdG5vendlYWZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkyODM1NTAsImV4cCI6MjAxNDg1OTU1MH0.DBdpyDx8VhRnc7x1xb1K64daQ5w7KA7HA2iAEcAIiLA',
     authFlowType: AuthFlowType.pkce,
   );
   SystemChrome.setPreferredOrientations([

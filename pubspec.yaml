@@ -11,6 +11,9 @@ dependencies:
   flutter_localizations: 
     sdk: flutter
   flutter_riverpod: ^2.4.5
+  image_cropper: ^4.0.1
+  image_picker: ^1.0.4
+  permission_handler: ^11.0.1
   cached_network_image: ^3.2.1
   flutter_svg: ^1.1.6
   flutter_svg_provider: ^1.0.3

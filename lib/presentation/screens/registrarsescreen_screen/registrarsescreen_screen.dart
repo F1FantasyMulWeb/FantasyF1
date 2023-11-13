@@ -342,15 +342,13 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
         final checkEmail =
             await clienteController.checkEmail(emailController.text);
         if (checkEmail) {
-          final checkSend =await clienteController.sendData(
+          final checkSend = await clienteController.sendData(
               emailController.text, usernameoneController.text);
           if (checkSend) {
             _mostrarDialogo(context, "msg_registro_exitoso".tr);
-
           } else {
             _mostrarDialogo(context, "msg_error_de_registro".tr);
           }
-
         } else {
           _mostrarDialogo(context, "msg_error_de_registro".tr);
         }
@@ -379,7 +377,6 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
       },
     );
   }
-
 
   onTapRegistrarse(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.loginscreenScreen);

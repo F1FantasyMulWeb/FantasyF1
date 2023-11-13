@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:supabase/supabase.dart';
 
 class DataBaseController {
@@ -15,19 +14,16 @@ class DataBaseController {
     } else {
       return false;
     }
-
-
   }
+
   Future<bool> checkEmail(String email) async {
-    List<dynamic> response = await client.from('UsuarioApp').select().eq('correo', email);
+    List<dynamic> response =
+        await client.from('UsuarioApp').select().eq('correo', email);
 
     if (response.isEmpty) {
       return true;
     } else {
       return false;
     }
-
   }
-
-
 }

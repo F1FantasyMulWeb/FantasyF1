@@ -1,18 +1,25 @@
+import 'dart:io';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-class AvatarOneScreen extends StatelessWidget {
-  const AvatarOneScreen({Key? key})
+class EditAvatarScreen extends StatefulWidget {
+  const EditAvatarScreen({Key? key})
       : super(
           key: key,
         );
+  @override
+  _EditAvatarScreen createState() => _EditAvatarScreen();
+}
 
+class _EditAvatarScreen extends State<EditAvatarScreen> {
+  File? _selectedImage;
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -50,12 +57,52 @@ class AvatarOneScreen extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  CustomImageView(
-                    imagePath: ImageConstant.imgDownload,
-                    height: 169.adaptSize,
-                    width: 169.adaptSize,
-                    radius: BorderRadius.circular(
-                      84.h,
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Elige una opción'),
+                            content: SingleChildScrollView(
+                              child: ListBody(
+                                children: <Widget>[
+                                  GestureDetector(
+                                    child: Text("Cambiar imagen"),
+                                    onTap: () async {
+                                      final ImagePicker _picker = ImagePicker();
+                                      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+                                      if (image != null) {
+                                        setState(() {
+                                          _selectedImage = File(image.path);
+                                        });
+                                      } else {
+                                        // El usuario canceló la selección de la imagen.
+                                      }
+                                    },
+                                  ),
+                                  Padding(padding: EdgeInsets.all(8.0)),
+                                  GestureDetector(
+                                    child: Text("Cancelar"),
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: CustomImageView(
+                      imagePath: _selectedImage?.path ??
+                          ImageConstant.imgDownload169x169,
+                      height: 169.adaptSize,
+                      width: 169.adaptSize,
+                      radius: BorderRadius.circular(
+                        84.h,
+                      ),
                     ),
                   ),
                   SizedBox(height: 37.v),
