@@ -1,7 +1,7 @@
 import 'package:supabase/supabase.dart';
 
 class DataBaseController {
-  final SupabaseClient client;
+  SupabaseClient client;
 
   DataBaseController(this.client);
 
@@ -24,6 +24,18 @@ class DataBaseController {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<String> selectUserName() async {
+    final correo = client.auth.currentUser!.email;
+    List<dynamic> response =
+    await client.from('UsuarioApp').select("userName").eq('correo', correo);
+
+    if (response.isEmpty) {
+      return "?????";
+    } else {
+      return response[0]["userName"];
     }
   }
 }

@@ -1,16 +1,23 @@
+import 'package:fantasyf1/DataBase/databasecontroller.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../widgets/app_bar/AppBarImageAndSubtitle.dart';
 
-class AvatarScreen extends StatelessWidget {
-  const AvatarScreen({Key? key})
-      : super(
-          key: key,
-        );
+class AvatarScreen extends StatefulWidget {
+  const AvatarScreen({Key? key}) : super(key: key);
 
+  @override
+  _AvatarScreenState createState() => _AvatarScreenState();
+}
+
+class _AvatarScreenState extends State<AvatarScreen> {
+  final client = Supabase.instance.client;
+  DataBaseController clienteController =
+  DataBaseController(Supabase.instance.client);
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -77,10 +84,23 @@ class AvatarScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 37.v),
-                  Text(
-                    "lbl".tr,
-                    style: CustomTextStyles.displayMediumOnPrimary,
+                  FutureBuilder<String>(
+                    future: clienteController.selectUserName(),
+                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else {
+                        if (snapshot.hasError)
+                          return Text('Error: ${snapshot.error}');
+                        else
+                          return Text(
+                            snapshot.data!,
+                            style: CustomTextStyles.displayMediumOnPrimary,
+                          );
+                      }
+                    },
                   ),
+
                   Padding(
                     padding: EdgeInsets.only(
                       top: 33.v,
@@ -231,7 +251,9 @@ class AvatarScreen extends StatelessWidget {
     );
   }
 }
+
 onTapEditAvatar(BuildContext context) {
   Navigator.pushNamed(context, AppRoutes.editAvatarScreen);
 }
+
 

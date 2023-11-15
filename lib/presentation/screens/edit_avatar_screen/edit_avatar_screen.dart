@@ -58,42 +58,13 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Elige una opción'),
-                            content: SingleChildScrollView(
-                              child: ListBody(
-                                children: <Widget>[
-                                  GestureDetector(
-                                    child: Text("Cambiar imagen"),
-                                    onTap: () async {
-                                      final ImagePicker _picker = ImagePicker();
-                                      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-                                      if (image != null) {
-                                        setState(() {
-                                          _selectedImage = File(image.path);
-                                        });
-                                      } else {
-                                        // El usuario canceló la selección de la imagen.
-                                      }
-                                    },
-                                  ),
-                                  Padding(padding: EdgeInsets.all(8.0)),
-                                  GestureDetector(
-                                    child: Text("Cancelar"),
-                                    onTap: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      );
+                    onTap: () async {
+                      File? image = await showDialogAndGetImage(context);
+                      if (image != null) {
+                        setState(() {
+                          _selectedImage = image;
+                        });
+                      }
                     },
                     child: CustomImageView(
                       imagePath: _selectedImage?.path ??
@@ -259,4 +230,43 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
       ),
     );
   }
+}
+
+Future<File?> showDialogAndGetImage(BuildContext context) async {
+  File? _selectedImage;
+  return showDialog<File>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Elige una opción'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              GestureDetector(
+                child: Text("Cambiar imagen"),
+                onTap: () async {
+                  final ImagePicker _picker = ImagePicker();
+                  final XFile? image =
+                      await _picker.pickImage(source: ImageSource.gallery);
+                  if (image != null) {
+                    _selectedImage = File(image.path);
+                  } else {
+                    // El usuario canceló la selección de la imagen.
+                  }
+                  Navigator.of(context).pop(_selectedImage);
+                },
+              ),
+              Padding(padding: EdgeInsets.all(8.0)),
+              GestureDetector(
+                child: Text("Cancelar"),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }
