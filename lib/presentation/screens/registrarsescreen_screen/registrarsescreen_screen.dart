@@ -1,3 +1,6 @@
+import 'package:fantasyf1/api/listaPilotos.dart';
+import 'package:fantasyf1/api/listaCircuitos.dart';
+import 'package:fantasyf1/api/listaEscuderias.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/core/utils/FormValidatorRegister.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
@@ -7,6 +10,7 @@ import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:flutter/material.dart';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../widgets/CheckboxCustom.dart';
 
@@ -29,24 +33,71 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  listaPilotos lp = new listaPilotos();
+
+  listaCircuitos lc = new listaCircuitos();
+
+  listaEscuderias le = new listaEscuderias();
+
   bool _isChecked = false;
 
   @override
   void initState() {
     super.initState();
     Client cliente = Client();
-    Map<String, String>? redBull;
-    cliente.DataRedBull().whenComplete(
-        () => (redBull = cliente.DataRedBull() as Map<String, String>?));
-    print(redBull);
+    listaPilotos? lpGlobal;
+    listaCircuitos? lcGlobal;
+    listaEscuderias? leGlobal;
+
+    Stream<listaPilotos?> obtenerInfoPilotos() async* {
+      yield await cliente.rellenaListaPilotos();
+    }
+
+    Stream<listaCircuitos?> obtenerInfoCircuito() async* {
+      yield await cliente.rellenaListaCircuito();
+    }
+
+    Stream<listaEscuderias?> obtenerInfoEscuderia() async* {
+      yield await cliente.rellenaListaEscuderia();
+    }
+
+    void escucharStreamPilotos() {
+      obtenerInfoPilotos().listen((listaPilotos? lp) {
+        lpGlobal = lp;
+      });
+    }
+
+    void escucharStreamCircuito() {
+      obtenerInfoCircuito().listen((listaCircuitos? lc) {
+        lcGlobal = lc;
+      });
+    }
+
+    void escucharStreamEscuderia() {
+      obtenerInfoEscuderia().listen((listaEscuderias? le) {
+        leGlobal = le;
+      });
+    }
+
+    escucharStreamPilotos();
+    escucharStreamCircuito();
+    escucharStreamEscuderia();
+
+    // Espera un poco para que el Stream tenga tiempo de emitir un evento
+    Future.delayed(Duration(seconds: 6), () {
+      print(lpGlobal?.pilotos);
+      print(lcGlobal?.circuitos);
+      print(leGlobal?.escuderias);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     //es_es_translations_class_spf customTranslations =
-      //  es_es_translations_class_spf();
-    FormValidatorRegister formValidator = FormValidatorRegister(AppLocalization.of());
+    //  es_es_translations_class_spf();
+    FormValidatorRegister formValidator =
+        FormValidatorRegister(AppLocalization.of());
 
     return SafeArea(
         child: Scaffold(
@@ -296,9 +347,14 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                           onTap: () async {
                                             if (_formKey.currentState!
                                                 .validate()) {
-                                              final response = await Supabase.instance.client.auth.signUp(
-                                                password: passwordController.text, email: emailController.text,
-                                              );;
+                                              final response = await Supabase
+                                                  .instance.client.auth
+                                                  .signUp(
+                                                password:
+                                                    passwordController.text,
+                                                email: emailController.text,
+                                              );
+                                              ;
                                               onTapRegistrarse(context);
                                             }
                                           },

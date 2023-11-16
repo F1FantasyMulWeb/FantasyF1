@@ -1,3 +1,11 @@
+import 'package:fantasyf1/api/entityCircuitos.dart';
+import 'package:fantasyf1/api/entityEscudarias.dart';
+import 'package:fantasyf1/api/entityPiloto.dart';
+import 'package:fantasyf1/api/listaCircuitos.dart';
+import 'package:fantasyf1/api/listaEscuderias.dart';
+import 'package:fantasyf1/api/listaPilotos.dart';
+import 'package:fantasyf1/presentation/screens/lista_escuder_as_screen/lista_escuder_as_screen.dart';
+import 'package:fantasyf1/presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
 import 'package:http/http.dart' as http;
 
 class Client {
@@ -8,77 +16,195 @@ class Client {
   }
 
   String _response = '';
+  List<String> respuesta2 = [];
+  List<String> respuesta3 = [];
 
-  List<String> pilotos2 = [];
-  List<String> pilotos3 = [];
-
-
-  Future<void> DataAlbon() async {
-    // Perform the asynchronous operation (API call, network request, etc.)
-    http.Response response = await http
-        .get(Uri.parse('http://ergast.com/api/f1/2023/drivers/max_verstappen.json'));
+  Future<entityPiloto?> DataPiloto(String piloto) async {
+    http.Response response = await http.get(
+        Uri.parse('http://ergast.com/api/f1/2023/drivers/' + piloto + '.json'));
 
     // Process the response and update the state
 
     _response = response.body;
-    pilotos2 = _response.split("{");
-    pilotos3 = pilotos2[4].split(",");
+    respuesta2 = _response.split("{");
+    respuesta3 = respuesta2[4].split(",");
     String pilotos = ('Response body: $_response');
-    Map<String, String> mapa = new Map<String,String>();
-    mapa["driverId"]=pilotos3[0].split(":")[1];
-    mapa["permanentNumber"]=pilotos3[1].split(":")[1];
-    mapa["code"]=pilotos3[2].split(":")[1];
-    mapa["url"]=pilotos3[3].split("\":")[1];
-    mapa["givenName"]=pilotos3[4].split(":")[1];
-    mapa["familyName"]=pilotos3[5].split(":")[1];
-    mapa["dateOfBirth"]=pilotos3[6].split(":")[1];
-    mapa["nationality"]=pilotos3[7].split(":")[1];
+    Map<String, String> mapa = new Map<String, String>();
+    mapa["driverId"] = respuesta3[0].split(":")[1];
+    mapa["permanentNumber"] = respuesta3[1].split(":")[1];
+    mapa["code"] = respuesta3[2].split(":")[1];
+    mapa["url"] = respuesta3[3].split("\":")[1];
+    mapa["givenName"] = respuesta3[4].split(":")[1];
+    mapa["familyName"] = respuesta3[5].split(":")[1];
+    mapa["dateOfBirth"] = respuesta3[6].split(":")[1];
+    mapa["nationality"] = respuesta3[7].split(":")[1];
 
+    entityPiloto pilotoEntidad = new entityPiloto(
+        driverId: mapa["driverId"],
+        permanentNumber: mapa["permanentNumber"],
+        code: mapa["code"],
+        url: mapa["url"],
+        givenName: mapa["givenName"],
+        familyName: mapa["familyName"],
+        dateOfBirth: mapa["dateOfBirth"],
+        nationality: mapa["nationality"]);
+
+    return pilotoEntidad;
   }
 
-  Future<void> DataBahrein() async {
-    // Perform the asynchronous operation (API call, network request, etc.)
-    http.Response response = await http
-        .get(Uri.parse('http://ergast.com/api/f1/2023/circuits/bahrain.json'));
+  Future<listaPilotos> rellenaListaPilotos() async {
+    listaPilotos listaPiloto = await new listaPilotos();
 
-    // Process the response and update the state
+    List<String> pilotosLista = [
+      "albon",
+      "alonso",
+      "bottas",
+      "de_vries",
+      "gasly",
+      "hamilton",
+      "hulkenberg",
+      "lawson",
+      "leclerc",
+      "kevin_magnussen",
+      "norris",
+      "ocon",
+      "perez",
+      "piastri",
+      "ricciardo",
+      "russell",
+      "sainz",
+      "sargeant",
+      "stroll",
+      "tsunoda",
+      "max_verstappen"
+    ];
 
-    _response = response.body;
-    pilotos2 = _response.split("{");
-    pilotos3 = pilotos2[4].split(",");
-    String pilotos = ('Response body: $_response');
-
-    Map<String, String> mapa = new Map<String,String>();
-    mapa["circuitId"]=pilotos3[0].split(":")[1];
-    mapa["url"]=pilotos3[1].split("\":")[1];
-    mapa["circuitName"]=pilotos3[2].split(":")[1];
-    mapa["lat"] = pilotos2[5].split(":")[1].substring(0,pilotos2[5].split(":")[1].indexOf(","));
-    mapa["long"] = pilotos2[5].split(":")[2].substring(0,pilotos2[5].split(":")[2].indexOf(","));
-    mapa["locality"] = pilotos2[5].split(":")[3].substring(0,pilotos2[5].split(":")[3].indexOf(","));
-    mapa["country"] = pilotos2[5].split(":")[4].substring(0,pilotos2[5].split(":")[4].indexOf("}"));
-
-    print(mapa);
+    for (int i = 0; i < pilotosLista.length; i++) {
+      entityPiloto ep = await DataPiloto(pilotosLista[i]) as entityPiloto;
+      listaPiloto.addPiloto(ep);
+    }
+    return listaPiloto;
   }
 
-  Future<Map<String, String>> DataRedBull() async {
-    // Perform the asynchronous operation (API call, network request, etc.)
-    http.Response response = await http
-        .get(Uri.parse('http://ergast.com/api/f1/2023/constructors/red_bull.json'));
+  Future<entityCircuitos> DataCircuito(String circuito) async {
+    listaCircuitos lc = new listaCircuitos();
 
-    // Process the response and update the state
+    http.Response response = await http.get(Uri.parse(
+        'http://ergast.com/api/f1/2023/circuits/' + circuito + '.json'));
 
     _response = response.body;
-    pilotos2 = _response.split("{");
-    pilotos3 = pilotos2[4].split(",");
+    respuesta2 = _response.split("{");
+    respuesta3 = respuesta2[4].split(",");
     String pilotos = ('Response body: $_response');
 
-    Map<String, String> mapa = new Map<String,String>();
-    mapa["constructorId"]=pilotos3[0].split(":")[1];
-    mapa["url"]=pilotos3[1].split("\":")[1];
-    mapa["name"]=pilotos3[2].split(":")[1];
-    mapa["nationality"]=pilotos3[3].split(":")[1].substring(0,pilotos3[3].split(":")[1].indexOf("}"));
+    Map<String, String> mapa = new Map<String, String>();
+    mapa["circuitId"] = respuesta3[0].split(":")[1];
+    mapa["url"] = respuesta3[1].split("\":")[1];
+    mapa["circuitName"] = respuesta3[2].split(":")[1];
+    mapa["lat"] = respuesta2[5]
+        .split(":")[1]
+        .substring(0, respuesta2[5].split(":")[1].indexOf(","));
+    mapa["long"] = respuesta2[5]
+        .split(":")[2]
+        .substring(0, respuesta2[5].split(":")[2].indexOf(","));
+    mapa["locality"] = respuesta2[5]
+        .split(":")[3]
+        .substring(0, respuesta2[5].split(":")[3].indexOf(","));
+    mapa["country"] = respuesta2[5]
+        .split(":")[4]
+        .substring(0, respuesta2[5].split(":")[4].indexOf("}"));
+    entityCircuitos ec = new entityCircuitos(
+        circuitId: mapa["circuitId"],
+        url: mapa["url"],
+        circuitName: mapa["circuitName"],
+        lat: mapa["lat"],
+        long: mapa["long"],
+        locality: mapa["locality"],
+        country: mapa["country"]);
+    return ec;
+  }
 
-    print (mapa);
-    return mapa;
+  Future<listaCircuitos> rellenaListaCircuito() async{
+    listaCircuitos listaCircuito = new listaCircuitos();
+
+    List<String> circuitoLista = [
+      "albert_park",
+      "americas",
+      "bahrain",
+      "baku",
+      "catalunya",
+      "hungaroring",
+      "interlagos",
+      "jeddah",
+      "losail",
+      "marina_bay",
+      "miami",
+      "monaco",
+      "monza",
+      "red_bull_ring",
+      "rodriguez",
+      "silverstone",
+      "spa",
+      "suzuka",
+      "vegas",
+      "villeneuve",
+      "yas_marina",
+      "zandvoort"
+    ];
+
+    for (int i = 0; i < circuitoLista.length; i++) {
+      entityCircuitos ec = await DataCircuito(circuitoLista[i]);
+      listaCircuito.addCircuito(ec);
+    }
+    return listaCircuito;
+  }
+
+  Future<entityEscudarias> DataEscuderia(String escuderia) async {
+    listaEscuderias le =
+        new listaEscuderias(); // Perform the asynchronous operation (API call, network request, etc.)
+    http.Response response = await http.get(Uri.parse(
+        'http://ergast.com/api/f1/2023/constructors/' + escuderia + '.json'));
+
+    _response = response.body;
+    respuesta2 = _response.split("{");
+    respuesta3 = respuesta2[4].split(",");
+    String pilotos = ('Response body: $_response');
+
+    Map<String, String> mapa = new Map<String, String>();
+    mapa["constructorId"] = respuesta3[0].split(":")[1];
+    mapa["url"] = respuesta3[1].split("\":")[1];
+    mapa["name"] = respuesta3[2].split(":")[1];
+    mapa["nationality"] = respuesta3[3]
+        .split(":")[1]
+        .substring(0, respuesta3[3].split(":")[1].indexOf("}"));
+    entityEscudarias ee = new entityEscudarias(
+        constructorId: mapa["constructorId"],
+        url: mapa["url"],
+        name: mapa["name"],
+        nationality: mapa["nationality"]);
+    return ee;
+  }
+
+  Future<listaEscuderias> rellenaListaEscuderia() async {
+    listaEscuderias listaEscuderia = new listaEscuderias();
+
+    List<String> escuderiaLista = [
+      "alfa",
+      "alphatauri",
+      "alpine",
+      "aston_martin",
+      "ferrari",
+      "haas",
+      "mclaren",
+      "mercedes",
+      "red_bull",
+      "williams"
+    ];
+
+    for (int i = 0; i < escuderiaLista.length; i++) {
+      entityEscudarias ec = await DataEscuderia(escuderiaLista[i]);
+      listaEscuderia.addEscuderia(ec);
+    }
+    return listaEscuderia;
   }
 }
