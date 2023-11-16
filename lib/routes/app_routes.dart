@@ -128,7 +128,7 @@ class AppRoutes {
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),
     avatarScreen: (context) => AvatarScreen(),
     creargrupoScreen: (context) => CreargrupoScreen(),
-    editAvatarScreen: (context) => EditAvatarScreen(),
+    editAvatarScreen: (context) => EditAvatarScreen(path: ""),
     listaJugadoresScreen: (context) => ListaJugadoresScreen(),
     listaEscuderAsScreen: (context) => ListaEscuderAsScreen(),
     listaPilotosScreen: (context) => ListaPilotosScreen(),
@@ -149,9 +149,9 @@ class AppRoutes {
     checoPerezScreen: (context) => ChecoPerezScreen(),
     mercadoScreen: (context) => MercadoScreen(),
     circuitoDeLaCornicheDeYedaScreen: (context) =>
-    CircuitoDeLaCornicheDeYedaScreen(),
+        CircuitoDeLaCornicheDeYedaScreen(),
     cambiarcontraseA3screenOneScreen: (context) =>
-    CambiarcontraseA3screenOneScreen(),
+        CambiarcontraseA3screenOneScreen(),
     cambiarcontraseA3screenScreen: (context) => CambiarcontraseA3screenScreen(),
     escuderiaMercedesScreen: (context) => EscuderiaMercedesScreen(),
     elNanoScreen: (context) => ElNanoScreen(),

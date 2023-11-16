@@ -1,4 +1,3 @@
-
 import 'package:fantasyf1/DataBase/databasecontroller.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
@@ -38,7 +37,6 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     FormValidatorLogin formValidator = FormValidatorLogin(AppLocalization.of());
-
 
     return SafeArea(
         child: Scaffold(
@@ -339,7 +337,6 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
       );
     }
   }
-
 
   onTapTxtOlvidastelacont(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.cambiarcontraseA1screenScreen);

@@ -1,4 +1,5 @@
 import 'package:supabase/supabase.dart';
+import 'dart:io';
 
 class DataBaseController {
   SupabaseClient client;
@@ -30,12 +31,19 @@ class DataBaseController {
   Future<String> selectUserName() async {
     final correo = client.auth.currentUser!.email;
     List<dynamic> response =
-    await client.from('UsuarioApp').select("userName").eq('correo', correo);
+        await client.from('UsuarioApp').select("userName").eq('correo', correo);
 
     if (response.isEmpty) {
       return "?????";
     } else {
       return response[0]["userName"];
     }
+  }
+  uploadAvatar(String path) async {
+    String userName = await selectUserName();
+    String url = 'UserData/$userName/ImagenAvatar.jpg';
+    final response = await client.storage.from('F1Fantasy').upload(url,File(path));
+    print(response.runtimeType);
+
   }
 }

@@ -11,8 +11,8 @@ class AppBarImageAndSubtitle extends StatelessWidget {
     this.margin,
     this.onTap,
   }) : super(
-    key: key,
-  );
+          key: key,
+        );
 
   String? imagePath;
   String? svgPath;

@@ -4,18 +4,22 @@ import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../../DataBase/databasecontroller.dart';
 
 class EditAvatarScreen extends StatefulWidget {
-  const EditAvatarScreen({Key? key})
-      : super(
-          key: key,
-        );
+  final String path;
+
+  const EditAvatarScreen({Key? key, required this.path})
+      : super(key: key);
   @override
   _EditAvatarScreen createState() => _EditAvatarScreen();
 }
 
 class _EditAvatarScreen extends State<EditAvatarScreen> {
+  DataBaseController clienteController =
+      DataBaseController(Supabase.instance.client);
   File? _selectedImage;
   @override
   Widget build(BuildContext context) {
@@ -61,6 +65,7 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
                     onTap: () async {
                       File? image = await showDialogAndGetImage(context);
                       if (image != null) {
+                        clienteController.uploadAvatar(image.path);
                         setState(() {
                           _selectedImage = image;
                         });

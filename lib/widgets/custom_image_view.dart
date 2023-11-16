@@ -162,5 +162,4 @@ class CustomImageView extends StatelessWidget {
     }
     return SizedBox();
   }
-
 }

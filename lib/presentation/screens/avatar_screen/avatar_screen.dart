@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../widgets/app_bar/AppBarImageAndSubtitle.dart';
+import '../edit_avatar_screen/edit_avatar_screen.dart';
 
 class AvatarScreen extends StatefulWidget {
   const AvatarScreen({Key? key}) : super(key: key);
@@ -17,7 +18,8 @@ class AvatarScreen extends StatefulWidget {
 class _AvatarScreenState extends State<AvatarScreen> {
   final client = Supabase.instance.client;
   DataBaseController clienteController =
-  DataBaseController(Supabase.instance.client);
+      DataBaseController(Supabase.instance.client);
+
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -31,7 +33,6 @@ class _AvatarScreenState extends State<AvatarScreen> {
               Padding(
                 padding: EdgeInsets.only(
                   left: 31.h,
-
                 ),
                 child: Row(
                   children: [
@@ -53,7 +54,6 @@ class _AvatarScreenState extends State<AvatarScreen> {
                   ],
                 ),
               ),
-
               SizedBox(height: 10.v),
               SizedBox(
                 width: double.maxFinite,
@@ -85,8 +85,9 @@ class _AvatarScreenState extends State<AvatarScreen> {
                   ),
                   SizedBox(height: 37.v),
                   FutureBuilder<String>(
-                    future: clienteController.selectUserName(),
-                    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    future:clienteController.selectUserName(),
+                    builder:
+                        (BuildContext context, AsyncSnapshot<String> snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return CircularProgressIndicator();
                       } else {
@@ -95,12 +96,11 @@ class _AvatarScreenState extends State<AvatarScreen> {
                         else
                           return Text(
                             snapshot.data!,
-                            style: CustomTextStyles.displayMediumOnPrimary,
+                            style: CustomTextStyles.displayMediumOnUserName,
                           );
                       }
                     },
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(
                       top: 33.v,
@@ -253,7 +253,11 @@ class _AvatarScreenState extends State<AvatarScreen> {
 }
 
 onTapEditAvatar(BuildContext context) {
-  Navigator.pushNamed(context, AppRoutes.editAvatarScreen);
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => EditAvatarScreen(path: "tu_path"),
+    ),
+  );
 }
-
 
