@@ -3,6 +3,8 @@ import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
 import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../../api/listaPilotos.dart';
+
 ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
 
 ListaPilotos listaPilotos = new ListaPilotos();
