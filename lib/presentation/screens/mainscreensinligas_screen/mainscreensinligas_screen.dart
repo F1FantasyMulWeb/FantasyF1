@@ -1,7 +1,5 @@
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_circleimage.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
-import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 
@@ -16,25 +14,281 @@ class MainscreensinligasScreen extends StatelessWidget {
         onWillPop: () async => false,
         child: SafeArea(
             child: Scaffold(
-                appBar: CustomAppBar(
-                    leadingWidth: 54.h,
-                    leading: AppbarImage(
-                        svgPath: ImageConstant.imgMenuGray800,
-                        margin: EdgeInsets.only(
-                            left: 30.h, top: 19.v, bottom: 20.v)),
-                    centerTitle: true,
-                    actions: [
-                      Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 30.h, vertical: 12.v),
-                          decoration: AppDecoration.fillWhiteA.copyWith(
-                              borderRadius: BorderRadiusStyle.roundedBorder15),
-                          child: AppbarCircleimage(
-                              imagePath: ImageConstant.imgDownload31x33,
-                              onTap: () {
-                                onTapDownloadone(context);
-                              }))
-                    ]),
+                appBar: AppBar(backgroundColor: Colors.white, actions: [
+                  Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 30.h, vertical: 12.v),
+                      decoration: AppDecoration.fillWhiteA.copyWith(
+                          borderRadius: BorderRadiusStyle.roundedBorder15),
+                      child: AppbarCircleimage(
+                          imagePath: ImageConstant.imgDownload31x33,
+                          onTap: () {
+                            onTapDownloadone(context);
+                          }))
+                ]),
+                drawer: Drawer(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: <Widget>[
+                      DrawerHeader(
+                        padding: EdgeInsets.zero,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(
+                              width: 200.0, // Establece el ancho que desees
+                              height: 200.0, // Establece el alto que desees
+                              child: Image.asset(ImageConstant.imgLogo),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(48),
+                                    bottomRight: Radius.circular(0),
+                                    topLeft: Radius.circular(48),
+                                    topRight: Radius.circular(0)),
+                                color: Colors
+                                    .grey, // Cambia esto al color de fondo que desees
+                              ),
+                              child: IconButton(
+                                icon: Icon(Icons.close),
+                                iconSize: 50,
+                                color: Colors.white,
+                                // Cambia esto al color del ícono que desees
+                                onPressed: () => Navigator.of(context).pop(),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.home,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'INICIO',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(250, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.flag,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'CAMPEONATOS',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.home,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'CIRCUITOS',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.home,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'PILOTOS',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.home,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'ESCUDERIAS',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.groups_2,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'GRUPOS',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.videogame_asset,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'COMO JUGAR',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.account_circle,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'CUENTA',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.settings_sharp,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'AJUSTES',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 body: SizedBox(
                     width: mediaQueryData.size.width,
                     child: SingleChildScrollView(
