@@ -1,10 +1,10 @@
 import 'dart:core';
 import 'package:fantasyf1/api/entityEscudarias.dart';
 
-class listaEscuderias {
+class ListaEscuderias {
   List<entityEscudarias> escuderias = [];
 
-  listaEscuderias();
+  ListaEscuderias();
 
   void addEscuderia(entityEscudarias piloto) {
     this.escuderias.add(piloto);

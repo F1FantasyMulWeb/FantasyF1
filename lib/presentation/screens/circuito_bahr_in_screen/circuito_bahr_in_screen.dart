@@ -1,11 +1,31 @@
+import 'package:fantasyf1/api/listaCircuitos.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
+import '../../../api/listaPilotos.dart';
+import '../../../api/manejoDeLaInformcion.dart';
 
-class CircuitoBahrInScreen extends StatelessWidget {
-  const CircuitoBahrInScreen({Key? key})
-      : super(
-          key: key,
-        );
+ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+
+ListaCircuitos listaCircuitos = new ListaCircuitos();
+
+class CircuitoBahrInScreen extends StatefulWidget {
+  CircuitoBahrInScreen({Key? key}) : super(key: key);
+
+  @override
+  _CircuitoBahrInScreen createState() => _CircuitoBahrInScreen();
+
+  void setManejoDeLaInformcion(
+      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
+    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
+  }
+}
+
+class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
+  @override
+  void initState() {
+    super.initState();
+    listaCircuitos = manejoDeLaInformcion.getListaCircuitos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +72,7 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        "lbl_bahr_in".tr,
+                                        nombreCircuito().toString().tr,
                                         style: theme.textTheme.displaySmall,
                                       ),
                                       SizedBox(height: 10.v),
@@ -83,7 +103,7 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                   width: 221.h,
                                   margin: EdgeInsets.only(left: 1.h),
                                   child: Text(
-                                    "msg_circuito_de_sakhir_fundado".tr,
+                                    informacionCircuitoBahr().toString().tr,
                                     maxLines: 6,
                                     overflow: TextOverflow.ellipsis,
                                     style: CustomTextStyles
@@ -117,5 +137,48 @@ class CircuitoBahrInScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  informacionCircuitoBahr() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write("Country: " +
+        listaCircuitos
+            .getListaCircuitos()[2]
+            .country
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Locality: " +
+        listaCircuitos
+            .getListaCircuitos()[2]
+            .locality
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Latitud: " +
+        listaCircuitos
+            .getListaCircuitos()[2]
+            .lat
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Longitud: " +
+        listaCircuitos
+            .getListaCircuitos()[2]
+            .long
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    return stringBuffer;
+  }
+
+  nombreCircuito() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write(listaCircuitos
+        .getListaCircuitos()[2]
+        .circuitName
+        .toString()
+        .replaceAll("\"", ""));
+    return stringBuffer;
   }
 }

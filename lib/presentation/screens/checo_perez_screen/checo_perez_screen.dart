@@ -1,8 +1,31 @@
+import 'package:fantasyf1/api/listaPilotos.dart';
 import 'package:fantasyf1/core/app_export.dart';
+import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
+import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 
-class ChecoPerezScreen extends StatelessWidget {
-  const ChecoPerezScreen({Key? key}) : super(key: key);
+ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+
+ListaPilotos listaPilotos = new ListaPilotos();
+
+class ChecoPerezScreen extends StatefulWidget {
+  ChecoPerezScreen({Key? key}) : super(key: key);
+
+  @override
+  _ChecoPerezScreen createState() => _ChecoPerezScreen();
+
+  void setManejoDeLaInformcion(
+      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
+    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
+  }
+}
+
+class _ChecoPerezScreen extends State<ChecoPerezScreen> {
+  @override
+  void initState() {
+    super.initState();
+    listaPilotos = manejoDeLaInformcion.getListaPilotos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +69,8 @@ class ChecoPerezScreen extends StatelessWidget {
                                                               MainAxisSize.min,
                                                           children: [
                                                             Text(
-                                                                "lbl_sergio_perez"
+                                                                nombrePiloto()
+                                                                    .toString()
                                                                     .tr,
                                                                 style: CustomTextStyles
                                                                     .displaySmallWhiteA70001),
@@ -71,7 +95,8 @@ class ChecoPerezScreen extends StatelessWidget {
                                                       margin: EdgeInsets.only(
                                                           left: 35.h),
                                                       child: Text(
-                                                          "msg_team_red_bull"
+                                                          informacionPilotoCheco()
+                                                              .toString()
                                                               .tr,
                                                           maxLines: 9,
                                                           overflow: TextOverflow
@@ -166,5 +191,66 @@ class ChecoPerezScreen extends StatelessWidget {
   /// to push the named route for the elNanoScreen.
   onTapImgArrowdownone(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.elNanoScreen);
+  }
+
+  informacionPilotoCheco() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write("Nombre: " +
+        listaPilotos
+            .getListaPilotos()[12]
+            .getGivenName()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Nombre familia: " +
+        listaPilotos
+            .getListaPilotos()[12]
+            .getFamilyName()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Fecha de nacimiento: " +
+        listaPilotos
+            .getListaPilotos()[12]
+            .getDateOfBirth()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Nacionalidad: " +
+        listaPilotos
+            .getListaPilotos()[12]
+            .getNacionality()
+            .toString()
+            .replaceAll("\"", "")
+            .replaceAll("}", "")
+            .replaceAll("]", "") +
+        "\n");
+    stringBuffer.write("Codigo: " +
+        listaPilotos
+            .getListaPilotos()[12]
+            .getCode()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Numero: " +
+        listaPilotos
+            .getListaPilotos()[12]
+            .getPermanentNumber()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    return stringBuffer;
+  }
+
+  nombrePiloto() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write(listaPilotos
+        .getListaPilotos()[12]
+        .driverId
+        .toString()
+        .replaceAll("\"", "")
+        .replaceAll("_", " ")
+        .toUpperCase());
+    return stringBuffer;
   }
 }

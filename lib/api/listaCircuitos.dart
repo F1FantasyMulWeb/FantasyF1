@@ -3,10 +3,10 @@ import 'package:fantasyf1/api/entityCircuitos.dart';
 
 import 'entityPiloto.dart';
 
-class listaCircuitos {
+class ListaCircuitos {
   List<entityCircuitos> circuitos = [];
 
-  listaCircuitos();
+  ListaCircuitos();
 
   void addCircuito(entityCircuitos piloto) {
     this.circuitos.add(piloto);

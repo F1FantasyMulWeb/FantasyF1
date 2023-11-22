@@ -1,11 +1,32 @@
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
+import '../../../api/listaCircuitos.dart';
+import '../../../api/manejoDeLaInformcion.dart';
 
-class CircuitoDeLaCornicheDeYedaScreen extends StatelessWidget {
-  const CircuitoDeLaCornicheDeYedaScreen({Key? key})
-      : super(
-          key: key,
-        );
+ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+
+ListaCircuitos listaCircuitos = new ListaCircuitos();
+
+class CircuitoDeLaCornicheDeYedaScreen extends StatefulWidget {
+  CircuitoDeLaCornicheDeYedaScreen({Key? key}) : super(key: key);
+
+  @override
+  _CircuitoDeLaCornicheDeYedaScreen createState() =>
+      _CircuitoDeLaCornicheDeYedaScreen();
+
+  void setManejoDeLaInformcion(
+      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
+    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
+  }
+}
+
+class _CircuitoDeLaCornicheDeYedaScreen
+    extends State<CircuitoDeLaCornicheDeYedaScreen> {
+  @override
+  void initState() {
+    super.initState();
+    listaCircuitos = manejoDeLaInformcion.getListaCircuitos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +83,7 @@ class CircuitoDeLaCornicheDeYedaScreen extends StatelessWidget {
                                           right: 38.h,
                                         ),
                                         child: Text(
-                                          "msg_corniche_de_yeda".tr,
+                                          nombreCircuito().toString().tr,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.center,
@@ -92,7 +113,7 @@ class CircuitoDeLaCornicheDeYedaScreen extends StatelessWidget {
                             right: 49.h,
                           ),
                           child: Text(
-                            "msg_trazado_circuito".tr,
+                            informacionCircuitoYeda().toString().tr,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
                             style: CustomTextStyles.bodyMediumJacquesFrancois,
@@ -134,5 +155,48 @@ class CircuitoDeLaCornicheDeYedaScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  informacionCircuitoYeda() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write("Country: " +
+        listaCircuitos
+            .getListaCircuitos()[7]
+            .country
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Locality: " +
+        listaCircuitos
+            .getListaCircuitos()[7]
+            .locality
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Latitud: " +
+        listaCircuitos
+            .getListaCircuitos()[7]
+            .lat
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Longitud: " +
+        listaCircuitos
+            .getListaCircuitos()[7]
+            .long
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    return stringBuffer;
+  }
+
+  nombreCircuito() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write(listaCircuitos
+        .getListaCircuitos()[7]
+        .circuitName
+        .toString()
+        .replaceAll("\"", ""));
+    return stringBuffer;
   }
 }

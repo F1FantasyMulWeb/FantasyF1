@@ -52,8 +52,8 @@ class Client {
     return pilotoEntidad;
   }
 
-  Future<listaPilotos> rellenaListaPilotos() async {
-    listaPilotos listaPiloto = await new listaPilotos();
+  Future<ListaPilotos> rellenaListaPilotos() async {
+    ListaPilotos listaPiloto = await new ListaPilotos();
 
     List<String> pilotosLista = [
       "albon",
@@ -87,7 +87,7 @@ class Client {
   }
 
   Future<entityCircuitos> DataCircuito(String circuito) async {
-    listaCircuitos lc = new listaCircuitos();
+    ListaCircuitos lc = new ListaCircuitos();
 
     http.Response response = await http.get(Uri.parse(
         'http://ergast.com/api/f1/2023/circuits/' + circuito + '.json'));
@@ -124,8 +124,8 @@ class Client {
     return ec;
   }
 
-  Future<listaCircuitos> rellenaListaCircuito() async{
-    listaCircuitos listaCircuito = new listaCircuitos();
+  Future<ListaCircuitos> rellenaListaCircuito() async{
+    ListaCircuitos listaCircuito = new ListaCircuitos();
 
     List<String> circuitoLista = [
       "albert_park",
@@ -160,8 +160,8 @@ class Client {
   }
 
   Future<entityEscudarias> DataEscuderia(String escuderia) async {
-    listaEscuderias le =
-        new listaEscuderias(); // Perform the asynchronous operation (API call, network request, etc.)
+    ListaEscuderias le =
+        new ListaEscuderias(); // Perform the asynchronous operation (API call, network request, etc.)
     http.Response response = await http.get(Uri.parse(
         'http://ergast.com/api/f1/2023/constructors/' + escuderia + '.json'));
 
@@ -185,8 +185,8 @@ class Client {
     return ee;
   }
 
-  Future<listaEscuderias> rellenaListaEscuderia() async {
-    listaEscuderias listaEscuderia = new listaEscuderias();
+  Future<ListaEscuderias> rellenaListaEscuderia() async {
+    ListaEscuderias listaEscuderia = new ListaEscuderias();
 
     List<String> escuderiaLista = [
       "alfa",

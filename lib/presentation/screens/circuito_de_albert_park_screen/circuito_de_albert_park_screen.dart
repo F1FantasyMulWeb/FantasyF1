@@ -1,11 +1,30 @@
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
+import '../../../api/listaCircuitos.dart';
+import '../../../api/manejoDeLaInformcion.dart';
 
-class CircuitoDeAlbertParkScreen extends StatelessWidget {
-  const CircuitoDeAlbertParkScreen({Key? key})
-      : super(
-          key: key,
-        );
+ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+
+ListaCircuitos listaCircuitos = new ListaCircuitos();
+
+class CircuitoDeAlbertParkScreen extends StatefulWidget {
+  CircuitoDeAlbertParkScreen({Key? key}) : super(key: key);
+
+  @override
+  _CircuitoDeAlbertParkScreen createState() => _CircuitoDeAlbertParkScreen();
+
+  void setManejoDeLaInformcion(
+      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
+    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
+  }
+}
+
+class _CircuitoDeAlbertParkScreen extends State<CircuitoDeAlbertParkScreen> {
+  @override
+  void initState() {
+    super.initState();
+    listaCircuitos = manejoDeLaInformcion.getListaCircuitos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +77,7 @@ class CircuitoDeAlbertParkScreen extends StatelessWidget {
                                           right: 25.h,
                                         ),
                                         child: Text(
-                                          "msg_circuito_de_albert".tr,
+                                          nombreCircuito().toString().tr,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.center,
@@ -86,7 +105,7 @@ class CircuitoDeAlbertParkScreen extends StatelessWidget {
                             right: 82.h,
                           ),
                           child: Text(
-                            "msg_trazado_circuito2".tr,
+                            informacionCircuitoAlbertPark().toString().tr,
                             maxLines: 5,
                             overflow: TextOverflow.ellipsis,
                             style: CustomTextStyles.bodyMediumJacquesFrancois,
@@ -128,5 +147,48 @@ class CircuitoDeAlbertParkScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  informacionCircuitoAlbertPark() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write("Country: " +
+        listaCircuitos
+            .getListaCircuitos()[0]
+            .country
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Locality: " +
+        listaCircuitos
+            .getListaCircuitos()[0]
+            .locality
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Latitud: " +
+        listaCircuitos
+            .getListaCircuitos()[0]
+            .lat
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Longitud: " +
+        listaCircuitos
+            .getListaCircuitos()[0]
+            .long
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    return stringBuffer;
+  }
+
+  nombreCircuito() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write(listaCircuitos
+        .getListaCircuitos()[0]
+        .circuitName
+        .toString()
+        .replaceAll("\"", ""));
+    return stringBuffer;
   }
 }
