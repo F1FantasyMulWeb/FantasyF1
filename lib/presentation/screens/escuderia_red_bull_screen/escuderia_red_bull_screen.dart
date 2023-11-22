@@ -1,8 +1,30 @@
+import 'package:fantasyf1/api/listaEscuderias.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
+import '../../../api/manejoDeLaInformcion.dart';
 
-class EscuderiaRedBullScreen extends StatelessWidget {
-  const EscuderiaRedBullScreen({Key? key}) : super(key: key);
+ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+
+ListaEscuderias listaEscuderias = new ListaEscuderias();
+
+class EscuderiaRedBullScreen extends StatefulWidget {
+  EscuderiaRedBullScreen({Key? key}) : super(key: key);
+
+  @override
+  _EscuderiaRedBullScreen createState() => _EscuderiaRedBullScreen();
+
+  void setManejoDeLaInformcion(
+      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
+    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
+  }
+}
+
+class _EscuderiaRedBullScreen extends State<EscuderiaRedBullScreen> {
+  @override
+  void initState() {
+    super.initState();
+    listaEscuderias = manejoDeLaInformcion.getListaEscuderias();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +51,7 @@ class EscuderiaRedBullScreen extends StatelessWidget {
                                                     ImageConstant.imgGroup3),
                                                 fit: BoxFit.cover)),
                                         child: Column(children: [
-                                          Text("lbl_red_bull_racing".tr,
+                                          Text(nombreCircuito().toString().tr,
                                               style: CustomTextStyles
                                                   .displaySmallWhiteA70001),
                                           SizedBox(height: 45.v),
@@ -55,7 +77,7 @@ class EscuderiaRedBullScreen extends StatelessWidget {
                                                       margin: EdgeInsets.only(
                                                           left: 7.h),
                                                       child: Text(
-                                                          "msg_full_team_nameoracle"
+                                                          informacionEscuderiaRedbull().toString()
                                                               .tr,
                                                           maxLines: 12,
                                                           overflow: TextOverflow
@@ -120,5 +142,36 @@ class EscuderiaRedBullScreen extends StatelessWidget {
   /// to push the named route for the listaEscuderAsScreen.
   onTapImgArrowleftone(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaEscuderAsScreen);
+  }
+
+  informacionEscuderiaRedbull() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write("Nacionalidad: " +
+        listaEscuderias
+            .getListaEscuderia()[8]
+            .nationality
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Nombre: " +
+        listaEscuderias
+            .getListaEscuderia()[8]
+            .name
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    return stringBuffer;
+  }
+
+  nombreCircuito() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write(listaEscuderias
+        .getListaEscuderia()[8]
+        .constructorId
+        .toString()
+        .replaceAll("\"", "")
+        .replaceAll("_", " ")
+        .toUpperCase());
+    return stringBuffer;
   }
 }

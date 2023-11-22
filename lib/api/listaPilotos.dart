@@ -1,10 +1,10 @@
 import 'dart:core';
 import 'entityPiloto.dart';
 
-class listaPilotos {
+class ListaPilotos {
   List<entityPiloto> pilotos = [];
 
-  listaPilotos();
+  ListaPilotos();
 
   void addPiloto(entityPiloto piloto) {
     this.pilotos.add(piloto);

@@ -32,6 +32,38 @@ class entityPiloto {
     );
   }
 
+  getDriverId() {
+    return this.driverId;
+  }
+
+  getPermanentNumber() {
+    return this.permanentNumber;
+  }
+
+  getCode() {
+    return this.code;
+  }
+
+  getUrl() {
+    return this.url;
+  }
+
+  getGivenName() {
+    return this.givenName;
+  }
+
+  getFamilyName() {
+    return this.familyName;
+  }
+
+  getDateOfBirth() {
+    return this.dateOfBirth;
+  }
+
+  getNacionality() {
+    return this.nationality;
+  }
+
   @override
   String toString() {
     return 'entityPiloto{$driverId, $permanentNumber, $code, $url, $givenName, $familyName, $dateOfBirth, $nationality}';

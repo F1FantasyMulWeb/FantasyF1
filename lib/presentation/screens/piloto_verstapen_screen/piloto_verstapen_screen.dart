@@ -1,8 +1,31 @@
+import 'package:fantasyf1/api/listaPilotos.dart';
 import 'package:fantasyf1/core/app_export.dart';
+import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
+import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 
-class PilotoVerstapenScreen extends StatelessWidget {
-  const PilotoVerstapenScreen({Key? key}) : super(key: key);
+ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+
+ListaPilotos listaPilotos = new ListaPilotos();
+
+class PilotoVerstapenScreen extends StatefulWidget {
+  PilotoVerstapenScreen({Key? key}) : super(key: key);
+
+  @override
+  _PilotoVerstapenScreen createState() => _PilotoVerstapenScreen();
+
+  void setManejoDeLaInformcion(
+      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
+    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
+  }
+}
+
+class _PilotoVerstapenScreen extends State<PilotoVerstapenScreen> {
+  @override
+  void initState() {
+    super.initState();
+    listaPilotos = manejoDeLaInformcion.getListaPilotos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +76,8 @@ class PilotoVerstapenScreen extends StatelessWidget {
                                                                         right: 1
                                                                             .h),
                                                                 child: Text(
-                                                                    "lbl_max_verstappen"
+                                                                    nombrePiloto()
+                                                                        .toString()
                                                                         .tr,
                                                                     style: CustomTextStyles
                                                                         .displaySmallWhiteA70001)),
@@ -84,7 +108,10 @@ class PilotoVerstapenScreen extends StatelessWidget {
                                         width: 215.h,
                                         margin: EdgeInsets.only(
                                             left: 35.h, top: 40.v),
-                                        child: Text("msg_team_red_bull".tr,
+                                        child: Text(
+                                            informacionPilotoVerstappen()
+                                                .toString()
+                                                .tr,
                                             maxLines: 9,
                                             overflow: TextOverflow.ellipsis,
                                             style: CustomTextStyles
@@ -154,5 +181,66 @@ class PilotoVerstapenScreen extends StatelessWidget {
   /// to push the named route for the checoPerezScreen.
   onTapImgArrowdownone(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.checoPerezScreen);
+  }
+
+  informacionPilotoVerstappen() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write("Nombre: " +
+        listaPilotos
+            .getListaPilotos()[20]
+            .getGivenName()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Nombre familia: " +
+        listaPilotos
+            .getListaPilotos()[20]
+            .getFamilyName()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Fecha de nacimiento: " +
+        listaPilotos
+            .getListaPilotos()[20]
+            .getDateOfBirth()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Nacionalidad: " +
+        listaPilotos
+            .getListaPilotos()[20]
+            .getNacionality()
+            .toString()
+            .replaceAll("\"", "")
+            .replaceAll("}", "")
+            .replaceAll("]", "") +
+        "\n");
+    stringBuffer.write("Codigo: " +
+        listaPilotos
+            .getListaPilotos()[20]
+            .getCode()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Numero: " +
+        listaPilotos
+            .getListaPilotos()[20]
+            .getPermanentNumber()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    return stringBuffer;
+  }
+
+  nombrePiloto() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write(listaPilotos
+        .getListaPilotos()[20]
+        .driverId
+        .toString()
+        .replaceAll("\"", "")
+        .replaceAll("_", " ")
+        .toUpperCase());
+    return stringBuffer;
   }
 }

@@ -1,8 +1,30 @@
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
+import '../../../api/listaEscuderias.dart';
+import '../../../api/manejoDeLaInformcion.dart';
 
-class EscuderiaAstonMartinScreen extends StatelessWidget {
-  const EscuderiaAstonMartinScreen({Key? key}) : super(key: key);
+ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+
+ListaEscuderias listaEscuderias = new ListaEscuderias();
+
+class EscuderiaAstonMartinScreen extends StatefulWidget {
+  EscuderiaAstonMartinScreen({Key? key}) : super(key: key);
+
+  @override
+  _EscuderiaAstonMartinScreen createState() => _EscuderiaAstonMartinScreen();
+
+  void setManejoDeLaInformcion(
+      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
+    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
+  }
+}
+
+class _EscuderiaAstonMartinScreen extends State<EscuderiaAstonMartinScreen> {
+  @override
+  void initState() {
+    super.initState();
+    listaEscuderias = manejoDeLaInformcion.getListaEscuderias();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +58,9 @@ class EscuderiaAstonMartinScreen extends StatelessWidget {
                                                   padding: EdgeInsets.only(
                                                       left: 29.h),
                                                   child: Text(
-                                                      "lbl_aston_martin".tr,
+                                                      nombreCircuito()
+                                                          .toString()
+                                                          .tr,
                                                       style: CustomTextStyles
                                                           .displaySmallWhiteA70001)),
                                               Container(
@@ -100,7 +124,8 @@ class EscuderiaAstonMartinScreen extends StatelessWidget {
                                                       margin: EdgeInsets.only(
                                                           left: 7.h),
                                                       child: Text(
-                                                          "msg_full_team_nameoracle"
+                                                          informacionEscuderiaAston()
+                                                              .toString()
                                                               .tr,
                                                           maxLines: 12,
                                                           overflow: TextOverflow
@@ -187,5 +212,36 @@ class EscuderiaAstonMartinScreen extends StatelessWidget {
   /// to push the named route for the listaEscuderAsScreen.
   onTapImgArrowleftone(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaEscuderAsScreen);
+  }
+
+  informacionEscuderiaAston() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write("Nacionalidad: " +
+        listaEscuderias
+            .getListaEscuderia()[3]
+            .nationality
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    stringBuffer.write("Nombre: " +
+        listaEscuderias
+            .getListaEscuderia()[3]
+            .name
+            .toString()
+            .replaceAll("\"", ""));
+    stringBuffer.write("\n");
+    return stringBuffer;
+  }
+
+  nombreCircuito() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write(listaEscuderias
+        .getListaEscuderia()[3]
+        .constructorId
+        .toString()
+        .replaceAll("\"", "")
+        .replaceAll("_", " ")
+        .toUpperCase());
+    return stringBuffer;
   }
 }

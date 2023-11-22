@@ -1,8 +1,30 @@
 import 'package:fantasyf1/core/app_export.dart';
+import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
+import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 
-class ElNanoScreen extends StatelessWidget {
-  const ElNanoScreen({Key? key}) : super(key: key);
+ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+
+ListaPilotos listaPilotos = new ListaPilotos();
+
+class ElNanoScreen extends StatefulWidget {
+  ElNanoScreen({Key? key}) : super(key: key);
+
+  @override
+  _ElNanoScreen createState() => _ElNanoScreen();
+
+  void setManejoDeLaInformcion(
+      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
+    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
+  }
+}
+
+class _ElNanoScreen extends State<ElNanoScreen> {
+  @override
+  void initState() {
+    super.initState();
+    listaPilotos = manejoDeLaInformcion.getListaPilotos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +80,8 @@ class ElNanoScreen extends StatelessWidget {
                                                                         right: 3
                                                                             .h),
                                                                     child: Text(
-                                                                        "lbl_fernando_alonso"
+                                                                        nombrePiloto()
+                                                                            .toString()
                                                                             .tr,
                                                                         textAlign:
                                                                             TextAlign
@@ -88,7 +111,8 @@ class ElNanoScreen extends StatelessWidget {
                                                       margin: EdgeInsets.only(
                                                           left: 35.h),
                                                       child: Text(
-                                                          "msg_team_red_bull"
+                                                          informacionPilotoNano()
+                                                              .toString()
                                                               .tr,
                                                           maxLines: 9,
                                                           overflow: TextOverflow
@@ -170,5 +194,65 @@ class ElNanoScreen extends StatelessWidget {
   /// to push the named route for the listaPilotosScreen.
   onTapImgArrowleftone(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaPilotosScreen);
+  }
+
+  informacionPilotoNano() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write("Nombre: " +
+        listaPilotos
+            .getListaPilotos()[1]
+            .getGivenName()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Nombre familia: " +
+        listaPilotos
+            .getListaPilotos()[1]
+            .getFamilyName()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Fecha de nacimiento: " +
+        listaPilotos
+            .getListaPilotos()[1]
+            .getDateOfBirth()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Nacionalidad: " +
+        listaPilotos
+            .getListaPilotos()[1]
+            .getNacionality()
+            .toString()
+            .replaceAll("\"", "")
+            .replaceAll("}", "")
+            .replaceAll("]", "") +
+        "\n");
+    stringBuffer.write("Codigo: " +
+        listaPilotos
+            .getListaPilotos()[1]
+            .getCode()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    stringBuffer.write("Numero: " +
+        listaPilotos
+            .getListaPilotos()[1]
+            .getPermanentNumber()
+            .toString()
+            .replaceAll("\"", "") +
+        "\n");
+    return stringBuffer;
+  }
+
+  nombrePiloto() {
+    StringBuffer stringBuffer = new StringBuffer();
+    stringBuffer.write(listaPilotos
+        .getListaPilotos()[1]
+        .driverId
+        .toString()
+        .replaceAll("\"", "")
+        .toUpperCase());
+    return stringBuffer;
   }
 }
