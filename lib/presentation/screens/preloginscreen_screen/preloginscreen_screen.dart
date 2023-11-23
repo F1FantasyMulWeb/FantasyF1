@@ -84,6 +84,6 @@ class PreloginscreenScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the loginscreenScreen.
   onTapVamosall(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.loginscreenScreen);
+    Navigator.pushNamed(context, AppRoutes.pantallaCargaScreen);
   }
 }

@@ -32,6 +32,7 @@ import '../presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
 import '../presentation/screens/loginscreen_screen/loginscreen_screen.dart';
 import '../presentation/screens/mainscreensinligas_screen/mainscreensinligas_screen.dart';
 import '../presentation/screens/mercado_screen/mercado_screen.dart';
+import '../presentation/screens/pantalla_carga/pantallacarga.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
 import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
 import '../presentation/screens/preloginscreen_screen/preloginscreen_screen.dart';
@@ -120,6 +121,7 @@ class AppRoutes {
   static const String circuitoDeMNacoScreen = '/circuito_de_m_naco_screen';
 
   static const String appNavigationScreen = '/app_navigation_screen';
+  static const String pantallaCargaScreen = '/pantalla_carga_screen';
 
   static Map<String, WidgetBuilder> routes = {
     preloginscreenScreen: (context) => PreloginscreenScreen(),
@@ -129,6 +131,7 @@ class AppRoutes {
     avatarScreen: (context) => AvatarScreen(),
     creargrupoScreen: (context) => CreargrupoScreen(),
     editAvatarScreen: (context) => EditAvatarScreen(path: "",userName: "",),
+    pantallaCargaScreen: (context) => PantallaCarga(),
     listaJugadoresScreen: (context) => ListaJugadoresScreen(),
     listaEscuderAsScreen: (context) => ListaEscuderAsScreen(),
     listaPilotosScreen: (context) => ListaPilotosScreen(),
