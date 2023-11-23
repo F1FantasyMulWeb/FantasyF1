@@ -1,28 +1,15 @@
-import 'package:fantasyf1/api/listaPilotos.dart';
-import 'package:fantasyf1/api/listaCircuitos.dart';
-import 'package:fantasyf1/api/listaEscuderias.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/core/utils/FormValidatorRegister.dart';
-import 'package:fantasyf1/presentation/screens/checo_perez_screen/checo_perez_screen.dart';
-import 'package:fantasyf1/presentation/screens/circuito_de_albert_park_screen/circuito_de_albert_park_screen.dart';
-import 'package:fantasyf1/presentation/screens/circuito_de_la_corniche_de_yeda_screen/circuito_de_la_corniche_de_yeda_screen.dart';
-import 'package:fantasyf1/presentation/screens/escuderia_aston_martin_screen/escuderia_aston_martin_screen.dart';
-import 'package:fantasyf1/presentation/screens/escuderia_red_bull_screen/escuderia_red_bull_screen.dart';
-import 'package:fantasyf1/presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../DataBase/databasecontroller.dart';
-import '../../../api/configuracionApi.dart';
 import '../../../widgets/CheckboxCustom.dart';
-import '../circuito_bahr_in_screen/circuito_bahr_in_screen.dart';
-import '../el_nano_screen/el_nano_screen.dart';
-import '../escuderia_mercedes_screen/escuderia_mercedes_screen.dart';
 
 // ignore_for_file: must_be_immutable
 class RegistrarsescreenScreen extends StatefulWidget {
@@ -43,12 +30,6 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  ListaPilotos lp = new ListaPilotos();
-
-  ListaCircuitos lc = new ListaCircuitos();
-
-  ListaEscuderias le = new ListaEscuderias();
-
   bool _isChecked = false;
 
   @override
@@ -66,71 +47,6 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
   @override
   void initState() {
     super.initState();
-    Client cliente = Client();
-    ListaPilotos? lpGlobal;
-    ListaCircuitos? lcGlobal;
-    ListaEscuderias? leGlobal;
-
-    Stream<ListaPilotos?> obtenerInfoPilotos() async* {
-      yield await cliente.rellenaListaPilotos();
-    }
-
-    Stream<ListaCircuitos?> obtenerInfoCircuito() async* {
-      yield await cliente.rellenaListaCircuito();
-    }
-
-    Stream<ListaEscuderias?> obtenerInfoEscuderia() async* {
-      yield await cliente.rellenaListaEscuderia();
-    }
-
-    void escucharStreamPilotos() {
-      obtenerInfoPilotos().listen((ListaPilotos? lp) {
-        lpGlobal = lp;
-      });
-    }
-
-    void escucharStreamCircuito() {
-      obtenerInfoCircuito().listen((ListaCircuitos? lc) {
-        lcGlobal = lc;
-      });
-    }
-
-    void escucharStreamEscuderia() {
-      obtenerInfoEscuderia().listen((ListaEscuderias? le) {
-        leGlobal = le;
-      });
-    }
-
-    escucharStreamPilotos();
-    escucharStreamCircuito();
-    escucharStreamEscuderia();
-
-    // Espera un poco para que el Stream tenga tiempo de emitir un evento
-    Future.delayed(Duration(seconds: 25), () {
-      PilotoVerstapenScreen pvs = new PilotoVerstapenScreen();
-      ElNanoScreen ens = new ElNanoScreen();
-      ChecoPerezScreen cps = new ChecoPerezScreen();
-      CircuitoBahrInScreen cbis = new CircuitoBahrInScreen();
-      CircuitoDeLaCornicheDeYedaScreen cdcys =
-          new CircuitoDeLaCornicheDeYedaScreen();
-      CircuitoDeAlbertParkScreen cdaps = new CircuitoDeAlbertParkScreen();
-      EscuderiaRedBullScreen erbs = new EscuderiaRedBullScreen();
-      EscuderiaAstonMartinScreen eas = new EscuderiaAstonMartinScreen();
-      EscuderiaMercedesScreen ems = new EscuderiaMercedesScreen();
-      ManejoDeLaInformcion mli = new ManejoDeLaInformcion();
-      mli.setListaPilotos(lpGlobal!);
-      mli.setListaCircuitos(lcGlobal!);
-      mli.setListaEscuderias(leGlobal!);
-      pvs.setManejoDeLaInformcion(mli);
-      ens.setManejoDeLaInformcion(mli);
-      cps.setManejoDeLaInformcion(mli);
-      cbis.setManejoDeLaInformcion(mli);
-      cdcys.setManejoDeLaInformcion(mli);
-      cdaps.setManejoDeLaInformcion(mli);
-      erbs.setManejoDeLaInformcion(mli);
-      eas.setManejoDeLaInformcion(mli);
-      ems.setManejoDeLaInformcion(mli);
-    });
   }
 
   @override

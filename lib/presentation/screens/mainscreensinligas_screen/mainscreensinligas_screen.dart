@@ -78,7 +78,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
+                            backgroundColor: Color(0xFF7E8489),
                             fixedSize: Size(250, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -103,7 +103,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
+                            backgroundColor: Color(0xFF7E8489),
                             fixedSize: Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
