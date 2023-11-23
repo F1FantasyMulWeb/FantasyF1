@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fantasyf1/DataBase/databasecontroller.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
@@ -19,6 +21,13 @@ class _AvatarScreenState extends State<AvatarScreen> {
   final client = Supabase.instance.client;
   DataBaseController clienteController =
       DataBaseController(Supabase.instance.client);
+  late Future<File> _imageFile;
+
+  @override
+  void initState() {
+    super.initState();
+    _imageFile = clienteController.downloadAvatar(); // Descarga la imagen cuando se inicializa el widget
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,13 +84,35 @@ class _AvatarScreenState extends State<AvatarScreen> {
               ),
               child: Column(
                 children: [
-                  CustomImageView(
-                    imagePath: ImageConstant.imgDownload169x169,
-                    height: 169.adaptSize,
-                    width: 169.adaptSize,
-                    radius: BorderRadius.circular(
-                      84.h,
-                    ),
+                  FutureBuilder<File>(
+                    future: _imageFile, // Tu método que devuelve Future<File>
+                    builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator(); // Muestra un indicador de carga mientras se espera
+                      } else {
+                        if (snapshot.hasError || !snapshot.data!.existsSync()) {
+                          // Si hay un error o el archivo no existe, muestra la imagen predeterminada
+                          return CustomImageView(
+                            imagePath: ImageConstant.imgDownload169x169,
+                            height: 169.adaptSize,
+                            width: 169.adaptSize,
+                            radius: BorderRadius.circular(
+                              84.h,
+                            ),
+                          );
+                        } else {
+                          // Si no hay errores y el archivo existe, muestra la imagen descargada
+                          return CustomImageView(
+                            imagePath: snapshot.data!.path,
+                            height: 169.adaptSize,
+                            width: 169.adaptSize,
+                            radius: BorderRadius.circular(
+                              84.h,
+                            ),
+                          );
+                        }
+                      }
+                    },
                   ),
                   SizedBox(height: 37.v),
                   FutureBuilder<String>(
@@ -250,14 +281,18 @@ class _AvatarScreenState extends State<AvatarScreen> {
       ),
     );
   }
+  void onTapEditAvatar(BuildContext context) async {
+    String userName = await clienteController.selectUserName();
+    String imagePath = (await _imageFile).path;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditAvatarScreen(path: imagePath, userName: userName),
+      ),
+    );
+  }
 }
 
-onTapEditAvatar(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => EditAvatarScreen(path: "tu_path"),
-    ),
-  );
-}
+
+
 

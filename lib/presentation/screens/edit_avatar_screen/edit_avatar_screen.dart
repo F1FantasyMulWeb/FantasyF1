@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
@@ -10,44 +11,88 @@ import '../../../DataBase/databasecontroller.dart';
 
 class EditAvatarScreen extends StatefulWidget {
   final String path;
+  final String userName;
 
-  const EditAvatarScreen({Key? key, required this.path})
+  const EditAvatarScreen({Key? key, required this.path, required this.userName})
       : super(key: key);
+
   @override
   _EditAvatarScreen createState() => _EditAvatarScreen();
 }
 
 class _EditAvatarScreen extends State<EditAvatarScreen> {
+  Future<void>? _uploadFuture;
   DataBaseController clienteController =
       DataBaseController(Supabase.instance.client);
   File? _selectedImage;
+  final ValueNotifier<File?> imageNotifier = ValueNotifier<File?>(null);
+
+
+  void updateImage(File newImage) {
+    _selectedImage = newImage;
+    imageNotifier.value = _selectedImage;
+  }
+
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          centerTitle: true,
           title: Column(
             children: [
               AppbarImage1(
                 svgPath: ImageConstant.imgMenu,
                 margin: EdgeInsets.only(
                   left: 31.h,
-                  right: 296.h,
-                ),
-              ),
-              SizedBox(height: 10.v),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: SizedBox(
-                  width: double.maxFinite,
-                  child: Divider(),
+                  right: 10.h,
                 ),
               ),
             ],
           ),
-          styleType: Style.bgFill,
+          actions: [
+            Transform.translate(
+              offset: Offset(-25.0, 0.0),
+              child: Padding(
+                padding: EdgeInsets.all(5.0),
+                child: ValueListenableBuilder(
+                  valueListenable: imageNotifier,
+                  builder: (BuildContext context, File? image, Widget? child) {
+                    bool isEnabled = image != null;
+                    return InkWell(
+                      onTap: isEnabled ? () {
+                        setState(() {
+                          _uploadFuture = clienteController.uploadAvatar(image.path);
+                        });
+                      } : null,
+                      child: FutureBuilder<void>(
+                        future: _uploadFuture,
+                        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return CircularProgressIndicator();  // Muestra un indicador de progreso mientras se está cargando
+                          } else {
+                            return Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              decoration: BoxDecoration(
+                                color: isEnabled ? Colors.red : Colors.red[100],
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Guardar',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         ),
         body: SizedBox(
           width: mediaQueryData.size.width,
@@ -65,15 +110,16 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
                     onTap: () async {
                       File? image = await showDialogAndGetImage(context);
                       if (image != null) {
-                        clienteController.uploadAvatar(image.path);
+                        //clienteController.uploadAvatar(image.path);
                         setState(() {
                           _selectedImage = image;
+                          updateImage(image);
                         });
                       }
                     },
                     child: CustomImageView(
                       imagePath: _selectedImage?.path ??
-                          ImageConstant.imgDownload169x169,
+                          widget.path,
                       height: 169.adaptSize,
                       width: 169.adaptSize,
                       radius: BorderRadius.circular(
@@ -83,8 +129,8 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
                   ),
                   SizedBox(height: 37.v),
                   Text(
-                    "lbl".tr,
-                    style: CustomTextStyles.displayMediumOnPrimary,
+                    widget.userName,
+                    style: CustomTextStyles.displayMediumOnPrimaryUserName,
                   ),
                   Padding(
                     padding: EdgeInsets.only(
