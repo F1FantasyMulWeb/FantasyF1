@@ -349,7 +349,8 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   }
 
   onTapIniciarsesin(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.pilotoVerstapenScreen);
+    Navigator.pushNamed(context, AppRoutes.checoPerezScreen
+    );
   }
 
   onTapTxtNotienesunacuenta(BuildContext context) {

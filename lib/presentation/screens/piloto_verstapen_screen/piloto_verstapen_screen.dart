@@ -44,58 +44,50 @@ class _PilotoVerstapenScreen extends State<PilotoVerstapenScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                        height: 363.v,
+                                        height: 375.v,
                                         width: double.maxFinite,
                                         child: Stack(
                                             alignment: Alignment.bottomCenter,
                                             children: [
                                               Align(
-                                                  alignment: Alignment.center,
-                                                  child: Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 10.h,
-                                                              vertical: 7.v),
+                                                alignment: Alignment.center,
+                                                child: LayoutBuilder(
+                                                  builder: (BuildContext context, BoxConstraints constraints) {
+                                                    return Container(
+                                                      width: constraints.maxWidth,
+                                                      height: constraints.maxHeight,
                                                       decoration: BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: AssetImage(
-                                                                  ImageConstant
-                                                                      .imgGroup3),
-                                                              fit: BoxFit
-                                                                  .cover)),
+                                                        image: DecorationImage(
+                                                          image: AssetImage(ImageConstant.imgGroup3),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                      padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 7.v),
                                                       child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        right: 1
-                                                                            .h),
-                                                                child: Text(
-                                                                    nombrePiloto()
-                                                                        .toString()
-                                                                        .tr,
-                                                                    style: CustomTextStyles
-                                                                        .displaySmallWhiteA70001)),
-                                                            CustomImageView(
-                                                                imagePath:
-                                                                    ImageConstant
-                                                                        .imgImage2929x57,
-                                                                height: 29.v,
-                                                                width: 57.h,
-                                                                margin: EdgeInsets
-                                                                    .only(
-                                                                        top: 41
-                                                                            .v,
-                                                                        right: 33
-                                                                            .h,
-                                                                        bottom:
-                                                                            41.v))
-                                                          ]))),
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                                        children: [
+                                                          Padding(
+                                                            padding: EdgeInsets.only(right: 1.h),
+                                                            child:
+                                                            Text(
+                                                              nombrePiloto().toString().tr,
+                                                              style: CustomTextStyles.displaySmallWhiteA70001,
+                                                              textAlign: TextAlign.center,
+                                                            ),
+                                                          ),
+                                                          CustomImageView(
+                                                            imagePath: ImageConstant.imgImage2929x57,
+                                                            height: 29.v,
+                                                            width: 57.h,
+                                                            margin: EdgeInsets.only(top: 41.v, right: 33.h, bottom: 41.v),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
                                               CustomImageView(
                                                   imagePath: ImageConstant
                                                       .imgVerstappen291x271,

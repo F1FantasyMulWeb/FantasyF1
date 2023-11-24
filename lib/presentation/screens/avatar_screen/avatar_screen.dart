@@ -283,7 +283,13 @@ class _AvatarScreenState extends State<AvatarScreen> {
   }
   void onTapEditAvatar(BuildContext context) async {
     String userName = await clienteController.selectUserName();
-    String imagePath = (await _imageFile).path;
+    String imagePath;
+    try{
+      imagePath = (await _imageFile).path;
+    } catch (e) {
+      imagePath = ImageConstant.imgDownload169x169;
+    }
+
     Navigator.push(
       context,
       MaterialPageRoute(

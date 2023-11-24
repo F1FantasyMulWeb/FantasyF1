@@ -1,6 +1,5 @@
-import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
-import 'package:fantasyf1/widgets/custom_image_view.dart';
+import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/listaPilotos.dart';
@@ -50,86 +49,92 @@ class _ElNanoScreen extends State<ElNanoScreen> {
                                         child: Stack(
                                             alignment: Alignment.bottomLeft,
                                             children: [
-                                              Align(
-                                                  alignment:
-                                                      Alignment.topCenter,
-                                                  child: Container(
-                                                      decoration: BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: AssetImage(
-                                                                  ImageConstant
-                                                                      .imgGroup3),
-                                                              fit: BoxFit
-                                                                  .cover)),
-                                                      child: Container(
-                                                          padding: EdgeInsets.symmetric(
-                                                              horizontal: 3.h,
-                                                              vertical: 5.v),
-                                                          decoration: BoxDecoration(
-                                                              image: DecorationImage(
-                                                                  image: AssetImage(
-                                                                      ImageConstant
-                                                                          .imgGroup37),
-                                                                  fit: BoxFit
-                                                                      .cover)),
-                                                          child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .end,
-                                                              children: [
-                                                                Padding(
-                                                                    padding: EdgeInsets.only(
-                                                                        right: 3
-                                                                            .h),
-                                                                    child: Text(
-                                                                        nombrePiloto()
-                                                                            .toString()
-                                                                            .tr,
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .center,
-                                                                        style: CustomTextStyles
-                                                                            .displaySmallWhiteA70001)),
-                                                                CustomImageView(
-                                                                    imagePath:
-                                                                        ImageConstant
-                                                                            .imgImage2829x57,
-                                                                    height:
-                                                                        29.v,
-                                                                    width: 57.h,
-                                                                    margin: EdgeInsets.only(
-                                                                        top: 52
-                                                                            .v,
-                                                                        right: 34
-                                                                            .h,
-                                                                        bottom:
-                                                                            52.v))
-                                                              ])))),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: Container(
-                                                      width: 215.h,
-                                                      margin: EdgeInsets.only(
-                                                          left: 35.h),
-                                                      child: Text(
-                                                          informacionPilotoNano()
-                                                              .toString()
-                                                              .tr,
-                                                          maxLines: 9,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style: CustomTextStyles
-                                                              .bodyMediumJacquesFrancois))),
-                                              CustomImageView(
+                                              Positioned(
+                                                top: 0,
+                                                // Ajusta esto para cambiar la posición superior de la imagen
+                                                bottom: 195.v,
+                                                // Ajusta esto para cambiar la posición inferior de la imagen
+                                                left: 0,
+                                                // Ajusta esto para cambiar la posición izquierda de la imagen
+                                                right: 0,
+                                                // Ajusta esto para cambiar la posición derecha de la imagen
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                      image: AssetImage(
+                                                          ImageConstant
+                                                              .imgGroup37),
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                top: 20.v,
+                                                bottom: 0.v,
+                                                left: 20,
+                                                right: 20,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 1.h),
+                                                  child: Text(
+                                                    nombrePiloto()
+                                                        .toString()
+                                                        .tr,
+                                                    style: CustomTextStyles
+                                                        .displaySmallWhiteA70001,
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                bottom: 0.v,
+                                                child: Align(
+                                                    alignment:
+                                                        Alignment.bottomLeft,
+                                                    child: Container(
+                                                        width: 215.h,
+                                                        margin: EdgeInsets.only(
+                                                            left: 35.h),
+                                                        child: Text(
+                                                            informacionPilotoNano()
+                                                                .toString()
+                                                                .tr,
+                                                            maxLines: 9,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                            style: CustomTextStyles
+                                                                .bodyMediumJacquesFrancois))),
+                                              ),
+                                              Positioned(
+                                                top: 75.v,
+                                                // Ajusta esto para cambiar la posición superior de CustomImageView
+                                                // Puedes agregar las propiedades bottom, left y right si lo necesitas
+                                                child: CustomImageView(
                                                   imagePath:
                                                       ImageConstant.imgNano,
                                                   height: 425.v,
                                                   width: 360.h,
-                                                  alignment:
-                                                      Alignment.topCenter,
-                                                  margin: EdgeInsets.only(
-                                                      top: 58.v))
+                                                ),
+                                              ),
+                                              Positioned(
+                                                right: 50.v,
+                                                top: 125.v,
+                                                child: Container(
+                                                  width: 57.h,
+                                                  height: 29.v,
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                      image: AssetImage(
+                                                          ImageConstant
+                                                              .imgImage2829x57),
+                                                      fit: BoxFit
+                                                          .cover, // Esto hace que la imagen se ajuste al tamaño del Container
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
                                             ])),
                                     CustomImageView(
                                         svgPath: ImageConstant.imgArrowup,
@@ -251,7 +256,7 @@ class _ElNanoScreen extends State<ElNanoScreen> {
     StringBuffer stringBuffer = new StringBuffer();
     stringBuffer.write(listaPilotos
         .getListaPilotos()[1]
-        .driverId
+        .givenName
         .toString()
         .replaceAll("\"", "")
         .toUpperCase());
