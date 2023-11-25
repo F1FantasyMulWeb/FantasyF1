@@ -1,15 +1,26 @@
-import 'package:fantasyf1/DataBase/databasecontroller.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../api/configuracionApi.dart';
 import '../../../api/listaCircuitos.dart';
 import '../../../api/listaEscuderias.dart';
 import '../../../api/listaPilotos.dart';
+import '../../../api/manejoDeLaInformcion.dart';
 import '../../../core/utils/FormValidatorLogin.dart';
+import '../checo_perez_screen/checo_perez_screen.dart';
+import '../circuito_bahr_in_screen/circuito_bahr_in_screen.dart';
+import '../circuito_de_albert_park_screen/circuito_de_albert_park_screen.dart';
+import '../circuito_de_la_corniche_de_yeda_screen/circuito_de_la_corniche_de_yeda_screen.dart';
+import '../el_nano_screen/el_nano_screen.dart';
+import '../escuderia_aston_martin_screen/escuderia_aston_martin_screen.dart';
+import '../escuderia_mercedes_screen/escuderia_mercedes_screen.dart';
+import '../escuderia_red_bull_screen/escuderia_red_bull_screen.dart';
+import '../piloto_verstapen_screen/piloto_verstapen_screen.dart';
+
+
 
 // ignore_for_file: must_be_immutable
 class LoginscreenScreen extends StatefulWidget {
@@ -22,28 +33,94 @@ class LoginscreenScreen extends StatefulWidget {
 class _LoginscreenScreenState extends State<LoginscreenScreen> {
   TextEditingController emailController = TextEditingController();
 
-
-
   TextEditingController passwordController = TextEditingController();
 
+  ListaPilotos lp = new ListaPilotos();
+
+  ListaCircuitos lc = new ListaCircuitos();
+
+  ListaEscuderias le = new ListaEscuderias();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isChecked = false;
-  DataBaseController clientController =
-      DataBaseController(Supabase.instance.client);
 
   @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
+  void initState() {
+    super.initState();
+    super.initState();
+    Client cliente = Client();
+    ListaPilotos? lpGlobal;
+    ListaCircuitos? lcGlobal;
+    ListaEscuderias? leGlobal;
+
+    Stream<ListaPilotos?> obtenerInfoPilotos() async* {
+      yield await cliente.rellenaListaPilotos();
+    }
+
+    Stream<ListaCircuitos?> obtenerInfoCircuito() async* {
+      yield await cliente.rellenaListaCircuito();
+    }
+
+    Stream<ListaEscuderias?> obtenerInfoEscuderia() async* {
+      yield await cliente.rellenaListaEscuderia();
+    }
+  
+    void escucharStreamPilotos() {
+      obtenerInfoPilotos().listen((ListaPilotos? lp) {
+        lpGlobal = lp;
+      });
+    }
+
+    void escucharStreamCircuito() {
+      obtenerInfoCircuito().listen((ListaCircuitos? lc) {
+        lcGlobal = lc;
+      });
+    }
+
+    void escucharStreamEscuderia() {
+      obtenerInfoEscuderia().listen((ListaEscuderias? le) {
+        leGlobal = le;
+      });
+    }
+
+    escucharStreamPilotos();
+    escucharStreamCircuito();
+    escucharStreamEscuderia();
+
+    // Espera un poco para que el Stream tenga tiempo de emitir un evento
+    Future.delayed(Duration(seconds: 10), () {
+      PilotoVerstapenScreen pvs = new PilotoVerstapenScreen();
+      ElNanoScreen ens = new ElNanoScreen();
+      ChecoPerezScreen cps = new ChecoPerezScreen();
+      CircuitoBahrInScreen cbis = new CircuitoBahrInScreen();
+      CircuitoDeLaCornicheDeYedaScreen cdcys =
+      new CircuitoDeLaCornicheDeYedaScreen();
+      CircuitoDeAlbertParkScreen cdaps = new CircuitoDeAlbertParkScreen();
+      EscuderiaRedBullScreen erbs = new EscuderiaRedBullScreen();
+      EscuderiaAstonMartinScreen eas = new EscuderiaAstonMartinScreen();
+      EscuderiaMercedesScreen ems = new EscuderiaMercedesScreen();
+      ManejoDeLaInformcion mli = new ManejoDeLaInformcion();
+      mli.setListaPilotos(lpGlobal!);
+      mli.setListaCircuitos(lcGlobal!);
+      mli.setListaEscuderias(leGlobal!);
+      pvs.setManejoDeLaInformcion(mli);
+      ens.setManejoDeLaInformcion(mli);
+      cps.setManejoDeLaInformcion(mli);
+      cbis.setManejoDeLaInformcion(mli);
+      cdcys.setManejoDeLaInformcion(mli);
+      cdaps.setManejoDeLaInformcion(mli);
+      erbs.setManejoDeLaInformcion(mli);
+      eas.setManejoDeLaInformcion(mli);
+      ems.setManejoDeLaInformcion(mli);
+      print("Se a iniciado el stream");
+     cliente.getResults("2023", "round", "results");
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     FormValidatorLogin formValidator = FormValidatorLogin(AppLocalization.of());
-
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -141,25 +218,30 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                       .textTheme.titleSmall),
                                               SizedBox(height: 7.v),
                                               CustomTextFormField(
-                                                controller: passwordController,
-                                                obscureText: true,
-                                                hintText: "lbl2".tr,
-                                                validator:
-                                                    formValidator.isValidPass,
-                                                textInputAction:
-                                                    TextInputAction.done,
-                                                textInputType: TextInputType
-                                                    .visiblePassword,
-                                                prefix: Container(
-                                                    margin: EdgeInsets.fromLTRB(
-                                                        16.h, 14.v, 8.h, 14.v),
-                                                    child: CustomImageView(
-                                                        svgPath: ImageConstant
-                                                            .imgMingcutelockline)),
-                                                prefixConstraints:
-                                                    BoxConstraints(
-                                                        maxHeight: 48.v),
-                                              ),
+                                                  controller:
+                                                      passwordController,
+                                                  obscureText: true,
+                                                  hintText: "lbl2".tr,
+                                                  validator:
+                                                      formValidator.isValidPass,
+                                                  textInputAction:
+                                                      TextInputAction.done,
+                                                  textInputType: TextInputType
+                                                      .visiblePassword,
+                                                  prefix: Container(
+                                                      margin:
+                                                          EdgeInsets.fromLTRB(
+                                                              16.h,
+                                                              14.v,
+                                                              8.h,
+                                                              14.v),
+                                                      child: CustomImageView(
+                                                          svgPath: ImageConstant
+                                                              .imgMingcutelockline)),
+                                                  prefixConstraints:
+                                                      BoxConstraints(
+                                                          maxHeight: 48.v),
+                                                  ),
                                               SizedBox(height: 14.v)
                                             ])),
                                     SizedBox(height: 14.v),
@@ -224,57 +306,52 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: <Widget>[
-                                                                Align(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .centerLeft,
-                                                                  child:
-                                                                      Checkbox(
-                                                                    value:
-                                                                        _isChecked,
-                                                                    onChanged:
-                                                                        (bool?
-                                                                            value) {
-                                                                      if (value !=
-                                                                          null) {
-                                                                        setState(
-                                                                            () {
-                                                                          _isChecked =
-                                                                              value;
-                                                                        });
-                                                                      }
-                                                                    },
-                                                                  ),
+                                                            Align(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Flexible(
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: <Widget>[
+                                                                    Checkbox(
+                                                                      value:
+                                                                          _isChecked,
+                                                                      onChanged:
+                                                                          (bool?
+                                                                              value) {
+                                                                        if (value !=
+                                                                            null) {
+                                                                          setState(
+                                                                              () {
+                                                                            _isChecked =
+                                                                                value;
+                                                                          });
+                                                                        }
+                                                                      },
+                                                                    ),
+                                                                    Wrap(
+                                                                      alignment:
+                                                                          WrapAlignment
+                                                                              .start,
+                                                                      children: <Widget>[
+                                                                        Text(
+                                                                          "msg_mantener_la_sesion"
+                                                                              .tr,
+                                                                          maxLines:
+                                                                              2,
+                                                                          overflow:
+                                                                              TextOverflow.ellipsis,
+                                                                          style: theme
+                                                                              .textTheme
+                                                                              .labelLarge,
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
                                                                 ),
-                                                                Align(
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .centerLeft,
-                                                                  child: Wrap(
-                                                                    alignment:
-                                                                        WrapAlignment
-                                                                            .start,
-                                                                    children: <Widget>[
-                                                                      Text(
-                                                                        "msg_mantener_la_sesion"
-                                                                            .tr,
-                                                                        maxLines:
-                                                                            2,
-                                                                        overflow:
-                                                                            TextOverflow.ellipsis,
-                                                                        style: theme
-                                                                            .textTheme
-                                                                            .labelLarge,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
+                                                              ),
                                                             )
                                                           ])))
                                             ])),
@@ -283,7 +360,8 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                                       text: "lbl_iniciar_sesi_n".tr,
                                       onTap: () {
                                         if (_formKey.currentState!.validate()) {
-                                          _iniciarSesion(context);
+                                          // Si el formulario es válido, navega a la siguiente pantalla
+                                          onTapIniciarsesin(context);
                                         }
                                       },
                                     ),
@@ -319,38 +397,12 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
                     ])))));
   }
 
-  Future<void> _iniciarSesion(BuildContext context) async {
-    try {
-      final response = await Supabase.instance.client.auth.signInWithPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      final user = response.user;
-      if (user != null) {
-        onTapIniciarsesin(context);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('El usuario no existe'),
-          ),
-        );
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Ha ocurrido un error durante el inicio de sesión.'),
-        ),
-      );
-    }
-  }
-
-  onTapTxtOlvidastelacont(BuildContext context) {
+  onTapTxtOlvidastelacont(BuildContextcontext) {
     Navigator.pushNamed(context, AppRoutes.cambiarcontraseA1screenScreen);
   }
 
   onTapIniciarsesin(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.checoPerezScreen
-    );
+    Navigator.pushNamed(context, AppRoutes.listaPilotosScreen);
   }
 
   onTapTxtNotienesunacuenta(BuildContext context) {

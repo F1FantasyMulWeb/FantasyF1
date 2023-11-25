@@ -1,5 +1,5 @@
-import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
+import 'package:fantasyf1/core/app_export.dart';
 
 class AppDecoration {
   // Fill decorations

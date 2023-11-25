@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../presentation/screens/a_adirgrupo_screen/a_adirgrupo_screen.dart';
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
 import '../presentation/screens/app_navigation_screen/app_navigation_screen.dart';
+import '../presentation/screens/avatar_one_screen/avatar_one_screen.dart';
 import '../presentation/screens/avatar_screen/avatar_screen.dart';
 import '../presentation/screens/bak_city_circuit_screen/bak_city_circuit_screen.dart';
 import '../presentation/screens/cambiarcontrase_a1screen_screen/cambiarcontrase_a1screen_screen.dart';
@@ -17,7 +19,6 @@ import '../presentation/screens/circuito_de_la_corniche_de_yeda_screen/circuito_
 import '../presentation/screens/circuito_de_m_naco_screen/circuito_de_m_naco_screen.dart';
 import '../presentation/screens/circuito_urbano_de_miami_screen/circuito_urbano_de_miami_screen.dart';
 import '../presentation/screens/creargrupo_screen/creargrupo_screen.dart';
-import '../presentation/screens/edit_avatar_screen/edit_avatar_screen.dart';
 import '../presentation/screens/el_nano_screen/el_nano_screen.dart';
 import '../presentation/screens/escuderia_aston_martin_screen/escuderia_aston_martin_screen.dart';
 import '../presentation/screens/escuderia_mercedes_screen/escuderia_mercedes_screen.dart';
@@ -32,7 +33,6 @@ import '../presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
 import '../presentation/screens/loginscreen_screen/loginscreen_screen.dart';
 import '../presentation/screens/mainscreensinligas_screen/mainscreensinligas_screen.dart';
 import '../presentation/screens/mercado_screen/mercado_screen.dart';
-import '../presentation/screens/pantalla_carga/pantallacarga.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
 import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
 import '../presentation/screens/preloginscreen_screen/preloginscreen_screen.dart';
@@ -40,7 +40,7 @@ import '../presentation/screens/registrarsescreen_screen/registrarsescreen_scree
 import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 
 class AppRoutes {
-  static const String preloginscreenScreen = '/preloginscreen_screen';
+  static const String  preloginscreenScreen = '/preloginscreen_screen';
 
   static const String ajustesOneScreen = '/ajustes_one_screen';
 
@@ -52,7 +52,7 @@ class AppRoutes {
 
   static const String creargrupoScreen = '/creargrupo_screen';
 
-  static const String editAvatarScreen = '/edit_avatar_screen';
+  static const String avatarOneScreen = '/avatar_one_screen';
 
   static const String listaJugadoresScreen = '/lista_jugadores_screen';
 
@@ -121,7 +121,6 @@ class AppRoutes {
   static const String circuitoDeMNacoScreen = '/circuito_de_m_naco_screen';
 
   static const String appNavigationScreen = '/app_navigation_screen';
-  static const String pantallaCargaScreen = '/pantalla_carga_screen';
 
   static Map<String, WidgetBuilder> routes = {
     preloginscreenScreen: (context) => PreloginscreenScreen(),
@@ -130,8 +129,7 @@ class AppRoutes {
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),
     avatarScreen: (context) => AvatarScreen(),
     creargrupoScreen: (context) => CreargrupoScreen(),
-    editAvatarScreen: (context) => EditAvatarScreen(path: "",userName: "",),
-    pantallaCargaScreen: (context) => PantallaCarga(),
+    avatarOneScreen: (context) => AvatarOneScreen(),
     listaJugadoresScreen: (context) => ListaJugadoresScreen(),
     listaEscuderAsScreen: (context) => ListaEscuderAsScreen(),
     listaPilotosScreen: (context) => ListaPilotosScreen(),

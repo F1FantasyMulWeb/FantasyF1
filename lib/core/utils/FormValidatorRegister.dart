@@ -7,9 +7,7 @@ class FormValidatorRegister {
   FormValidatorRegister(this.localization);
 
   String? isValidEmail(String? text) {
-    return (text ?? "").isEmail
-        ? null
-        : LocalizationExtension("msg_error_email").tr;
+    return (text ?? "").isEmail ? null : LocalizationExtension("msg_error_email").tr;
   }
 
   String? isValidPass(String? text) {

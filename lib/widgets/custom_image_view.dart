@@ -140,25 +140,13 @@ class CustomImageView extends StatelessWidget {
         ),
       );
     } else if (imagePath != null && imagePath!.isNotEmpty) {
-      if (imagePath!.startsWith('/')) {
-        // Si la ruta de la imagen comienza con '/', asumimos que es una ruta de archivo.
-        return Image.file(
-          File(imagePath!),
-          height: height,
-          width: width,
-          fit: fit ?? BoxFit.cover,
-          color: color,
-        );
-      } else {
-        // Si no, asumimos que es una ruta de activo.
-        return Image.asset(
-          imagePath!,
-          height: height,
-          width: width,
-          fit: fit ?? BoxFit.cover,
-          color: color,
-        );
-      }
+      return Image.asset(
+        imagePath!,
+        height: height,
+        width: width,
+        fit: fit ?? BoxFit.cover,
+        color: color,
+      );
     }
     return SizedBox();
   }

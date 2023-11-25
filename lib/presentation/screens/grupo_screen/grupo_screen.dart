@@ -1,10 +1,9 @@
+import '../grupo_screen/widgets/clasificacionro_item_widget.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-
-import '../grupo_screen/widgets/clasificacionro_item_widget.dart';
 
 class GrupoScreen extends StatelessWidget {
   const GrupoScreen({Key? key}) : super(key: key);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../core/app_export.dart';
 
 /// A collection of pre-defined text styles for customizing text appearance,
@@ -53,14 +52,6 @@ class CustomTextStyles {
   static get displayMediumOnPrimary => theme.textTheme.displayMedium!.copyWith(
         color: theme.colorScheme.onPrimary,
         fontSize: 45.fSize,
-      );
-  static get displayMediumOnPrimaryUserName => theme.textTheme.displayMedium!.copyWith(
-    color: theme.colorScheme.onPrimary,
-    fontSize: 35.fSize,
-  );
-  static get displayMediumOnUserName => theme.textTheme.displaySmall!.copyWith(
-        color: theme.colorScheme.onPrimary,
-        fontSize: 30.fSize,
       );
   static get displayMediumRed400 => theme.textTheme.displayMedium!.copyWith(
         color: appTheme.red400,

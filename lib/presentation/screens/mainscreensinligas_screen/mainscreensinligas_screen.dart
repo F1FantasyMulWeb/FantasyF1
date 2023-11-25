@@ -1,5 +1,8 @@
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_circleimage.dart';
+import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
+import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
+import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 
@@ -9,12 +12,17 @@ class MainscreensinligasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-
-    return WillPopScope(
-        onWillPop: () async => false,
-        child: SafeArea(
-            child: Scaffold(
-                appBar: AppBar(backgroundColor: Colors.white, actions: [
+    return SafeArea(
+        child: Scaffold(
+            appBar: CustomAppBar(
+                leadingWidth: 54.h,
+                leading: AppbarImage(
+                    svgPath: ImageConstant.imgMenuGray800,
+                    margin:
+                        EdgeInsets.only(left: 30.h, top: 19.v, bottom: 20.v)),
+                centerTitle: true,
+                title: AppbarImage1(imagePath: ImageConstant.imgLogo),
+                actions: [
                   Container(
                       margin: EdgeInsets.symmetric(
                           horizontal: 30.h, vertical: 12.v),
@@ -26,427 +34,151 @@ class MainscreensinligasScreen extends StatelessWidget {
                             onTapDownloadone(context);
                           }))
                 ]),
-                drawer: Drawer(
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    children: <Widget>[
-                      DrawerHeader(
-                        padding: EdgeInsets.zero,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Container(
-                              width: 200.0, // Establece el ancho que desees
-                              height: 200.0, // Establece el alto que desees
-                              child: Image.asset(ImageConstant.imgLogo),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(48),
-                                    bottomRight: Radius.circular(0),
-                                    topLeft: Radius.circular(48),
-                                    topRight: Radius.circular(0)),
-                                color: Colors
-                                    .grey, // Cambia esto al color de fondo que desees
-                              ),
-                              child: IconButton(
-                                icon: Icon(Icons.close),
-                                iconSize: 50,
-                                color: Colors.white,
-                                // Cambia esto al color del ícono que desees
-                                onPressed: () => Navigator.of(context).pop(),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.home,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'INICIO',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF7E8489),
-                            fixedSize: Size(250, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.flag,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'CAMPEONATOS',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.home,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'CIRCUITOS',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.home,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'PILOTOS',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.home,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'ESCUDERIAS',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.groups_2,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'GRUPOS',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.videogame_asset,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'COMO JUGAR',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.account_circle,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'CUENTA',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.settings_sharp,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'AJUSTES',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                body: SizedBox(
-                    width: mediaQueryData.size.width,
-                    child: SingleChildScrollView(
-                        child: Padding(
-                            padding: EdgeInsets.only(bottom: 5.v),
-                            child: Column(children: [
-                              Divider(),
-                              Container(
-                                  margin: EdgeInsets.only(
-                                      left: 16.h, top: 48.v, right: 16.h),
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 6.h),
-                                  decoration: AppDecoration.outlinePrimary2
-                                      .copyWith(
-                                          borderRadius: BorderRadiusStyle
-                                              .customBorderTL50),
-                                  child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(height: 4.v),
-                                        Align(
-                                            alignment: Alignment.center,
-                                            child: Text("lbl_ultima_carrera".tr,
-                                                style: CustomTextStyles
-                                                    .headlineMediumFormula1Regular)),
-                                        SizedBox(height: 6.v),
-                                        Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 27.h,
-                                                vertical: 4.v),
-                                            decoration: AppDecoration
-                                                .outlinePrimary3
-                                                .copyWith(
-                                                    borderRadius:
-                                                        BorderRadiusStyle
-                                                            .roundedBorder28),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  CustomImageView(
-                                                      imagePath: ImageConstant
-                                                          .imgImage2951x89,
-                                                      height: 50.v,
-                                                      width: 85.h),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 6.v,
-                                                          right: 70.h),
-                                                      child: Text("lbl".tr,
-                                                          style: CustomTextStyles
-                                                              .displaySmall35))
-                                                ])),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 2.h, right: 43.h),
-                                            child: Row(children: [
+            body: SizedBox(
+                width: mediaQueryData.size.width,
+                child: SingleChildScrollView(
+                    child: Padding(
+                        padding: EdgeInsets.only(bottom: 5.v),
+                        child: Column(children: [
+                          Divider(),
+                          Container(
+                              margin: EdgeInsets.only(
+                                  left: 16.h, top: 48.v, right: 16.h),
+                              padding: EdgeInsets.symmetric(horizontal: 6.h),
+                              decoration: AppDecoration.outlinePrimary2
+                                  .copyWith(
+                                      borderRadius:
+                                          BorderRadiusStyle.customBorderTL50),
+                              child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(height: 4.v),
+                                    Align(
+                                        alignment: Alignment.center,
+                                        child: Text("lbl_ultima_carrera".tr,
+                                            style: CustomTextStyles
+                                                .headlineMediumFormula1Regular)),
+                                    SizedBox(height: 6.v),
+                                    Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 27.h, vertical: 4.v),
+                                        decoration: AppDecoration
+                                            .outlinePrimary3
+                                            .copyWith(
+                                                borderRadius: BorderRadiusStyle
+                                                    .roundedBorder28),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
                                               CustomImageView(
                                                   imagePath: ImageConstant
-                                                      .imgImagencochepiloto,
+                                                      .imgImage2951x89,
                                                   height: 50.v,
-                                                  width: 106.h),
-                                              CustomImageView(
-                                                  imagePath: ImageConstant
-                                                      .imgImagenpilotoganador,
-                                                  height: 40.v,
-                                                  width: 38.h,
-                                                  radius: BorderRadius.circular(
-                                                      19.h),
-                                                  margin: EdgeInsets.only(
-                                                      left: 22.h,
-                                                      top: 5.v,
-                                                      bottom: 5.v)),
+                                                  width: 85.h),
                                               Padding(
                                                   padding: EdgeInsets.only(
-                                                      left: 22.h,
-                                                      top: 17.v,
-                                                      bottom: 14.v),
-                                                  child: Text("lbl_puntos".tr,
+                                                      top: 6.v, right: 70.h),
+                                                  child: Text("lbl".tr,
                                                       style: CustomTextStyles
-                                                          .bodyMediumFormula1))
-                                            ]))
-                                      ])),
-                              CustomElevatedButton(
-                                  height: 95.v,
-                                  text: "lbl_crear_grupo".tr,
-                                  margin: EdgeInsets.only(
-                                      left: 16.h, top: 50.v, right: 16.h),
-                                  buttonStyle:
-                                      CustomButtonStyles.outlinePrimaryTL8,
-                                  buttonTextStyle: CustomTextStyles
-                                      .displaySmallWhiteA70001Medium,
-                                  onTap: () {
-                                    onTapCreargrupo(context);
-                                  }),
-                              CustomElevatedButton(
-                                  height: 95.v,
-                                  text: "lbl_unirse_a_grupo".tr,
-                                  margin: EdgeInsets.only(
-                                      left: 16.h, top: 18.v, right: 16.h),
-                                  buttonStyle:
-                                      CustomButtonStyles.outlinePrimaryTL8,
-                                  buttonTextStyle: CustomTextStyles
-                                      .displaySmallWhiteA70001Medium,
-                                  onTap: () {
-                                    onTapUnirseagrupo(context);
-                                  }),
-                              Container(
-                                  margin: EdgeInsets.only(
-                                      left: 15.h, top: 50.v, right: 15.h),
-                                  padding: EdgeInsets.all(6.h),
-                                  decoration: AppDecoration.outlinePrimary2
-                                      .copyWith(
-                                          borderRadius: BorderRadiusStyle
-                                              .customBorderBL50),
-                                  child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text("msg_siguiente_carrera".tr,
-                                            style: CustomTextStyles
-                                                .headlineMediumFormula1Regular),
-                                        SizedBox(height: 4.v),
-                                        Container(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 27.h,
-                                                vertical: 4.v),
-                                            decoration: AppDecoration
-                                                .outlinePrimary3
-                                                .copyWith(
-                                                    borderRadius:
-                                                        BorderRadiusStyle
-                                                            .roundedBorder28),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  CustomImageView(
-                                                      imagePath: ImageConstant
-                                                          .imgImage2951x89,
-                                                      height: 50.v,
-                                                      width: 85.h),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 6.v,
-                                                          right: 70.h),
-                                                      child: Text("lbl".tr,
-                                                          style: CustomTextStyles
-                                                              .displaySmall35))
-                                                ])),
-                                        SizedBox(height: 24.v)
-                                      ]))
-                            ])))))));
+                                                          .displaySmall35))
+                                            ])),
+                                    Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 2.h, right: 43.h),
+                                        child: Row(children: [
+                                          CustomImageView(
+                                              imagePath: ImageConstant
+                                                  .imgImagencochepiloto,
+                                              height: 50.v,
+                                              width: 106.h),
+                                          CustomImageView(
+                                              imagePath: ImageConstant
+                                                  .imgImagenpilotoganador,
+                                              height: 40.v,
+                                              width: 38.h,
+                                              radius:
+                                                  BorderRadius.circular(19.h),
+                                              margin: EdgeInsets.only(
+                                                  left: 22.h,
+                                                  top: 5.v,
+                                                  bottom: 5.v)),
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 22.h,
+                                                  top: 17.v,
+                                                  bottom: 14.v),
+                                              child: Text("lbl_puntos".tr,
+                                                  style: CustomTextStyles
+                                                      .bodyMediumFormula1))
+                                        ]))
+                                  ])),
+                          CustomElevatedButton(
+                              height: 95.v,
+                              text: "lbl_crear_grupo".tr,
+                              margin: EdgeInsets.only(
+                                  left: 16.h, top: 50.v, right: 16.h),
+                              buttonStyle: CustomButtonStyles.outlinePrimaryTL8,
+                              buttonTextStyle: CustomTextStyles
+                                  .displaySmallWhiteA70001Medium,
+                              onTap: () {
+                                onTapCreargrupo(context);
+                              }),
+                          CustomElevatedButton(
+                              height: 95.v,
+                              text: "lbl_unirse_a_grupo".tr,
+                              margin: EdgeInsets.only(
+                                  left: 16.h, top: 18.v, right: 16.h),
+                              buttonStyle: CustomButtonStyles.outlinePrimaryTL8,
+                              buttonTextStyle: CustomTextStyles
+                                  .displaySmallWhiteA70001Medium,
+                              onTap: () {
+                                onTapUnirseagrupo(context);
+                              }),
+                          Container(
+                              margin: EdgeInsets.only(
+                                  left: 15.h, top: 50.v, right: 15.h),
+                              padding: EdgeInsets.all(6.h),
+                              decoration: AppDecoration.outlinePrimary2
+                                  .copyWith(
+                                      borderRadius:
+                                          BorderRadiusStyle.customBorderBL50),
+                              child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("msg_siguiente_carrera".tr,
+                                        style: CustomTextStyles
+                                            .headlineMediumFormula1Regular),
+                                    SizedBox(height: 4.v),
+                                    Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 27.h, vertical: 4.v),
+                                        decoration: AppDecoration
+                                            .outlinePrimary3
+                                            .copyWith(
+                                                borderRadius: BorderRadiusStyle
+                                                    .roundedBorder28),
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomImageView(
+                                                  imagePath: ImageConstant
+                                                      .imgImage2951x89,
+                                                  height: 50.v,
+                                                  width: 85.h),
+                                              Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 6.v, right: 70.h),
+                                                  child: Text("lbl".tr,
+                                                      style: CustomTextStyles
+                                                          .displaySmall35))
+                                            ])),
+                                    SizedBox(height: 24.v)
+                                  ]))
+                        ]))))));
   }
 
   /// Navigates to the avatarScreen when the action is triggered.

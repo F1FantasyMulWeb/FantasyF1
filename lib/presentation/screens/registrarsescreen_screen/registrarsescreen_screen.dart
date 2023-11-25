@@ -1,15 +1,26 @@
+import 'package:fantasyf1/api/listaPilotos.dart';
+import 'package:fantasyf1/api/listaCircuitos.dart';
+import 'package:fantasyf1/api/listaEscuderias.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/core/utils/FormValidatorRegister.dart';
+import 'package:fantasyf1/presentation/screens/checo_perez_screen/checo_perez_screen.dart';
+import 'package:fantasyf1/presentation/screens/circuito_de_albert_park_screen/circuito_de_albert_park_screen.dart';
+import 'package:fantasyf1/presentation/screens/circuito_de_la_corniche_de_yeda_screen/circuito_de_la_corniche_de_yeda_screen.dart';
+import 'package:fantasyf1/presentation/screens/escuderia_aston_martin_screen/escuderia_aston_martin_screen.dart';
+import 'package:fantasyf1/presentation/screens/escuderia_red_bull_screen/escuderia_red_bull_screen.dart';
+import 'package:fantasyf1/presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
+import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-import '../../../DataBase/databasecontroller.dart';
+import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
 import '../../../widgets/CheckboxCustom.dart';
+import '../circuito_bahr_in_screen/circuito_bahr_in_screen.dart';
+import '../el_nano_screen/el_nano_screen.dart';
+import '../escuderia_mercedes_screen/escuderia_mercedes_screen.dart';
 
 // ignore_for_file: must_be_immutable
 class RegistrarsescreenScreen extends StatefulWidget {
@@ -31,18 +42,6 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool _isChecked = false;
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    passwordController1.dispose();
-    usernameoneController.dispose();
-    super.dispose();
-  }
-
-  DataBaseController clienteController =
-      DataBaseController(Supabase.instance.client);
 
   @override
   void initState() {
@@ -231,32 +230,32 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                           Align(
                                                             alignment: Alignment
                                                                 .centerLeft,
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: <Widget>[
-                                                                CheckboxCustom(
-                                                                  initialValue:
-                                                                      _isChecked,
-                                                                  onSaved: (bool?
-                                                                          value) =>
-                                                                      _isChecked =
-                                                                          value ??
-                                                                              false,
-                                                                  validator:
-                                                                      (bool?
-                                                                          value) {
-                                                                    if (value ==
-                                                                        true) {
-                                                                      return null;
-                                                                    } else {
-                                                                      return '';
-                                                                    }
-                                                                  },
-                                                                ),
-                                                                Flexible(
-                                                                  child: Wrap(
+                                                            child: Flexible(
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: <Widget>[
+                                                                  CheckboxCustom(
+                                                                    initialValue:
+                                                                        _isChecked,
+                                                                    onSaved: (bool?
+                                                                            value) =>
+                                                                        _isChecked =
+                                                                            value ??
+                                                                                false,
+                                                                    validator:
+                                                                        (bool?
+                                                                            value) {
+                                                                      if (value ==
+                                                                          true) {
+                                                                        return null;
+                                                                      } else {
+                                                                        return '';
+                                                                      }
+                                                                    },
+                                                                  ),
+                                                                  Wrap(
                                                                     alignment:
                                                                         WrapAlignment
                                                                             .start,
@@ -274,7 +273,9 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                                       ),
                                                                       GestureDetector(
                                                                         onTap:
-                                                                            () {},
+                                                                            () {
+                                                                          // Aquí puedes manejar el evento de pulsación, por ejemplo, abrir una nueva página web.
+                                                                        },
                                                                         child:
                                                                             Text(
                                                                           'msg_pol_tica_de_privacidad'
@@ -287,8 +288,8 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                                                       ),
                                                                     ],
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                         ],
@@ -321,57 +322,19 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                     ])))));
   }
 
+  /// Navigates back to the previous screen.
+  ///
+  /// This function takes a [BuildContext] object as a parameter, which is used
+  /// to navigate back to the previous screen.
   onTapArrowleftone(BuildContext context) {
     Navigator.pop(context);
   }
 
-  Future<void> _registrarUsuario(BuildContext context) async {
-    try {
-      final response = await Supabase.instance.client.auth.signUp(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-
-      if (response.user != null) {
-        final checkEmail =
-            await clienteController.checkEmail(emailController.text);
-        if (checkEmail) {
-          final checkSend = await clienteController.sendData(
-              emailController.text, usernameoneController.text);
-          if (checkSend) {
-            _mostrarDialogo(context, "msg_registro_exitoso".tr);
-          } else {
-            _mostrarDialogo(context, "msg_error_de_registro".tr);
-          }
-        } else {
-          _mostrarDialogo(context, "msg_error_de_registro".tr);
-        }
-      }
-    } catch (e) {
-      _mostrarDialogo(context, "msg_error_de_registro".tr);
-    }
-  }
-
-  void _mostrarDialogo(BuildContext context, String mensaje) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Text(mensaje),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Cerrar'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                onTapRegistrarse(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
+  /// Navigates to the loginscreenScreen when the action is triggered.
+  ///
+  /// The [BuildContext] parameter is used to build the navigation stack.
+  /// When the action is triggered, this function uses the [Navigator] widget
+  /// to push the named route for the loginscreenScreen.
   onTapRegistrarse(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.pilotoVerstapenScreen);
   }

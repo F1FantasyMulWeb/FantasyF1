@@ -83,7 +83,8 @@ class ListaPilotosScreen extends StatelessWidget {
                                                               .titleLarge)))
                                             ])),
                                     SizedBox(height: 2.v)
-                                  ]))
+                                  ])
+                          )
                         ]))))));
   }
 

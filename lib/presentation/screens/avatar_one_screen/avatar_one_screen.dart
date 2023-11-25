@@ -1,11 +1,10 @@
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_subtitle_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
-class AvatarScreen extends StatelessWidget {
-  const AvatarScreen({Key? key})
+class AvatarOneScreen extends StatelessWidget {
+  const AvatarOneScreen({Key? key})
       : super(
           key: key,
         );
@@ -20,61 +19,20 @@ class AvatarScreen extends StatelessWidget {
           centerTitle: true,
           title: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(
+              AppbarImage1(
+                svgPath: ImageConstant.imgMenu,
+                margin: EdgeInsets.only(
                   left: 31.h,
-                  right: 24.h,
-                ),
-                child: Row(
-                  children: [
-                    AppbarImage1(
-                      svgPath: ImageConstant.imgMenu,
-                    ),
-                    Container(
-                      height: 30.v,
-                      width: 157.h,
-                      margin: EdgeInsets.only(
-                        left: 115.h,
-                        top: 1.v,
-                      ),
-                      child: Stack(
-                        alignment: Alignment.centerRight,
-                        children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              margin: EdgeInsets.only(right: 1.h),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 8.h,
-                                vertical: 1.v,
-                              ),
-                              decoration:
-                                  AppDecoration.fillErrorContainer.copyWith(
-                                borderRadius: BorderRadiusStyle.roundedBorder6,
-                              ),
-                              child: AppbarSubtitle1(
-                                text: "lbl_editar_perfil".tr,
-                                margin: EdgeInsets.only(
-                                  right: 24.h,
-                                  bottom: 2.v,
-                                ),
-                              ),
-                            ),
-                          ),
-                          AppbarImage1(
-                            svgPath: ImageConstant.imgEdit,
-                            margin: EdgeInsets.only(left: 127.h),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  right: 296.h,
                 ),
               ),
               SizedBox(height: 10.v),
-              SizedBox(
-                width: double.maxFinite,
-                child: Divider(),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: double.maxFinite,
+                  child: Divider(),
+                ),
               ),
             ],
           ),
@@ -93,7 +51,7 @@ class AvatarScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CustomImageView(
-                    imagePath: ImageConstant.imgDownload169x169,
+                    imagePath: ImageConstant.imgDownload,
                     height: 169.adaptSize,
                     width: 169.adaptSize,
                     radius: BorderRadius.circular(

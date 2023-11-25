@@ -254,7 +254,7 @@ class PerfilCarrerasScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the avatarOneScreen.
   onTapTxtOne(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.editAvatarScreen);
+    Navigator.pushNamed(context, AppRoutes.avatarOneScreen);
   }
 
   /// Navigates to the elNanoScreen when the action is triggered.
