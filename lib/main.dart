@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           '',
         ),
       ],
-      initialRoute: AppRoutes.preloginscreenScreen,
+      initialRoute: AppRoutes.mainscreensinligasScreen,
       routes: AppRoutes.routes,
     );
   }

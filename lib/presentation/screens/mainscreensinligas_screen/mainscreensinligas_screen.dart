@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:fantasyf1/core/app_export.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../DataBase/databasecontroller.dart';
+import '../../../api/configuracionApi.dart';
+import '../../../api/modelo/RaceEventModel.dart';
 
 class MainscreensinligasScreen extends StatefulWidget {
   const MainscreensinligasScreen({Key? key}) : super(key: key);
@@ -14,9 +17,32 @@ class MainscreensinligasScreen extends StatefulWidget {
   _MainscreensinligasScreenState createState() => _MainscreensinligasScreenState();
 }
 
+
   class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
-  DataBaseController clienteController =
-  DataBaseController(Supabase.instance.client);
+    DataBaseController clienteController =
+    DataBaseController(Supabase.instance.client);
+
+    RaceEventModel? carGlobal = null;
+    List<Result>? resultado = null;
+    Circuit? circuito = null;
+
+    Future<RaceEventModel?> initializeCarGlobal() async {
+      Client cliente = Client();
+      var gl = await cliente.getResults("current", "5", "results",queryParams: "limit=15").whenComplete(() => print("cargado"));
+      print(carGlobal);
+      setState(() {
+        carGlobal = gl;
+        resultado= carGlobal!.mrData.raceTable.races.first.results;
+        circuito= carGlobal!.mrData.raceTable.races.first.circuit;
+      });
+      return null;
+    }
+
+  @override
+  void initState() {
+      initializeCarGlobal();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -346,7 +372,7 @@ class MainscreensinligasScreen extends StatefulWidget {
                                         SizedBox(height: 6.v),
                                         Container(
                                             padding: EdgeInsets.symmetric(
-                                                horizontal: 27.h,
+                                                horizontal: 15.h,
                                                 vertical: 4.v),
                                             decoration: AppDecoration
                                                 .outlinePrimary3
@@ -367,8 +393,13 @@ class MainscreensinligasScreen extends StatefulWidget {
                                                   Padding(
                                                       padding: EdgeInsets.only(
                                                           top: 6.v,
-                                                          right: 70.h),
-                                                      child: Text("lbl".tr,
+                                                          right: 25.h),
+                                                      child: Text(
+                                                          resultado == null ? "".tr :
+                                                          circuito!.circuitName,
+                                                          textAlign:
+                                                          TextAlign.center,
+
                                                           style: CustomTextStyles
                                                               .displaySmall35))
                                                 ])),

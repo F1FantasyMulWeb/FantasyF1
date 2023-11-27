@@ -21,13 +21,15 @@ class ListaPilotosScreen extends StatefulWidget {
 class _ListaPilotosScreen extends State<ListaPilotosScreen> {
 
   RaceEventModel? carGlobal = null;
+  List<Result>? result = null;
 
   Future<RaceEventModel?> initializeCarGlobal() async {
     Client cliente = Client();
-    var gl = await cliente.getResults("current", "last", "results",queryParams: "limit=15").whenComplete(() => print("cargado"));
+    var gl = await cliente.getResults("current", "5", "results",queryParams: "limit=15").whenComplete(() => print("cargado"));
     print(carGlobal);
     setState(() {
       carGlobal = gl;
+      result= carGlobal!.mrData.raceTable.races.first.results;
     });
     return null;
   }
@@ -38,9 +40,9 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
 
 
     super.initState();
-    Client cliente = Client();
+ //   Client cliente = Client();
     //RaceEventModel? carGlobal;
-    Stream<RaceEventModel?> obternerInfoCarrera() async* {
+/*    Stream<RaceEventModel?> obternerInfoCarrera() async* {
       yield await cliente.getResults("current", "last", "results",queryParams: "limit=15");
     }
 
@@ -53,7 +55,7 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
 
 
     }
-escucharStreamCarrera();
+escucharStreamCarrera();*/
 
   }
   @override
@@ -176,8 +178,8 @@ escucharStreamCarrera();
                                         padding: EdgeInsets.only(
                                             bottom: 19.v),
                                         child: Text(
-                                            carGlobal == null ? "lbl_perez".tr :
-                                            carGlobal!.mrData.raceTable.races.toList().first.results[1].driver.familyName
+                                            result == null ? "lbl_perez".tr :
+                                            result![14].driver.familyName
                                             ,
 
                                             textAlign:
