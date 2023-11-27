@@ -210,18 +210,31 @@ class Client {
     return listaEscuderia;
   }
 
-  Future<List<RaceEventModel>?> getResults(String year, String round, String raceType, {String? queryParams}) async {
+ Future<RaceEventModel?> getResults(String year, String round, String raceType,{String? queryParams}) async {
     try {
-      var response = await http.get(Uri.parse('https://ergast.com/api/f1/\$year/\$round/\$raceType.json?\$queryParams'));
+      var response = await http.get(Uri.parse('https://ergast.com/api/f1/$year/$round/$raceType.json?$queryParams'));
       if (response.statusCode == 200) {
+
         var result = response.body;
+
         var json = jsonDecode(result);
-        var res = json["MRData"]["RaceTable"]["Races"].toString();
-        var r = List<RaceEventModel>.from(jsonDecode(res).map((x) => RaceEventModel.fromJson(x)));
-        switch (raceType) {
+
+       // var res = jsonEncode(json["MRData"]["RaceTable"]["Races"]);
+
+
+        try {
+
+          var r = RaceEventModel.fromJson(json);
+        } catch (e) {
+          print('Failed to parse JSON: $e');
+          print('JSON String: $json');
+        }
+        final r = RaceEventModel.fromJson(json);
+return r;
+        /*switch (raceType) {
           case "results":
             {
-              if (r.isNotEmpty && r.first.results.isNotEmpty) {
+              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
                 return r;
               } else {
                 return null;
@@ -229,8 +242,8 @@ class Client {
             }
           case "qualifying":
             {
-              if (r.isNotEmpty && r.first.qualifyingResults.isNotEmpty) {
-                r.first.qualifyingResults.forEach((d) {
+              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
+                r.first.mrData.raceTable.races.forEach((d) {
                 });
                 return r;
               } else {
@@ -239,8 +252,8 @@ class Client {
             }
           case "sprint":
             {
-              if (r.isNotEmpty && r.first.sprintResults.isNotEmpty) {
-                r.first.sprintResults.forEach((d) {
+              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
+                r.first.mrData.raceTable.races.forEach((d) {
                 });
                 return r;
               } else {
@@ -249,11 +262,13 @@ class Client {
             }
         }
       }
-      return null;
+      return null;  */
+      }
     } catch (ex) {
       print(ex);
       return null;
     }
+    return null;
   }
 
 }
