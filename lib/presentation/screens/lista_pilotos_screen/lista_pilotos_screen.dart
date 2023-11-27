@@ -1,13 +1,12 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
-
-import 'package:fantasyf1/presentation/screens/loginscreen_screen/loginscreen_screen.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../../api/modelos/RaceEventModel.dart';
+import '../../../api/modelo/RaceEventModel.dart';
+
 
 class ListaPilotosScreen extends StatefulWidget {
   const ListaPilotosScreen({Key? key}) : super(key: key);
