@@ -258,6 +258,10 @@ class ListaCircuitosScreen extends StatelessWidget {
                                                         ])))),
                                         Align(
                                             alignment: Alignment.topLeft,
+                                            child: GestureDetector(
+                                                onTap: () {
+                                                  onTapYeda(context);
+                                                },
                                             child: Container(
                                                 height: 71.v,
                                                 width: 277.h,
@@ -278,6 +282,7 @@ class ListaCircuitosScreen extends StatelessWidget {
                                                           width: 273.h,
                                                           alignment:
                                                               Alignment.center),
+
                                                       Align(
                                                           alignment: Alignment
                                                               .centerLeft,
@@ -313,7 +318,7 @@ class ListaCircuitosScreen extends StatelessWidget {
                                                                             style:
                                                                                 theme.textTheme.displaySmall))
                                                                   ])))
-                                                    ])))
+                                                    ]))))
                                       ])))
                         ]))))));
   }
@@ -344,4 +349,8 @@ class ListaCircuitosScreen extends StatelessWidget {
   onTapStackbahrin(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.circuitoBahrInScreen);
   }
+  onTapYeda(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.circuitoDeLaCornicheDeYedaScreen);
+  }
+
 }

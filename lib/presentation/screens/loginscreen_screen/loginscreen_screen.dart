@@ -29,6 +29,11 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   bool _isChecked = false;
   DataBaseController clientController =
       DataBaseController(Supabase.instance.client);
+  @override
+  void init(){
+    super.initState();
+    clientController.downloadAvatarInicio();
+  }
 
   @override
   void dispose() {
@@ -347,7 +352,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   }
 
   onTapIniciarsesin(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen
+    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen
     );
   }
 

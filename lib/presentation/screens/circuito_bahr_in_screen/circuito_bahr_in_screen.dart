@@ -79,7 +79,7 @@ class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
                                       CustomImageView(
                                         imagePath:
                                             ImageConstant.imgImage26273x355,
-                                        height: 273.v,
+                                        height: 188.v,
                                         width: 355.h,
                                       ),
                                       SizedBox(height: 18.v),

@@ -86,6 +86,34 @@ class DataBaseController {
     return file;
   }
 
+  Future<void> downloadAvatarInicio() async {
+    String userName = await selectUserName();
+    String url = 'UserData/$userName/ImagenAvatar.jpg';
+
+    // Obtén la URL firmada
+    final signedUrl =
+    await client.storage.from('F1Fantasy').createSignedUrl(url, 15);
+
+    // Descarga el archivo
+    final response = await http.get(Uri.parse(signedUrl));
+
+    // Obtén la ruta del directorio de documentos de la aplicación
+    final directory = await getApplicationDocumentsDirectory();
+
+    // Crea una carpeta para los datos del usuario si no existe
+    final userDirectory = Directory('${directory.path}/UserData');
+    if (!await userDirectory.exists()) {
+      await userDirectory.create();
+    }
+
+    // Crea un archivo en la carpeta de datos del usuario
+    final file = File('${userDirectory.path}/$userName.jpg');
+
+    // Escribe los bytes de la respuesta en el archivo
+    await file.writeAsBytes(response.bodyBytes);
+  }
+
+
   Future<File> selectAvatarImage() async {
     String userName = await selectUserName();
 

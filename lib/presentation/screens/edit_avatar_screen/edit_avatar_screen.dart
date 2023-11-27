@@ -4,6 +4,7 @@ import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -298,9 +299,17 @@ Future<File?> showDialogAndGetImage(BuildContext context) async {
                 onTap: () async {
                   final ImagePicker _picker = ImagePicker();
                   final XFile? image =
-                      await _picker.pickImage(source: ImageSource.gallery);
+                  await _picker.pickImage(source: ImageSource.gallery);
                   if (image != null) {
-                    _selectedImage = File(image.path);
+                    // Aquí es donde añadimos el recorte de la imagen
+                    final ImageCropper cropper = ImageCropper();
+                    final croppedFile = await cropper.cropImage(
+                      sourcePath: image.path,
+                      cropStyle: CropStyle.circle, // Esto hace que el recorte sea circular
+                    );
+                    if (croppedFile != null) {
+                      _selectedImage = File(croppedFile.path);
+                    }
                   } else {
                     // El usuario canceló la selección de la imagen.
                   }

@@ -136,7 +136,9 @@ class MainscreensinligasScreen extends StatefulWidget {
                       ),
                       ListTile(
                         title: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            onTaplistaCircuitos(context);
+                          },
                           icon: Icon(
                             Icons.home,
                             color: Color(0xCC000000),
@@ -502,6 +504,10 @@ class MainscreensinligasScreen extends StatefulWidget {
   }
   onTaplistaPilotos(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaPilotosScreen
+    );
+  }
+  onTaplistaCircuitos(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen
     );
   }
 }
