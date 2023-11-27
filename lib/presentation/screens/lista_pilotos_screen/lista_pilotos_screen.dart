@@ -61,14 +61,26 @@ escucharStreamCarrera();
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
-            appBar: CustomAppBar(
-                leadingWidth: 64.h,
-                leading: AppbarImage(
-                    svgPath: ImageConstant.imgMenu,
-                    margin:
-                        EdgeInsets.only(left: 31.h, top: 11.v, bottom: 12.v)),
-                centerTitle: true,
-                title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              centerTitle: true,
+              title: Image.asset(
+                ImageConstant.imgLogo,
+                fit: BoxFit.contain,
+                height: 50, // Ajusta este valor para cambiar el tamaño del logo
+              ),
+              leading: Builder(
+                builder: (context) => IconButton(
+                  icon: Icon(Icons.menu),
+                  iconSize: 35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                  onPressed: () => Scaffold.of(context).openDrawer(),
+                ),
+              ),
+            ),
+            drawer: Drawer(
+              // Aquí puedes poner el contenido de tu Drawer
+            ),
+
             body: SizedBox(
                 width: mediaQueryData.size.width,
                 child: SingleChildScrollView(
@@ -238,8 +250,7 @@ escucharStreamCarrera();
                                                   width: 273.h,
                                                   alignment: Alignment.center,
                                                   onTap: () {
-                                                    onTapImgVectoroneone(
-                                                        context);
+                                                    onTapPerez(context);
                                                   }),
                                               Align(
                                                   alignment:
@@ -270,6 +281,9 @@ escucharStreamCarrera();
   /// to push the named route for the pilotoVerstapenScreen.
   onTapImgVectoroneone(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.pilotoVerstapenScreen);
+  }
+  onTapPerez(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.checoPerezScreen);
   }
 
 

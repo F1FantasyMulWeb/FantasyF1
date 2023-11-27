@@ -26,7 +26,7 @@ class _AvatarScreenState extends State<AvatarScreen> {
   @override
   void initState() {
     super.initState();
-    _imageFile = clienteController.downloadAvatar(); // Descarga la imagen cuando se inicializa el widget
+    _imageFile = clienteController.selectAvatarImage(); // Descarga la imagen cuando se inicializa el widget
   }
 
   @override

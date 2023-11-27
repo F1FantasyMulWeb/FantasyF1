@@ -303,7 +303,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
                                           onTap: () async {
                                             if (_formKey.currentState!
                                                 .validate()) {
-                                              onTapRegistrarse(context);
+                                              _registrarUsuario(context);
                                             }
                                           },
                                         ),
@@ -373,6 +373,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
   }
 
   onTapRegistrarse(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.pilotoVerstapenScreen);
+    Navigator.pushNamed(context, AppRoutes.loginscreenScreen
+    );
   }
 }

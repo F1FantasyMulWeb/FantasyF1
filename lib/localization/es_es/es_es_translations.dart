@@ -193,6 +193,17 @@ final Map<String, String> esEs = {
   "msg_team_red_bull":
       "Team:  Red Bull Racing\nCountry:  Netherlands\nPodiums:  92\nPoints:  2411.5\nGrands Prix entered:  179\nWorld Championships: 2\nHighest race finish: 1 (x48)\nDate of birth 30/09/1997\nPlace of birth Hasselt, Belgium",
 
+  //mainScreen Screen DRAWER
+  "lbl_inicio": "INICIO",
+  "lbl_camp":"CAMPEONATOS",
+  "lbl_pilotos": "PILOTOS",
+  "lbl_circuito": "CIRCUITOS",
+  "lbl_esc": "ESCUDERIAS",
+  "lbl_grupo": "GRUPOS",
+  "lbl_howplay": "COMO JUGAR",
+  "lbl_cuenta": "CUENTA",
+  "lbl_ajustes": "AJUSTES",
+
   // App navigation Screen
   "lbl_a_adirgrupo": "añadirGrupo",
   "lbl_ajustes2": "ajustes",

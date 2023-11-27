@@ -347,7 +347,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   }
 
   onTapIniciarsesin(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.checoPerezScreen
+    Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen
     );
   }
 

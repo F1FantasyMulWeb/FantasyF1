@@ -1,10 +1,22 @@
+import 'dart:io';
+
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_circleimage.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class MainscreensinligasScreen extends StatelessWidget {
+import '../../../DataBase/databasecontroller.dart';
+
+class MainscreensinligasScreen extends StatefulWidget {
   const MainscreensinligasScreen({Key? key}) : super(key: key);
+  @override
+  _MainscreensinligasScreenState createState() => _MainscreensinligasScreenState();
+}
+
+  class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
+  DataBaseController clienteController =
+  DataBaseController(Supabase.instance.client);
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +26,29 @@ class MainscreensinligasScreen extends StatelessWidget {
         onWillPop: () async => false,
         child: SafeArea(
             child: Scaffold(
-                appBar: AppBar(backgroundColor: Colors.white, actions: [
-                  Container(
-                      margin: EdgeInsets.symmetric(
-                          horizontal: 30.h, vertical: 12.v),
-                      decoration: AppDecoration.fillWhiteA.copyWith(
-                          borderRadius: BorderRadiusStyle.roundedBorder15),
-                      child: AppbarCircleimage(
-                          imagePath: ImageConstant.imgDownload31x33,
-                          onTap: () {
-                            onTapDownloadone(context);
-                          }))
-                ]),
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  leading: Builder(
+                    builder: (context) => IconButton(
+                      icon: Icon(Icons.menu),
+                      iconSize: 35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                      onPressed: () => Scaffold.of(context).openDrawer(),
+                    ),
+                  ),
+                  actions: [
+                    Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 30.h, vertical: 12.v),
+                        decoration: AppDecoration.fillWhiteA.copyWith(
+                            borderRadius: BorderRadiusStyle.roundedBorder15),
+                        child: AppbarCircleimage(
+                            imagePath: ImageConstant.imgDownload31x33,
+                            onTap: () {
+                              onTapDownloadone(context);
+                            }))
+                  ]
+                ),
+
                 drawer: Drawer(
                   child: ListView(
                     padding: EdgeInsets.zero,
@@ -70,7 +93,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             size: 25,
                           ),
                           label: Text(
-                            'INICIO',
+                            'lbl_inicio'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -95,7 +118,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             size: 25,
                           ),
                           label: Text(
-                            'CAMPEONATOS',
+                            'lbl_camp'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -120,7 +143,34 @@ class MainscreensinligasScreen extends StatelessWidget {
                             size: 25,
                           ),
                           label: Text(
-                            'CIRCUITOS',
+                            'lbl_circuito'.tr,
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xCC000000),
+                              fontSize: 20,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF7E8489),
+                            fixedSize: Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: ElevatedButton.icon(
+                          onPressed: () {
+                            onTaplistaPilotos(context);
+                          },
+                          icon: Icon(
+                            Icons.home,
+                            color: Color(0xCC000000),
+                            size: 25,
+                          ),
+                          label: Text(
+                            'lbl_pilotos'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -145,32 +195,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             size: 25,
                           ),
                           label: Text(
-                            'PILOTOS',
-                            style: TextStyle(
-                              fontFamily: 'Readex Pro',
-                              color: Color(0xCC000000),
-                              fontSize: 20,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      ListTile(
-                        title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.home,
-                            color: Color(0xCC000000),
-                            size: 25,
-                          ),
-                          label: Text(
-                            'ESCUDERIAS',
+                            'lbl_esc'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -195,7 +220,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             size: 25,
                           ),
                           label: Text(
-                            'GRUPOS',
+                            'lbl_grupo'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -220,7 +245,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             size: 25,
                           ),
                           label: Text(
-                            'COMO JUGAR',
+                            'lbl_howplay'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -245,7 +270,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             size: 25,
                           ),
                           label: Text(
-                            'CUENTA',
+                            'lbl_cuenta'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -270,7 +295,7 @@ class MainscreensinligasScreen extends StatelessWidget {
                             size: 25,
                           ),
                           label: Text(
-                            'AJUSTES',
+                            'lbl_ajustes'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -474,5 +499,9 @@ class MainscreensinligasScreen extends StatelessWidget {
   /// to push the named route for the aAdirgrupoScreen.
   onTapUnirseagrupo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
+  }
+  onTaplistaPilotos(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.listaPilotosScreen
+    );
   }
 }
