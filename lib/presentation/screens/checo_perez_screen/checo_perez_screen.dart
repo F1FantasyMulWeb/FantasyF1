@@ -21,6 +21,7 @@ class ChecoPerezScreen extends StatefulWidget {
 }
 
 class _ChecoPerezScreen extends State<ChecoPerezScreen> {
+
   @override
   void initState() {
     super.initState();
@@ -44,91 +45,74 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                        height: 587.v,
+                                        height: 375.v,
                                         width: double.maxFinite,
                                         child: Stack(
-                                            alignment: Alignment.bottomLeft,
+                                            alignment: Alignment.bottomCenter,
                                             children: [
                                               Align(
-                                                  alignment:
-                                                      Alignment.topCenter,
-                                                  child: Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 38.h,
-                                                              vertical: 15.v),
+                                                alignment: Alignment.center,
+                                                child: LayoutBuilder(
+                                                  builder: (BuildContext context, BoxConstraints constraints) {
+                                                    return Container(
+                                                      width: constraints.maxWidth,
+                                                      height: constraints.maxHeight,
                                                       decoration: BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: AssetImage(
-                                                                  ImageConstant
-                                                                      .imgGroup3),
-                                                              fit: BoxFit
-                                                                  .cover)),
+                                                        image: DecorationImage(
+                                                          image: AssetImage(ImageConstant.imgGroup3),
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                      padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 7.v),
                                                       child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          children: [
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                                        children: [
+                                                          Center(
+                                                            child:
                                                             Text(
-                                                                nombrePiloto()
-                                                                    .toString()
-                                                                    .tr,
-                                                                style: CustomTextStyles
-                                                                    .displaySmallWhiteA70001),
-                                                            SizedBox(
-                                                                height: 42.v),
-                                                            CustomImageView(
-                                                                imagePath:
-                                                                    ImageConstant
-                                                                        .imgImage28,
-                                                                height: 29.v,
-                                                                width: 57.h,
-                                                                alignment: Alignment
-                                                                    .centerRight),
-                                                            SizedBox(
-                                                                height: 42.v)
-                                                          ]))),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: Container(
-                                                      width: 215.h,
-                                                      margin: EdgeInsets.only(
-                                                          left: 35.h),
-                                                      child: Text(
-                                                          informacionPilotoCheco()
-                                                              .toString()
-                                                              .tr,
-                                                          maxLines: 9,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          style: CustomTextStyles
-                                                              .bodyMediumJacquesFrancois))),
+                                                              nombrePiloto().toString().tr,
+                                                              style: CustomTextStyles.displaySmallWhiteA70001,
+                                                              textAlign: TextAlign.center,
+                                                            ),
+                                                          ),
+                                                          CustomImageView(
+                                                            imagePath: ImageConstant.imgImage28,
+                                                            height: 29.v,
+                                                            width: 57.h,
+                                                            margin: EdgeInsets.only(top: 41.v, right: 33.h, bottom: 41.v),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
                                               CustomImageView(
-                                                  imagePath:
-                                                      ImageConstant.imgCheco,
-                                                  height: 362.v,
-                                                  width: 358.h,
+                                                  imagePath: ImageConstant.imgCheco,
+                                                  height: 291.v,
+                                                  width: 271.h,
                                                   alignment:
-                                                      Alignment.topCenter,
-                                                  margin: EdgeInsets.only(
-                                                      top: 57.v))
+                                                  Alignment.bottomCenter)
                                             ])),
-                                    CustomImageView(
-                                        svgPath: ImageConstant.imgArrowup,
-                                        height: 20.adaptSize,
-                                        width: 20.adaptSize,
-                                        alignment: Alignment.centerRight,
+                                    Container(
+                                        width: 215.h,
                                         margin: EdgeInsets.only(
-                                            top: 12.v, right: 57.h),
-                                        onTap: () {
-                                          onTapImgArrowupone(context);
-                                        }),
+                                            left: 35.h, top: 40.v),
+                                        child: Text(
+                                            informacionPilotoCheco()
+                                                .toString()
+                                                .tr,
+                                            maxLines: 9,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: CustomTextStyles
+                                                .bodyMediumJacquesFrancois)),
                                     Padding(
                                         padding: EdgeInsets.only(
-                                            left: 28.h, top: 5.v, right: 45.h),
+                                            left: 28.h, top: 12.v, right: 44.h),
                                         child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               CustomImageView(
                                                   svgPath: ImageConstant
@@ -136,21 +120,27 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                                   height: 33.adaptSize,
                                                   width: 33.adaptSize,
                                                   margin: EdgeInsets.only(
-                                                      top: 36.v, bottom: 3.v),
+                                                      top: 61.v, bottom: 3.v),
                                                   onTap: () {
                                                     onTapImgArrowleftone(
                                                         context);
                                                   }),
                                               Column(children: [
                                                 CustomImageView(
-                                                    imagePath:
-                                                        ImageConstant.imgImage5,
+                                                    svgPath: ImageConstant
+                                                        .imgArrowup,
+                                                    height: 20.adaptSize,
+                                                    width: 20.adaptSize),
+                                                SizedBox(height: 6.v),
+                                                CustomImageView(
+                                                    imagePath: ImageConstant
+                                                        .imgIconmaxverst1,
                                                     height: 45.adaptSize,
                                                     width: 45.adaptSize,
                                                     radius:
-                                                        BorderRadius.circular(
-                                                            22.h)),
-                                                SizedBox(height: 7.v),
+                                                    BorderRadius.circular(
+                                                        22.h)),
+                                                SizedBox(height: 6.v),
                                                 CustomImageView(
                                                     svgPath: ImageConstant
                                                         .imgArrowdown,
@@ -166,15 +156,6 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                 ]))));
   }
 
-  /// Navigates to the pilotoVerstapenScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the pilotoVerstapenScreen.
-  onTapImgArrowupone(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.pilotoVerstapenScreen);
-  }
-
   /// Navigates to the listaPilotosScreen when the action is triggered.
   ///
   /// The [BuildContext] parameter is used to build the navigation stack.
@@ -184,13 +165,13 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
     Navigator.pushNamed(context, AppRoutes.listaPilotosScreen);
   }
 
-  /// Navigates to the elNanoScreen when the action is triggered.
+  /// Navigates to the checoPerezScreen when the action is triggered.
   ///
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the elNanoScreen.
+  /// to push the named route for the checoPerezScreen.
   onTapImgArrowdownone(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.elNanoScreen);
+    Navigator.pushNamed(context, AppRoutes.checoPerezScreen);
   }
 
   informacionPilotoCheco() {

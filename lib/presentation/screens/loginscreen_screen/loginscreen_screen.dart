@@ -6,9 +6,7 @@ import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../../../api/listaCircuitos.dart';
-import '../../../api/listaEscuderias.dart';
-import '../../../api/listaPilotos.dart';
+
 import '../../../core/utils/FormValidatorLogin.dart';
 
 // ignore_for_file: must_be_immutable

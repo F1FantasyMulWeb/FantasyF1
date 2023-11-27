@@ -1,12 +1,15 @@
+import 'dart:convert';
+import 'dart:core';
 import 'package:fantasyf1/api/entityCircuitos.dart';
 import 'package:fantasyf1/api/entityEscudarias.dart';
 import 'package:fantasyf1/api/entityPiloto.dart';
 import 'package:fantasyf1/api/listaCircuitos.dart';
 import 'package:fantasyf1/api/listaEscuderias.dart';
 import 'package:fantasyf1/api/listaPilotos.dart';
-import 'package:fantasyf1/presentation/screens/lista_escuder_as_screen/lista_escuder_as_screen.dart';
-import 'package:fantasyf1/presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
 import 'package:http/http.dart' as http;
+
+import 'modelo/RaceEventModel.dart';
+
 
 class Client {
   final http.Client _client = http.Client();
@@ -124,7 +127,7 @@ class Client {
     return ec;
   }
 
-  Future<ListaCircuitos> rellenaListaCircuito() async{
+  Future<ListaCircuitos> rellenaListaCircuito() async {
     ListaCircuitos listaCircuito = new ListaCircuitos();
 
     List<String> circuitoLista = [
@@ -207,4 +210,66 @@ class Client {
     }
     return listaEscuderia;
   }
+
+ Future<RaceEventModel?> getResults(String year, String round, String raceType,{String? queryParams}) async {
+    try {
+      var response = await http.get(Uri.parse('https://ergast.com/api/f1/$year/$round/$raceType.json?$queryParams'));
+      if (response.statusCode == 200) {
+
+        var result = response.body;
+
+        var json = jsonDecode(result);
+
+       // var res = jsonEncode(json["MRData"]["RaceTable"]["Races"]);
+
+
+        try {
+
+          var r = RaceEventModel.fromJson(json);
+        } catch (e) {
+          print('Failed to parse JSON: $e');
+          print('JSON String: $json');
+        }
+        final r = RaceEventModel.fromJson(json);
+return r;
+        /*switch (raceType) {
+          case "results":
+            {
+              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
+                return r;
+              } else {
+                return null;
+              }
+            }
+          case "qualifying":
+            {
+              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
+                r.first.mrData.raceTable.races.forEach((d) {
+                });
+                return r;
+              } else {
+                return null;
+              }
+            }
+          case "sprint":
+            {
+              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
+                r.first.mrData.raceTable.races.forEach((d) {
+                });
+                return r;
+              } else {
+                return null;
+              }
+            }
+        }
+      }
+      return null;  */
+      }
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
+    return null;
+  }
+
 }
