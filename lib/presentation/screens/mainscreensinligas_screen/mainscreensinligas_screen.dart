@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:fantasyf1/core/app_export.dart';
@@ -14,33 +13,35 @@ import '../../../api/modelo/RaceEventModel.dart';
 class MainscreensinligasScreen extends StatefulWidget {
   const MainscreensinligasScreen({Key? key}) : super(key: key);
   @override
-  _MainscreensinligasScreenState createState() => _MainscreensinligasScreenState();
+  _MainscreensinligasScreenState createState() =>
+      _MainscreensinligasScreenState();
 }
 
+class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
+  DataBaseController clienteController =
+      DataBaseController(Supabase.instance.client);
 
-  class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
-    DataBaseController clienteController =
-    DataBaseController(Supabase.instance.client);
+  RaceEventModel? carGlobal = null;
+  List<Result>? resultado = null;
+  Circuit? circuito = null;
 
-    RaceEventModel? carGlobal = null;
-    List<Result>? resultado = null;
-    Circuit? circuito = null;
-
-    Future<RaceEventModel?> initializeCarGlobal() async {
-      Client cliente = Client();
-      var gl = await cliente.getResults("current", "5", "results",queryParams: "limit=15").whenComplete(() => print("cargado"));
-      print(carGlobal);
-      setState(() {
-        carGlobal = gl;
-        resultado= carGlobal!.mrData.raceTable.races.first.results;
-        circuito= carGlobal!.mrData.raceTable.races.first.circuit;
-      });
-      return null;
-    }
+  Future<RaceEventModel?> initializeCarGlobal() async {
+    Client cliente = Client();
+    var gl = await cliente
+        .getResults("current", "5", "results", queryParams: "limit=15")
+        .whenComplete(() => print("cargado"));
+    print(carGlobal);
+    setState(() {
+      carGlobal = gl;
+      resultado = carGlobal!.mrData.raceTable.races.first.results;
+      circuito = carGlobal!.mrData.raceTable.races.first.circuit;
+    });
+    return null;
+  }
 
   @override
   void initState() {
-      initializeCarGlobal();
+    initializeCarGlobal();
     super.initState();
   }
 
@@ -53,28 +54,27 @@ class MainscreensinligasScreen extends StatefulWidget {
         child: SafeArea(
             child: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.white,
-                  leading: Builder(
-                    builder: (context) => IconButton(
-                      icon: Icon(Icons.menu),
-                      iconSize: 35, // Ajusta este valor para cambiar el tamaño del icono del menú
-                      onPressed: () => Scaffold.of(context).openDrawer(),
+                    backgroundColor: Colors.white,
+                    leading: Builder(
+                      builder: (context) => IconButton(
+                        icon: Icon(Icons.menu),
+                        iconSize:
+                            35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      ),
                     ),
-                  ),
-                  actions: [
-                    Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 30.h, vertical: 12.v),
-                        decoration: AppDecoration.fillWhiteA.copyWith(
-                            borderRadius: BorderRadiusStyle.roundedBorder15),
-                        child: AppbarCircleimage(
-                            imagePath: ImageConstant.imgDownload31x33,
-                            onTap: () {
-                              onTapDownloadone(context);
-                            }))
-                  ]
-                ),
-
+                    actions: [
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 30.h, vertical: 12.v),
+                          decoration: AppDecoration.fillWhiteA.copyWith(
+                              borderRadius: BorderRadiusStyle.roundedBorder15),
+                          child: AppbarCircleimage(
+                              imagePath: ImageConstant.imgDownload31x33,
+                              onTap: () {
+                                onTapDownloadone(context);
+                              }))
+                    ]),
                 drawer: Drawer(
                   child: ListView(
                     padding: EdgeInsets.zero,
@@ -395,11 +395,12 @@ class MainscreensinligasScreen extends StatefulWidget {
                                                           top: 6.v,
                                                           right: 25.h),
                                                       child: Text(
-                                                          resultado == null ? "".tr :
-                                                          circuito!.circuitName,
+                                                          resultado == null
+                                                              ? "".tr
+                                                              : circuito!
+                                                                  .circuitName,
                                                           textAlign:
-                                                          TextAlign.center,
-
+                                                              TextAlign.center,
                                                           style: CustomTextStyles
                                                               .displaySmall35))
                                                 ])),
@@ -428,7 +429,14 @@ class MainscreensinligasScreen extends StatefulWidget {
                                                       left: 22.h,
                                                       top: 17.v,
                                                       bottom: 14.v),
-                                                  child: Text("lbl_puntos".tr,
+                                                  child: Text(
+                                                      resultado == null
+                                                          ? "Puntos: ".tr
+                                                          : "Puntos: " +
+                                                              resultado!
+                                                                  .first.points,
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: CustomTextStyles
                                                           .bodyMediumFormula1))
                                             ]))
@@ -531,8 +539,8 @@ class MainscreensinligasScreen extends StatefulWidget {
   onTapUnirseagrupo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
   }
+
   onTaplistaPilotos(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.listaPilotosScreen
-    );
+    Navigator.pushNamed(context, AppRoutes.listaPilotosScreen);
   }
 }

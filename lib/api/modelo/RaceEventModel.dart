@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-RaceEventModel raceEventModelFromJson(String str) => RaceEventModel.fromJson(json.decode(str));
+RaceEventModel raceEventModelFromJson(String str) =>
+    RaceEventModel.fromJson(json.decode(str));
 
 String raceEventModelToJson(RaceEventModel data) => json.encode(data.toJson());
 
@@ -16,14 +17,12 @@ class RaceEventModel {
   });
 
   factory RaceEventModel.fromJson(Map<String, dynamic> json) => RaceEventModel(
-    mrData: MrData.fromJson(json["MRData"]),
-  );
+        mrData: MrData.fromJson(json["MRData"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "MRData": mrData.toJson(),
-  };
-
-
+        "MRData": mrData.toJson(),
+      };
 }
 
 class MrData {
@@ -46,24 +45,24 @@ class MrData {
   });
 
   factory MrData.fromJson(Map<String, dynamic> json) => MrData(
-    xmlns: json["xmlns"],
-    series: json["series"],
-    url: json["url"],
-    limit: json["limit"],
-    offset: json["offset"],
-    total: json["total"],
-    raceTable: RaceTable.fromJson(json["RaceTable"]),
-  );
+        xmlns: json["xmlns"],
+        series: json["series"],
+        url: json["url"],
+        limit: json["limit"],
+        offset: json["offset"],
+        total: json["total"],
+        raceTable: RaceTable.fromJson(json["RaceTable"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "xmlns": xmlns,
-    "series": series,
-    "url": url,
-    "limit": limit,
-    "offset": offset,
-    "total": total,
-    "RaceTable": raceTable.toJson(),
-  };
+        "xmlns": xmlns,
+        "series": series,
+        "url": url,
+        "limit": limit,
+        "offset": offset,
+        "total": total,
+        "RaceTable": raceTable.toJson(),
+      };
 }
 
 class RaceTable {
@@ -78,16 +77,16 @@ class RaceTable {
   });
 
   factory RaceTable.fromJson(Map<String, dynamic> json) => RaceTable(
-    season: json["season"],
-    round: json["round"],
-    races: List<Race>.from(json["Races"].map((x) => Race.fromJson(x))),
-  );
+        season: json["season"],
+        round: json["round"],
+        races: List<Race>.from(json["Races"].map((x) => Race.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "season": season,
-    "round": round,
-    "Races": List<dynamic>.from(races.map((x) => x.toJson())),
-  };
+        "season": season,
+        "round": round,
+        "Races": List<dynamic>.from(races.map((x) => x.toJson())),
+      };
 }
 
 class Race {
@@ -112,26 +111,28 @@ class Race {
   });
 
   factory Race.fromJson(Map<String, dynamic> json) => Race(
-    season: json["season"],
-    round: json["round"],
-    url: json["url"],
-    raceName: json["raceName"],
-    circuit: Circuit.fromJson(json["Circuit"]),
-    date: DateTime.parse(json["date"]),
-    time: json["time"],
-    results: List<Result>.from(json["Results"].map((x) => Result.fromJson(x))),
-  );
+        season: json["season"],
+        round: json["round"],
+        url: json["url"],
+        raceName: json["raceName"],
+        circuit: Circuit.fromJson(json["Circuit"]),
+        date: DateTime.parse(json["date"]),
+        time: json["time"],
+        results:
+            List<Result>.from(json["Results"].map((x) => Result.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "season": season,
-    "round": round,
-    "url": url,
-    "raceName": raceName,
-    "Circuit": circuit.toJson(),
-    "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
-    "time": time,
-    "Results": List<dynamic>.from(results.map((x) => x.toJson())),
-  };
+        "season": season,
+        "round": round,
+        "url": url,
+        "raceName": raceName,
+        "Circuit": circuit.toJson(),
+        "date":
+            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "time": time,
+        "Results": List<dynamic>.from(results.map((x) => x.toJson())),
+      };
 }
 
 class Circuit {
@@ -148,18 +149,18 @@ class Circuit {
   });
 
   factory Circuit.fromJson(Map<String, dynamic> json) => Circuit(
-    circuitId: json["circuitId"],
-    url: json["url"],
-    circuitName: json["circuitName"],
-    location: Location.fromJson(json["Location"]),
-  );
+        circuitId: json["circuitId"],
+        url: json["url"],
+        circuitName: json["circuitName"],
+        location: Location.fromJson(json["Location"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "circuitId": circuitId,
-    "url": url,
-    "circuitName": circuitName,
-    "Location": location.toJson(),
-  };
+        "circuitId": circuitId,
+        "url": url,
+        "circuitName": circuitName,
+        "Location": location.toJson(),
+      };
 }
 
 class Location {
@@ -176,18 +177,18 @@ class Location {
   });
 
   factory Location.fromJson(Map<String, dynamic> json) => Location(
-    lat: json["lat"],
-    long: json["long"],
-    locality: json["locality"],
-    country: json["country"],
-  );
+        lat: json["lat"],
+        long: json["long"],
+        locality: json["locality"],
+        country: json["country"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "lat": lat,
-    "long": long,
-    "locality": locality,
-    "country": country,
-  };
+        "lat": lat,
+        "long": long,
+        "locality": locality,
+        "country": country,
+      };
 }
 
 class Result {
@@ -218,32 +219,32 @@ class Result {
   });
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-    number: json["number"],
-    position: json["position"],
-    positionText: json["positionText"],
-    points: json["points"],
-    driver: Driver.fromJson(json["Driver"]),
-    constructor: Constructor.fromJson(json["Constructor"]),
-    grid: json["grid"],
-    laps: json["laps"],
-    status: statusValues.map[json["status"]]!,
-    time: json["Time"] == null ? null : ResultTime.fromJson(json["Time"]),
-    fastestLap: FastestLap.fromJson(json["FastestLap"]),
-  );
+        number: json["number"],
+        position: json["position"],
+        positionText: json["positionText"],
+        points: json["points"],
+        driver: Driver.fromJson(json["Driver"]),
+        constructor: Constructor.fromJson(json["Constructor"]),
+        grid: json["grid"],
+        laps: json["laps"],
+        status: statusValues.map[json["status"]]!,
+        time: json["Time"] == null ? null : ResultTime.fromJson(json["Time"]),
+        fastestLap: FastestLap.fromJson(json["FastestLap"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "number": number,
-    "position": position,
-    "positionText": positionText,
-    "points": points,
-    "Driver": driver.toJson(),
-    "Constructor": constructor.toJson(),
-    "grid": grid,
-    "laps": laps,
-    "status": statusValues.reverse[status],
-    "Time": time?.toJson(),
-    "FastestLap": fastestLap.toJson(),
-  };
+        "number": number,
+        "position": position,
+        "positionText": positionText,
+        "points": points,
+        "Driver": driver.toJson(),
+        "Constructor": constructor.toJson(),
+        "grid": grid,
+        "laps": laps,
+        "status": statusValues.reverse[status],
+        "Time": time?.toJson(),
+        "FastestLap": fastestLap.toJson(),
+      };
 }
 
 class Constructor {
@@ -260,18 +261,18 @@ class Constructor {
   });
 
   factory Constructor.fromJson(Map<String, dynamic> json) => Constructor(
-    constructorId: json["constructorId"],
-    url: json["url"],
-    name: json["name"],
-    nationality: json["nationality"],
-  );
+        constructorId: json["constructorId"],
+        url: json["url"],
+        name: json["name"],
+        nationality: json["nationality"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "constructorId": constructorId,
-    "url": url,
-    "name": name,
-    "nationality": nationality,
-  };
+        "constructorId": constructorId,
+        "url": url,
+        "name": name,
+        "nationality": nationality,
+      };
 }
 
 class Driver {
@@ -283,6 +284,7 @@ class Driver {
   String familyName;
   DateTime dateOfBirth;
   String nationality;
+  String? img;
 
   Driver({
     required this.driverId,
@@ -295,27 +297,32 @@ class Driver {
     required this.nationality,
   });
 
+  Driver.img(this.driverId, this.permanentNumber, this.code, this.url,
+      this.givenName, this.familyName, this.dateOfBirth, this.nationality)
+      : this.img = "img_$driverId";
+
   factory Driver.fromJson(Map<String, dynamic> json) => Driver(
-    driverId: json["driverId"],
-    permanentNumber: json["permanentNumber"],
-    code: json["code"],
-    url: json["url"],
-    givenName: json["givenName"],
-    familyName: json["familyName"],
-    dateOfBirth: DateTime.parse(json["dateOfBirth"]),
-    nationality: json["nationality"],
-  );
+        driverId: json["driverId"],
+        permanentNumber: json["permanentNumber"],
+        code: json["code"],
+        url: json["url"],
+        givenName: json["givenName"],
+        familyName: json["familyName"],
+        dateOfBirth: DateTime.parse(json["dateOfBirth"]),
+        nationality: json["nationality"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "driverId": driverId,
-    "permanentNumber": permanentNumber,
-    "code": code,
-    "url": url,
-    "givenName": givenName,
-    "familyName": familyName,
-    "dateOfBirth": "${dateOfBirth.year.toString().padLeft(4, '0')}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}",
-    "nationality": nationality,
-  };
+        "driverId": driverId,
+        "permanentNumber": permanentNumber,
+        "code": code,
+        "url": url,
+        "givenName": givenName,
+        "familyName": familyName,
+        "dateOfBirth":
+            "${dateOfBirth.year.toString().padLeft(4, '0')}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}",
+        "nationality": nationality,
+      };
 }
 
 class FastestLap {
@@ -332,18 +339,18 @@ class FastestLap {
   });
 
   factory FastestLap.fromJson(Map<String, dynamic> json) => FastestLap(
-    rank: json["rank"],
-    lap: json["lap"],
-    time: FastestLapTime.fromJson(json["Time"]),
-    averageSpeed: AverageSpeed.fromJson(json["AverageSpeed"]),
-  );
+        rank: json["rank"],
+        lap: json["lap"],
+        time: FastestLapTime.fromJson(json["Time"]),
+        averageSpeed: AverageSpeed.fromJson(json["AverageSpeed"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "rank": rank,
-    "lap": lap,
-    "Time": time.toJson(),
-    "AverageSpeed": averageSpeed.toJson(),
-  };
+        "rank": rank,
+        "lap": lap,
+        "Time": time.toJson(),
+        "AverageSpeed": averageSpeed.toJson(),
+      };
 }
 
 class AverageSpeed {
@@ -356,23 +363,19 @@ class AverageSpeed {
   });
 
   factory AverageSpeed.fromJson(Map<String, dynamic> json) => AverageSpeed(
-    units: unitsValues.map[json["units"]]!,
-    speed: json["speed"],
-  );
+        units: unitsValues.map[json["units"]]!,
+        speed: json["speed"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "units": unitsValues.reverse[units],
-    "speed": speed,
-  };
+        "units": unitsValues.reverse[units],
+        "speed": speed,
+      };
 }
 
-enum Units {
-  KPH
-}
+enum Units { KPH }
 
-final unitsValues = EnumValues({
-  "kph": Units.KPH
-});
+final unitsValues = EnumValues({"kph": Units.KPH});
 
 class FastestLapTime {
   String time;
@@ -382,19 +385,15 @@ class FastestLapTime {
   });
 
   factory FastestLapTime.fromJson(Map<String, dynamic> json) => FastestLapTime(
-    time: json["time"],
-  );
+        time: json["time"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "time": time,
-  };
+        "time": time,
+      };
 }
 
-enum Status {
-  FINISHED,
-  POWER_LOSS,
-  THE_1_LAP
-}
+enum Status { FINISHED, POWER_LOSS, THE_1_LAP }
 
 final statusValues = EnumValues({
   "Finished": Status.FINISHED,
@@ -412,14 +411,14 @@ class ResultTime {
   });
 
   factory ResultTime.fromJson(Map<String, dynamic> json) => ResultTime(
-    millis: json["millis"],
-    time: json["time"],
-  );
+        millis: json["millis"],
+        time: json["time"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "millis": millis,
-    "time": time,
-  };
+        "millis": millis,
+        "time": time,
+      };
 }
 
 class EnumValues<T> {
@@ -432,5 +431,4 @@ class EnumValues<T> {
     reverseMap = map.map((k, v) => MapEntry(v, k));
     return reverseMap;
   }
-
 }
