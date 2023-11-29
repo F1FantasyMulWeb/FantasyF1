@@ -24,6 +24,8 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
   RaceEventModel? carGlobal = null;
   List<Result>? resultado = null;
   Circuit? circuito = null;
+  Driver? primero = null;
+  String? imagenPrimero = null;
 
   Future<RaceEventModel?> initializeCarGlobal() async {
     Client cliente = Client();
@@ -35,6 +37,8 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
       carGlobal = gl;
       resultado = carGlobal!.mrData.raceTable.races.first.results;
       circuito = carGlobal!.mrData.raceTable.races.first.circuit;
+      primero = carGlobal!.mrData.raceTable.races.first.results.first.driver;
+      imagenPrimero = ("img_$primero _icon");
     });
     return null;
   }
@@ -42,6 +46,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
   @override
   void initState() {
     initializeCarGlobal();
+    print(imagenPrimero);
     super.initState();
   }
 
@@ -415,7 +420,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                                                   width: 106.h),
                                               CustomImageView(
                                                   imagePath: ImageConstant
-                                                      .imgImagenpilotoganador,
+                                                      .img_max_verstappen_icon,
                                                   height: 40.v,
                                                   width: 38.h,
                                                   radius: BorderRadius.circular(

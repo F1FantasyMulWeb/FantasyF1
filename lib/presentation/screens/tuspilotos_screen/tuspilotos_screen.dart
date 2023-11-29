@@ -251,8 +251,8 @@ class TuspilotosScreen extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     CustomImageView(
-                                        imagePath:
-                                            ImageConstant.imgIconmaxverst,
+                                        imagePath: ImageConstant
+                                            .img_max_verstappen_icon,
                                         height: 81.adaptSize,
                                         width: 81.adaptSize,
                                         radius: BorderRadius.circular(40.h)),

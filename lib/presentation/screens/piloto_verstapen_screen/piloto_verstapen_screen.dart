@@ -52,35 +52,60 @@ class _PilotoVerstapenScreen extends State<PilotoVerstapenScreen> {
                                               Align(
                                                 alignment: Alignment.center,
                                                 child: LayoutBuilder(
-                                                  builder: (BuildContext context, BoxConstraints constraints) {
+                                                  builder:
+                                                      (BuildContext context,
+                                                          BoxConstraints
+                                                              constraints) {
                                                     return Container(
-                                                      width: constraints.maxWidth,
-                                                      height: constraints.maxHeight,
+                                                      width:
+                                                          constraints.maxWidth,
+                                                      height:
+                                                          constraints.maxHeight,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
-                                                          image: AssetImage(ImageConstant.imgGroup3),
+                                                          image: AssetImage(
+                                                              ImageConstant
+                                                                  .imgGroup3),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
-                                                      padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 7.v),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10.h,
+                                                              vertical: 7.v),
                                                       child: Column(
-                                                        mainAxisSize: MainAxisSize.min,
-                                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
                                                         children: [
                                                           Padding(
-                                                            padding: EdgeInsets.only(right: 1.h),
-                                                            child:
-                                                            Text(
-                                                              nombrePiloto().toString().tr,
-                                                              style: CustomTextStyles.displaySmallWhiteA70001,
-                                                              textAlign: TextAlign.center,
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 1.h),
+                                                            child: Text(
+                                                              nombrePiloto()
+                                                                  .toString()
+                                                                  .tr,
+                                                              style: CustomTextStyles
+                                                                  .displaySmallWhiteA70001,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
                                                             ),
                                                           ),
                                                           CustomImageView(
-                                                            imagePath: ImageConstant.imgImage2929x57,
+                                                            imagePath: ImageConstant
+                                                                .imgImage2929x57,
                                                             height: 29.v,
                                                             width: 57.h,
-                                                            margin: EdgeInsets.only(top: 41.v, right: 33.h, bottom: 41.v),
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    top: 41.v,
+                                                                    right: 33.h,
+                                                                    bottom:
+                                                                        41.v),
                                                           ),
                                                         ],
                                                       ),
@@ -90,7 +115,7 @@ class _PilotoVerstapenScreen extends State<PilotoVerstapenScreen> {
                                               ),
                                               CustomImageView(
                                                   imagePath: ImageConstant
-                                                      .imgVerstappen291x271,
+                                                      .img_max_verstappen_body,
                                                   height: 291.v,
                                                   width: 271.h,
                                                   alignment:
@@ -135,7 +160,7 @@ class _PilotoVerstapenScreen extends State<PilotoVerstapenScreen> {
                                                 SizedBox(height: 6.v),
                                                 CustomImageView(
                                                     imagePath: ImageConstant
-                                                        .imgIconmaxverst1,
+                                                        .img_max_verstappen_icon,
                                                     height: 45.adaptSize,
                                                     width: 45.adaptSize,
                                                     radius:

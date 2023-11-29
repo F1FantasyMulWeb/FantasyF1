@@ -7,29 +7,26 @@ import 'package:flutter/material.dart';
 
 import '../../../api/modelo/RaceEventModel.dart';
 
-
 class ListaPilotosScreen extends StatefulWidget {
   const ListaPilotosScreen({Key? key}) : super(key: key);
-
 
   @override
   _ListaPilotosScreen createState() => _ListaPilotosScreen();
 }
 
-
-
 class _ListaPilotosScreen extends State<ListaPilotosScreen> {
-
   RaceEventModel? carGlobal = null;
   List<Result>? result = null;
 
   Future<RaceEventModel?> initializeCarGlobal() async {
     Client cliente = Client();
-    var gl = await cliente.getResults("current", "5", "results",queryParams: "limit=15").whenComplete(() => print("cargado"));
+    var gl = await cliente
+        .getResults("current", "5", "results", queryParams: "limit=15")
+        .whenComplete(() => print("cargado"));
     print(carGlobal);
     setState(() {
       carGlobal = gl;
-      result= carGlobal!.mrData.raceTable.races.first.results;
+      result = carGlobal!.mrData.raceTable.races.first.results;
     });
     return null;
   }
@@ -38,9 +35,8 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
   void initState() {
     initializeCarGlobal();
 
-
     super.initState();
- //   Client cliente = Client();
+    //   Client cliente = Client();
     //RaceEventModel? carGlobal;
 /*    Stream<RaceEventModel?> obternerInfoCarrera() async* {
       yield await cliente.getResults("current", "last", "results",queryParams: "limit=15");
@@ -56,8 +52,8 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
 
     }
 escucharStreamCarrera();*/
-
   }
+
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -74,15 +70,15 @@ escucharStreamCarrera();*/
               leading: Builder(
                 builder: (context) => IconButton(
                   icon: Icon(Icons.menu),
-                  iconSize: 35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                  iconSize:
+                      35, // Ajusta este valor para cambiar el tamaño del icono del menú
                   onPressed: () => Scaffold.of(context).openDrawer(),
                 ),
               ),
             ),
             drawer: Drawer(
-              // Aquí puedes poner el contenido de tu Drawer
-            ),
-
+                // Aquí puedes poner el contenido de tu Drawer
+                ),
             body: SizedBox(
                 width: mediaQueryData.size.width,
                 child: SingleChildScrollView(
@@ -114,7 +110,7 @@ escucharStreamCarrera();*/
                                             children: [
                                               CustomImageView(
                                                   imagePath: ImageConstant
-                                                      .imgImagen20230928112021437,
+                                                      .img_max_verstappen_bodySmall,
                                                   height: 66.v,
                                                   width: 62.h,
                                                   radius: BorderRadius.circular(
@@ -149,63 +145,21 @@ escucharStreamCarrera();*/
                                     SizedBox(
                                         height: 66.v,
                                         width: 275.h,
-                              child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                CustomImageView(
-                                    imagePath: ImageConstant
-                                        .imgCheco,
-                                    height: 66.v,
-                                    width: 62.h,
-                                    radius: BorderRadius.circular(
-                                        31.h),
-                                    alignment:
-                                    Alignment.centerLeft),
-                                CustomImageView(
-                                    svgPath:
-                                    ImageConstant.imgVector1,
-                                    height: 65.v,
-                                    width: 273.h,
-                                    alignment: Alignment.center,
-                                    onTap: () {
-                                      onTapImgVectoroneone(
-                                          context);
-                                    }),
-                                Align(
-                                    alignment:
-                                    Alignment.bottomRight,
-                                    child: Padding(
-                                        padding: EdgeInsets.only(
-                                            bottom: 19.v),
-                                        child: Text(
-                                            result == null ? "lbl_perez".tr :
-                                            result![14].driver.familyName
-                                            ,
-
-                                            textAlign:
-                                            TextAlign.center,
-                                            style: theme.textTheme
-                                                .titleLarge)))
-                              ])),
-                                    SizedBox(height: 2.v),
-                                    SizedBox(
-                                        height: 66.v,
-                                        width: 275.h,
                                         child: Stack(
                                             alignment: Alignment.center,
                                             children: [
                                               CustomImageView(
-                                                  imagePath: ImageConstant
-                                                      .imgCheco,
+                                                  imagePath:
+                                                      ImageConstant.imgCheco,
                                                   height: 66.v,
                                                   width: 62.h,
                                                   radius: BorderRadius.circular(
                                                       31.h),
                                                   alignment:
-                                                  Alignment.centerLeft),
+                                                      Alignment.centerLeft),
                                               CustomImageView(
                                                   svgPath:
-                                                  ImageConstant.imgVector1,
+                                                      ImageConstant.imgVector1,
                                                   height: 65.v,
                                                   width: 273.h,
                                                   alignment: Alignment.center,
@@ -215,17 +169,18 @@ escucharStreamCarrera();*/
                                                   }),
                                               Align(
                                                   alignment:
-                                                  Alignment.bottomRight,
+                                                      Alignment.bottomRight,
                                                   child: Padding(
                                                       padding: EdgeInsets.only(
                                                           bottom: 19.v),
                                                       child: Text(
-                                                          carGlobal == null ? "lbl_perez".tr :
-                                                          carGlobal!.mrData.raceTable.races.toList().first.results[2].driver.familyName
-                                                          ,
-
+                                                          result == null
+                                                              ? "lbl_perez".tr
+                                                              : result![14]
+                                                                  .driver
+                                                                  .familyName,
                                                           textAlign:
-                                                          TextAlign.center,
+                                                              TextAlign.center,
                                                           style: theme.textTheme
                                                               .titleLarge)))
                                             ])),
@@ -237,17 +192,66 @@ escucharStreamCarrera();*/
                                             alignment: Alignment.center,
                                             children: [
                                               CustomImageView(
-                                                  imagePath: ImageConstant
-                                                      .imgCheco,
+                                                  imagePath:
+                                                      ImageConstant.imgCheco,
                                                   height: 66.v,
                                                   width: 62.h,
                                                   radius: BorderRadius.circular(
                                                       31.h),
                                                   alignment:
-                                                  Alignment.centerLeft),
+                                                      Alignment.centerLeft),
                                               CustomImageView(
                                                   svgPath:
-                                                  ImageConstant.imgVector1,
+                                                      ImageConstant.imgVector1,
+                                                  height: 65.v,
+                                                  width: 273.h,
+                                                  alignment: Alignment.center,
+                                                  onTap: () {
+                                                    onTapImgVectoroneone(
+                                                        context);
+                                                  }),
+                                              Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: Padding(
+                                                      padding: EdgeInsets.only(
+                                                          bottom: 19.v),
+                                                      child: Text(
+                                                          carGlobal == null
+                                                              ? "lbl_perez".tr
+                                                              : carGlobal!
+                                                                  .mrData
+                                                                  .raceTable
+                                                                  .races
+                                                                  .toList()
+                                                                  .first
+                                                                  .results[2]
+                                                                  .driver
+                                                                  .familyName,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: theme.textTheme
+                                                              .titleLarge)))
+                                            ])),
+                                    SizedBox(height: 2.v),
+                                    SizedBox(
+                                        height: 66.v,
+                                        width: 275.h,
+                                        child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              CustomImageView(
+                                                  imagePath:
+                                                      ImageConstant.imgCheco,
+                                                  height: 66.v,
+                                                  width: 62.h,
+                                                  radius: BorderRadius.circular(
+                                                      31.h),
+                                                  alignment:
+                                                      Alignment.centerLeft),
+                                              CustomImageView(
+                                                  svgPath:
+                                                      ImageConstant.imgVector1,
                                                   height: 65.v,
                                                   width: 273.h,
                                                   alignment: Alignment.center,
@@ -256,23 +260,29 @@ escucharStreamCarrera();*/
                                                   }),
                                               Align(
                                                   alignment:
-                                                  Alignment.bottomRight,
+                                                      Alignment.bottomRight,
                                                   child: Padding(
                                                       padding: EdgeInsets.only(
                                                           bottom: 19.v),
                                                       child: Text(
-                                                          carGlobal == null ? "lbl_perez".tr :
-                                                          carGlobal!.mrData.raceTable.races.toList().first.results[3].driver.familyName
-                                                          ,
-
+                                                          carGlobal == null
+                                                              ? "lbl_perez".tr
+                                                              : carGlobal!
+                                                                  .mrData
+                                                                  .raceTable
+                                                                  .races
+                                                                  .toList()
+                                                                  .first
+                                                                  .results[3]
+                                                                  .driver
+                                                                  .familyName,
                                                           textAlign:
-                                                          TextAlign.center,
+                                                              TextAlign.center,
                                                           style: theme.textTheme
                                                               .titleLarge)))
                                             ])),
                                     SizedBox(height: 2.v),
-                                  ])
-                          )
+                                  ]))
                         ]))))));
   }
 
@@ -284,9 +294,8 @@ escucharStreamCarrera();*/
   onTapImgVectoroneone(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.pilotoVerstapenScreen);
   }
+
   onTapPerez(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.checoPerezScreen);
   }
-
-
 }

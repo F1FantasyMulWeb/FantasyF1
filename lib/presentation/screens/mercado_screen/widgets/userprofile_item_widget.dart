@@ -149,7 +149,7 @@ class UserprofileItemWidget extends StatelessWidget {
             ),
           ),
           CustomImageView(
-            imagePath: ImageConstant.imgImagen20230928112021437,
+            imagePath: ImageConstant.img_max_verstappen_body,
             height: 66.v,
             width: 62.h,
             radius: BorderRadius.circular(

@@ -154,7 +154,7 @@ class PerfilCarrerasScreen extends StatelessWidget {
                                                                   CustomImageView(
                                                                       imagePath:
                                                                           ImageConstant
-                                                                              .imgIconmaxverst,
+                                                                              .img_max_verstappen_icon,
                                                                       height: 81
                                                                           .adaptSize,
                                                                       width: 81

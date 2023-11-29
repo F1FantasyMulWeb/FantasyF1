@@ -21,7 +21,6 @@ class ChecoPerezScreen extends StatefulWidget {
 }
 
 class _ChecoPerezScreen extends State<ChecoPerezScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -53,34 +52,58 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                               Align(
                                                 alignment: Alignment.center,
                                                 child: LayoutBuilder(
-                                                  builder: (BuildContext context, BoxConstraints constraints) {
+                                                  builder:
+                                                      (BuildContext context,
+                                                          BoxConstraints
+                                                              constraints) {
                                                     return Container(
-                                                      width: constraints.maxWidth,
-                                                      height: constraints.maxHeight,
+                                                      width:
+                                                          constraints.maxWidth,
+                                                      height:
+                                                          constraints.maxHeight,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
-                                                          image: AssetImage(ImageConstant.imgGroup3),
+                                                          image: AssetImage(
+                                                              ImageConstant
+                                                                  .imgGroup3),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
-                                                      padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 7.v),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10.h,
+                                                              vertical: 7.v),
                                                       child: Column(
-                                                        mainAxisSize: MainAxisSize.min,
-                                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
                                                         children: [
                                                           Center(
-                                                            child:
-                                                            Text(
-                                                              nombrePiloto().toString().tr,
-                                                              style: CustomTextStyles.displaySmallWhiteA70001,
-                                                              textAlign: TextAlign.center,
+                                                            child: Text(
+                                                              nombrePiloto()
+                                                                  .toString()
+                                                                  .tr,
+                                                              style: CustomTextStyles
+                                                                  .displaySmallWhiteA70001,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
                                                             ),
                                                           ),
                                                           CustomImageView(
-                                                            imagePath: ImageConstant.imgImage28,
+                                                            imagePath:
+                                                                ImageConstant
+                                                                    .imgImage28,
                                                             height: 29.v,
                                                             width: 57.h,
-                                                            margin: EdgeInsets.only(top: 41.v, right: 33.h, bottom: 41.v),
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    top: 41.v,
+                                                                    right: 33.h,
+                                                                    bottom:
+                                                                        41.v),
                                                           ),
                                                         ],
                                                       ),
@@ -89,11 +112,12 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                                 ),
                                               ),
                                               CustomImageView(
-                                                  imagePath: ImageConstant.imgCheco,
+                                                  imagePath:
+                                                      ImageConstant.imgCheco,
                                                   height: 291.v,
                                                   width: 271.h,
                                                   alignment:
-                                                  Alignment.bottomCenter)
+                                                      Alignment.bottomCenter)
                                             ])),
                                     Container(
                                         width: 215.h,
@@ -112,7 +136,7 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                             left: 28.h, top: 12.v, right: 44.h),
                                         child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               CustomImageView(
                                                   svgPath: ImageConstant
@@ -134,12 +158,12 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                                 SizedBox(height: 6.v),
                                                 CustomImageView(
                                                     imagePath: ImageConstant
-                                                        .imgIconmaxverst1,
+                                                        .img_max_verstappen_icon,
                                                     height: 45.adaptSize,
                                                     width: 45.adaptSize,
                                                     radius:
-                                                    BorderRadius.circular(
-                                                        22.h)),
+                                                        BorderRadius.circular(
+                                                            22.h)),
                                                 SizedBox(height: 6.v),
                                                 CustomImageView(
                                                     svgPath: ImageConstant

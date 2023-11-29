@@ -66,9 +66,11 @@ class ImageConstant {
   // Piloto Verstapen images
   static String imgImage2929x57 = '$imagePath/img_image29_29x57.png';
 
-  static String imgVerstappen291x271 = '$imagePath/img_verstappen_291x271.png';
+  static String img_max_verstappen_body =
+      '$imagePath/img_max_verstappen_body.png';
 
-  static String imgIconmaxverst1 = '$imagePath/img_iconmaxverst_1.png';
+  static String img_max_verstappen_iconSmall =
+      '$imagePath/img_max_verstappen_iconSmall.png';
 
   // Circuito Bahréin images
   static String imgEllipse1 = '$imagePath/img_ellipse1.png';
@@ -159,7 +161,8 @@ class ImageConstant {
 
   static String imgImage7 = '$imagePath/img_image7.png';
 
-  static String imgIconmaxverst = '$imagePath/img_iconmaxverst.png';
+  static String img_max_verstappen_icon =
+      '$imagePath/img_max_verstappen_icon.png';
 
   static String imgImage12 = '$imagePath/img_image12.png';
 
@@ -176,8 +179,8 @@ class ImageConstant {
   static String imgImagen20230928115059716 =
       '$imagePath/img_imagen20230928115059716.png';
 
-  static String imgImagen20230928112021437 =
-      '$imagePath/img_imagen20230928112021437.png';
+  static String img_max_verstappen_bodySmall =
+      '$imagePath/img_max_verstappen_bodySmall.png';
 
   static String imgImage32 = '$imagePath/img_image32.png';
 
