@@ -246,7 +246,9 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                       ),
                       ListTile(
                         title: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            onTapGrupos(context);
+                          },
                           icon: Icon(
                             Icons.groups_2,
                             color: Color(0xCC000000),
@@ -554,4 +556,10 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
     Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen
     );
   }
+  onTapGrupos(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.listaGruposScreen
+    );
+  }
 }
+
+

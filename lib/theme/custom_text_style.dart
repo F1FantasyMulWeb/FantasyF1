@@ -66,7 +66,7 @@ class CustomTextStyles {
         color: appTheme.red400,
       );
   static get displaySmall35 => theme.textTheme.displaySmall!.copyWith(
-        fontSize: 35.fSize,
+        fontSize: 10.fSize,
       );
   static get displaySmallInter => theme.textTheme.displaySmall!.inter.copyWith(
         fontWeight: FontWeight.w500,
