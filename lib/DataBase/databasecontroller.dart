@@ -151,6 +151,18 @@ class DataBaseController {
       }
     }
   }
+  Future<bool> sendDataGrupo(String nombreUsuario, String contrasenaUsuario) async {
+    final response = await client.from('Grupos').insert([
+      {'nombreGrupo': nombreUsuario, 'contraseñaGrupo': contrasenaUsuario}
+    ]);
+    if (response == null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
 
 
 }

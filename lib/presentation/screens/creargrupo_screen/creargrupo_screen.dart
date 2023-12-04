@@ -1,3 +1,6 @@
+import 'dart:io';
+
+
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
@@ -5,14 +8,42 @@ import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+
+import '../../../DataBase/databasecontroller.dart';
+
 
 // ignore_for_file: must_be_immutable
-class CreargrupoScreen extends StatelessWidget {
+class CreargrupoScreen extends StatefulWidget {
   CreargrupoScreen({Key? key}) : super(key: key);
 
-  TextEditingController userController = TextEditingController();
 
-  TextEditingController mingcutelocklinController = TextEditingController();
+  @override
+  _CreargrupoScreen createState() => _CreargrupoScreen();
+}
+
+
+class _CreargrupoScreen extends State<CreargrupoScreen> {
+
+
+  TextEditingController usernameoneController = TextEditingController();
+
+
+  TextEditingController passwordController = TextEditingController();
+
+
+  DataBaseController clienteController = DataBaseController(
+      Supabase.instance.client);
+
+
+  @override
+  void dispose() {
+    passwordController.dispose();
+    usernameoneController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +56,7 @@ class CreargrupoScreen extends StatelessWidget {
                 leading: AppbarImage(
                     svgPath: ImageConstant.imgMenu,
                     margin:
-                        EdgeInsets.only(left: 31.h, top: 11.v, bottom: 12.v)),
+                    EdgeInsets.only(left: 31.h, top: 11.v, bottom: 12.v)),
                 centerTitle: true,
                 title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
             body: SizedBox(
@@ -71,15 +102,16 @@ class CreargrupoScreen extends StatelessWidget {
                                             .titleSmallOnErrorContainer),
                                     SizedBox(height: 6.v),
                                     CustomTextFormField(
-                                        controller: userController,
+                                        obscureText: false,
+                                        controller: usernameoneController,
                                         prefix: Container(
                                             margin: EdgeInsets.fromLTRB(
                                                 16.h, 14.v, 30.h, 14.v),
                                             child: CustomImageView(
                                                 svgPath:
-                                                    ImageConstant.imgUser)),
+                                                ImageConstant.imgUser)),
                                         prefixConstraints:
-                                            BoxConstraints(maxHeight: 48.v))
+                                        BoxConstraints(maxHeight: 48.v))
                                   ])),
                           Padding(
                               padding: EdgeInsets.only(
@@ -92,7 +124,7 @@ class CreargrupoScreen extends StatelessWidget {
                                             .titleSmallOnErrorContainer),
                                     SizedBox(height: 7.v),
                                     CustomTextFormField(
-                                        controller: mingcutelocklinController,
+                                        controller: passwordController,
                                         textInputAction: TextInputAction.done,
                                         prefix: Container(
                                             margin: EdgeInsets.fromLTRB(
@@ -101,7 +133,7 @@ class CreargrupoScreen extends StatelessWidget {
                                                 svgPath: ImageConstant
                                                     .imgMingcutelockline)),
                                         prefixConstraints:
-                                            BoxConstraints(maxHeight: 48.v))
+                                        BoxConstraints(maxHeight: 48.v))
                                   ])),
                           SizedBox(height: 32.v),
                           Text("lbl_imagen_de_grupo".tr,
@@ -125,12 +157,18 @@ class CreargrupoScreen extends StatelessWidget {
                         ]))))));
   }
 
+
   /// Navigates to the listaGruposScreen when the action is triggered.
   ///
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the listaGruposScreen.
-  onTapCreargrupo(BuildContext context) {
+  onTapCreargrupo(BuildContext context) async {
+    print(usernameoneController.text);
+    print(passwordController.text);
+    final checkSend = await clienteController.sendDataGrupo(
+        usernameoneController.text, passwordController.text);
     Navigator.pushNamed(context, AppRoutes.listaGruposScreen);
   }
+
 }
