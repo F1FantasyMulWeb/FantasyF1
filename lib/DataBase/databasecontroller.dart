@@ -90,10 +90,13 @@ class DataBaseController {
   Future<void> downloadAvatarInicio() async {
     String userName = await selectUserName();
     String url = 'UserData/$userName/ImagenAvatar.jpg';
-
-    // Obtén la URL firmada
-    final signedUrl =
-    await client.storage.from('F1Fantasy').createSignedUrl(url, 15);
+    final signedUrl;
+    try {
+      signedUrl =
+      await client.storage.from('F1Fantasy').createSignedUrl(url, 15);
+    }catch(e){
+      return;
+    }
 
     // Descarga el archivo
     final response = await http.get(Uri.parse(signedUrl));
