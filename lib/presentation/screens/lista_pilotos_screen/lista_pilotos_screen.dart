@@ -1,8 +1,5 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
-import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/modelo/RaceEventModel.dart';
@@ -109,8 +106,14 @@ escucharStreamCarrera();*/
                                             alignment: Alignment.center,
                                             children: [
                                               CustomImageView(
-                                                  imagePath: ImageConstant
-                                                      .img_max_verstappen_bodySmall,
+                                                  imagePath: result == null
+                                                      ? ImageConstant
+                                                          .imageNotFound
+                                                      : ImageConstant.imgDriver(
+                                                          result![0]
+                                                              .driver
+                                                              .driverId,
+                                                          0),
                                                   height: 66.v,
                                                   width: 62.h,
                                                   radius: BorderRadius.circular(
@@ -141,7 +144,6 @@ escucharStreamCarrera();*/
                                                           style: theme.textTheme
                                                               .titleLarge)))
                                             ])),
-                                    SizedBox(height: 2.v),
                                     SizedBox(
                                         height: 66.v,
                                         width: 275.h,
@@ -149,8 +151,14 @@ escucharStreamCarrera();*/
                                             alignment: Alignment.center,
                                             children: [
                                               CustomImageView(
-                                                  imagePath:
-                                                      ImageConstant.imgCheco,
+                                                  imagePath: result == null
+                                                      ? ImageConstant
+                                                          .imageNotFound
+                                                      : ImageConstant.imgDriver(
+                                                          result![1]
+                                                              .driver
+                                                              .driverId,
+                                                          0),
                                                   height: 66.v,
                                                   width: 62.h,
                                                   radius: BorderRadius.circular(
@@ -176,7 +184,7 @@ escucharStreamCarrera();*/
                                                       child: Text(
                                                           result == null
                                                               ? "lbl_perez".tr
-                                                              : result![14]
+                                                              : result![1]
                                                                   .driver
                                                                   .familyName,
                                                           textAlign:
@@ -184,7 +192,6 @@ escucharStreamCarrera();*/
                                                           style: theme.textTheme
                                                               .titleLarge)))
                                             ])),
-                                    SizedBox(height: 2.v),
                                     SizedBox(
                                         height: 66.v,
                                         width: 275.h,
@@ -192,8 +199,14 @@ escucharStreamCarrera();*/
                                             alignment: Alignment.center,
                                             children: [
                                               CustomImageView(
-                                                  imagePath:
-                                                      ImageConstant.imgCheco,
+                                                  imagePath: result == null
+                                                      ? ImageConstant
+                                                          .imageNotFound
+                                                      : ImageConstant.imgDriver(
+                                                          result![2]
+                                                              .driver
+                                                              .driverId,
+                                                          0),
                                                   height: 66.v,
                                                   width: 62.h,
                                                   radius: BorderRadius.circular(
@@ -233,7 +246,6 @@ escucharStreamCarrera();*/
                                                           style: theme.textTheme
                                                               .titleLarge)))
                                             ])),
-                                    SizedBox(height: 2.v),
                                     SizedBox(
                                         height: 66.v,
                                         width: 275.h,
@@ -241,8 +253,14 @@ escucharStreamCarrera();*/
                                             alignment: Alignment.center,
                                             children: [
                                               CustomImageView(
-                                                  imagePath:
-                                                      ImageConstant.imgCheco,
+                                                  imagePath: result == null
+                                                      ? ImageConstant
+                                                          .imageNotFound
+                                                      : ImageConstant.imgDriver(
+                                                          result![3]
+                                                              .driver
+                                                              .driverId,
+                                                          0),
                                                   height: 66.v,
                                                   width: 62.h,
                                                   radius: BorderRadius.circular(
@@ -281,7 +299,50 @@ escucharStreamCarrera();*/
                                                           style: theme.textTheme
                                                               .titleLarge)))
                                             ])),
-                                    SizedBox(height: 2.v),
+                                    for (var i in result!)
+                                      Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            CustomImageView(
+                                                imagePath: result == null
+                                                    ? ImageConstant
+                                                        .imageNotFound
+                                                    : ImageConstant.imgDriver(
+                                                        i.driver.driverId, 0),
+                                                height: 66.v,
+                                                width: 62.h,
+                                                radius:
+                                                    BorderRadius.circular(31.h),
+                                                alignment:
+                                                    Alignment.centerLeft),
+                                            CustomImageView(
+                                                svgPath:
+                                                    ImageConstant.imgVector1,
+                                                height: 65.v,
+                                                width: 273.h,
+                                                alignment: Alignment.center,
+                                                onTap: () {
+                                                  onTapPerez(context);
+                                                }),
+                                            Align(
+                                                alignment:
+                                                    Alignment.bottomRight,
+                                                child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 19.v),
+                                                    child: Text(
+                                                        carGlobal == null
+                                                            ? "lbl_perez".tr
+                                                            : i.driver
+                                                                    .givenName +
+                                                                ' ' +
+                                                                i.driver
+                                                                    .familyName,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: theme.textTheme
+                                                            .titleLarge)))
+                                          ]),
                                   ]))
                         ]))))));
   }

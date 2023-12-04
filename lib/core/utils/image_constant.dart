@@ -213,4 +213,29 @@ class ImageConstant {
   static String imgGroup37 = '$imagePath/img_group37.png';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+
+  static String imgDriver(String driver, int tipoImage) {
+    //0 body
+    //1 bodySmall
+    //2 icon
+    //3 iconSmall
+    String tipo = '';
+    switch (tipoImage) {
+      case 0:
+        tipo = 'body';
+        break;
+      case 1:
+        tipo = 'bodySmall';
+        break;
+      case 3:
+        tipo = 'icon';
+        break;
+      case 4:
+        tipo = 'iconSmall';
+        break;
+      default:
+    }
+
+    return '$imagePath/img_' + '$driver' + '_' + '$tipo.png';
+  }
 }
