@@ -55,6 +55,7 @@ class DataBaseController {
     // Sube el nuevo archivo
     final response =
         await client.storage.from('F1Fantasy').upload(url, File(path));
+    downloadAvatarInicio();
   }
 
   Future<File> downloadAvatar() async {
@@ -109,9 +110,15 @@ class DataBaseController {
     // Crea un archivo en la carpeta de datos del usuario
     final file = File('${userDirectory.path}/$userName.jpg');
 
+    // Si el archivo ya existe, bórralo
+    if (await file.exists()) {
+      await file.delete();
+    }
+
     // Escribe los bytes de la respuesta en el archivo
     await file.writeAsBytes(response.bodyBytes);
   }
+
 
 
   Future<File> selectAvatarImage() async {

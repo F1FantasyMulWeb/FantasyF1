@@ -27,13 +27,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isChecked = false;
-  DataBaseController clientController =
-      DataBaseController(Supabase.instance.client);
-  @override
-  void init(){
-    super.initState();
-    clientController.downloadAvatarInicio();
-  }
+  late DataBaseController clientController;
 
   @override
   void dispose() {
@@ -330,6 +324,9 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
       );
       final user = response.user;
       if (user != null) {
+        clientController =
+            DataBaseController(Supabase.instance.client);
+        clientController.downloadAvatarInicio();
         onTapIniciarsesin(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -352,7 +349,7 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
   }
 
   onTapIniciarsesin(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen
+    Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen
     );
   }
 

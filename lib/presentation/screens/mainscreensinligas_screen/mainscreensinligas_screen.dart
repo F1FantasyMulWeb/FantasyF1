@@ -7,16 +7,48 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../DataBase/databasecontroller.dart';
+import '../../../api/configuracionApi.dart';
+import '../../../api/modelo/RaceEventModel.dart';
 
 class MainscreensinligasScreen extends StatefulWidget {
   const MainscreensinligasScreen({Key? key}) : super(key: key);
   @override
-  _MainscreensinligasScreenState createState() => _MainscreensinligasScreenState();
+  _MainscreensinligasScreenState createState() =>
+      _MainscreensinligasScreenState();
 }
 
-  class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
+class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
   DataBaseController clienteController =
-  DataBaseController(Supabase.instance.client);
+      DataBaseController(Supabase.instance.client);
+
+  RaceEventModel? carGlobal = null;
+  List<Result>? resultado = null;
+  Circuit? circuito = null;
+  Driver? primero = null;
+  String? imagenPrimero = null;
+
+  Future<RaceEventModel?> initializeCarGlobal() async {
+    Client cliente = Client();
+    var gl = await cliente
+        .getResults("current", "5", "results", queryParams: "limit=15")
+        .whenComplete(() => print("cargado"));
+    print(carGlobal);
+    setState(() {
+      carGlobal = gl;
+      resultado = carGlobal!.mrData.raceTable.races.first.results;
+      circuito = carGlobal!.mrData.raceTable.races.first.circuit;
+      primero = carGlobal!.mrData.raceTable.races.first.results.first.driver;
+      imagenPrimero = ("img_$primero _icon");
+    });
+    return null;
+  }
+
+  @override
+  void initState() {
+    initializeCarGlobal();
+    print(imagenPrimero);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,28 +59,27 @@ class MainscreensinligasScreen extends StatefulWidget {
         child: SafeArea(
             child: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.white,
-                  leading: Builder(
-                    builder: (context) => IconButton(
-                      icon: Icon(Icons.menu),
-                      iconSize: 35, // Ajusta este valor para cambiar el tamaño del icono del menú
-                      onPressed: () => Scaffold.of(context).openDrawer(),
+                    backgroundColor: Colors.white,
+                    leading: Builder(
+                      builder: (context) => IconButton(
+                        icon: Icon(Icons.menu),
+                        iconSize:
+                            35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      ),
                     ),
-                  ),
-                  actions: [
-                    Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 30.h, vertical: 12.v),
-                        decoration: AppDecoration.fillWhiteA.copyWith(
-                            borderRadius: BorderRadiusStyle.roundedBorder15),
-                        child: AppbarCircleimage(
-                            imagePath: ImageConstant.imgDownload31x33,
-                            onTap: () {
-                              onTapDownloadone(context);
-                            }))
-                  ]
-                ),
-
+                    actions: [
+                      Container(
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 30.h, vertical: 12.v),
+                          decoration: AppDecoration.fillWhiteA.copyWith(
+                              borderRadius: BorderRadiusStyle.roundedBorder15),
+                          child: AppbarCircleimage(
+                              imagePath: ImageConstant.imgDownload31x33,
+                              onTap: () {
+                                onTapDownloadone(context);
+                              }))
+                    ]),
                 drawer: Drawer(
                   child: ListView(
                     padding: EdgeInsets.zero,
@@ -348,7 +379,7 @@ class MainscreensinligasScreen extends StatefulWidget {
                                         SizedBox(height: 6.v),
                                         Container(
                                             padding: EdgeInsets.symmetric(
-                                                horizontal: 27.h,
+                                                horizontal: 15.h,
                                                 vertical: 4.v),
                                             decoration: AppDecoration
                                                 .outlinePrimary3
@@ -369,8 +400,14 @@ class MainscreensinligasScreen extends StatefulWidget {
                                                   Padding(
                                                       padding: EdgeInsets.only(
                                                           top: 6.v,
-                                                          right: 70.h),
-                                                      child: Text("lbl".tr,
+                                                          right: 25.h),
+                                                      child: Text(
+                                                          resultado == null
+                                                              ? "".tr
+                                                              : circuito!
+                                                                  .circuitName,
+                                                          textAlign:
+                                                              TextAlign.center,
                                                           style: CustomTextStyles
                                                               .displaySmall35))
                                                 ])),
@@ -385,7 +422,7 @@ class MainscreensinligasScreen extends StatefulWidget {
                                                   width: 106.h),
                                               CustomImageView(
                                                   imagePath: ImageConstant
-                                                      .imgImagenpilotoganador,
+                                                      .img_max_verstappen_icon,
                                                   height: 40.v,
                                                   width: 38.h,
                                                   radius: BorderRadius.circular(
@@ -399,7 +436,14 @@ class MainscreensinligasScreen extends StatefulWidget {
                                                       left: 22.h,
                                                       top: 17.v,
                                                       bottom: 14.v),
-                                                  child: Text("lbl_puntos".tr,
+                                                  child: Text(
+                                                      resultado == null
+                                                          ? "Puntos: ".tr
+                                                          : "Puntos: " +
+                                                              resultado!
+                                                                  .first.points,
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: CustomTextStyles
                                                           .bodyMediumFormula1))
                                             ]))
@@ -502,9 +546,9 @@ class MainscreensinligasScreen extends StatefulWidget {
   onTapUnirseagrupo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
   }
+
   onTaplistaPilotos(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.listaPilotosScreen
-    );
+    Navigator.pushNamed(context, AppRoutes.listaPilotosScreen);
   }
   onTaplistaCircuitos(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen

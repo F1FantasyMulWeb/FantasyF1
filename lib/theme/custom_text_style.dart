@@ -56,7 +56,7 @@ class CustomTextStyles {
       );
   static get displayMediumOnPrimaryUserName => theme.textTheme.displayMedium!.copyWith(
     color: theme.colorScheme.onPrimary,
-    fontSize: 35.fSize,
+    fontSize: 30.fSize,
   );
   static get displayMediumOnUserName => theme.textTheme.displaySmall!.copyWith(
         color: theme.colorScheme.onPrimary,

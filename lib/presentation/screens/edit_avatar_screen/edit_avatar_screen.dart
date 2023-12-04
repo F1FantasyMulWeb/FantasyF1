@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:async/async.dart';
 import '../../../DataBase/databasecontroller.dart';
 
 class EditAvatarScreen extends StatefulWidget {
@@ -22,7 +22,8 @@ class EditAvatarScreen extends StatefulWidget {
 }
 
 class _EditAvatarScreen extends State<EditAvatarScreen> {
-  Future<void>? _uploadFuture;
+  FutureGroup<void> futureGroup = FutureGroup<void>();
+  Future<void>? _uploadFuture,_dowlonadFuture;
   DataBaseController clienteController =
       DataBaseController(Supabase.instance.client);
   File? _selectedImage;
@@ -63,14 +64,15 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
                     return InkWell(
                       onTap: isEnabled ? () {
                         setState(() {
-                          _uploadFuture = clienteController.uploadAvatar(image.path);
+                          _uploadFuture = clienteController.uploadAvatar(_selectedImage!.path);
+                          _dowlonadFuture = clienteController.downloadAvatar();
                         });
                       } : null,
-                      child: FutureBuilder<void>(
-                        future: _uploadFuture,
-                        builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+                      child: FutureBuilder<List<void>>(
+                        future: Future.wait([_uploadFuture ?? Future.value(), _dowlonadFuture ?? Future.value(),]),
+                        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
                           if (snapshot.connectionState == ConnectionState.waiting) {
-                            return CircularProgressIndicator();  // Muestra un indicador de progreso mientras se está cargando
+                            return CircularProgressIndicator();
                           } else {
                             return Container(
                               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),

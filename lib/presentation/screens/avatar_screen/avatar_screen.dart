@@ -26,7 +26,11 @@ class _AvatarScreenState extends State<AvatarScreen> {
   @override
   void initState() {
     super.initState();
-    _imageFile = clienteController.selectAvatarImage(); // Descarga la imagen cuando se inicializa el widget
+    inicializarAvatar();
+  }
+
+  inicializarAvatar() async {
+      _imageFile = clienteController.selectAvatarImage();
   }
 
   @override
@@ -101,13 +105,17 @@ class _AvatarScreenState extends State<AvatarScreen> {
                             ),
                           );
                         } else {
-                          // Si no hay errores y el archivo existe, muestra la imagen descargada
-                          return CustomImageView(
-                            imagePath: snapshot.data!.path,
-                            height: 169.adaptSize,
-                            width: 169.adaptSize,
-                            radius: BorderRadius.circular(
-                              84.h,
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(84.0),
+                            child: Image.file(
+                              File(snapshot.data!.path),
+                              height: 169.0,
+                              width: 169.0,
+                              fit: BoxFit.cover,
+                              errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                // Puedes devolver una imagen de error o un widget de error aquí
+                                return Icon(Icons.error);
+                              },
                             ),
                           );
                         }
