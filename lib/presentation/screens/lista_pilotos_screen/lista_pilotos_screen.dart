@@ -1,5 +1,6 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
+import 'package:fantasyf1/presentation/screens/checo_perez_screen/checo_perez_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/modelo/RaceEventModel.dart';
@@ -94,211 +95,6 @@ escucharStreamCarrera();*/
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    CustomImageView(
-                                        svgPath: ImageConstant.imgVerstappen,
-                                        height: 1.adaptSize,
-                                        width: 1.adaptSize),
-                                    SizedBox(height: 2.v),
-                                    SizedBox(
-                                        height: 66.v,
-                                        width: 275.h,
-                                        child: Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              CustomImageView(
-                                                  imagePath: result == null
-                                                      ? ImageConstant
-                                                          .imageNotFound
-                                                      : ImageConstant.imgDriver(
-                                                          result![0]
-                                                              .driver
-                                                              .driverId,
-                                                          0),
-                                                  height: 66.v,
-                                                  width: 62.h,
-                                                  radius: BorderRadius.circular(
-                                                      31.h),
-                                                  alignment:
-                                                      Alignment.centerLeft),
-                                              CustomImageView(
-                                                  svgPath:
-                                                      ImageConstant.imgVector1,
-                                                  height: 65.v,
-                                                  width: 273.h,
-                                                  alignment: Alignment.center,
-                                                  onTap: () {
-                                                    onTapImgVectoroneone(
-                                                        context);
-                                                  }),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomRight,
-                                                  child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 19.v),
-                                                      child: Text(
-                                                          "lbl_max_verstappen"
-                                                              .tr,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: theme.textTheme
-                                                              .titleLarge)))
-                                            ])),
-                                    SizedBox(
-                                        height: 66.v,
-                                        width: 275.h,
-                                        child: Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              CustomImageView(
-                                                  imagePath: result == null
-                                                      ? ImageConstant
-                                                          .imageNotFound
-                                                      : ImageConstant.imgDriver(
-                                                          result![1]
-                                                              .driver
-                                                              .driverId,
-                                                          0),
-                                                  height: 66.v,
-                                                  width: 62.h,
-                                                  radius: BorderRadius.circular(
-                                                      31.h),
-                                                  alignment:
-                                                      Alignment.centerLeft),
-                                              CustomImageView(
-                                                  svgPath:
-                                                      ImageConstant.imgVector1,
-                                                  height: 65.v,
-                                                  width: 273.h,
-                                                  alignment: Alignment.center,
-                                                  onTap: () {
-                                                    onTapImgVectoroneone(
-                                                        context);
-                                                  }),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomRight,
-                                                  child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 19.v),
-                                                      child: Text(
-                                                          result == null
-                                                              ? "lbl_perez".tr
-                                                              : result![1]
-                                                                  .driver
-                                                                  .familyName,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: theme.textTheme
-                                                              .titleLarge)))
-                                            ])),
-                                    SizedBox(
-                                        height: 66.v,
-                                        width: 275.h,
-                                        child: Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              CustomImageView(
-                                                  imagePath: result == null
-                                                      ? ImageConstant
-                                                          .imageNotFound
-                                                      : ImageConstant.imgDriver(
-                                                          result![2]
-                                                              .driver
-                                                              .driverId,
-                                                          0),
-                                                  height: 66.v,
-                                                  width: 62.h,
-                                                  radius: BorderRadius.circular(
-                                                      31.h),
-                                                  alignment:
-                                                      Alignment.centerLeft),
-                                              CustomImageView(
-                                                  svgPath:
-                                                      ImageConstant.imgVector1,
-                                                  height: 65.v,
-                                                  width: 273.h,
-                                                  alignment: Alignment.center,
-                                                  onTap: () {
-                                                    onTapImgVectoroneone(
-                                                        context);
-                                                  }),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomRight,
-                                                  child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 19.v),
-                                                      child: Text(
-                                                          carGlobal == null
-                                                              ? "lbl_perez".tr
-                                                              : carGlobal!
-                                                                  .mrData
-                                                                  .raceTable
-                                                                  .races
-                                                                  .toList()
-                                                                  .first
-                                                                  .results[2]
-                                                                  .driver
-                                                                  .familyName,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: theme.textTheme
-                                                              .titleLarge)))
-                                            ])),
-                                    SizedBox(
-                                        height: 66.v,
-                                        width: 275.h,
-                                        child: Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              CustomImageView(
-                                                  imagePath: result == null
-                                                      ? ImageConstant
-                                                          .imageNotFound
-                                                      : ImageConstant.imgDriver(
-                                                          result![3]
-                                                              .driver
-                                                              .driverId,
-                                                          0),
-                                                  height: 66.v,
-                                                  width: 62.h,
-                                                  radius: BorderRadius.circular(
-                                                      31.h),
-                                                  alignment:
-                                                      Alignment.centerLeft),
-                                              CustomImageView(
-                                                  svgPath:
-                                                      ImageConstant.imgVector1,
-                                                  height: 65.v,
-                                                  width: 273.h,
-                                                  alignment: Alignment.center,
-                                                  onTap: () {
-                                                    onTapPerez(context);
-                                                  }),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomRight,
-                                                  child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 19.v),
-                                                      child: Text(
-                                                          carGlobal == null
-                                                              ? "lbl_perez".tr
-                                                              : carGlobal!
-                                                                  .mrData
-                                                                  .raceTable
-                                                                  .races
-                                                                  .toList()
-                                                                  .first
-                                                                  .results[3]
-                                                                  .driver
-                                                                  .familyName,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: theme.textTheme
-                                                              .titleLarge)))
-                                            ])),
                                     for (var i in result!)
                                       Stack(
                                           alignment: Alignment.center,
@@ -322,7 +118,8 @@ escucharStreamCarrera();*/
                                                 width: 273.h,
                                                 alignment: Alignment.center,
                                                 onTap: () {
-                                                  onTapPerez(context);
+                                                  onTapDriver(
+                                                      context, i.driver);
                                                 }),
                                             Align(
                                                 alignment:
@@ -332,7 +129,7 @@ escucharStreamCarrera();*/
                                                         bottom: 19.v),
                                                     child: Text(
                                                         carGlobal == null
-                                                            ? "lbl_perez".tr
+                                                            ? "".tr
                                                             : i.driver
                                                                     .givenName +
                                                                 ' ' +
@@ -353,10 +150,18 @@ escucharStreamCarrera();*/
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the pilotoVerstapenScreen.
   onTapImgVectoroneone(BuildContext context) {
+    //Navigator.of(context).push(route)
     Navigator.pushNamed(context, AppRoutes.pilotoVerstapenScreen);
   }
 
   onTapPerez(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.checoPerezScreen);
+  }
+
+  onTapDriver(BuildContext context, Driver driver) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ChecoPerezScreen(driver: driver)));
   }
 }
