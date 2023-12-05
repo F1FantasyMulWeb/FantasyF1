@@ -303,7 +303,10 @@ class _AvatarScreenState extends State<AvatarScreen> {
       MaterialPageRoute(
         builder: (context) => EditAvatarScreen(path: imagePath, userName: userName),
       ),
-    );
+    ).then((_) {
+      setState(() {
+      });
+    });
   }
 }
 

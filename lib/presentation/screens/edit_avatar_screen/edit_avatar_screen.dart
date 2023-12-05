@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -9,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:async/async.dart';
 import '../../../DataBase/databasecontroller.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class EditAvatarScreen extends StatefulWidget {
   final String path;
@@ -23,12 +23,11 @@ class EditAvatarScreen extends StatefulWidget {
 
 class _EditAvatarScreen extends State<EditAvatarScreen> {
   FutureGroup<void> futureGroup = FutureGroup<void>();
-  Future<void>? _uploadFuture,_dowlonadFuture;
+  Future<void>? _uploadFuture;
   DataBaseController clienteController =
       DataBaseController(Supabase.instance.client);
   File? _selectedImage;
   final ValueNotifier<File?> imageNotifier = ValueNotifier<File?>(null);
-
 
   void updateImage(File newImage) {
     _selectedImage = newImage;
@@ -38,19 +37,18 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
+
+    return WillPopScope(
+        onWillPop: () async => false,
+    child: SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          title: Column(
-            children: [
-              AppbarImage1(
-                svgPath: ImageConstant.imgMenu,
-                margin: EdgeInsets.only(
-                  left: 31.h,
-                  right: 10.h,
-                ),
-              ),
-            ],
+          title: IconButton(
+            icon: Icon(Icons.arrow_back),
+            iconSize: 40.0,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
           actions: [
             Transform.translate(
@@ -62,20 +60,28 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
                   builder: (BuildContext context, File? image, Widget? child) {
                     bool isEnabled = image != null;
                     return InkWell(
-                      onTap: isEnabled ? () {
-                        setState(() {
-                          _uploadFuture = clienteController.uploadAvatar(_selectedImage!.path);
-                          _dowlonadFuture = clienteController.downloadAvatar();
-                        });
-                      } : null,
-                      child: FutureBuilder<List<void>>(
-                        future: Future.wait([_uploadFuture ?? Future.value(), _dowlonadFuture ?? Future.value(),]),
-                        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return CircularProgressIndicator();
+                      onTap: isEnabled
+                          ? () {
+                              setState(() {
+                                _uploadFuture = clienteController
+                                    .uploadAvatar(_selectedImage!.path);
+                              });
+                            }
+                          : null,
+                      child: FutureBuilder<void>(
+                        future: _uploadFuture,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<void> snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return SpinKitThreeBounce(
+                              color: Colors.black,
+                              size: 50.0,
+                            );
                           } else {
                             return Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
                               decoration: BoxDecoration(
                                 color: isEnabled ? Colors.red : Colors.red[100],
                                 borderRadius: BorderRadius.circular(5),
@@ -121,8 +127,7 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
                       }
                     },
                     child: CustomImageView(
-                      imagePath: _selectedImage?.path ??
-                          widget.path,
+                      imagePath: _selectedImage?.path ?? widget.path,
                       height: 169.adaptSize,
                       width: 169.adaptSize,
                       radius: BorderRadius.circular(
@@ -282,8 +287,9 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
           ),
         ),
       ),
-    );
+    ));
   }
+
 }
 
 Future<File?> showDialogAndGetImage(BuildContext context) async {
@@ -301,13 +307,14 @@ Future<File?> showDialogAndGetImage(BuildContext context) async {
                 onTap: () async {
                   final ImagePicker _picker = ImagePicker();
                   final XFile? image =
-                  await _picker.pickImage(source: ImageSource.gallery);
+                      await _picker.pickImage(source: ImageSource.gallery);
                   if (image != null) {
                     // Aquí es donde añadimos el recorte de la imagen
                     final ImageCropper cropper = ImageCropper();
                     final croppedFile = await cropper.cropImage(
                       sourcePath: image.path,
-                      cropStyle: CropStyle.circle, // Esto hace que el recorte sea circular
+                      cropStyle: CropStyle
+                          .circle, // Esto hace que el recorte sea circular
                     );
                     if (croppedFile != null) {
                       _selectedImage = File(croppedFile.path);

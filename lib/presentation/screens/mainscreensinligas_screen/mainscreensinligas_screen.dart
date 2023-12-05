@@ -550,8 +550,15 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
   onTaplistaPilotos(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaPilotosScreen);
   }
+
   onTaplistaCircuitos(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen
-    );
+    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen);
   }
+<<<<<<< Updated upstream
+=======
+
+  onTapGrupos(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.listaGruposScreen);
+  }
+>>>>>>> Stashed changes
 }
