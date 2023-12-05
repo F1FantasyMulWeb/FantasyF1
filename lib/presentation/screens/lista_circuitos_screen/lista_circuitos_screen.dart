@@ -5,8 +5,27 @@ import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
-class ListaCircuitosScreen extends StatelessWidget {
+import '../../../api/configuracionApi.dart';
+import '../../../api/modelo/RaceEventModel.dart';
+
+class ListaCircuitosScreen extends StatefulWidget {
   const ListaCircuitosScreen({Key? key}) : super(key: key);
+
+  RaceEventModel? carGlobal = null;
+  List<Result>? result = null;
+
+  Future<RaceEventModel?> initializeCarGlobal() async {
+    Client cliente = Client();
+    var gl = await cliente
+        .getResults("current", "5", "results", queryParams: "limit=15")
+        .whenComplete(() => print("cargado"));
+    print(carGlobal);
+    setState(() {
+      carGlobal = gl;
+      result = carGlobal!.mrData.raceTable.races.first.results;
+    });
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -343,5 +362,11 @@ class ListaCircuitosScreen extends StatelessWidget {
   /// to push the named route for the circuitoBahrInScreen.
   onTapStackbahrin(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.circuitoBahrInScreen);
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }

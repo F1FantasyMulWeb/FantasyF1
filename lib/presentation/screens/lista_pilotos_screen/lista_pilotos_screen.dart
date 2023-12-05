@@ -95,51 +95,52 @@ escucharStreamCarrera();*/
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    for (var i in result!)
-                                      Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            CustomImageView(
-                                                imagePath: result == null
-                                                    ? ImageConstant
-                                                        .imageNotFound
-                                                    : ImageConstant.imgDriver(
-                                                        i.driver.driverId, 0),
-                                                height: 66.v,
-                                                width: 62.h,
-                                                radius:
-                                                    BorderRadius.circular(31.h),
-                                                alignment:
-                                                    Alignment.centerLeft),
-                                            CustomImageView(
-                                                svgPath:
-                                                    ImageConstant.imgVector1,
-                                                height: 65.v,
-                                                width: 273.h,
-                                                alignment: Alignment.center,
-                                                onTap: () {
-                                                  onTapDriver(
-                                                      context, i.driver);
-                                                }),
-                                            Align(
-                                                alignment:
-                                                    Alignment.bottomRight,
-                                                child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        bottom: 19.v),
-                                                    child: Text(
-                                                        carGlobal == null
-                                                            ? "".tr
-                                                            : i.driver
-                                                                    .givenName +
-                                                                ' ' +
-                                                                i.driver
-                                                                    .familyName,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: theme.textTheme
-                                                            .titleLarge)))
-                                          ]),
+                                    if (result != null)
+                                      for (var i in result!)
+                                        Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              CustomImageView(
+                                                  imagePath: result == null
+                                                      ? ImageConstant
+                                                          .imageNotFound
+                                                      : ImageConstant.imgDriver(
+                                                          i.driver.driverId, 0),
+                                                  height: 66.v,
+                                                  width: 62.h,
+                                                  radius: BorderRadius.circular(
+                                                      31.h),
+                                                  alignment:
+                                                      Alignment.centerLeft),
+                                              CustomImageView(
+                                                  svgPath:
+                                                      ImageConstant.imgVector1,
+                                                  height: 65.v,
+                                                  width: 273.h,
+                                                  alignment: Alignment.center,
+                                                  onTap: () {
+                                                    onTapDriver(
+                                                        context, i.driver);
+                                                  }),
+                                              Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: Padding(
+                                                      padding: EdgeInsets.only(
+                                                          bottom: 19.v),
+                                                      child: Text(
+                                                          carGlobal == null
+                                                              ? "".tr
+                                                              : i.driver
+                                                                      .givenName +
+                                                                  ' ' +
+                                                                  i.driver
+                                                                      .familyName,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: theme.textTheme
+                                                              .titleLarge)))
+                                            ]),
                                   ]))
                         ]))))));
   }
