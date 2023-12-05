@@ -19,25 +19,21 @@ class ListaGruposScreen extends StatefulWidget {
 class _ListaGruposScreen extends State<ListaGruposScreen> {
   DataBaseController clienteController =
       DataBaseController(Supabase.instance.client);
-  late Future<List> _listaGrupos;
+  List<String>? _listaGrupos;
 
   @override
   void initState() {
+    initializeCarGlobal();
     super.initState();
-    inicializarAvatar();
+    print(_listaGrupos);
   }
 
   void initializeCarGlobal() async {
-    Client cliente = Client();
+    List<dynamic> gl = await clienteController.selectGrupoName();
     setState(() {
-      carGlobal = gl;
-      result = carGlobal!.mrData.raceTable.races.first.results;
+      _listaGrupos = gl.cast<String>();
     });
     return null;
-  }
-
-  inicializarAvatar() async {
-    _listaGrupos = clienteController.selectGrupoName();
   }
 
   @override
@@ -64,7 +60,7 @@ class _ListaGruposScreen extends State<ListaGruposScreen> {
                           Text("lbl_grupos".tr,
                               style: theme.textTheme.displayMedium),
                           SizedBox(height: 10.v),
-                          for (int i = 0; i < cargarDatosLista(_listaGrupos); i++)
+                          for (int i = 0; i < 6; i++)
                             GestureDetector(
                                 onTap: () {
                                   onTapUserlistitem(context);
