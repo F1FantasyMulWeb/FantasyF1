@@ -18,8 +18,7 @@ class MainscreensinligasScreen extends StatefulWidget {
 }
 
 class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
-  DataBaseController clienteController =
-      DataBaseController(Supabase.instance.client);
+  DataBaseController clienteController =DataBaseController();
 
   RaceEventModel? carGlobal = null;
   List<Result>? resultado = null;
@@ -54,8 +53,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
 
-    return WillPopScope(
-        onWillPop: () async => false,
+    return PopScope(
         child: SafeArea(
             child: Scaffold(
                 appBar: AppBar(
@@ -554,11 +552,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
   onTaplistaCircuitos(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen);
   }
-<<<<<<< Updated upstream
-=======
-
   onTapGrupos(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaGruposScreen);
   }
->>>>>>> Stashed changes
 }

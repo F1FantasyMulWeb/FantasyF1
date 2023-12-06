@@ -41,8 +41,7 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
     super.dispose();
   }
 
-  DataBaseController clienteController =
-      DataBaseController(Supabase.instance.client);
+  DataBaseController clienteController = DataBaseController();
 
   @override
   void initState() {

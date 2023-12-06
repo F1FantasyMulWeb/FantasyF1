@@ -3,29 +3,29 @@ import 'dart:io';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:async/async.dart';
 import '../../../DataBase/databasecontroller.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class EditAvatarScreen extends StatefulWidget {
-  final String path;
-  final String userName;
+import '../../../provider/usermodel.dart';
 
-  const EditAvatarScreen({Key? key, required this.path, required this.userName})
+class EditAvatarScreen extends ConsumerStatefulWidget {
+
+
+  const EditAvatarScreen({Key? key})
       : super(key: key);
 
   @override
-  _EditAvatarScreen createState() => _EditAvatarScreen();
+  ConsumerState<EditAvatarScreen> createState() => _EditAvatarScreen();
 }
 
-class _EditAvatarScreen extends State<EditAvatarScreen> {
+class _EditAvatarScreen extends ConsumerState<EditAvatarScreen> {
   FutureGroup<void> futureGroup = FutureGroup<void>();
   Future<void>? _uploadFuture;
-  DataBaseController clienteController =
-      DataBaseController(Supabase.instance.client);
+  DataBaseController clienteController = DataBaseController();
   File? _selectedImage;
   final ValueNotifier<File?> imageNotifier = ValueNotifier<File?>(null);
 
@@ -37,14 +37,14 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-
-    return WillPopScope(
-        onWillPop: () async => false,
-    child: SafeArea(
+    final userModel = ref.watch(userModelProvider);
+    return PopScope(
+        child: SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
           title: IconButton(
             icon: Icon(Icons.arrow_back),
+            color: Colors.black,
             iconSize: 40.0,
             onPressed: () {
               Navigator.pop(context);
@@ -119,26 +119,33 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
                     onTap: () async {
                       File? image = await showDialogAndGetImage(context);
                       if (image != null) {
-                        //clienteController.uploadAvatar(image.path);
+                        userModel.setAvatar(image.path);
                         setState(() {
                           _selectedImage = image;
                           updateImage(image);
+
                         });
                       }
                     },
-                    child: CustomImageView(
-                      imagePath: _selectedImage?.path ?? widget.path,
-                      height: 169.adaptSize,
-                      width: 169.adaptSize,
-                      radius: BorderRadius.circular(
-                        84.h,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(84.0),
+                      child: Image.file(
+                        File(userModel.avatar),
+                        height: 169.0,
+                        width: 169.0,
+                        fit: BoxFit.cover,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          // Puedes devolver una imagen de error o un widget de error aquí
+                          return Icon(Icons.error);
+                        },
                       ),
                     ),
                   ),
                   SizedBox(height: 37.v),
                   Text(
-                    widget.userName,
-                    style: CustomTextStyles.displayMediumOnPrimaryUserName,
+                    userModel.userName,
+                    style: CustomTextStyles.titleLargeOnPrimary,
                   ),
                   Padding(
                     padding: EdgeInsets.only(
@@ -289,7 +296,6 @@ class _EditAvatarScreen extends State<EditAvatarScreen> {
       ),
     ));
   }
-
 }
 
 Future<File?> showDialogAndGetImage(BuildContext context) async {
@@ -298,6 +304,7 @@ Future<File?> showDialogAndGetImage(BuildContext context) async {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
+        backgroundColor: Colors.white,
         title: Text('Elige una opción'),
         content: SingleChildScrollView(
           child: ListBody(
