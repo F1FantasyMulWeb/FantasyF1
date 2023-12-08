@@ -1,4 +1,3 @@
-import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/presentation/screens/loginscreen_screen/loginscreen_screen.dart';
 import 'package:flutter/material.dart';
 

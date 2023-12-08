@@ -23,7 +23,6 @@ class EditAvatarScreen extends ConsumerStatefulWidget {
 }
 
 class _EditAvatarScreen extends ConsumerState<EditAvatarScreen> {
-  FutureGroup<void> futureGroup = FutureGroup<void>();
   Future<void>? _uploadFuture;
   DataBaseController clienteController = DataBaseController();
   File? _selectedImage;
