@@ -33,8 +33,7 @@ class _CreargrupoScreen extends State<CreargrupoScreen> {
   TextEditingController passwordController = TextEditingController();
 
 
-  DataBaseController clienteController = DataBaseController(
-      Supabase.instance.client);
+  DataBaseController clienteController = DataBaseController();
 
 
   @override

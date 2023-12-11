@@ -61,7 +61,7 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                       builder: (context) => IconButton(
                         icon: Icon(Icons.menu),
                         iconSize:
-                            35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                        35, // Ajusta este valor para cambiar el tamaño del icono del menú
                         onPressed: () => Scaffold.of(context).openDrawer(),
                       ),
                     ),
@@ -243,9 +243,7 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                       ),
                       ListTile(
                         title: ElevatedButton.icon(
-                          onPressed: () {
-                            onTapGrupos(context);
-                          },
+                          onPressed: () {},
                           icon: Icon(
                             Icons.groups_2,
                             color: Color(0xCC000000),
@@ -357,17 +355,17 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                                   margin: EdgeInsets.only(
                                       left: 16.h, top: 48.v, right: 16.h),
                                   padding:
-                                      EdgeInsets.symmetric(horizontal: 6.h),
+                                  EdgeInsets.symmetric(horizontal: 6.h),
                                   decoration: AppDecoration.outlinePrimary2
                                       .copyWith(
-                                          borderRadius: BorderRadiusStyle
-                                              .customBorderTL50),
+                                      borderRadius: BorderRadiusStyle
+                                          .customBorderTL50),
                                   child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         SizedBox(height: 4.v),
                                         Align(
@@ -383,13 +381,13 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                                             decoration: AppDecoration
                                                 .outlinePrimary3
                                                 .copyWith(
-                                                    borderRadius:
-                                                        BorderRadiusStyle
-                                                            .roundedBorder28),
+                                                borderRadius:
+                                                BorderRadiusStyle
+                                                    .roundedBorder28),
                                             child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
                                                 children: [
                                                   CustomImageView(
                                                       imagePath: ImageConstant
@@ -404,9 +402,9 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                                                           resultado == null
                                                               ? "".tr
                                                               : circuito!
-                                                                  .circuitName,
+                                                              .circuitName,
                                                           textAlign:
-                                                              TextAlign.center,
+                                                          TextAlign.center,
                                                           style: CustomTextStyles
                                                               .displaySmall35))
                                                 ])),
@@ -439,10 +437,10 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                                                       resultado == null
                                                           ? "Puntos: ".tr
                                                           : "Puntos: " +
-                                                              resultado!
-                                                                  .first.points,
+                                                          resultado!
+                                                              .first.points,
                                                       textAlign:
-                                                          TextAlign.center,
+                                                      TextAlign.center,
                                                       style: CustomTextStyles
                                                           .bodyMediumFormula1))
                                             ]))
@@ -453,7 +451,7 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                                   margin: EdgeInsets.only(
                                       left: 16.h, top: 50.v, right: 16.h),
                                   buttonStyle:
-                                      CustomButtonStyles.outlinePrimaryTL8,
+                                  CustomButtonStyles.outlinePrimaryTL8,
                                   buttonTextStyle: CustomTextStyles
                                       .displaySmallWhiteA70001Medium,
                                   onTap: () {
@@ -465,7 +463,7 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                                   margin: EdgeInsets.only(
                                       left: 16.h, top: 18.v, right: 16.h),
                                   buttonStyle:
-                                      CustomButtonStyles.outlinePrimaryTL8,
+                                  CustomButtonStyles.outlinePrimaryTL8,
                                   buttonTextStyle: CustomTextStyles
                                       .displaySmallWhiteA70001Medium,
                                   onTap: () {
@@ -477,8 +475,8 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                                   padding: EdgeInsets.all(6.h),
                                   decoration: AppDecoration.outlinePrimary2
                                       .copyWith(
-                                          borderRadius: BorderRadiusStyle
-                                              .customBorderBL50),
+                                      borderRadius: BorderRadiusStyle
+                                          .customBorderBL50),
                                   child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -493,13 +491,13 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                                             decoration: AppDecoration
                                                 .outlinePrimary3
                                                 .copyWith(
-                                                    borderRadius:
-                                                        BorderRadiusStyle
-                                                            .roundedBorder28),
+                                                borderRadius:
+                                                BorderRadiusStyle
+                                                    .roundedBorder28),
                                             child: Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
                                                 children: [
                                                   CustomImageView(
                                                       imagePath: ImageConstant
@@ -556,10 +554,4 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
   onTapGrupos(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaGruposScreen);
   }
-  onTapGrupos(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.listaGruposScreen
-    );
-  }
 }
-
-
