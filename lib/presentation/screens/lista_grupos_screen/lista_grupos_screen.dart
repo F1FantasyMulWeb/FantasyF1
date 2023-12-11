@@ -2,124 +2,81 @@ import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../DataBase/databasecontroller.dart';
+import '../../../provider/usermodel.dart';
 
-class ListaGruposScreen extends StatefulWidget {
+class ListaGruposScreen extends ConsumerStatefulWidget {
   const ListaGruposScreen({Key? key}) : super(key: key);
 
   @override
-  _ListaGruposScreen createState() => _ListaGruposScreen();
+  ConsumerState<ListaGruposScreen> createState() => _ListaGruposScreen();
 }
 
-class _ListaGruposScreen extends State<ListaGruposScreen> {
-  DataBaseController clienteController =
-  DataBaseController();
-  List<String>? _listaGrupos;
+class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
+  DataBaseController clienteController = DataBaseController();
 
-  @override
-  void initState() {
-    initializeCarGlobal();
-    super.initState();
-    print("Grupos");
-    print(_listaGrupos);
-  }
-
-  void initializeCarGlobal() async {
-    List<dynamic> gl = await clienteController.selectGruposName();
-    setState(() {
-      _listaGrupos = gl.cast<String>();
-    });
-  }
+  List<String> nombresGrupoFinales = [];
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
+    final userModel = ref.watch(userModelProvider);
+    final _listaGrupos = userModel.listaGrupos;
+    nombresGrupoFinales = sacarLosNombresDeGrupo(_listaGrupos);
+    print(_listaGrupos);
     return SafeArea(
         child: Scaffold(
-            appBar: CustomAppBar(
-                leadingWidth: 64.h,
-                leading: AppbarImage(
-                    svgPath: ImageConstant.imgMenu,
-                    margin:
-                    EdgeInsets.only(left: 31.h, top: 11.v, bottom: 12.v)),
-                centerTitle: true,
-                title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
-            body: SizedBox(
-                width: mediaQueryData.size.width,
-                child: SingleChildScrollView(
-                    child: Padding(
-                        padding: EdgeInsets.only(bottom: 5.v),
-                        child: Column(children: [
-                          Divider(),
-                          SizedBox(height: 16.v),
-                          Text("lbl_grupos".tr,
-                              style: theme.textTheme.displayMedium),
-                          SizedBox(height: 10.v),
-                          for (var i in _listaGrupos!)
-                            GestureDetector(
-                                onTap: () {
-                                  onTapUserlistitem(context);
-                                },
-                                child: Container(
-                                    height: 71.v,
-                                    width: 328.h,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10.h, vertical: 2.v),
-                                    decoration: AppDecoration.fillWhiteA,
-                                    child: Stack(
-                                        alignment: Alignment.bottomLeft,
-                                        children: [
-                                          Align(
-                                              alignment: Alignment.center,
-                                              child: Container(
-                                                  margin: EdgeInsets.only(
-                                                      left: 20.h, right: 14.h),
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 126.h,
-                                                      vertical: 19.v),
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: fs.Svg(
-                                                              ImageConstant
-                                                                  .imgVector1),
-                                                          fit: BoxFit.cover)),
-                                                child: Column(
-                                                  mainAxisSize: MainAxisSize.min,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Expanded(
-                                                      child: SizedBox(height: 2.v),
-                                                    ),
-                                                    Expanded(
-                                                      child: Text(
-                                                        i,
-                                                        style: theme.textTheme.titleLarge,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )),
-                                          CustomImageView(
-                                              imagePath:
-                                              ImageConstant.imgDownload1,
-                                              height: 51.v,
-                                              width: 55.h,
-                                              radius:
-                                              BorderRadius.circular(25.h),
-                                              alignment: Alignment.bottomLeft,
-                                              margin:
-                                              EdgeInsets.only(bottom: 6.v))
-                                        ]))),
-                          SizedBox(height: 438.v),
-                          CustomImageView(
-                              svgPath: ImageConstant.imgBoton,
-                              height: 57.v,
-                              width: 65.h)
-                        ]))))));
+      appBar: CustomAppBar(
+          leadingWidth: 64.h,
+          leading: AppbarImage(
+              svgPath: ImageConstant.imgMenu,
+              margin: EdgeInsets.only(left: 31.h, top: 11.v, bottom: 12.v)),
+          centerTitle: true,
+          title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
+      body: SizedBox(
+        width: mediaQueryData.size.width,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 5.v),
+            child: Column(children: [
+              Divider(),
+              SizedBox(height: 16.v),
+              Text("lbl_grupos".tr, style: theme.textTheme.displayMedium),
+              SizedBox(height: 10.v),
+              for (var i in nombresGrupoFinales)
+                GestureDetector(
+                  onTap: () {
+                    onTapUserlistitem(context);
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 30.0),
+                        child: CustomImageView(
+                            imagePath: ImageConstant.imgDownload1,
+                            height: 51.v,
+                            width: 55.h,
+                            radius: BorderRadius.circular(25.h),
+                            alignment: Alignment.bottomLeft,
+                            margin: EdgeInsets.only(bottom: 6.v)),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text(i, style: CustomTextStyles.displayGrupos),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            ]),
+          ),
+        ),
+      ),
+    ));
   }
 
   /// Navigates to the grupoScreen when the action is triggered.
@@ -129,5 +86,16 @@ class _ListaGruposScreen extends State<ListaGruposScreen> {
   /// to push the named route for the grupoScreen.
   onTapUserlistitem(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.grupoScreen);
+  }
+
+  List<String> sacarLosNombresDeGrupo(List listaGrupos) {
+    List<String> nombresGrupo = [];
+    int i;
+    String nombre;
+    for (i = 0; i < listaGrupos.length; i++) {
+      nombre = listaGrupos[i].toString();
+      nombresGrupo.add(nombre.substring(13, nombre.length - 1));
+    }
+    return nombresGrupo;
   }
 }
