@@ -30,6 +30,16 @@ class DataBaseController {
       return false;
     }
   }
+  Future<List> selectGrupoName() async {
+    List<dynamic> response =
+    await client.from('Grupos').select("nombreGrupo");
+
+    if (response.isEmpty) {
+      return ["?????"];
+    } else {
+      return response;
+    }
+  }
 
   Future<bool> checkEmail(String email) async {
     List<dynamic> response =
