@@ -10,7 +10,7 @@ class CustomTextStyles {
   // Body text style
   static get bodyMediumFormula1 =>
       theme.textTheme.bodyMedium!.formula1.copyWith(
-        fontSize: 15.fSize,
+        fontSize: 14.fSize,
       );
   static get bodyMediumInter => theme.textTheme.bodyMedium!.inter.copyWith(
         fontSize: 15.fSize,
@@ -54,10 +54,7 @@ class CustomTextStyles {
         color: theme.colorScheme.onPrimary,
         fontSize: 45.fSize,
       );
-  static get displayMediumOnPrimaryUserName => theme.textTheme.displayMedium!.copyWith(
-    color: theme.colorScheme.onPrimary,
-    fontSize: 30.fSize,
-  );
+
   static get displayMediumOnUserName => theme.textTheme.displaySmall!.copyWith(
         color: theme.colorScheme.onPrimary,
         fontSize: 30.fSize,
@@ -131,6 +128,7 @@ class CustomTextStyles {
   static get titleLargeOnPrimary => theme.textTheme.titleLarge!.copyWith(
         color: theme.colorScheme.onPrimary,
         fontWeight: FontWeight.w500,
+    fontSize: 30.fSize,
       );
   static get titleLargeWhiteA700 => theme.textTheme.titleLarge!.copyWith(
         color: appTheme.whiteA700,

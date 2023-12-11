@@ -1,14 +1,13 @@
+import 'package:fantasyf1/DataBase/supabaseservice.dart';
 import 'package:supabase/supabase.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:flutter/widgets.dart';
 import '../core/utils/image_constant.dart';
 
 class DataBaseController {
-  SupabaseClient client;
-
-  DataBaseController(this.client);
+  final SupabaseClient client = SupabaseService().client;
 
   Future<bool> sendData(String email, String nombre) async {
     final response = await client.from('UsuarioApp').insert([
@@ -48,6 +47,7 @@ class DataBaseController {
     String userName = await selectUserName();
     String url = 'UserData/$userName/ImagenAvatar.jpg';
 
+    imageCache.clear();
     try {
       await client.storage.from('F1Fantasy').remove([url]);
     } catch (e) {}
@@ -55,7 +55,7 @@ class DataBaseController {
     // Sube el nuevo archivo
     final response =
         await client.storage.from('F1Fantasy').upload(url, File(path));
-    downloadAvatarInicio();
+    downloadAvatar();
   }
 
   Future<File> downloadAvatar() async {
@@ -80,22 +80,24 @@ class DataBaseController {
 
     // Crea un archivo en la carpeta de datos del usuario
     final file = File('${userDirectory.path}/$userName.jpg');
-
+    // Si el archivo ya existe, bórralo
+    if (await file.exists()) {
+      await file.delete();
+    }
     // Escribe los bytes de la respuesta en el archivo
     await file.writeAsBytes(response.bodyBytes);
 
     return file;
   }
 
-  Future<void> downloadAvatarInicio() async {
-    String userName = await selectUserName();
+  Future<String> downloadAvatarInicioUser(String userName) async {
     String url = 'UserData/$userName/ImagenAvatar.jpg';
     final signedUrl;
     try {
       signedUrl =
-      await client.storage.from('F1Fantasy').createSignedUrl(url, 15);
-    }catch(e){
-      return;
+          await client.storage.from('F1Fantasy').createSignedUrl(url, 15);
+    } catch (e) {
+      return null;
     }
 
     // Descarga el archivo
@@ -113,48 +115,23 @@ class DataBaseController {
     // Crea un archivo en la carpeta de datos del usuario
     final file = File('${userDirectory.path}/$userName.jpg');
 
-    // Si el archivo ya existe, bórralo
+    // Comprueba si el archivo ya existe
     if (await file.exists()) {
-      await file.delete();
+      // Si el archivo ya existe, simplemente devuelve la ruta del archivo
+      return file.path;
     }
+
+    // Si el archivo no existe, descarga el archivo
+    final response = await http.get(Uri.parse(signedUrl));
 
     // Escribe los bytes de la respuesta en el archivo
     await file.writeAsBytes(response.bodyBytes);
+
+    return file.path;
   }
 
-
-
-  Future<File> selectAvatarImage() async {
-    String userName = await selectUserName();
-
-    // Obtén la ruta del directorio de documentos de la aplicación
-    final directory = await getApplicationDocumentsDirectory();
-
-    // Crea una carpeta para los datos del usuario si no existe
-    final userDirectory = Directory('${directory.path}/UserData');
-    if (!await userDirectory.exists()) {
-      await userDirectory.create();
-    }
-
-    // Crea un archivo en la carpeta de datos del usuario
-    final file = File('${userDirectory.path}/$userName.jpg');
-
-    if (await file.exists()) {
-      // Si el archivo existe, devuelve el archivo
-      return file;
-    } else {
-      // Si el archivo no existe, intenta descargarlo
-      try {
-        await downloadAvatar();
-        // Si la descarga es exitosa, devuelve el archivo
-        return file;
-      } catch (e) {
-        // Si la descarga falla, devuelve un archivo con la imagen por defecto
-        return File(ImageConstant.imgDownload31x33);
-      }
-    }
-  }
-  Future<bool> sendDataGrupo(String nombreUsuario, String contrasenaUsuario) async {
+  Future<bool> sendDataGrupo(
+      String nombreUsuario, String contrasenaUsuario) async {
     final response = await client.from('Grupos').insert([
       {'nombreGrupo': nombreUsuario, 'contraseñaGrupo': contrasenaUsuario}
     ]);
@@ -164,8 +141,4 @@ class DataBaseController {
       return false;
     }
   }
-
-
-
-
 }

@@ -1,7 +1,6 @@
 import 'package:fantasyf1/api/listaCircuitos.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
-import '../../../api/listaPilotos.dart';
 import '../../../api/manejoDeLaInformcion.dart';
 
 ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();

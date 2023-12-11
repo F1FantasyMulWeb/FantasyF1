@@ -4,30 +4,30 @@ import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_outlined_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
+import '../../../DataBase/supabaseservice.dart';
 import '../../../core/utils/FormValidatorLogin.dart';
+import '../../../provider/usermodel.dart';
 
-// ignore_for_file: must_be_immutable
-class LoginscreenScreen extends StatefulWidget {
+
+class LoginscreenScreen extends ConsumerStatefulWidget {
   LoginscreenScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginscreenScreenState createState() => _LoginscreenScreenState();
+  ConsumerState<LoginscreenScreen> createState() => _LoginscreenScreenState();
 }
 
-class _LoginscreenScreenState extends State<LoginscreenScreen> {
+class _LoginscreenScreenState extends ConsumerState<LoginscreenScreen> {
   TextEditingController emailController = TextEditingController();
 
-
-
   TextEditingController passwordController = TextEditingController();
-
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isChecked = false;
   late DataBaseController clientController;
+
 
   @override
   void dispose() {
@@ -318,15 +318,16 @@ class _LoginscreenScreenState extends State<LoginscreenScreen> {
 
   Future<void> _iniciarSesion(BuildContext context) async {
     try {
-      final response = await Supabase.instance.client.auth.signInWithPassword(
+      final response = await SupabaseService().client.auth.signInWithPassword(
         email: emailController.text,
         password: passwordController.text,
       );
       final user = response.user;
       if (user != null) {
-        clientController =
-            DataBaseController(Supabase.instance.client);
-        clientController.downloadAvatarInicio();
+        //clientController =
+          //  DataBaseController(SupabaseService().client);
+        //clientController.downloadAvatarInicio();
+        ref.read(userModelProvider).cargarDato();
         onTapIniciarsesin(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

@@ -1,25 +1,23 @@
-import 'dart:io';
-
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_circleimage.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../DataBase/databasecontroller.dart';
 import '../../../api/configuracionApi.dart';
 import '../../../api/modelo/RaceEventModel.dart';
+import '../../../provider/usermodel.dart';
 
-class MainscreensinligasScreen extends StatefulWidget {
+class MainscreensinligasScreen extends ConsumerStatefulWidget {
   const MainscreensinligasScreen({Key? key}) : super(key: key);
   @override
-  _MainscreensinligasScreenState createState() =>
+  ConsumerState<MainscreensinligasScreen> createState() =>
       _MainscreensinligasScreenState();
 }
 
-class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
-  DataBaseController clienteController =
-      DataBaseController(Supabase.instance.client);
+class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScreen> {
+  DataBaseController clienteController =DataBaseController();
 
   RaceEventModel? carGlobal = null;
   List<Result>? resultado = null;
@@ -53,9 +51,8 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-
-    return WillPopScope(
-        onWillPop: () async => false,
+    final userModel = ref.watch(userModelProvider);
+    return PopScope(
         child: SafeArea(
             child: Scaffold(
                 appBar: AppBar(
@@ -75,7 +72,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                           decoration: AppDecoration.fillWhiteA.copyWith(
                               borderRadius: BorderRadiusStyle.roundedBorder15),
                           child: AppbarCircleimage(
-                              imagePath: ImageConstant.imgDownload31x33,
+                              imagePath: userModel.avatar,
                               onTap: () {
                                 onTapDownloadone(context);
                               }))
@@ -203,7 +200,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                             size: 25,
                           ),
                           label: Text(
-                            'lbl_pilotos'.tr,
+                            'lbl_pilotos_drw'.tr,
                             style: TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
@@ -211,7 +208,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
+                            backgroundColor: Color(0xFF7E8489),
                             fixedSize: Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -236,7 +233,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
+                            backgroundColor: Color(0xFF7E8489),
                             fixedSize: Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -263,7 +260,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
+                            backgroundColor: Color(0xFF7E8489),
                             fixedSize: Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -288,7 +285,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
+                            backgroundColor: Color(0xFF7E8489),
                             fixedSize: Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -313,7 +310,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
+                            backgroundColor: Color(0xFF7E8489),
                             fixedSize: Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -338,7 +335,7 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF7E8489),
+                            backgroundColor: Color(0xFF7E8489),
                             fixedSize: Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
@@ -552,9 +549,12 @@ class _MainscreensinligasScreenState extends State<MainscreensinligasScreen> {
   onTaplistaPilotos(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaPilotosScreen);
   }
+
   onTaplistaCircuitos(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen
-    );
+    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen);
+  }
+  onTapGrupos(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.listaGruposScreen);
   }
   onTapGrupos(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaGruposScreen

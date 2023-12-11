@@ -196,7 +196,7 @@ final Map<String, String> esEs = {
   //mainScreen Screen DRAWER
   "lbl_inicio": "INICIO",
   "lbl_camp":"CAMPEONATOS",
-  "lbl_pilotos": "PILOTOS",
+  "lbl_pilotos_drw": "PILOTOS",
   "lbl_circuito": "CIRCUITOS",
   "lbl_esc": "ESCUDERIAS",
   "lbl_grupo": "GRUPOS",

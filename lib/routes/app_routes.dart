@@ -130,7 +130,7 @@ class AppRoutes {
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),
     avatarScreen: (context) => AvatarScreen(),
     creargrupoScreen: (context) => CreargrupoScreen(),
-    editAvatarScreen: (context) => EditAvatarScreen(path: "",userName: "",),
+    editAvatarScreen: (context) => EditAvatarScreen(),
     pantallaCargaScreen: (context) => PantallaCarga(),
     listaJugadoresScreen: (context) => ListaJugadoresScreen(),
     listaEscuderAsScreen: (context) => ListaEscuderAsScreen(),
