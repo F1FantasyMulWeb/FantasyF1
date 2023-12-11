@@ -243,7 +243,9 @@ class _MainscreensinligasScreenState extends ConsumerState<MainscreensinligasScr
                       ),
                       ListTile(
                         title: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            onTapGrupos(context);
+                          },
                           icon: Icon(
                             Icons.groups_2,
                             color: Color(0xCC000000),

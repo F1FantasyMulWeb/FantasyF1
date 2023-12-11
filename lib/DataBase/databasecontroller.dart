@@ -30,7 +30,7 @@ class DataBaseController {
       return false;
     }
   }
-  Future<List> selectGrupoName() async {
+  Future<List> selectGruposName() async {
     List<dynamic> response =
     await client.from('Grupos').select("nombreGrupo");
 

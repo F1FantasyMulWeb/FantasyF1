@@ -4,10 +4,8 @@ import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../DataBase/databasecontroller.dart';
-import '../../../api/configuracionApi.dart';
 
 class ListaGruposScreen extends StatefulWidget {
   const ListaGruposScreen({Key? key}) : super(key: key);
@@ -25,15 +23,15 @@ class _ListaGruposScreen extends State<ListaGruposScreen> {
   void initState() {
     initializeCarGlobal();
     super.initState();
+    print("Grupos");
     print(_listaGrupos);
   }
 
   void initializeCarGlobal() async {
-    List<dynamic> gl = await clienteController.selectGrupoName();
+    List<dynamic> gl = await clienteController.selectGruposName();
     setState(() {
       _listaGrupos = gl.cast<String>();
     });
-    return null;
   }
 
   @override
@@ -60,7 +58,7 @@ class _ListaGruposScreen extends State<ListaGruposScreen> {
                           Text("lbl_grupos".tr,
                               style: theme.textTheme.displayMedium),
                           SizedBox(height: 10.v),
-                          for (int i = 0; i < 6; i++)
+                          for (var i in _listaGrupos!)
                             GestureDetector(
                                 onTap: () {
                                   onTapUserlistitem(context);
@@ -88,20 +86,23 @@ class _ListaGruposScreen extends State<ListaGruposScreen> {
                                                               ImageConstant
                                                                   .imgVector1),
                                                           fit: BoxFit.cover)),
-                                                  child: Column(
-                                                      mainAxisSize:
-                                                      MainAxisSize.min,
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        SizedBox(height: 2.v),
-                                                        Text("lbl".tr,
-                                                            style: theme
-                                                                .textTheme
-                                                                .titleLarge)
-                                                      ]))),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Expanded(
+                                                      child: SizedBox(height: 2.v),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        i,
+                                                        style: theme.textTheme.titleLarge,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )),
                                           CustomImageView(
                                               imagePath:
                                               ImageConstant.imgDownload1,
