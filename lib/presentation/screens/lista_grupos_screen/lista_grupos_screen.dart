@@ -26,7 +26,6 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
     mediaQueryData = MediaQuery.of(context);
     final userModel = ref.watch(userModelProvider);
     final _listaGrupos = userModel.listaGrupos;
-    nombresGrupoFinales = sacarLosNombresDeGrupo(_listaGrupos);
     print(_listaGrupos);
     return SafeArea(
         child: Scaffold(
@@ -39,41 +38,47 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
           title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
       body: SizedBox(
         width: mediaQueryData.size.width,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(bottom: 5.v),
-            child: Column(children: [
-              Divider(),
-              SizedBox(height: 16.v),
-              Text("lbl_grupos".tr, style: theme.textTheme.displayMedium),
-              SizedBox(height: 10.v),
-              for (var i in nombresGrupoFinales)
-                GestureDetector(
-                  onTap: () {
-                    onTapUserlistitem(context);
-                  },
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(left: 30.0),
-                        child: CustomImageView(
-                            imagePath: ImageConstant.imgDownload1,
-                            height: 51.v,
-                            width: 55.h,
-                            radius: BorderRadius.circular(25.h),
-                            alignment: Alignment.bottomLeft,
-                            margin: EdgeInsets.only(bottom: 6.v)),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(i, style: CustomTextStyles.displayGrupos),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 5.v),
+          child: Column(children: [
+            Divider(),
+            SizedBox(height: 16.v),
+            Text("lbl_grupos".tr, style: theme.textTheme.displayMedium),
+            SizedBox(height: 10.v),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _listaGrupos.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      onTapUserlistitem(context);
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(left: 30.0),
+                          child: CustomImageView(
+                              imagePath: ImageConstant.imgDownload1,
+                              height: 51.v,
+                              width: 55.h,
+                              radius: BorderRadius.circular(25.h),
+                              alignment: Alignment.bottomLeft,
+                              margin: EdgeInsets.only(bottom: 6.v)),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-            ]),
-          ),
+                        Expanded(
+                          child: Center(
+                            child: Text(_listaGrupos[index]['nombreGrupo'],
+                                style: CustomTextStyles.displayGrupos),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
+
+          ]),
         ),
       ),
     ));
@@ -86,16 +91,5 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
   /// to push the named route for the grupoScreen.
   onTapUserlistitem(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.grupoScreen);
-  }
-
-  List<String> sacarLosNombresDeGrupo(List listaGrupos) {
-    List<String> nombresGrupo = [];
-    int i;
-    String nombre;
-    for (i = 0; i < listaGrupos.length; i++) {
-      nombre = listaGrupos[i].toString();
-      nombresGrupo.add(nombre.substring(13, nombre.length - 1));
-    }
-    return nombresGrupo;
   }
 }
