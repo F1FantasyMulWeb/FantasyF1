@@ -48,7 +48,7 @@ class MrData {
         limit: json["limit"],
         offset: json["offset"],
         total: json["total"],
-        circuitTable: CircuitTable.fromJson(json["RaceTable"]),
+        circuitTable: CircuitTable.fromJson(json["CircuitTable"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -58,7 +58,7 @@ class MrData {
         "limit": limit,
         "offset": offset,
         "total": total,
-        "RaceTable": circuitTable.toJson(),
+        "CircuitTable": circuitTable.toJson(),
       };
 }
 
@@ -70,10 +70,11 @@ class CircuitTable {
     required this.season,
     required this.circuits,
   });
+
   factory CircuitTable.fromJson(Map<String, dynamic> json) => CircuitTable(
         season: json["season"],
-        circuits:
-            List<Circuit>.from(json["Results"].map((x) => Circuit.fromJson(x))),
+        circuits: List<Circuit>.from(
+            json["Circuits"].map((x) => Circuit.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

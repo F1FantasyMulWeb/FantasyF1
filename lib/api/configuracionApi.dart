@@ -239,10 +239,11 @@ class Client {
     return null;
   }
 
-  Future<RaceScheduleModel?> getRaces(String year) async {
+  Future<RaceScheduleModel?> getRaces(String year,
+      {String? queryParams}) async {
     try {
-      var response = await http
-          .get(Uri.parse('https://ergast.com/api/f1/$year/circuits.json'));
+      var response = await http.get(Uri.parse(
+          'https://ergast.com/api/f1/$year/circuits.json?$queryParams'));
       if (response.statusCode == 200) {
         var result = response.body;
 

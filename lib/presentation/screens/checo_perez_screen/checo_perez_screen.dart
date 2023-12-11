@@ -6,32 +6,9 @@ import 'package:flutter/material.dart';
 
 import '../../../api/modelo/RaceEventModel.dart';
 
-ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
-
-ListaPilotos listaPilotos = new ListaPilotos();
-
 class ChecoPerezScreen extends StatelessWidget {
   final Driver driver;
   ChecoPerezScreen({Key? key, required this.driver}) : super(key: key);
-  //ChecoPerezScreen({Key? key}) : super(key: key);
-
-  /* @override
-  _ChecoPerezScreen createState() => _ChecoPerezScreen();
-
-  void setManejoDeLaInformcion(
-      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
-    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
-  }
-
-
-
-class _ChecoPerezScreen extends State<ChecoPerezScreen> {
-  @override
-  void initState() {
-    super.initState();
-    print(this.driver.);
-   // listaPilotos = manejoDeLaInformcion.getListaPilotos();
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -223,17 +200,5 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
 
     String info = stringBuffer.toString();
     return info;
-  }
-
-  nombrePiloto() {
-    StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write(listaPilotos
-        .getListaPilotos()[12]
-        .driverId
-        .toString()
-        .replaceAll("\"", "")
-        .replaceAll("_", " ")
-        .toUpperCase());
-    return stringBuffer;
   }
 }

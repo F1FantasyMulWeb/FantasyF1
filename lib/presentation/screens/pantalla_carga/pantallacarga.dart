@@ -65,7 +65,7 @@ class _PantallaCarga extends State<PantallaCarga> {
       PilotoVerstapenScreen pvs = PilotoVerstapenScreen();
       ElNanoScreen ens = ElNanoScreen();
       //ChecoPerezScreen cps = ChecoPerezScreen();
-      CircuitoBahrInScreen cbis = CircuitoBahrInScreen();
+      //CircuitoBahrInScreen cbis = CircuitoBahrInScreen();
       CircuitoDeLaCornicheDeYedaScreen cdcys =
           CircuitoDeLaCornicheDeYedaScreen();
       CircuitoDeAlbertParkScreen cdaps = CircuitoDeAlbertParkScreen();
@@ -76,7 +76,7 @@ class _PantallaCarga extends State<PantallaCarga> {
       pvs.setManejoDeLaInformcion(mli);
       ens.setManejoDeLaInformcion(mli);
       // cps.setManejoDeLaInformcion(mli);
-      cbis.setManejoDeLaInformcion(mli);
+      //cbis.setManejoDeLaInformcion(mli);
       cdcys.setManejoDeLaInformcion(mli);
       cdaps.setManejoDeLaInformcion(mli);
       erbs.setManejoDeLaInformcion(mli);

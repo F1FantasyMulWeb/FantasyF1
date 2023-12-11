@@ -1,31 +1,13 @@
 import 'package:fantasyf1/api/listaCircuitos.dart';
+import 'package:fantasyf1/api/modelo/RaceScheduleModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import '../../../api/listaPilotos.dart';
 import '../../../api/manejoDeLaInformcion.dart';
 
-ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
-
-ListaCircuitos listaCircuitos = new ListaCircuitos();
-
-class CircuitoBahrInScreen extends StatefulWidget {
-  CircuitoBahrInScreen({Key? key}) : super(key: key);
-
-  @override
-  _CircuitoBahrInScreen createState() => _CircuitoBahrInScreen();
-
-  void setManejoDeLaInformcion(
-      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
-    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
-  }
-}
-
-class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
-  @override
-  void initState() {
-    super.initState();
-    listaCircuitos = manejoDeLaInformcion.getListaCircuitos();
-  }
+class CircuitoBahrInScreen extends StatelessWidget {
+  final Circuit circuit;
+  CircuitoBahrInScreen({Key? key, required this.circuit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +54,7 @@ class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        nombreCircuito().toString().tr,
+                                        circuit.circuitName,
                                         style: theme.textTheme.displaySmall,
                                       ),
                                       SizedBox(height: 10.v),
@@ -141,44 +123,15 @@ class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
 
   informacionCircuitoBahr() {
     StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write("Country: " +
-        listaCircuitos
-            .getListaCircuitos()[2]
-            .country
-            .toString()
-            .replaceAll("\"", ""));
-    stringBuffer.write("\n");
-    stringBuffer.write("Locality: " +
-        listaCircuitos
-            .getListaCircuitos()[2]
-            .locality
-            .toString()
-            .replaceAll("\"", ""));
-    stringBuffer.write("\n");
-    stringBuffer.write("Latitud: " +
-        listaCircuitos
-            .getListaCircuitos()[2]
-            .lat
-            .toString()
-            .replaceAll("\"", ""));
-    stringBuffer.write("\n");
-    stringBuffer.write("Longitud: " +
-        listaCircuitos
-            .getListaCircuitos()[2]
-            .long
-            .toString()
-            .replaceAll("\"", ""));
-    stringBuffer.write("\n");
-    return stringBuffer;
-  }
 
-  nombreCircuito() {
-    StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write(listaCircuitos
-        .getListaCircuitos()[2]
-        .circuitName
-        .toString()
-        .replaceAll("\"", ""));
+    stringBuffer.write("Country: " + circuit.location.country);
+    stringBuffer.write("\n");
+    stringBuffer.write("Locality: " + circuit.location.locality);
+    stringBuffer.write("\n");
+    stringBuffer.write("Latitud: " + circuit.location.lat);
+    stringBuffer.write("\n");
+    stringBuffer.write("Longitud: " + circuit.location.long);
+    stringBuffer.write("\n");
     return stringBuffer;
   }
 }
