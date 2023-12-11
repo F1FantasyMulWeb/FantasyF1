@@ -1,6 +1,3 @@
-import 'dart:io';
-
-
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
@@ -8,23 +5,21 @@ import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../DataBase/databasecontroller.dart';
-
+import '../../../provider/usermodel.dart';
 
 // ignore_for_file: must_be_immutable
-class CreargrupoScreen extends StatefulWidget {
+class CreargrupoScreen extends ConsumerStatefulWidget {
   CreargrupoScreen({Key? key}) : super(key: key);
 
 
   @override
-  _CreargrupoScreen createState() => _CreargrupoScreen();
+  ConsumerState<CreargrupoScreen> createState() => _CreargrupoScreen();
 }
 
 
-class _CreargrupoScreen extends State<CreargrupoScreen> {
+class _CreargrupoScreen extends ConsumerState<CreargrupoScreen> {
 
 
   TextEditingController usernameoneController = TextEditingController();
@@ -47,6 +42,7 @@ class _CreargrupoScreen extends State<CreargrupoScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
+    final userModel = ref.watch(userModelProvider);
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -152,6 +148,7 @@ class _CreargrupoScreen extends State<CreargrupoScreen> {
                                   .titleMediumWhiteA70001SemiBold,
                               onTap: () {
                                 onTapCreargrupo(context);
+                                userModel.cargarGrupos();
                               })
                         ]))))));
   }

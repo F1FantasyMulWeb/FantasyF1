@@ -42,7 +42,9 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
           padding: EdgeInsets.only(bottom: 5.v),
           child: Column(children: [
             Divider(),
-            SizedBox(height: 16.v),
+            SizedBox(height: 5.v),
+
+            SizedBox(height: 5.v),
             Text("lbl_grupos".tr, style: theme.textTheme.displayMedium),
             SizedBox(height: 10.v),
             Expanded(
@@ -77,10 +79,18 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
                 },
               ),
             )
-
           ]),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          onTapCrearGrupo(context);
+        },
+        child: Icon(Icons.add), // Ícono del botón
+        backgroundColor: Colors.redAccent, // Color de fondo del botón
+      ),
+          
+
     ));
   }
 
@@ -91,5 +101,8 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
   /// to push the named route for the grupoScreen.
   onTapUserlistitem(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.grupoScreen);
+  }
+  onTapCrearGrupo(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.creargrupoScreen);
   }
 }
