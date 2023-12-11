@@ -1,34 +1,35 @@
-/*@JsonSerializable()
+import 'dart:convert';
+
+RaceScheduleModel raceEventModelFromJson(String str) =>
+    RaceScheduleModel.fromJson(json.decode(str));
+
+String raceEventModelToJson(RaceScheduleModel data) =>
+    json.encode(data.toJson());
+
 class RaceScheduleModel {
-  @JsonKey(name: "MRData")
   MrData mrData;
 
-  Welcome({
+  RaceScheduleModel({
     required this.mrData,
   });
+  factory RaceScheduleModel.fromJson(Map<String, dynamic> json) =>
+      RaceScheduleModel(
+        mrData: MrData.fromJson(json["MRData"]),
+      );
 
-  factory Welcome.fromJson(Map<String, dynamic> json) =>
-      _$WelcomeFromJson(json);
-
-  Map<String, dynamic> toJson() => _$WelcomeToJson(this);
+  Map<String, dynamic> toJson() => {
+        "MRData": mrData.toJson(),
+      };
 }
 
-@JsonSerializable()
 class MrData {
-  @JsonKey(name: "xmlns")
   String xmlns;
-  @JsonKey(name: "series")
   String series;
-  @JsonKey(name: "url")
   String url;
-  @JsonKey(name: "limit")
   String limit;
-  @JsonKey(name: "offset")
   String offset;
-  @JsonKey(name: "total")
   String total;
-  @JsonKey(name: "RaceTable")
-  RaceTable raceTable;
+  CircuitTable circuitTable;
 
   MrData({
     required this.xmlns,
@@ -37,88 +38,54 @@ class MrData {
     required this.limit,
     required this.offset,
     required this.total,
-    required this.raceTable,
+    required this.circuitTable,
   });
 
-  factory MrData.fromJson(Map<String, dynamic> json) => _$MrDataFromJson(json);
+  factory MrData.fromJson(Map<String, dynamic> json) => MrData(
+        xmlns: json["xmlns"],
+        series: json["series"],
+        url: json["url"],
+        limit: json["limit"],
+        offset: json["offset"],
+        total: json["total"],
+        circuitTable: CircuitTable.fromJson(json["RaceTable"]),
+      );
 
-  Map<String, dynamic> toJson() => _$MrDataToJson(this);
+  Map<String, dynamic> toJson() => {
+        "xmlns": xmlns,
+        "series": series,
+        "url": url,
+        "limit": limit,
+        "offset": offset,
+        "total": total,
+        "RaceTable": circuitTable.toJson(),
+      };
 }
 
-@JsonSerializable()
-class RaceTable {
-  @JsonKey(name: "season")
+class CircuitTable {
   String season;
-  @JsonKey(name: "Races")
-  List<Race> races;
+  List<Circuit> circuits;
 
-  RaceTable({
+  CircuitTable({
     required this.season,
-    required this.races,
+    required this.circuits,
   });
+  factory CircuitTable.fromJson(Map<String, dynamic> json) => CircuitTable(
+        season: json["season"],
+        circuits:
+            List<Circuit>.from(json["Results"].map((x) => Circuit.fromJson(x))),
+      );
 
-  factory RaceTable.fromJson(Map<String, dynamic> json) =>
-      _$RaceTableFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RaceTableToJson(this);
+  Map<String, dynamic> toJson() => {
+        "season": season,
+        "Circuits": List<dynamic>.from(circuits.map((x) => x.toJson())),
+      };
 }
 
-@JsonSerializable()
-class Race {
-  @JsonKey(name: "season")
-  String season;
-  @JsonKey(name: "round")
-  String round;
-  @JsonKey(name: "url")
-  String url;
-  @JsonKey(name: "raceName")
-  String raceName;
-  @JsonKey(name: "Circuit")
-  Circuit circuit;
-  @JsonKey(name: "date")
-  DateTime date;
-  @JsonKey(name: "time")
-  String time;
-  @JsonKey(name: "FirstPractice")
-  FirstPractice firstPractice;
-  @JsonKey(name: "SecondPractice")
-  FirstPractice secondPractice;
-  @JsonKey(name: "ThirdPractice")
-  FirstPractice? thirdPractice;
-  @JsonKey(name: "Qualifying")
-  FirstPractice qualifying;
-  @JsonKey(name: "Sprint")
-  FirstPractice? sprint;
-
-  Race({
-    required this.season,
-    required this.round,
-    required this.url,
-    required this.raceName,
-    required this.circuit,
-    required this.date,
-    required this.time,
-    required this.firstPractice,
-    required this.secondPractice,
-    this.thirdPractice,
-    required this.qualifying,
-    this.sprint,
-  });
-
-  factory Race.fromJson(Map<String, dynamic> json) => _$RaceFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RaceToJson(this);
-}
-
-@JsonSerializable()
 class Circuit {
-  @JsonKey(name: "circuitId")
   String circuitId;
-  @JsonKey(name: "url")
   String url;
-  @JsonKey(name: "circuitName")
   String circuitName;
-  @JsonKey(name: "Location")
   Location location;
 
   Circuit({
@@ -127,22 +94,25 @@ class Circuit {
     required this.circuitName,
     required this.location,
   });
+  factory Circuit.fromJson(Map<String, dynamic> json) => Circuit(
+        circuitId: json["circuitId"],
+        url: json["url"],
+        circuitName: json["circuitName"],
+        location: Location.fromJson(json["Location"]),
+      );
 
-  factory Circuit.fromJson(Map<String, dynamic> json) =>
-      _$CircuitFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CircuitToJson(this);
+  Map<String, dynamic> toJson() => {
+        "circuitId": circuitId,
+        "url": url,
+        "circuitName": circuitName,
+        "Location": location.toJson(),
+      };
 }
 
-@JsonSerializable()
 class Location {
-  @JsonKey(name: "lat")
   String lat;
-  @JsonKey(name: "long")
   String long;
-  @JsonKey(name: "locality")
   String locality;
-  @JsonKey(name: "country")
   String country;
 
   Location({
@@ -151,27 +121,17 @@ class Location {
     required this.locality,
     required this.country,
   });
+  factory Location.fromJson(Map<String, dynamic> json) => Location(
+        lat: json["lat"],
+        long: json["long"],
+        locality: json["locality"],
+        country: json["country"],
+      );
 
-  factory Location.fromJson(Map<String, dynamic> json) =>
-      _$LocationFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LocationToJson(this);
+  Map<String, dynamic> toJson() => {
+        "lat": lat,
+        "long": long,
+        "locality": locality,
+        "country": country,
+      };
 }
-
-@JsonSerializable()
-class FirstPractice {
-  @JsonKey(name: "date")
-  DateTime date;
-  @JsonKey(name: "time")
-  String time;
-
-  FirstPractice({
-    required this.date,
-    required this.time,
-  });
-
-  factory FirstPractice.fromJson(Map<String, dynamic> json) =>
-      _$FirstPracticeFromJson(json);
-
-  Map<String, dynamic> toJson() => _$FirstPracticeToJson(this);
-}*/

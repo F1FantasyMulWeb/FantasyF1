@@ -239,10 +239,10 @@ class Client {
     return null;
   }
 
-  /* Future<RaceScheduleModel>? getRaces(String year) async {
+  Future<RaceScheduleModel?> getRaces(String year) async {
     try {
-      var response =
-          await http.get(Uri.parse('https://ergast.com/api/f1/$year/'));
+      var response = await http
+          .get(Uri.parse('https://ergast.com/api/f1/$year/circuits.json'));
       if (response.statusCode == 200) {
         var result = response.body;
 
@@ -256,7 +256,7 @@ class Client {
           print('Failed to parse JSON: $e');
           print('JSON String: $json');
         }
-        final r = RaceEventModel.fromJson(json);
+        final r = RaceScheduleModel.fromJson(json);
         return r;
       }
     } catch (ex) {
@@ -264,5 +264,5 @@ class Client {
       return null;
     }
     return null;
-  }*/
+  }
 }
