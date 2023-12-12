@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
+
 class ImageConstant {
   // Image folder path
   static String imagePath = 'assets/images';
@@ -237,5 +241,11 @@ class ImageConstant {
     }
 
     return '$imagePath/img_' + '$driver' + '_' + '$tipo.png';
+  }
+
+  static File imgDriverAvif(String driver) {
+    var Image1 = File('$imagePath/pilotos/' + '$driver' + '.avif');
+
+    return Image1;
   }
 }

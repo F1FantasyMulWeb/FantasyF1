@@ -2,7 +2,7 @@ import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/presentation/screens/checo_perez_screen/checo_perez_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_avif/flutter_avif.dart';
 import '../../../api/modelo/RaceEventModel.dart';
 
 class ListaPilotosScreen extends StatefulWidget {
@@ -32,7 +32,9 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
   @override
   void initState() {
     initializeCarGlobal();
-
+    result?.forEach((element) {
+      print(element.driver.driverId);
+    });
     super.initState();
     //   Client cliente = Client();
     //RaceEventModel? carGlobal;
@@ -98,18 +100,13 @@ escucharStreamCarrera();*/
                                     if (result != null)
                                       for (var i in result!)
                                         Stack(
-                                            alignment: Alignment.center,
+                                            alignment: Alignment.centerLeft,
                                             children: [
-                                              CustomImageView(
-                                                  imagePath: result == null
-                                                      ? ImageConstant
-                                                          .imageNotFound
-                                                      : ImageConstant.imgDriver(
-                                                          i.driver.driverId, 0),
-                                                  height: 66.v,
-                                                  width: 62.h,
-                                                  radius: BorderRadius.circular(
-                                                      31.h),
+                                              AvifImage.file(
+                                                  ImageConstant.imgDriverAvif(
+                                                      i.driver.driverId),
+                                                  height: 200,
+                                                  fit: BoxFit.scaleDown,
                                                   alignment:
                                                       Alignment.centerLeft),
                                               CustomImageView(
