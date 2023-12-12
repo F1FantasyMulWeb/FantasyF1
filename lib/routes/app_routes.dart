@@ -146,10 +146,10 @@ class AppRoutes {
     escuderiaRedBullScreen: (context) => EscuderiaRedBullScreen(),
     pilotoVerstapenScreen: (context) => PilotoVerstapenScreen(),
     tuspilotosScreen: (context) => TuspilotosScreen(),
-    circuitoBahrInScreen: (context) => CircuitoBahrInScreen(),
+    //circuitoBahrInScreen: (context) => CircuitoBahrInScreen(),
     cambiarcontraseA2screenScreen: (context) => CambiarcontraseA2screenScreen(),
     escuderiaAstonMartinScreen: (context) => EscuderiaAstonMartinScreen(),
-    checoPerezScreen: (context) => ChecoPerezScreen(),
+    //checoPerezScreen: (context) => ChecoPerezScreen(driver: driver),
     mercadoScreen: (context) => MercadoScreen(),
     circuitoDeLaCornicheDeYedaScreen: (context) =>
         CircuitoDeLaCornicheDeYedaScreen(),

@@ -3,28 +3,11 @@ import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
 import 'package:flutter/material.dart';
 
-ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
+import '../../../api/modelo/RaceEventModel.dart';
 
-ListaPilotos listaPilotos = new ListaPilotos();
-
-class ChecoPerezScreen extends StatefulWidget {
-  ChecoPerezScreen({Key? key}) : super(key: key);
-
-  @override
-  _ChecoPerezScreen createState() => _ChecoPerezScreen();
-
-  void setManejoDeLaInformcion(
-      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
-    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
-  }
-}
-
-class _ChecoPerezScreen extends State<ChecoPerezScreen> {
-  @override
-  void initState() {
-    super.initState();
-    listaPilotos = manejoDeLaInformcion.getListaPilotos();
-  }
+class ChecoPerezScreen extends StatelessWidget {
+  final Driver driver;
+  ChecoPerezScreen({Key? key, required this.driver}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +64,10 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                                         children: [
                                                           Center(
                                                             child: Text(
-                                                              nombrePiloto()
-                                                                  .toString()
-                                                                  .tr,
+                                                              driver.givenName +
+                                                                  ' ' +
+                                                                  driver
+                                                                      .familyName,
                                                               style: CustomTextStyles
                                                                   .displaySmallWhiteA70001,
                                                               textAlign:
@@ -112,7 +96,15 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                               ),
                                               CustomImageView(
                                                   imagePath:
-                                                      ImageConstant.imgCheco,
+                                                      ImageConstant.imgDriver(
+                                                          driver.driverId,
+                                                          0) /*==
+                                                          null
+                                                      ? ImageConstant
+                                                          .imageNotFound
+                                                      : ImageConstant.imgDriver(
+                                                          driver.driverId, 0)*/
+                                                  ,
                                                   height: 291.v,
                                                   width: 271.h,
                                                   alignment:
@@ -122,10 +114,7 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
                                         width: 215.h,
                                         margin: EdgeInsets.only(
                                             left: 35.h, top: 40.v),
-                                        child: Text(
-                                            informacionPilotoCheco()
-                                                .toString()
-                                                .tr,
+                                        child: Text('${informacionPiloto()}',
                                             maxLines: 9,
                                             overflow: TextOverflow.ellipsis,
                                             style: CustomTextStyles
@@ -197,64 +186,18 @@ class _ChecoPerezScreen extends State<ChecoPerezScreen> {
     Navigator.pushNamed(context, AppRoutes.checoPerezScreen);
   }
 
-  informacionPilotoCheco() {
+  String informacionPiloto() {
     StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write("Nombre: " +
-        listaPilotos
-            .getListaPilotos()[12]
-            .getGivenName()
-            .toString()
-            .replaceAll("\"", "") +
-        "\n");
-    stringBuffer.write("Nombre familia: " +
-        listaPilotos
-            .getListaPilotos()[12]
-            .getFamilyName()
-            .toString()
-            .replaceAll("\"", "") +
-        "\n");
+    stringBuffer.write("Nombre: " + driver.givenName + "\n");
+    stringBuffer.write("Nombre familia: " + driver.familyName + "\n");
     stringBuffer.write("Fecha de nacimiento: " +
-        listaPilotos
-            .getListaPilotos()[12]
-            .getDateOfBirth()
-            .toString()
-            .replaceAll("\"", "") +
+        driver.dateOfBirth.format('dd-MM-yyyy') +
         "\n");
-    stringBuffer.write("Nacionalidad: " +
-        listaPilotos
-            .getListaPilotos()[12]
-            .getNacionality()
-            .toString()
-            .replaceAll("\"", "")
-            .replaceAll("}", "")
-            .replaceAll("]", "") +
-        "\n");
-    stringBuffer.write("Codigo: " +
-        listaPilotos
-            .getListaPilotos()[12]
-            .getCode()
-            .toString()
-            .replaceAll("\"", "") +
-        "\n");
-    stringBuffer.write("Numero: " +
-        listaPilotos
-            .getListaPilotos()[12]
-            .getPermanentNumber()
-            .toString()
-            .replaceAll("\"", "") +
-        "\n");
-    return stringBuffer;
-  }
+    stringBuffer.write("Nacionalidad: " + driver.nationality + "\n");
+    stringBuffer.write("Codigo: " + driver.code + "\n");
+    stringBuffer.write("Numero: " + driver.permanentNumber + "\n");
 
-  nombrePiloto() {
-    StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write(listaPilotos
-        .getListaPilotos()[12]
-        .driverId
-        .toString()
-        .replaceAll("\"", "")
-        .replaceAll("_", " ")
-        .toUpperCase());
-    return stringBuffer;
+    String info = stringBuffer.toString();
+    return info;
   }
 }

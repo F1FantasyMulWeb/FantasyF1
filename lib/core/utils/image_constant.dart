@@ -100,7 +100,7 @@ class ImageConstant {
   static String imgImage30 = '$imagePath/img_image30.png';
 
   // Escuderia Mercedes images
-  static String imgGroup19 = '$imagePath/img_group19.png';
+  static String imgGroup19 = '$imagePath/img_mercedes.png';
 
   static String imgMercedesphotoroom = '$imagePath/img_mercedesphotoroom.png';
 
@@ -200,17 +200,42 @@ class ImageConstant {
 
   static String imgArrowleft = '$imagePath/img_arrowleft.svg';
 
-  static String imgGroup3 = '$imagePath/img_group3.png';
+  static String imgGroup3 = '$imagePath/img_red_bull.png';
 
   static String imgArrowdown = '$imagePath/img_arrowdown.svg';
 
   static String imgArrowup = '$imagePath/img_arrowup.svg';
 
-  static String imgGroup36 = '$imagePath/img_group36.png';
+  static String imgGroup36 = '$imagePath/img_alfa_romeo.png';
 
   static String imgHome = '$imagePath/img_home.svg';
 
-  static String imgGroup37 = '$imagePath/img_group37.png';
+  static String imgGroup37 = '$imagePath/img_aston_martin.png';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+
+  static String imgDriver(String driver, int tipoImage) {
+    //0 body
+    //1 bodySmall
+    //2 icon
+    //3 iconSmall
+    String tipo = '';
+    switch (tipoImage) {
+      case 0:
+        tipo = 'body';
+        break;
+      case 1:
+        tipo = 'bodySmall';
+        break;
+      case 3:
+        tipo = 'icon';
+        break;
+      case 4:
+        tipo = 'iconSmall';
+        break;
+      default:
+    }
+
+    return '$imagePath/img_' + '$driver' + '_' + '$tipo.png';
+  }
 }

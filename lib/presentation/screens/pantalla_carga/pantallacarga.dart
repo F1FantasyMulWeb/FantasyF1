@@ -54,7 +54,6 @@ class _PantallaCarga extends State<PantallaCarga> {
     lcGlobal = await obtenerInfoCircuito();
     leGlobal = await obtenerInfoEscuderia();
 
-
     ManejoDeLaInformcion mli = ManejoDeLaInformcion();
 
     if (lpGlobal != null && lcGlobal != null && leGlobal != null) {
@@ -64,9 +63,10 @@ class _PantallaCarga extends State<PantallaCarga> {
 
       PilotoVerstapenScreen pvs = PilotoVerstapenScreen();
       ElNanoScreen ens = ElNanoScreen();
-      ChecoPerezScreen cps = ChecoPerezScreen();
-      CircuitoBahrInScreen cbis = CircuitoBahrInScreen();
-      CircuitoDeLaCornicheDeYedaScreen cdcys = CircuitoDeLaCornicheDeYedaScreen();
+      //ChecoPerezScreen cps = ChecoPerezScreen();
+      //CircuitoBahrInScreen cbis = CircuitoBahrInScreen();
+      CircuitoDeLaCornicheDeYedaScreen cdcys =
+          CircuitoDeLaCornicheDeYedaScreen();
       CircuitoDeAlbertParkScreen cdaps = CircuitoDeAlbertParkScreen();
       EscuderiaRedBullScreen erbs = EscuderiaRedBullScreen();
       EscuderiaAstonMartinScreen eas = EscuderiaAstonMartinScreen();
@@ -74,8 +74,8 @@ class _PantallaCarga extends State<PantallaCarga> {
 
       pvs.setManejoDeLaInformcion(mli);
       ens.setManejoDeLaInformcion(mli);
-      cps.setManejoDeLaInformcion(mli);
-      cbis.setManejoDeLaInformcion(mli);
+      // cps.setManejoDeLaInformcion(mli);
+      //cbis.setManejoDeLaInformcion(mli);
       cdcys.setManejoDeLaInformcion(mli);
       cdaps.setManejoDeLaInformcion(mli);
       erbs.setManejoDeLaInformcion(mli);
@@ -83,8 +83,6 @@ class _PantallaCarga extends State<PantallaCarga> {
       ems.setManejoDeLaInformcion(mli);
 
       print("Se ha terminado de rellenar las listas");
-
-
     } else {
       print("Error al obtener los datos");
     }
@@ -107,5 +105,4 @@ class _PantallaCarga extends State<PantallaCarga> {
       },
     );
   }
-
 }
