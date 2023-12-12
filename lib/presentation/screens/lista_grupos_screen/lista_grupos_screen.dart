@@ -48,7 +48,9 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
             Text("lbl_grupos".tr, style: theme.textTheme.displayMedium),
             SizedBox(height: 10.v),
             Expanded(
-              child: ListView.builder(
+              child: _listaGrupos.isEmpty
+                  ? Center(child: Text('Usted no tiene grupos', style: theme.textTheme.displayMedium))
+                  : ListView.builder(
                 itemCount: _listaGrupos.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(

@@ -79,6 +79,7 @@ class _MainscreensinligasScreenState
                               }))
                     ]),
                 drawer: Drawer(
+                  backgroundColor: Colors.white,
                   child: ListView(
                     padding: EdgeInsets.zero,
                     children: <Widget>[
