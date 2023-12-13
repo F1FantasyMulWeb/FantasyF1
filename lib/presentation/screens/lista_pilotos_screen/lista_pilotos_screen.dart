@@ -1,9 +1,10 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
+import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/presentation/screens/checo_perez_screen/checo_perez_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
-import '../../../api/modelo/RaceEventModel.dart';
+import '../../../api/modelo/DriversModel.dart';
 
 class ListaPilotosScreen extends StatefulWidget {
   const ListaPilotosScreen({Key? key}) : super(key: key);
@@ -13,18 +14,19 @@ class ListaPilotosScreen extends StatefulWidget {
 }
 
 class _ListaPilotosScreen extends State<ListaPilotosScreen> {
-  RaceEventModel? carGlobal = null;
-  List<Result>? result = null;
+  DriversModel? driversModel = null;
+  List<Driver>? result = null;
 
-  Future<RaceEventModel?> initializeCarGlobal() async {
+  Future<DriversModel?> initializeCarGlobal() async {
     Client cliente = Client();
-    var gl = await cliente
-        .getResults("current", "5", "results", queryParams: "limit=15")
-        .whenComplete(() => print("cargado"));
-    print(carGlobal);
+    var gl = await cliente.getDrivers("2023");
+    /*.getResults("current", "5", "results", queryParams: "limit=15")
+        .whenComplete(() => print("cargado")*/
+    ;
+    print(driversModel);
     setState(() {
-      carGlobal = gl;
-      result = carGlobal!.mrData.raceTable.races.first.results;
+      driversModel = gl;
+      result = driversModel!.mrData.driverTable.drivers;
     });
     return null;
   }
@@ -32,9 +34,7 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
   @override
   void initState() {
     initializeCarGlobal();
-    result?.forEach((element) {
-      print(element.driver.driverId);
-    });
+
     super.initState();
     //   Client cliente = Client();
     //RaceEventModel? carGlobal;
@@ -104,7 +104,7 @@ escucharStreamCarrera();*/
                                             children: [
                                               AvifImage.file(
                                                   ImageConstant.imgDriverAvif(
-                                                      i.driver.driverId),
+                                                      i.driverId),
                                                   height: 200,
                                                   fit: BoxFit.scaleDown,
                                                   alignment:
@@ -116,8 +116,7 @@ escucharStreamCarrera();*/
                                                   width: 273.h,
                                                   alignment: Alignment.center,
                                                   onTap: () {
-                                                    onTapDriver(
-                                                        context, i.driver);
+                                                    onTapDriver(context, i);
                                                   }),
                                               Align(
                                                   alignment:
@@ -126,13 +125,11 @@ escucharStreamCarrera();*/
                                                       padding: EdgeInsets.only(
                                                           bottom: 19.v),
                                                       child: Text(
-                                                          carGlobal == null
+                                                          driversModel == null
                                                               ? "".tr
-                                                              : i.driver
-                                                                      .givenName +
+                                                              : i.givenName +
                                                                   ' ' +
-                                                                  i.driver
-                                                                      .familyName,
+                                                                  i.familyName,
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: theme.textTheme
