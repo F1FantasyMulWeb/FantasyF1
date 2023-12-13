@@ -9,8 +9,15 @@ import 'package:supabase/supabase.dart';
 import '../core/utils/image_constant.dart';
 
 class DataBaseController {
+  static final DataBaseController _singleton = DataBaseController._internal();
+  Map<String, dynamic> cache = {};
   final SupabaseClient client = SupabaseService().client;
 
+  factory DataBaseController() {
+    return _singleton;
+  }
+
+  DataBaseController._internal();
   Future<bool> sendData(String email, String nombre) async {
     final response = await client.from('UsuarioApp').insert([
       {'userName': nombre, 'correo': email}
@@ -39,14 +46,12 @@ class DataBaseController {
   }
 
   Future<bool> sendDataAdministradorGrupo(var idGrupo) async {
-    final email = client.auth.currentUser?.email;
-    List<dynamic> response1 =
-        await client.from('UsuarioApp').select().eq('correo', email);
+    int idUsuario = await selectUserId();
     List<dynamic> response2 =
         await client.from('Grupos').select().eq('keyGrupo', idGrupo);
     final response3 = await client.from('UsuarioAppGrupo').insert([
       {
-        'idUsuario': response1[0]["idUsuario"],
+        'idUsuario': idUsuario,
         'idGrupo': response2[0]["idGrupo"],
         'Dinero': 0,
         'esAdmin': true,
@@ -54,47 +59,88 @@ class DataBaseController {
         'Puntos': 0
       }
     ]);
-    if (response1 == null || response2 == null || response3 == null) {
+    if (idUsuario == null || response2 == null || response3 == null) {
       return true;
     } else {
       return false;
     }
   }
 
-  Future<List> selectUserId() async {
-    final email = client.auth.currentUser?.email;
-    List<dynamic> response1 =
-        await client.from('UsuarioApp').select().eq('correo', email);
-    List<dynamic> response2 = await client
-        .from('UsuarioAppGrupo')
-        .select()
-        .eq('idUsuario', response1[0]["idUsuario"]);
-
-    if (response2.isEmpty) {
-      return [];
+  Future<bool> sendDataUsuarioGrupo(var keyGrupo) async {
+    int idUsuario = await selectUserId();
+    List<dynamic> response2 =
+    await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+    final response3 = await client.from('UsuarioAppGrupo').insert([
+      {
+        'idUsuario': idUsuario,
+        'idGrupo': response2[0]["idGrupo"],
+        'Dinero': 0,
+        'esAdmin': false,
+        'Victorias': 0,
+        'Puntos': 0
+      }
+    ]);
+    if (idUsuario == null || response2 == null || response3 == null) {
+      return true;
     } else {
-      return response2;
+      return false;
     }
   }
 
-  Future<List> selectMisGruposName() async {
-    List<String> nombresGrupos = [];
+  Future<int> selectUserId() async {
     final email = client.auth.currentUser?.email;
+    int result;
+
+    if (email == null) {
+      return -1;
+    }
+    if (cache.containsKey(email)) {
+      return cache[email];
+    }
+
     List<dynamic> response1 =
-        await client.from('UsuarioApp').select().eq('correo', email);
+    await client.from('UsuarioApp').select('idUsuario').eq('correo', email);
+    if (response1.isEmpty) {
+      print("Hola Fallo");
+      result = -1;
+    } else {
+      result = response1[0]["idUsuario"];
+    }
+    print(result.runtimeType);
+    cache[email] = result;
+
+    return result;
+  }
+
+  Future<List<String>> selectMisGruposName() async {
+    List<int> idGrupos = [];
+    List<String> nombreGrupos = [];
+    int idGrupo;
+    int idUsuario = await selectUserId();
+    List<dynamic> response3;
     List<dynamic> response2 = await client
         .from('UsuarioAppGrupo')
         .select()
-        .eq('idUsuario', response1[0]["idUsuario"]);
-    for (var i = 0; i > response2.length; i++) {
-      nombresGrupos.add(response2[i]["idGrupo"]);
+        .eq('idUsuario', idUsuario);
+    for (var i = 0; i < response2.length; i++) {
+      idGrupos.add(response2[i]["idGrupo"]);
     }
-    print("Weas");
-    print(nombresGrupos);
-    if (nombresGrupos.isEmpty) {
+    for (var i = 0; i < idGrupos.length; i++) {
+      try {
+        idGrupo=idGrupos[i];
+        response3 = await client
+            .from('Grupos')
+            .select()
+            .eq('idGrupo', idGrupo);
+        nombreGrupos.add(response3[0]["nombreGrupo"]);
+      } catch (e) {
+        return [];
+      }
+    }
+    if (nombreGrupos.isEmpty) {
       return [];
     } else {
-      return nombresGrupos;
+      return nombreGrupos;
     }
   }
 

@@ -139,8 +139,8 @@ class _CreargrupoScreen extends ConsumerState<CreargrupoScreen> {
                               buttonStyle: CustomButtonStyles.outlinePrimaryTL8,
                               buttonTextStyle: CustomTextStyles
                                   .titleMediumWhiteA70001SemiBold,
-                              onTap: () {
-                                mandarDatosGrupo();
+                              onTap: () async {
+                                await mandarDatosGrupo();
                                 userModel.cargarGrupos();
                                 onTapCreargrupo(context);
                               })
@@ -161,7 +161,7 @@ class _CreargrupoScreen extends ConsumerState<CreargrupoScreen> {
     final idGrupo = uuid.v4();
     await clienteController.sendDataGrupo(
         nombreGrupoController.text, passwordController.text, idGrupo);
-    anadirUsuarioAlGrupoGrado(idGrupo);
+    await anadirUsuarioAlGrupoGrado(idGrupo);
   }
 
   Future<void> anadirUsuarioAlGrupoGrado(var idGrupo) async {

@@ -6,6 +6,8 @@ import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
+import '../../../DataBase/databasecontroller.dart';
+
 class AAdirgrupoScreen extends StatelessWidget {
   AAdirgrupoScreen({Key? key})
       : super(
@@ -15,6 +17,8 @@ class AAdirgrupoScreen extends StatelessWidget {
   TextEditingController codevalueoneController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
+
+  DataBaseController clienteController = DataBaseController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -126,6 +130,10 @@ class AAdirgrupoScreen extends StatelessWidget {
                       top: 269.v,
                       right: 16.h,
                     ),
+                    onTap: (){
+                      
+                      clienteController.sendDataUsuarioGrupo(codevalueoneController.text);
+                    },
                     buttonStyle: CustomButtonStyles.outlinePrimaryTL8,
                     buttonTextStyle:
                         CustomTextStyles.titleMediumWhiteA70001SemiBold,

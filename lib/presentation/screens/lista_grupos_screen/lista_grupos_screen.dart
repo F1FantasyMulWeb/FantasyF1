@@ -71,7 +71,7 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
                         ),
                         Expanded(
                           child: Center(
-                            child: Text(_listaGrupos[index]['nombreGrupo'],
+                            child: Text(_listaGrupos[index],
                                 style: CustomTextStyles.displayGrupos),
                           ),
                         ),
@@ -84,16 +84,31 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
           ]),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          onTapCrearGrupo(context);
-        },
-        child: Icon(Icons.add), // Ícono del botón
-        backgroundColor: Colors.redAccent, // Color de fondo del botón
-      ),
-          
-
-    ));
+            floatingActionButton: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                FloatingActionButton(
+                  heroTag: "btn1",
+                  onPressed: () {
+                    onTapCrearGrupo(context);
+                  },
+                  child: Icon(Icons.add), // Ícono del primer botón
+                  backgroundColor: Colors.redAccent, // Color de fondo del primer botón
+                ),
+                SizedBox(
+                  height: 10, // Espacio entre los botones
+                ),
+                FloatingActionButton(
+                  heroTag: "btn2",
+                  onPressed: () {
+                    onTapUnirseGrupo(context);
+                  },
+                  child: Icon(Icons.remove), // Ícono del segundo botón
+                  backgroundColor: Colors.blueAccent, // Color de fondo del segundo botón
+                ),
+              ],
+            )
+        ));
   }
 
   /// Navigates to the grupoScreen when the action is triggered.
@@ -106,5 +121,8 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
   }
   onTapCrearGrupo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.creargrupoScreen);
+  }
+  onTapUnirseGrupo(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
   }
 }
