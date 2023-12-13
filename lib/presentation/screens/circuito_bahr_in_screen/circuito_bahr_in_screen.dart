@@ -2,6 +2,7 @@ import 'package:fantasyf1/api/listaCircuitos.dart';
 import 'package:fantasyf1/api/modelo/RaceScheduleModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_avif/flutter_avif.dart';
 import '../../../api/listaPilotos.dart';
 import '../../../api/manejoDeLaInformcion.dart';
 
@@ -58,12 +59,12 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                         style: theme.textTheme.displaySmall,
                                       ),
                                       SizedBox(height: 10.v),
-                                      CustomImageView(
-                                        imagePath:
-                                            ImageConstant.imgImage26273x355,
-                                        height: 273.v,
-                                        width: 355.h,
-                                      ),
+                                      AvifImage.file(
+                                          ImageConstant.imgCircuitoAvif(
+                                              circuit.circuitId),
+                                          height: 200,
+                                          fit: BoxFit.scaleDown,
+                                          alignment: Alignment.centerLeft),
                                       SizedBox(height: 18.v),
                                     ],
                                   ),

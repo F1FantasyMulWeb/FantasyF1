@@ -248,4 +248,10 @@ class ImageConstant {
 
     return Image1;
   }
+
+  static File imgCircuitoAvif(String circuito) {
+    var Image1 = File('$imagePath/circuitos/' + '$circuito' + '.avif');
+
+    return Image1;
+  }
 }

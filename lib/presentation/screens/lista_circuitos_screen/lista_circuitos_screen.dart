@@ -4,6 +4,7 @@ import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_avif/flutter_avif.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import 'package:get/get_navigation/get_navigation.dart';
 
@@ -112,7 +113,16 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
                                                                       top: 8.v),
                                                               child: Row(
                                                                   children: [
-                                                                    CustomImageView(
+                                                                    AvifImage.file(
+                                                                        ImageConstant.imgCircuitoAvif(i
+                                                                            .circuitId),
+                                                                        height:
+                                                                            200,
+                                                                        fit: BoxFit
+                                                                            .scaleDown,
+                                                                        alignment:
+                                                                            Alignment.centerLeft),
+                                                                    /*CustomImageView(
                                                                         imagePath:
                                                                             ImageConstant
                                                                                 .imgImage32,
@@ -128,7 +138,7 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
                                                                           onTapCircuits(
                                                                               context,
                                                                               i);
-                                                                        }),
+                                                                        })*/
                                                                     Padding(
                                                                         padding: EdgeInsets.only(
                                                                             left: 16
