@@ -1,6 +1,5 @@
+import 'package:fantasyf1/presentation/screens/anadir_grupo_screen/a%C3%B1adirgrupo_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../presentation/screens/a_adirgrupo_screen/a_adirgrupo_screen.dart';
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
 import '../presentation/screens/app_navigation_screen/app_navigation_screen.dart';
@@ -10,8 +9,6 @@ import '../presentation/screens/cambiarcontrase_a1screen_screen/cambiarcontrase_
 import '../presentation/screens/cambiarcontrase_a2screen_screen/cambiarcontrase_a2screen_screen.dart';
 import '../presentation/screens/cambiarcontrase_a3screen_one_screen/cambiarcontrase_a3screen_one_screen.dart';
 import '../presentation/screens/cambiarcontrase_a3screen_screen/cambiarcontrase_a3screen_screen.dart';
-import '../presentation/screens/checo_perez_screen/checo_perez_screen.dart';
-import '../presentation/screens/circuito_bahr_in_screen/circuito_bahr_in_screen.dart';
 import '../presentation/screens/circuito_de_albert_park_screen/circuito_de_albert_park_screen.dart';
 import '../presentation/screens/circuito_de_la_corniche_de_yeda_screen/circuito_de_la_corniche_de_yeda_screen.dart';
 import '../presentation/screens/circuito_de_m_naco_screen/circuito_de_m_naco_screen.dart';
@@ -137,7 +134,7 @@ class AppRoutes {
     registrarsescreenScreen: (context) => RegistrarsescreenScreen(),
     cambiarcontraseA1screenScreen: (context) => CambiarcontraseA1screenScreen(),
     mainscreensinligasScreen: (context) => MainscreensinligasScreen(),
-    aAdirgrupoScreen: (context) => AAdirgrupoScreen(),
+    aAdirgrupoScreen: (context) => AnadirGrupoScreen(),
     listaGruposScreen: (context) => ListaGruposScreen(),
     grupoScreen: (context) => GrupoScreen(),
     escuderiaRedBullScreen: (context) => EscuderiaRedBullScreen(),

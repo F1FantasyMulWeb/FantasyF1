@@ -82,12 +82,8 @@ class DataBaseController {
           'Puntos': 0
         }
       ]);
-    }else{
-      return false;
-    }
-    if (idUsuario == null || response2 == null) {
       return true;
-    } else {
+    }else{
       return false;
     }
   }
