@@ -73,6 +73,7 @@ class AAdirgrupoScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 6.v),
                         CustomTextFormField(
+
                           controller: codevalueoneController,
                           hintText: "lbl_1234_2222".tr,
                           prefix: Container(
@@ -130,9 +131,14 @@ class AAdirgrupoScreen extends StatelessWidget {
                       top: 269.v,
                       right: 16.h,
                     ),
-                    onTap: (){
-                      
-                      clienteController.sendDataUsuarioGrupo(codevalueoneController.text);
+                    onTap: () {
+                      final b = clienteController.sendDataUsuarioGrupo(
+                          codevalueoneController.text, passwordController.text);
+                      if (b == true) {
+                        _mostrarDialogo(context, "Grupo no añadido");
+                      } else {
+                        _mostrarDialogo(context, "Grupo añadido");
+                      }
                     },
                     buttonStyle: CustomButtonStyles.outlinePrimaryTL8,
                     buttonTextStyle:
@@ -144,6 +150,25 @@ class AAdirgrupoScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _mostrarDialogo(BuildContext context, String mensaje) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(mensaje),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cerrar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

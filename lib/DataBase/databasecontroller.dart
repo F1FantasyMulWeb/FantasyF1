@@ -18,6 +18,7 @@ class DataBaseController {
   }
 
   DataBaseController._internal();
+
   Future<bool> sendData(String email, String nombre) async {
     final response = await client.from('UsuarioApp').insert([
       {'userName': nombre, 'correo': email}
@@ -66,21 +67,25 @@ class DataBaseController {
     }
   }
 
-  Future<bool> sendDataUsuarioGrupo(var keyGrupo) async {
+  Future<bool> sendDataUsuarioGrupo(var keyGrupo, var password) async {
     int idUsuario = await selectUserId();
     List<dynamic> response2 =
-    await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
-    final response3 = await client.from('UsuarioAppGrupo').insert([
-      {
-        'idUsuario': idUsuario,
-        'idGrupo': response2[0]["idGrupo"],
-        'Dinero': 0,
-        'esAdmin': false,
-        'Victorias': 0,
-        'Puntos': 0
-      }
-    ]);
-    if (idUsuario == null || response2 == null || response3 == null) {
+        await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+    if (response2[0]["contraseñaGrupo"] == password) {
+      final response3 = await client.from('UsuarioAppGrupo').insert([
+        {
+          'idUsuario': idUsuario,
+          'idGrupo': response2[0]["idGrupo"],
+          'Dinero': 0,
+          'esAdmin': false,
+          'Victorias': 0,
+          'Puntos': 0
+        }
+      ]);
+    }else{
+      return false;
+    }
+    if (idUsuario == null || response2 == null) {
       return true;
     } else {
       return false;
@@ -99,7 +104,7 @@ class DataBaseController {
     }
 
     List<dynamic> response1 =
-    await client.from('UsuarioApp').select('idUsuario').eq('correo', email);
+        await client.from('UsuarioApp').select('idUsuario').eq('correo', email);
     if (response1.isEmpty) {
       print("Hola Fallo");
       result = -1;
@@ -127,11 +132,8 @@ class DataBaseController {
     }
     for (var i = 0; i < idGrupos.length; i++) {
       try {
-        idGrupo=idGrupos[i];
-        response3 = await client
-            .from('Grupos')
-            .select()
-            .eq('idGrupo', idGrupo);
+        idGrupo = idGrupos[i];
+        response3 = await client.from('Grupos').select().eq('idGrupo', idGrupo);
         nombreGrupos.add(response3[0]["nombreGrupo"]);
       } catch (e) {
         return [];
@@ -252,4 +254,5 @@ class DataBaseController {
 
     return file.path;
   }
+
 }
