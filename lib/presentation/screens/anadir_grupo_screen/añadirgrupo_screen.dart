@@ -86,7 +86,7 @@ class AnadirGrupoScreen extends ConsumerStatefulWidget {
                         ),
                         SizedBox(height: 6.v),
                         CustomTextFormField(
-
+                          obscureText: false,
                           controller: codevalueoneController,
                           hintText: "lbl_1234_2222".tr,
                           prefix: Container(
@@ -144,8 +144,8 @@ class AnadirGrupoScreen extends ConsumerStatefulWidget {
                       top: 269.v,
                       right: 16.h,
                     ),
-                    onTap: () {
-                      final b = clienteController.sendDataUsuarioGrupo(
+                    onTap: () async {
+                      final b = await clienteController.sendDataUsuarioGrupo(
                           codevalueoneController.text, passwordController.text);
                       if (b == true) {
                         _mostrarDialogo(context, "Grupo añadido");

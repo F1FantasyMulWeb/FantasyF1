@@ -71,8 +71,9 @@ class DataBaseController {
     int idUsuario = await selectUserId();
     List<dynamic> response2 =
         await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
-    if (response2[0]["contraseñaGrupo"] == password) {
-      final response3 = await client.from('UsuarioAppGrupo').insert([
+    final passDataBase = response2[0]["contraseñaGrupo"];
+    if (passDataBase == password) {
+      await client.from('UsuarioAppGrupo').insert([
         {
           'idUsuario': idUsuario,
           'idGrupo': response2[0]["idGrupo"],
