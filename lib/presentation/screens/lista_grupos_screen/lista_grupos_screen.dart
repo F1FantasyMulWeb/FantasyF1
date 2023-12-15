@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../DataBase/databasecontroller.dart';
+import '../../../provider/grupoactual.dart';
 import '../../../provider/usermodel.dart';
 
 class ListaGruposScreen extends ConsumerStatefulWidget {
@@ -25,8 +26,8 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     final userModel = ref.watch(userModelProvider);
+    final grupoActual = ref.watch(grupoActualModelProvider);
     final _listaGrupos = userModel.listaGrupos;
-    print(_listaGrupos);
     return SafeArea(
         child: Scaffold(
       appBar: CustomAppBar(
@@ -43,7 +44,6 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
           child: Column(children: [
             Divider(),
             SizedBox(height: 5.v),
-
             SizedBox(height: 5.v),
             Text("lbl_grupos".tr, style: theme.textTheme.displayMedium),
             SizedBox(height: 10.v),
@@ -55,6 +55,8 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
+                      grupoActual.setnombreGrupo(_listaGrupos[index]);
+                      grupoActual.cargarDato();
                       onTapUserlistitem(context);
                     },
                     child: Row(

@@ -3,14 +3,29 @@ import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
-class ListaJugadoresScreen extends StatelessWidget {
+import '../../../DataBase/databasecontroller.dart';
+import '../../../provider/grupoactual.dart';
+
+class ListaJugadoresScreen extends ConsumerStatefulWidget {
   const ListaJugadoresScreen({Key? key}) : super(key: key);
+
+  @override
+  ConsumerState<ListaJugadoresScreen> createState() => _ListaJugadoresScreen();
+}
+
+class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
+  DataBaseController clienteController = DataBaseController();
+
+
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
+    final grupoActual = ref.watch(grupoActualModelProvider);
+    final nombresUsuariosGrupoFinales = grupoActual.nombresUsuariosGrupoFinales;
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
@@ -26,78 +41,96 @@ class ListaJugadoresScreen extends StatelessWidget {
                 title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
             body: SizedBox(
                 width: mediaQueryData.size.width,
-                child: SingleChildScrollView(
+
                     child: Padding(
                         padding: EdgeInsets.only(bottom: 5.v),
-                        child: Column(children: [
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
                           Divider(),
                           SizedBox(height: 16.v),
                           Text("lbl_clasificaci_n".tr,
                               style: CustomTextStyles.displayMedium40),
                           SizedBox(height: 19.v),
-                          GestureDetector(
-                              onTap: () {
-                                onTapUserlistitem(context);
-                              },
-                              child: Container(
-                                  height: 71.v,
-                                  width: 328.h,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10.h, vertical: 2.v),
-                                  decoration: AppDecoration.fillWhiteA,
-                                  child: Stack(
-                                      alignment: Alignment.bottomLeft,
-                                      children: [
-                                        Align(
-                                            alignment: Alignment.center,
-                                            child: Container(
-                                                width: 273.h,
-                                                margin: EdgeInsets.only(
-                                                    left: 20.h,
-                                                    top: 1.v,
-                                                    right: 14.h),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 29.h,
-                                                    vertical: 14.v),
-                                                decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                        image: fs.Svg(
-                                                            ImageConstant
-                                                                .imgVector1),
-                                                        fit: BoxFit.cover)),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.end,
-                                                    children: [
-                                                      Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  vertical:
-                                                                      6.v),
-                                                          child: Text("lbl".tr,
-                                                              style: theme
-                                                                  .textTheme
-                                                                  .titleLarge)),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 97.h,
-                                                                  top: 3.v),
-                                                          child: Text("lbl".tr,
-                                                              style: CustomTextStyles
-                                                                  .headlineMediumFormula1))
-                                                    ]))),
-                                        CustomImageView(
-                                            imagePath:
-                                                ImageConstant.imgDownload51x55,
-                                            height: 51.v,
-                                            width: 55.h,
-                                            radius: BorderRadius.circular(25.h),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: nombresUsuariosGrupoFinales.length,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                    onTap: () {
+                                      onTapUserlistitem(context);
+                                    },
+                                    child: Container(
+                                        height: 71.v,
+                                        width: 328.h,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10.h, vertical: 2.v),
+                                        decoration: AppDecoration.fillWhiteA,
+                                        child: Stack(
                                             alignment: Alignment.bottomLeft,
-                                            margin:
-                                                EdgeInsets.only(bottom: 6.v))
-                                      ])))
-                        ]))))));
+                                            children: [
+                                              Align(
+                                                  alignment: Alignment.center,
+                                                  child: Container(
+                                                      width: 273.h,
+                                                      margin: EdgeInsets.only(
+                                                          left: 20.h,
+                                                          top: 1.v,
+                                                          right: 14.h),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 29.h,
+                                                              vertical: 14.v),
+                                                      decoration: BoxDecoration(
+                                                          image: DecorationImage(
+                                                              image: fs.Svg(
+                                                                  ImageConstant
+                                                                      .imgVector1),
+                                                              fit: BoxFit
+                                                                  .cover)),
+                                                      child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        vertical: 6
+                                                                            .v),
+                                                                child: Text(
+                                                                    nombresUsuariosGrupoFinales[index],
+                                                                    style: theme
+                                                                        .textTheme
+                                                                        .titleLarge)),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        left: 50
+                                                                            .h,
+                                                                        top: 3
+                                                                            .v),
+                                                                child: Text(
+                                                                    "hola",
+                                                                    style: CustomTextStyles
+                                                                        .headlineMediumFormula1))
+                                                          ]))),
+                                              CustomImageView(
+                                                  imagePath: ImageConstant
+                                                      .imgDownload51x55,
+                                                  height: 51.v,
+                                                  width: 55.h,
+                                                  radius: BorderRadius.circular(
+                                                      25.h),
+                                                  alignment:
+                                                      Alignment.bottomLeft,
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 6.v))
+                                            ])));
+                              },
+                            ),
+                          ),
+                        ])))));
   }
 
   /// Navigates back to the previous screen.

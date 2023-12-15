@@ -19,6 +19,7 @@ class UserModel extends ChangeNotifier {
   List<dynamic> get listaGrupos => _listaGrupos;
 
   Future<void> cargarDato() async {
+
     _userName = await dataBaseController.selectUserName();
     _avatar = await dataBaseController.downloadAvatarInicioUser(_userName);
     _listaGrupos = await dataBaseController.selectMisGruposName();

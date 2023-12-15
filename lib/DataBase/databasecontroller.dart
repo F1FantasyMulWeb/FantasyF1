@@ -67,6 +67,16 @@ class DataBaseController {
     }
   }
 
+  Future<String> selectCodeGroup(String nombreGrupo) async {
+    List<dynamic> response =
+        await client.from('Grupos').select().eq('nombreGrupo', nombreGrupo);
+    if (response.isEmpty) {
+      return "?????";
+    } else {
+      return response[0]["keyGrupo"];
+    }
+  }
+
   Future<bool> sendDataUsuarioGrupo(var keyGrupo, var password) async {
     int idUsuario = await selectUserId();
     List<dynamic> response2 =
@@ -84,7 +94,7 @@ class DataBaseController {
         }
       ]);
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -252,4 +262,38 @@ class DataBaseController {
     return file.path;
   }
 
+  Future<List<String>> selectUsuariosDelGrupo(var keyGrupo) async {
+    List<int> idjugadores = [];
+    List<String> jugadores = [];
+    List<dynamic> response3;
+    List<dynamic> response1 =
+        await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+    List<dynamic> response2 = await client
+        .from('UsuarioAppGrupo')
+        .select()
+        .eq('idGrupo', response1[0]["idGrupo"]);
+    for (var i = 0; i < response2.length; i++) {
+      idjugadores.add(response2[i]["idUsuario"]);
+    }
+    for (var i = 0; i < idjugadores.length; i++) {
+      response3 = await client
+          .from('UsuarioApp')
+          .select()
+          .eq('idUsuario', idjugadores[i]);
+      jugadores.add(response3[0]["userName"]);
+    }
+    return jugadores;
+  }
+
+  Future<String> selectPuntosUsuarioGrupo(var idUsuario) async {
+    List<dynamic> response1 =
+    await client.from('UsuarioAppGrupo').select().eq('idUsuario', idUsuario);
+    return response1[0]["Puntos"];
+  }
+
+  Future<int> selectIdDeUsuario(var nombreUsuario) async {
+    List<dynamic> response1 =
+    await client.from('UsuarioApp').select().eq('userName', nombreUsuario);
+    return response1[0]["idUsuario"];
+  }
 }
