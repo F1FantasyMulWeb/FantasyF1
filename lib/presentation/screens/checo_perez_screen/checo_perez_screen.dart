@@ -1,6 +1,4 @@
-import 'package:fantasyf1/api/listaPilotos.dart';
 import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
 import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
@@ -78,11 +76,9 @@ class ChecoPerezScreen extends StatelessWidget {
                                                             ),
                                                           ),
                                                           CustomImageView(
-                                                            imagePath:
-                                                                ImageConstant
-                                                                    .imgImage28,
-                                                            height: 29.v,
-                                                            width: 57.h,
+                                                            file: ImageConstant
+                                                                .imgBandera(driver
+                                                                    .nationality),
                                                             margin:
                                                                 EdgeInsets.only(
                                                                     top: 41.v,

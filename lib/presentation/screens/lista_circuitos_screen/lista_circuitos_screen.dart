@@ -5,8 +5,6 @@ import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
-import 'package:get/get_navigation/get_navigation.dart';
 
 import '../../../api/configuracionApi.dart';
 import '../../../api/modelo/RaceScheduleModel.dart';
@@ -38,8 +36,6 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
   @override
   void initState() {
     initializeCarGlobal();
-    //print(circuitos);
-    print(circuit);
 
     super.initState();
   }

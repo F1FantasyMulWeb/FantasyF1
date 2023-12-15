@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           '',
         ),
       ],
-      initialRoute: AppRoutes.listaPilotosScreen,
+      initialRoute: AppRoutes.listaCircuitosScreen,
       routes: AppRoutes.routes,
     );
   }

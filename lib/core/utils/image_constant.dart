@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-
 class ImageConstant {
   // Image folder path
   static String imagePath = 'assets/images';
@@ -252,6 +250,61 @@ class ImageConstant {
   static File imgCircuitoAvif(String circuito) {
     var Image1 = File('$imagePath/circuitos/' + '$circuito' + '.avif');
 
+    return Image1;
+  }
+
+  static File imgBandera(String pais) {
+    String l = pais;
+    switch (pais) {
+      case 'Spanish':
+        l = 'spain';
+        break;
+      case 'Danish':
+        l = 'denmark';
+        break;
+      case 'Canadian':
+        l = 'canada';
+        break;
+      case 'Thai':
+        l = 'thailand';
+        break;
+      case 'Finnish':
+        l = 'finland';
+        break;
+      case 'Dutch':
+        l = 'netherlands';
+        break;
+      case 'French':
+        l = 'france';
+        break;
+      case 'British':
+        l = 'britain';
+        break;
+      case 'Chinese':
+        l = 'china';
+        break;
+      case 'Japanese':
+        l = 'japan';
+        break;
+      case 'Mexican':
+        l = 'mexico';
+        break;
+      case 'German':
+        l = 'germany';
+        break;
+      case 'Monegasque':
+        l = 'monaco';
+        break;
+      case 'Australian':
+        l = 'australia';
+        break;
+      case 'American':
+        l = 'usa';
+        break;
+    }
+    l = l + '.png';
+
+    var Image1 = File('$imagePath/banderas/$l');
     return Image1;
   }
 }

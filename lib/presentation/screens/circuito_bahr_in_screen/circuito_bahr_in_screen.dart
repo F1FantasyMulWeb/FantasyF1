@@ -1,10 +1,7 @@
-import 'package:fantasyf1/api/listaCircuitos.dart';
 import 'package:fantasyf1/api/modelo/RaceScheduleModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
-import '../../../api/listaPilotos.dart';
-import '../../../api/manejoDeLaInformcion.dart';
 
 class CircuitoBahrInScreen extends StatelessWidget {
   final Circuit circuit;
@@ -66,6 +63,14 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                           fit: BoxFit.scaleDown,
                                           alignment: Alignment.centerLeft),
                                       SizedBox(height: 18.v),
+                                      CustomImageView(
+                                        file: ImageConstant.imgBandera(
+                                            circuit.location.country),
+                                        margin: EdgeInsets.only(
+                                            top: 41.v,
+                                            right: 33.h,
+                                            bottom: 41.v),
+                                      ),
                                     ],
                                   ),
                                 ),
