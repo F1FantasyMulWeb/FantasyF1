@@ -262,7 +262,7 @@ class DataBaseController {
     return file.path;
   }
 
-  Future<List<String>> selectUsuariosDelGrupo(var keyGrupo) async {
+  Future<Map<String,int>> selectUsuariosDelGrupo(var keyGrupo) async {
     List<int> idjugadores = [];
     List<String> jugadores = [];
     List<dynamic> response3;
@@ -282,10 +282,31 @@ class DataBaseController {
           .eq('idUsuario', idjugadores[i]);
       jugadores.add(response3[0]["userName"]);
     }
-    return jugadores;
+    return seleccionarPuntosJugador(jugadores);
+
   }
 
-  Future<String> selectPuntosUsuarioGrupo(var idUsuario) async {
+  Future<Map<String,int>> seleccionarPuntosJugador(List<String> jugadores) async {
+    int idUsuario;
+    int puntos;
+    Map<String,int> jugadoresPuntos = {};
+
+    for (var i = 0; i < jugadores.length; i++) {
+      idUsuario=await selectIdDeUsuario(jugadores[i]);
+      puntos= await selectPuntosUsuarioGrupo(idUsuario);
+      jugadoresPuntos[jugadores[i]] = puntos;
+    }
+
+    var jugadoresPuntosOrdenados = Map.fromEntries(
+        jugadoresPuntos.entries.toList()
+          ..sort((e1, e2) => e2.value.compareTo(e1.value))
+    );
+
+    return jugadoresPuntosOrdenados;
+  }
+
+
+  Future<int> selectPuntosUsuarioGrupo(var idUsuario) async {
     List<dynamic> response1 =
     await client.from('UsuarioAppGrupo').select().eq('idUsuario', idUsuario);
     return response1[0]["Puntos"];

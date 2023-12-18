@@ -25,7 +25,7 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     final grupoActual = ref.watch(grupoActualModelProvider);
-    final nombresUsuariosGrupoFinales = grupoActual.nombresUsuariosGrupoFinales;
+    Map<String,int> nombresUsuariosGrupoFinales = grupoActual.nombresUsuariosGrupo;
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
@@ -56,6 +56,8 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                             child: ListView.builder(
                               itemCount: nombresUsuariosGrupoFinales.length,
                               itemBuilder: (context, index) {
+                                String jugador = nombresUsuariosGrupoFinales.keys.elementAt(index);
+                                int? puntos = nombresUsuariosGrupoFinales[jugador];
                                 return GestureDetector(
                                     onTap: () {
                                       onTapUserlistitem(context);
@@ -99,7 +101,7 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                                                                         vertical: 6
                                                                             .v),
                                                                 child: Text(
-                                                                    nombresUsuariosGrupoFinales[index],
+                                                                    jugador,
                                                                     style: theme
                                                                         .textTheme
                                                                         .titleLarge)),
@@ -111,7 +113,7 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                                                                         top: 3
                                                                             .v),
                                                                 child: Text(
-                                                                    "hola",
+                                                                    puntos.toString()!,
                                                                     style: CustomTextStyles
                                                                         .headlineMediumFormula1))
                                                           ]))),
