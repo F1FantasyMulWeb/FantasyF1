@@ -1,18 +1,25 @@
 import 'package:fantasyf1/core/app_export.dart';
+import 'package:fantasyf1/provider/usermodel.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:fantasyf1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../DataBase/databasecontroller.dart';
 
-class AAdirgrupoScreen extends StatelessWidget {
-  AAdirgrupoScreen({Key? key})
+class AnadirGrupoScreen extends ConsumerStatefulWidget {
+  AnadirGrupoScreen({Key? key})
       : super(
-          key: key,
-        );
+    key: key,
+  );
+
+  @override
+  ConsumerState<AnadirGrupoScreen> createState() => _AnadirGrupoScreen();
+}
+  class _AnadirGrupoScreen extends ConsumerState<AnadirGrupoScreen> {
 
   TextEditingController codevalueoneController = TextEditingController();
 
@@ -21,11 +28,17 @@ class AAdirgrupoScreen extends StatelessWidget {
   DataBaseController clienteController = DataBaseController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    codevalueoneController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-
+    final userModel = ref.watch(userModelProvider);
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -73,7 +86,7 @@ class AAdirgrupoScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 6.v),
                         CustomTextFormField(
-
+                          obscureText: false,
                           controller: codevalueoneController,
                           hintText: "lbl_1234_2222".tr,
                           prefix: Container(
@@ -131,13 +144,15 @@ class AAdirgrupoScreen extends StatelessWidget {
                       top: 269.v,
                       right: 16.h,
                     ),
-                    onTap: () {
-                      final b = clienteController.sendDataUsuarioGrupo(
+                    onTap: () async {
+                      final b = await clienteController.sendDataUsuarioGrupo(
                           codevalueoneController.text, passwordController.text);
                       if (b == true) {
-                        _mostrarDialogo(context, "Grupo no añadido");
-                      } else {
                         _mostrarDialogo(context, "Grupo añadido");
+                        userModel.cargarGrupos();
+                      } else {
+                        _mostrarDialogo(context, "Grupo no añadido");
+                        userModel.cargarGrupos();
                       }
                     },
                     buttonStyle: CustomButtonStyles.outlinePrimaryTL8,
@@ -158,6 +173,7 @@ class AAdirgrupoScreen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           content: Text(mensaje),
           actions: <Widget>[
             TextButton(

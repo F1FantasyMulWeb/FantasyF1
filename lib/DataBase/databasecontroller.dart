@@ -67,12 +67,23 @@ class DataBaseController {
     }
   }
 
+  Future<String> selectCodeGroup(String nombreGrupo) async {
+    List<dynamic> response =
+        await client.from('Grupos').select().eq('nombreGrupo', nombreGrupo);
+    if (response.isEmpty) {
+      return "?????";
+    } else {
+      return response[0]["keyGrupo"];
+    }
+  }
+
   Future<bool> sendDataUsuarioGrupo(var keyGrupo, var password) async {
     int idUsuario = await selectUserId();
     List<dynamic> response2 =
         await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
-    if (response2[0]["contraseñaGrupo"] == password) {
-      final response3 = await client.from('UsuarioAppGrupo').insert([
+    final passDataBase = response2[0]["contraseñaGrupo"];
+    if (passDataBase == password) {
+      await client.from('UsuarioAppGrupo').insert([
         {
           'idUsuario': idUsuario,
           'idGrupo': response2[0]["idGrupo"],
@@ -82,10 +93,6 @@ class DataBaseController {
           'Puntos': 0
         }
       ]);
-    }else{
-      return false;
-    }
-    if (idUsuario == null || response2 == null) {
       return true;
     } else {
       return false;
@@ -255,4 +262,59 @@ class DataBaseController {
     return file.path;
   }
 
+  Future<Map<String,int>> selectUsuariosDelGrupo(var keyGrupo) async {
+    List<int> idjugadores = [];
+    List<String> jugadores = [];
+    List<dynamic> response3;
+    List<dynamic> response1 =
+        await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+    List<dynamic> response2 = await client
+        .from('UsuarioAppGrupo')
+        .select()
+        .eq('idGrupo', response1[0]["idGrupo"]);
+    for (var i = 0; i < response2.length; i++) {
+      idjugadores.add(response2[i]["idUsuario"]);
+    }
+    for (var i = 0; i < idjugadores.length; i++) {
+      response3 = await client
+          .from('UsuarioApp')
+          .select()
+          .eq('idUsuario', idjugadores[i]);
+      jugadores.add(response3[0]["userName"]);
+    }
+    return seleccionarPuntosJugador(jugadores);
+
+  }
+
+  Future<Map<String,int>> seleccionarPuntosJugador(List<String> jugadores) async {
+    int idUsuario;
+    int puntos;
+    Map<String,int> jugadoresPuntos = {};
+
+    for (var i = 0; i < jugadores.length; i++) {
+      idUsuario=await selectIdDeUsuario(jugadores[i]);
+      puntos= await selectPuntosUsuarioGrupo(idUsuario);
+      jugadoresPuntos[jugadores[i]] = puntos;
+    }
+
+    var jugadoresPuntosOrdenados = Map.fromEntries(
+        jugadoresPuntos.entries.toList()
+          ..sort((e1, e2) => e2.value.compareTo(e1.value))
+    );
+
+    return jugadoresPuntosOrdenados;
+  }
+
+
+  Future<int> selectPuntosUsuarioGrupo(var idUsuario) async {
+    List<dynamic> response1 =
+    await client.from('UsuarioAppGrupo').select().eq('idUsuario', idUsuario);
+    return response1[0]["Puntos"];
+  }
+
+  Future<int> selectIdDeUsuario(var nombreUsuario) async {
+    List<dynamic> response1 =
+    await client.from('UsuarioApp').select().eq('userName', nombreUsuario);
+    return response1[0]["idUsuario"];
+  }
 }
