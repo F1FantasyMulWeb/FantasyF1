@@ -135,9 +135,9 @@ class AAdirgrupoScreen extends StatelessWidget {
                       final b = clienteController.sendDataUsuarioGrupo(
                           codevalueoneController.text, passwordController.text);
                       if (b == true) {
-                        _mostrarDialogo(context, "Grupo no añadido");
-                      } else {
                         _mostrarDialogo(context, "Grupo añadido");
+                      } else {
+                        _mostrarDialogo(context, "Grupo no añadido");
                       }
                     },
                     buttonStyle: CustomButtonStyles.outlinePrimaryTL8,
