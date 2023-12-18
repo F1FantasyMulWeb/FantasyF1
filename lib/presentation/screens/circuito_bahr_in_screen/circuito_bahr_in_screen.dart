@@ -31,10 +31,14 @@ class CircuitoBahrInScreen extends StatelessWidget {
                             alignment: Alignment.center,
                             children: [
                               CustomImageView(
-                                imagePath: ImageConstant.imgEllipse1,
-                                height: 363.v,
-                                width: 360.h,
-                                alignment: Alignment.center,
+                                width: 100.v,
+                                alignment: Alignment.centerRight,
+                                margin: EdgeInsets.only(right: 80),
+                                border: Border.all(
+                                    width: 2.5, color: Colors.black54),
+                                fit: BoxFit.fitWidth,
+                                file: ImageConstant.imgBandera(
+                                    circuit.location.country),
                               ),
                               Align(
                                 alignment: Alignment.center,
@@ -43,7 +47,7 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                        ImageConstant.imgGroup36,
+                                        ImageConstant.imgVector1,
                                       ),
                                       fit: BoxFit.cover,
                                     ),
@@ -100,16 +104,13 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                 ),
                               ),
                               CustomImageView(
-                                imagePath: ImageConstant.imgImage27,
-                                height: 171.v,
-                                width: 198.h,
-                                alignment: Alignment.bottomRight,
-                              ),
-                              CustomImageView(
                                 svgPath: ImageConstant.imgArrowleft,
                                 height: 33.adaptSize,
                                 width: 33.adaptSize,
                                 alignment: Alignment.bottomLeft,
+                                onTap: () {
+                                  onTapImgArrowdownone(context);
+                                },
                                 margin: EdgeInsets.only(bottom: 7.v),
                               ),
                             ],
@@ -139,5 +140,9 @@ class CircuitoBahrInScreen extends StatelessWidget {
     stringBuffer.write("Longitud: " + circuit.location.long);
     stringBuffer.write("\n");
     return stringBuffer;
+  }
+
+  onTapImgArrowdownone(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen);
   }
 }
