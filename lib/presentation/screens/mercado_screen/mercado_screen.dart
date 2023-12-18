@@ -3,12 +3,17 @@ import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_title.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../mercado_screen/widgets/userprofile_item_widget.dart';
 
-class MercadoScreen extends StatelessWidget {
+class MercadoScreen extends ConsumerStatefulWidget {
   const MercadoScreen({Key? key}) : super(key: key);
 
+  ConsumerState<MercadoScreen> createState() => _MercadoScreen();
+}
+class _MercadoScreen extends ConsumerState<MercadoScreen> {
+  
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);

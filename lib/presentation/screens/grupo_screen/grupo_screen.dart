@@ -3,15 +3,21 @@ import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../provider/grupoactual.dart';
 import '../grupo_screen/widgets/clasificacionro_item_widget.dart';
 
-class GrupoScreen extends StatelessWidget {
+class GrupoScreen extends ConsumerStatefulWidget {
   const GrupoScreen({Key? key}) : super(key: key);
 
+  ConsumerState<GrupoScreen> createState() => _GrupoScreen();
+}
+  class _GrupoScreen extends ConsumerState<GrupoScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
+    final grupoActual = ref.watch(grupoActualModelProvider);
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
@@ -41,12 +47,12 @@ class GrupoScreen extends StatelessWidget {
                                   children: [
                                     Align(
                                         alignment: Alignment.topCenter,
-                                        child: Text("lbl".tr,
+                                        child: Text(grupoActual.nombreGrupo,
                                             style:
                                                 theme.textTheme.displayMedium)),
                                     Align(
                                         alignment: Alignment.bottomCenter,
-                                        child: Text("lbl_c_digo".tr,
+                                        child: Text(grupoActual.codeGrupo,
                                             style: CustomTextStyles
                                                 .bodyMediumInterOnErrorContainer))
                                   ])),

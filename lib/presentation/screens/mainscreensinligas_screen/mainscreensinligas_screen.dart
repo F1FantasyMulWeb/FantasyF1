@@ -246,6 +246,7 @@ class _MainscreensinligasScreenState
                       ListTile(
                         title: ElevatedButton.icon(
                           onPressed: () {
+                            userModel.cargarGrupos();
                             onTapGrupos(context);
                           },
                           icon: Icon(

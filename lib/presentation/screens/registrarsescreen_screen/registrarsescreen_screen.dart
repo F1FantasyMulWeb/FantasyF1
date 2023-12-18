@@ -353,9 +353,11 @@ class _RegistrarsescreenScreen extends State<RegistrarsescreenScreen> {
 
   void _mostrarDialogo(BuildContext context, String mensaje) {
     showDialog(
+
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           content: Text(mensaje),
           actions: <Widget>[
             TextButton(
