@@ -6,6 +6,7 @@ import 'package:fantasyf1/api/entityPiloto.dart';
 import 'package:fantasyf1/api/listaCircuitos.dart';
 import 'package:fantasyf1/api/listaEscuderias.dart';
 import 'package:fantasyf1/api/listaPilotos.dart';
+import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:http/http.dart' as http;
 
 import 'modelo/RaceEventModel.dart';
@@ -230,6 +231,33 @@ class Client {
           print('JSON String: $json');
         }
         final r = RaceEventModel.fromJson(json);
+        return r;
+      }
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
+    return null;
+  }
+
+  Future<DriversModel?> getDrivers(String year, {String? queryParams}) async {
+    try {
+      var response = await http.get(Uri.parse(
+          'https://ergast.com/api/f1/$year/drivers.json?$queryParams'));
+      if (response.statusCode == 200) {
+        var result = response.body;
+
+        var json = jsonDecode(result);
+
+        // var res = jsonEncode(json["MRData"]["RaceTable"]["Races"]);
+
+        try {
+          var r = DriversModel.fromJson(json);
+        } catch (e) {
+          print('Failed to parse JSON: $e');
+          print('JSON String: $json');
+        }
+        final r = DriversModel.fromJson(json);
         return r;
       }
     } catch (ex) {

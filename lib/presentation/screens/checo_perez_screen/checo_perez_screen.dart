@@ -1,9 +1,9 @@
-import 'package:fantasyf1/api/listaPilotos.dart';
 import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/api/manejoDeLaInformcion.dart';
+import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_avif/flutter_avif.dart';
 
-import '../../../api/modelo/RaceEventModel.dart';
+import '../../../api/modelo/DriversModel.dart';
 
 class ChecoPerezScreen extends StatelessWidget {
   final Driver driver;
@@ -76,11 +76,9 @@ class ChecoPerezScreen extends StatelessWidget {
                                                             ),
                                                           ),
                                                           CustomImageView(
-                                                            imagePath:
-                                                                ImageConstant
-                                                                    .imgImage28,
-                                                            height: 29.v,
-                                                            width: 57.h,
+                                                            file: ImageConstant
+                                                                .imgBandera(driver
+                                                                    .nationality),
                                                             margin:
                                                                 EdgeInsets.only(
                                                                     top: 41.v,
@@ -94,21 +92,12 @@ class ChecoPerezScreen extends StatelessWidget {
                                                   },
                                                 ),
                                               ),
-                                              CustomImageView(
-                                                  imagePath:
-                                                      ImageConstant.imgDriver(
-                                                          driver.driverId,
-                                                          0) /*==
-                                                          null
-                                                      ? ImageConstant
-                                                          .imageNotFound
-                                                      : ImageConstant.imgDriver(
-                                                          driver.driverId, 0)*/
-                                                  ,
-                                                  height: 291.v,
-                                                  width: 271.h,
+                                              AvifImage.file(
+                                                  ImageConstant.imgDriverAvif(
+                                                      driver.driverId),
+                                                  height: 250,
                                                   alignment:
-                                                      Alignment.bottomCenter)
+                                                      Alignment.centerLeft)
                                             ])),
                                     Container(
                                         width: 215.h,
