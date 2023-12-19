@@ -92,7 +92,7 @@ class ChecoPerezScreen extends StatelessWidget {
                                                   },
                                                 ),
                                               ),
-                                              AvifImage.file(
+                                              AvifImage.asset(
                                                   ImageConstant.imgDriverAvif(
                                                       driver.driverId),
                                                   height: 250,

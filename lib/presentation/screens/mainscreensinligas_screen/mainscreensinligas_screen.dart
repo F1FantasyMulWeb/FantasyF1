@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_circleimage.dart';
 import 'package:fantasyf1/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -57,27 +58,36 @@ class _MainscreensinligasScreenState
         child: SafeArea(
             child: Scaffold(
                 appBar: AppBar(
-                    backgroundColor: Colors.white,
-                    leading: Builder(
-                      builder: (context) => IconButton(
-                        icon: Icon(Icons.menu),
-                        iconSize:
-                            35, // Ajusta este valor para cambiar el tamaño del icono del menú
-                        onPressed: () => Scaffold.of(context).openDrawer(),
+                  backgroundColor: Colors.white,
+                  leading: Builder(
+                    builder: (context) => IconButton(
+                      icon: Icon(Icons.menu),
+                      iconSize: 35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                      onPressed: () => Scaffold.of(context).openDrawer(),
+                    ),
+                  ),
+                  actions: [
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 30.h, vertical: 12.v),
+                      decoration: AppDecoration.fillWhiteA.copyWith(
+                        borderRadius: BorderRadiusStyle.roundedBorder15,
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadiusStyle.roundedBorder15,
+                        child: Image.file(
+                          File(userModel.avatar),
+                          width: 50, // Ajusta el ancho de la imagen según tus necesidades
+                          height: 50, // Ajusta la altura de la imagen según tus necesidades
+                          fit: BoxFit.cover, // Ajusta el modo de ajuste de la imagen según tus necesidades
+                          errorBuilder: (context, error, stackTrace) {
+                            return Icon(Icons.error); // Muestra un icono de error si la carga falla
+                          },
+                        ),
+
                       ),
                     ),
-                    actions: [
-                      Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 30.h, vertical: 12.v),
-                          decoration: AppDecoration.fillWhiteA.copyWith(
-                              borderRadius: BorderRadiusStyle.roundedBorder15),
-                          child: AppbarCircleimage(
-                              imagePath: userModel.avatar,
-                              onTap: () {
-                                onTapDownloadone(context);
-                              }))
-                    ]),
+                  ],
+                ),
                 drawer: Drawer(
                   backgroundColor: Colors.white,
                   child: ListView(
