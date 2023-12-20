@@ -43,7 +43,7 @@ class Client {
     mapa["dateOfBirth"] = respuesta3[6].split(":")[1];
     mapa["nationality"] = respuesta3[7].split(":")[1];
 
-    entityPiloto pilotoEntidad = new entityPiloto(
+    entityPiloto pilotoEntidad = entityPiloto(
         driverId: mapa["driverId"],
         permanentNumber: mapa["permanentNumber"],
         code: mapa["code"],

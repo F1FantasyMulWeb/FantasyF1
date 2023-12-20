@@ -26,12 +26,12 @@ import '../presentation/screens/lista_escuder_as_screen/lista_escuder_as_screen.
 import '../presentation/screens/lista_grupos_screen/lista_grupos_screen.dart';
 import '../presentation/screens/lista_jugadores_screen/lista_jugadores_screen.dart';
 import '../presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
-import '../presentation/screens/loginscreen_screen/loginscreen_screen.dart';
+import '../presentation/screens/loginscreen_screen/s21_login_registrarse_widget.dart';
 import '../presentation/screens/mainscreensinligas_screen/mainscreensinligas_screen.dart';
 import '../presentation/screens/mercado_screen/mercado_screen.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
 import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
-import '../presentation/screens/preloginscreen_screen/preloginscreen_screen.dart';
+import '../presentation/screens/preloginscreen_screen/s11_pre_login_widget.dart';
 import '../presentation/screens/registrarsescreen_screen/registrarsescreen_screen.dart';
 import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 
@@ -119,7 +119,7 @@ class AppRoutes {
   static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
-    preloginscreenScreen: (context) => PreloginscreenScreen(),
+    preloginscreenScreen: (context) => S11PreLoginWidget(),
     ajustesOneScreen: (context) => AjustesOneScreen(),
     informaciNScreen: (context) => InformaciNScreen(),
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),
@@ -130,7 +130,7 @@ class AppRoutes {
     listaEscuderAsScreen: (context) => ListaEscuderAsScreen(),
     listaPilotosScreen: (context) => ListaPilotosScreen(),
     listaCircuitosScreen: (context) => ListaCircuitosScreen(),
-    loginscreenScreen: (context) => LoginscreenScreen(),
+    loginscreenScreen: (context) => S21LoginRegistrarseWidget(),
     registrarsescreenScreen: (context) => RegistrarsescreenScreen(),
     cambiarcontraseA1screenScreen: (context) => CambiarcontraseA1screenScreen(),
     mainscreensinligasScreen: (context) => MainscreensinligasScreen(),
