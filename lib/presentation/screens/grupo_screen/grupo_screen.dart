@@ -13,7 +13,8 @@ class GrupoScreen extends ConsumerStatefulWidget {
 
   ConsumerState<GrupoScreen> createState() => _GrupoScreen();
 }
-  class _GrupoScreen extends ConsumerState<GrupoScreen> {
+
+class _GrupoScreen extends ConsumerState<GrupoScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
