@@ -3,8 +3,14 @@ import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_title.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 
 import '../mercado_screen/widgets/userprofile_item_widget.dart';
+=======
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
+
+>>>>>>> Stashed changes
 
 class MercadoScreen extends StatelessWidget {
   const MercadoScreen({Key? key}) : super(key: key);
@@ -12,6 +18,7 @@ class MercadoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
+<<<<<<< Updated upstream
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
@@ -50,6 +57,26 @@ class MercadoScreen extends StatelessWidget {
                                 return UserprofileItemWidget();
                               })))
                 ]))));
+=======
+    final groupModel = ref.watch(grupoActualModelProvider);
+
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppBar(
+            height: 130.v,
+            leadingWidth: 36.h,
+            leading: AppbarImage(
+                svgPath: ImageConstant.imgClose,
+                margin: EdgeInsets.only(left: 20.h, bottom: 50.v),
+                onTap: () {
+                  onTapCloseone(context);
+                }),
+            centerTitle: true,
+            title: AppbarTitle(text: LocalizationExtension("lbl_mercado2").tr)),
+
+      ),
+    );
+>>>>>>> Stashed changes
   }
 
   /// Navigates back to the previous screen.
