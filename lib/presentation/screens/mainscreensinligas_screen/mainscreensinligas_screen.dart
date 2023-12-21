@@ -66,27 +66,32 @@ class _MainscreensinligasScreenState
                       onPressed: () => Scaffold.of(context).openDrawer(),
                     ),
                   ),
-                  actions: [
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 30.h, vertical: 12.v),
-                      decoration: AppDecoration.fillWhiteA.copyWith(
-                        borderRadius: BorderRadiusStyle.roundedBorder15,
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadiusStyle.roundedBorder15,
-                        child: Image.file(
-                          File(userModel.avatar),
-                          width: 50, // Ajusta el ancho de la imagen según tus necesidades
-                          height: 50, // Ajusta la altura de la imagen según tus necesidades
-                          fit: BoxFit.cover, // Ajusta el modo de ajuste de la imagen según tus necesidades
-                          errorBuilder: (context, error, stackTrace) {
-                            return Icon(Icons.error); // Muestra un icono de error si la carga falla
-                          },
+                    actions: [
+                      GestureDetector(
+                        onTap: () {
+                          onTapAvatarScreen(context);
+                        },
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 30.h, vertical: 12.v),
+                          decoration: AppDecoration.fillWhiteA.copyWith(
+                            borderRadius: BorderRadiusStyle.roundedBorder15,
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadiusStyle.roundedBorder15,
+                            child: Image.file(
+                              File(userModel.avatar),
+                              width: 50, // Ajusta el ancho de la imagen según tus necesidades
+                              height: 50, // Ajusta la altura de la imagen según tus necesidades
+                              fit: BoxFit.cover, // Ajusta el modo de ajuste de la imagen según tus necesidades
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(Icons.error); // Muestra un icono de error si la carga falla
+                              },
+                            ),
+                          ),
                         ),
-
                       ),
-                    ),
-                  ],
+                    ]
+
                 ),
                 drawer: Drawer(
                   backgroundColor: Colors.white,
@@ -532,29 +537,13 @@ class _MainscreensinligasScreenState
                             ])))))));
   }
 
-  /// Navigates to the avatarScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the avatarScreen.
-  onTapDownloadone(BuildContext context) {
+
+  onTapAvatarScreen(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.avatarScreen);
   }
-
-  /// Navigates to the creargrupoScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the creargrupoScreen.
   onTapCreargrupo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.creargrupoScreen);
   }
-
-  /// Navigates to the aAdirgrupoScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the aAdirgrupoScreen.
   onTapUnirseagrupo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
   }

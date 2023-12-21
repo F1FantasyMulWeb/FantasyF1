@@ -60,7 +60,7 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                         style: theme.textTheme.displaySmall,
                                       ),
                                       SizedBox(height: 10.v),
-                                      AvifImage.file(
+                                      AvifImage.asset(
                                           ImageConstant.imgCircuitoAvif(
                                               circuit.circuitId),
                                           height: 200,

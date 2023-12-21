@@ -32,7 +32,6 @@ import '../presentation/screens/mercado_screen/mercado_screen.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
 import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
 import '../presentation/screens/preloginscreen_screen/s11_pre_login_widget.dart';
-import '../presentation/screens/registrarsescreen_screen/registrarsescreen_screen.dart';
 import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 
 class AppRoutes {
@@ -60,7 +59,6 @@ class AppRoutes {
 
   static const String loginscreenScreen = '/loginscreen_screen';
 
-  static const String registrarsescreenScreen = '/registrarsescreen_screen';
 
   static const String cambiarcontraseA1screenScreen =
       '/cambiarcontrase_a1screen_screen';
@@ -131,7 +129,6 @@ class AppRoutes {
     listaPilotosScreen: (context) => ListaPilotosScreen(),
     listaCircuitosScreen: (context) => ListaCircuitosScreen(),
     loginscreenScreen: (context) => S21LoginRegistrarseWidget(),
-    registrarsescreenScreen: (context) => RegistrarsescreenScreen(),
     cambiarcontraseA1screenScreen: (context) => CambiarcontraseA1screenScreen(),
     mainscreensinligasScreen: (context) => MainscreensinligasScreen(),
     aAdirgrupoScreen: (context) => AnadirGrupoScreen(),

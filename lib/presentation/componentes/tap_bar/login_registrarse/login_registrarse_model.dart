@@ -16,41 +16,11 @@ class LoginRegistrarseModel extends FlutterFlowModel<LoginRegistrarseWidget> {
   // State field(s) for TextField_Correo_Login widget.
   FocusNode? textFieldCorreoLoginFocusNode;
   TextEditingController? textFieldCorreoLoginController;
-  String? _textFieldCorreoLoginControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Este campo es obligatorio';
-    }
-
-    if (!RegExp(
-            '^[a-z0-9!#\$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#\$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\$')
-        .hasMatch(val)) {
-      return 'El correo electrónico no es válido';
-    }
-    return null;
-  }
 
   // State field(s) for TextField_Contrasena_Login widget.
   FocusNode? textFieldContrasenaLoginFocusNode;
   TextEditingController? textFieldContrasenaLoginController;
   late bool textFieldContrasenaLoginVisibility;
-  String? _textFieldContrasenaLoginControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Este campo es obligatorio';
-    }
-
-    if (val.length < 10) {
-      return 'El tamaño mínimo es de 10 caracteres';
-    }
-
-    if (!RegExp(
-            '^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[@#\$%&-])[A-Za-z\\d@#\$%&-]{10,}\$')
-        .hasMatch(val)) {
-      return 'La contraseña no cumple con los requisitos';
-    }
-    return null;
-  }
 
   // State field(s) for Checkbox widget.
   bool? checkboxValue1;
@@ -72,7 +42,6 @@ class LoginRegistrarseModel extends FlutterFlowModel<LoginRegistrarseWidget> {
   String? Function(BuildContext, String?)?
       textFieldRepetirContrasenaRegistrarseControllerValidator;
 
-
   // State field(s) for Checkbox widget.
   bool? checkboxValue2;
 
@@ -82,7 +51,6 @@ class LoginRegistrarseModel extends FlutterFlowModel<LoginRegistrarseWidget> {
     textFieldContrasenaLoginVisibility = false;
     textFieldContrasenaRegistrarseVisibility = false;
     textFieldRepetirContrasenaRegistrarseVisibility = false;
-
   }
 
   void dispose() {
@@ -103,11 +71,6 @@ class LoginRegistrarseModel extends FlutterFlowModel<LoginRegistrarseWidget> {
     textFieldRepetirContrasenaRegistrarseController?.dispose();
   }
 
-  /// Action blocks are added here.
-
-  Future<bool?> comprobacionCamposRegistro(BuildContext context) async {
-    return null;
-  }
 
   /// Additional helper methods are added here.
 }

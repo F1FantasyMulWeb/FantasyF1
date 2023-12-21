@@ -1,10 +1,16 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../DataBase/databasecontroller.dart';
+import '../../../../DataBase/supabaseservice.dart';
 import '../../../../core/utils/FormValidatorLogin.dart';
 import '../../../../core/utils/FormValidatorRegister.dart';
 import '../../../../localization/app_localization.dart';
-import '../../../../widgets/CheckboxCustom.dart';
+import '../../../../provider/usermodel.dart';
+import '../../../../routes/app_routes.dart';
+import '../../ventanas_emergentes/correo_en_uso/correo_en_uso_widget.dart';
+import '../../ventanas_emergentes/cuenta_creada/cuenta_creada_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -20,7 +26,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'login_registrarse_model.dart';
 export 'login_registrarse_model.dart';
 
-class LoginRegistrarseWidget extends StatefulWidget {
+class LoginRegistrarseWidget extends ConsumerStatefulWidget {
   const LoginRegistrarseWidget({
     Key? key,
     this.validacionErronea,
@@ -29,15 +35,16 @@ class LoginRegistrarseWidget extends StatefulWidget {
   final bool? validacionErronea;
 
   @override
-  State<LoginRegistrarseWidget> createState() => _LoginRegistrarseWidgetState();
+  ConsumerState<LoginRegistrarseWidget> createState() =>
+      _LoginRegistrarseWidgetState();
 }
 
-class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
+class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
     with TickerProviderStateMixin {
   DataBaseController clienteController = DataBaseController();
   late LoginRegistrarseModel _model;
-  bool _isChecked = false;
-
+  bool _isChecked1 = false;
+  bool _isChecked2 = false;
   final animationsMap = {
     'containerOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -149,6 +156,7 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
 
   @override
   Widget build(BuildContext context) {
+    final userModel = ref.watch(userModelProvider);
     FormValidatorRegister formValidator =
         FormValidatorRegister(AppLocalization.of());
     FormValidatorLogin formValidatorL =
@@ -424,16 +432,17 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                                           color: Colors.black,
                                                           fontSize: 15.0,
                                                         ),
-                                                    errorStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color:
-                                                              Color(0xFFFF0007),
-                                                          fontSize: 10.0,
-                                                        ),
+                                                    errorStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              color: const Color(
+                                                                  0xFFFF0007),
+                                                              fontSize: 10.0,
+                                                            ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide:
@@ -644,36 +653,35 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                           color: Color(0xFFF6F6F6),
                                         ),
                                         child: Theme(
-                                          data: ThemeData(
-                                            checkboxTheme: CheckboxThemeData(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(0.0),
+                                            data: ThemeData(
+                                              checkboxTheme: CheckboxThemeData(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0.0),
+                                                ),
                                               ),
+                                              unselectedWidgetColor:
+                                                  Colors.black,
                                             ),
-                                            unselectedWidgetColor: Colors.black,
-                                          ),
-                                          child: Checkbox(
-                                            value: _model.checkboxValue1 ??=
-                                                false,
-                                            onChanged: (newValue) async {
-                                              setState(() => _model
-                                                  .checkboxValue1 = newValue!);
-                                            },
-                                            activeColor: Colors.black,
-                                            checkColor: Color(0xFFF6F6F6),
-                                          ),
-                                        ),
+                                            child: Checkbox(
+                                              value: _isChecked1,
+                                              onChanged: (bool? value) {
+                                                setState(() {
+                                                  _isChecked1 = value!;
+                                                });
+                                              },
+                                            )),
                                       ),
                                       Container(
                                         width: 200.0,
                                         height: 30.0,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Color(0xFFF6F6F6),
                                         ),
                                         child: Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                          alignment: const AlignmentDirectional(
+                                              -1.0, 0.0),
                                           child: Text(
                                             'Mantener la\nsesion iniciada',
                                             style: FlutterFlowTheme.of(context)
@@ -688,32 +696,37 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                           ),
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 10.0)),
+                                    ].divide(const SizedBox(width: 10.0)),
                                   ),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 10.0),
                               child: Container(
                                 width: 300.0,
                                 height: 40.0,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Color(0xFFF6F6F6),
                                 ),
                                 child: FFButtonWidget(
                                   onPressed: () {
-                                    print('Boton_IniciarSesion pressed ...');
+                                    if (_model.formKey1.currentState!
+                                        .validate()) {
+                                      _iniciarSesion(context);
+                                    }
                                   },
                                   text: 'INICIAR SESION',
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        25.0, 0.0, 25.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: Color(0xFFF26457),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 25.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
+                                    color: const Color(0xFFF26457),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -722,7 +735,7 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                           fontSize: 15.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -732,13 +745,13 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 20.0),
                               child: Container(
                                 width: 300.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFF6F6F6),
+                                  color: const Color(0xFFF6F6F6),
                                   borderRadius: BorderRadius.circular(50.0),
                                 ),
                                 child: FFButtonWidget(
@@ -752,10 +765,12 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        25.0, 0.0, 25.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 25.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
                                     color: Color(0xFFF6F6F6),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -765,7 +780,7 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                           fontSize: 15.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.black,
                                       width: 2.0,
                                     ),
@@ -777,7 +792,7 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                             Container(
                               width: 300.0,
                               height: 50.0,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0xFFF6F6F6),
                               ),
                               child: Column(
@@ -791,7 +806,8 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                       color: Color(0xFFF6F6F6),
                                     ),
                                     child: Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment:
+                                          const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '¿Has olvidado la contraseña?',
                                         textAlign: TextAlign.center,
@@ -809,11 +825,12 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                   Container(
                                     width: 300.0,
                                     height: 20.0,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xFFF6F6F6),
                                     ),
                                     child: Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment:
+                                          const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'Restablecer contraseña',
                                         textAlign: TextAlign.center,
@@ -1012,7 +1029,7 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                     Container(
                                       width: 300.0,
                                       height: 70.0,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: Color(0xFFF6F6F6),
                                       ),
                                       child: Container(
@@ -1195,6 +1212,52 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                                               const BoxDecoration(
                                                             color: Color(
                                                                 0xFFF6F6F6),
+                                                          ),
+                                                          child: AlignedTooltip(
+                                                            content: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .all(
+                                                                        4.0),
+                                                                child: Text(
+                                                                  'La contraseña debe tener:\n- Mínimo de 10 caracteres\n- Mayúsculas, minúsculas\n- Números y caracteres \n   especiales (@, #, \$, %, &, -)\n- No debe contener espacios',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge,
+                                                                )),
+                                                            offset: 4.0,
+                                                            preferredDirection:
+                                                                AxisDirection
+                                                                    .down,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            elevation: 4.0,
+                                                            tailBaseWidth: 24.0,
+                                                            tailLength: 12.0,
+                                                            waitDuration:
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        100),
+                                                            showDuration:
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        1500),
+                                                            triggerMode:
+                                                                TooltipTriggerMode
+                                                                    .tap,
+                                                            child: const Icon(
+                                                              Icons
+                                                                  .info_rounded,
+                                                              color:
+                                                                  Colors.black,
+                                                              size: 20.0,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -1381,7 +1444,7 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                                 ),
                                                 child: Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           1.0, 0.0),
                                                   child: Row(
                                                     mainAxisSize:
@@ -1484,10 +1547,10 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                                     color: Color(0xFFF6F6F6),
                                                   ),
                                                   child: Checkbox(
-                                                    value: _isChecked,
+                                                    value: _isChecked2,
                                                     onChanged: (bool? value) {
                                                       setState(() {
-                                                        _isChecked = value!;
+                                                        _isChecked2 = value!;
                                                       });
                                                     },
                                                   )),
@@ -1554,8 +1617,10 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                   onPressed: () {
                                     if (_model.formKey2.currentState!
                                         .validate()) {
-                                      if (!_isChecked) {
+                                      if (!_isChecked2) {
                                         mostrarSnackBar(context);
+                                      } else {
+                                        _registrarUsuario(context);
                                       }
                                     }
                                   },
@@ -1568,7 +1633,7 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                     iconPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 0.0),
-                                    color: Color(0xFFF26457),
+                                    color: const Color(0xFFF26457),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -1608,7 +1673,7 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
                                   iconPadding:
                                       const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 0.0),
-                                  color: Color(0xFFF6F6F6),
+                                  color: const Color(0xFFF6F6F6),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
@@ -1660,38 +1725,77 @@ class _LoginRegistrarseWidgetState extends State<LoginRegistrarseWidget>
       if (response.user != null) {
         final checkEmail = await clienteController.checkEmail(correo);
         if (checkEmail) {
-          final checkSend = await clienteController.sendData(correo, "Pepe");
-          if (checkSend) {
-            _mostrarDialogo(context, "msg_registro_exitoso".tr);
-          } else {
-            _mostrarDialogo(context, "msg_error_de_registro".tr);
-          }
+          await clienteController.sendCorreo(correo);
+          if (!mounted) return;
+          mostrarDialogoCuentaCreada(context);
         } else {
-          _mostrarDialogo(context, "msg_error_de_registro".tr);
+          if (!mounted) return;
+          mostrarDialogoCorreoEnUso(context);
         }
+      } else {
+//Fallo con su conexion a internet
       }
     } catch (e) {
-      _mostrarDialogo(context, "msg_error_de_registro".tr);
+      if (kDebugMode) {
+        print("Error: $e");
+      }
     }
   }
 
-  void _mostrarDialogo(BuildContext context, String mensaje) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          content: Text(mensaje),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Cerrar'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+  Future<void> _iniciarSesion(BuildContext context) async {
+    final correo = _model.textFieldCorreoLoginController.text;
+    final contrasena = _model.textFieldContrasenaLoginController.text;
+    try {
+      final response = await SupabaseService()
+          .client
+          .auth
+          .signInWithPassword(email: correo, password: contrasena);
+      final user = response.user;
+      if (user != null) {
+        // Verificar si el widget todavía está montado antes de usar el context
+        if (!mounted) return;
+
+        ref.read(userModelProvider).cargarDato();
+        onTapIniciarsesin(context);
+      } else {
+
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error: $e");
+      }
+    }
   }
+}
+
+onTapIniciarsesin(BuildContext context) {
+  Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen);
+}
+
+void mostrarDialogoCuentaCreada(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        child: const CuentaCreadaWidget(),
+      );
+    },
+  );
+}
+
+void mostrarDialogoCorreoEnUso(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        child: const CorreoEnUsoWidget(),
+      );
+    },
+  );
 }

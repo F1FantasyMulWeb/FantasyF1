@@ -19,13 +19,12 @@ class ListaJugadoresScreen extends ConsumerStatefulWidget {
 class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
   DataBaseController clienteController = DataBaseController();
 
-
-
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     final grupoActual = ref.watch(grupoActualModelProvider);
-    Map<String,int> nombresUsuariosGrupoFinales = grupoActual.nombresUsuariosGrupo;
+    Map<String, int> nombresUsuariosGrupoFinales =
+        grupoActual.nombresUsuariosGrupo;
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
@@ -39,100 +38,91 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                     }),
                 centerTitle: true,
                 title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
-            body: SizedBox(
-                width: mediaQueryData.size.width,
-
+            body: CustomScrollView(
+              slivers: <Widget>[
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    width: mediaQueryData.size.width,
                     child: Padding(
-                        padding: EdgeInsets.only(bottom: 5.v),
-                        child: Column(
-                            mainAxisSize: MainAxisSize.min,
+                      padding: EdgeInsets.only(bottom: 5.v),
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        Divider(),
+                        SizedBox(height: 16.v),
+                        Text("lbl_clasificaci_n".tr,
+                            style: CustomTextStyles.displayMedium40),
+                        SizedBox(height: 19.v),
+                      ]),
+                    ),
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      String jugador =
+                          nombresUsuariosGrupoFinales.keys.elementAt(index);
+                      int? puntos = nombresUsuariosGrupoFinales[jugador];
+                      return GestureDetector(
+                        onTap: () {
+                          onTapUserlistitem(context);
+                        },
+                        child: Container(
+                          height: 71.v,
+                          width: 328.h,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10.h, vertical: 2.v),
+                          decoration: AppDecoration.fillWhiteA,
+                          child: Stack(
+                            alignment: Alignment.bottomLeft,
                             children: [
-                          Divider(),
-                          SizedBox(height: 16.v),
-                          Text("lbl_clasificaci_n".tr,
-                              style: CustomTextStyles.displayMedium40),
-                          SizedBox(height: 19.v),
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: nombresUsuariosGrupoFinales.length,
-                              itemBuilder: (context, index) {
-                                String jugador = nombresUsuariosGrupoFinales.keys.elementAt(index);
-                                int? puntos = nombresUsuariosGrupoFinales[jugador];
-                                return GestureDetector(
-                                    onTap: () {
-                                      onTapUserlistitem(context);
-                                    },
-                                    child: Container(
-                                        height: 71.v,
-                                        width: 328.h,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10.h, vertical: 2.v),
-                                        decoration: AppDecoration.fillWhiteA,
-                                        child: Stack(
-                                            alignment: Alignment.bottomLeft,
-                                            children: [
-                                              Align(
-                                                  alignment: Alignment.center,
-                                                  child: Container(
-                                                      width: 273.h,
-                                                      margin: EdgeInsets.only(
-                                                          left: 20.h,
-                                                          top: 1.v,
-                                                          right: 14.h),
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 29.h,
-                                                              vertical: 14.v),
-                                                      decoration: BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: fs.Svg(
-                                                                  ImageConstant
-                                                                      .imgVector1),
-                                                              fit: BoxFit
-                                                                  .cover)),
-                                                      child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        vertical: 6
-                                                                            .v),
-                                                                child: Text(
-                                                                    jugador,
-                                                                    style: theme
-                                                                        .textTheme
-                                                                        .titleLarge)),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left: 50
-                                                                            .h,
-                                                                        top: 3
-                                                                            .v),
-                                                                child: Text(
-                                                                    puntos.toString()!,
-                                                                    style: CustomTextStyles
-                                                                        .headlineMediumFormula1))
-                                                          ]))),
-                                              CustomImageView(
-                                                  imagePath: ImageConstant
-                                                      .imgDownload51x55,
-                                                  height: 51.v,
-                                                  width: 55.h,
-                                                  radius: BorderRadius.circular(
-                                                      25.h),
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  margin: EdgeInsets.only(
-                                                      bottom: 6.v))
-                                            ])));
-                              },
-                            ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Container(
+                                  width: 273.h,
+                                  margin: EdgeInsets.only(
+                                      left: 20.h, top: 1.v, right: 14.h),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 29.h, vertical: 14.v),
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image:
+                                              fs.Svg(ImageConstant.imgVector1),
+                                          fit: BoxFit.cover)),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 6.v),
+                                          child: Text(jugador,
+                                              style:
+                                                  theme.textTheme.titleLarge)),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 50.h, top: 3.v),
+                                          child: Text(puntos.toString()!,
+                                              style: CustomTextStyles
+                                                  .headlineMediumFormula1))
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              CustomImageView(
+                                  imagePath: ImageConstant.imgDownload51x55,
+                                  height: 51.v,
+                                  width: 55.h,
+                                  radius: BorderRadius.circular(25.h),
+                                  alignment: Alignment.bottomLeft,
+                                  margin: EdgeInsets.only(bottom: 6.v))
+                            ],
                           ),
-                        ])))));
+                        ),
+                      );
+                    },
+                    childCount: nombresUsuariosGrupoFinales.length,
+                  ),
+                ),
+              ],
+            )));
   }
 
   /// Navigates back to the previous screen.
