@@ -36,30 +36,35 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-            ),
-        drawer: Drawer(), // Drawer setup
-        body: buildDriverList(),
+        ),
+        drawer: const Drawer(), // Drawer setup
+        body: drivers == null
+            ? const Center(child: CircularProgressIndicator())
+            : CustomScrollView(
+                slivers: <Widget>[
+                  const SliverToBoxAdapter(),
+                  buildDriverList(),
+                ],
+              ),
       ),
     );
   }
 
   Widget buildDriverList() {
-    if (drivers == null || drivers!.isEmpty) {
-      return Center(child: CircularProgressIndicator());
-    }
-
-    return ListView.builder(
-      itemCount: drivers!.length,
-      itemBuilder: (context, index) {
-        Driver driver = drivers![index];
-        return buildDriverTile(driver);
-      },
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          Driver driver = drivers![index];
+          return buildDriverTile(driver);
+        },
+        childCount: drivers!.length,
+      ),
     );
   }
 
   Widget buildDriverTile(Driver driver) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Stack(
         alignment: Alignment.centerLeft,
         children: [
@@ -74,7 +79,9 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
             child: Padding(
               padding: EdgeInsets.only(right: 20.0, bottom: 19.v),
               child: Text(
-                driversModel == null ? "".tr : driver.givenName + '\n' + driver.familyName,
+                driversModel == null
+                    ? "".tr
+                    : '${driver.givenName}\n${driver.familyName}',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.titleLarge,
               ),

@@ -19,9 +19,9 @@ class DataBaseController {
 
   DataBaseController._internal();
 
-  Future<bool> sendData(String email, String nombre) async {
+  Future<bool> sendCorreo(String email) async {
     final response = await client.from('UsuarioApp').insert([
-      {'userName': nombre, 'correo': email}
+      {'correo': email}
     ]);
     if (response == null) {
       return true;

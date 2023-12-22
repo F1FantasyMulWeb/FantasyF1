@@ -436,7 +436,7 @@ class AppNavigationScreen extends StatelessWidget {
                                         ]))),
                                 GestureDetector(
                                     onTap: () {
-                                      onTapRegistrarseScreen(context);
+                                      
                                     },
                                     child: Container(
                                         decoration: AppDecoration.fillWhiteA,
@@ -1326,9 +1326,7 @@ class AppNavigationScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the registrarsescreenScreen.
-  onTapRegistrarseScreen(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.registrarsescreenScreen);
-  }
+
 
   /// Navigates to the cambiarcontraseA1screenScreen when the action is triggered.
   ///

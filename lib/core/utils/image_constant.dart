@@ -242,15 +242,15 @@ class ImageConstant {
   }
 
   static String imgDriverAvif(String driver) {
-    String imageFileName = driver + ".avif";
-    String imagePathWithFileName = imagePath + "/pilotos/" + imageFileName;
+    String imageFileName = "$driver.avif";
+    String imagePathWithFileName = "$imagePath/pilotos/$imageFileName";
 
     return imagePathWithFileName;
   }
 
 
-  static File imgCircuitoAvif(String circuito) {
-    var Image1 = File('$imagePath/circuitos/' + '$circuito' + '.avif');
+  static String imgCircuitoAvif(String circuito) {
+    String Image1 = "$imagePath/circuitos/$circuito.avif";
 
     return Image1;
   }

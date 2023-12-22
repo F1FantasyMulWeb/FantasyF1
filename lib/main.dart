@@ -39,13 +39,13 @@ class MyApp extends StatelessWidget {
       title: 'fantasyf1',
       debugShowCheckedModeBanner: false,
       navigatorKey: NavigatorService.navigatorKey,
-      localizationsDelegates: [
+      localizationsDelegates: const [
         AppLocalizationDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
+      supportedLocales: const [
         Locale(
           'es',
           '',
