@@ -6,10 +6,11 @@ import 'package:fantasyf1/api/entityPiloto.dart';
 import 'package:fantasyf1/api/listaCircuitos.dart';
 import 'package:fantasyf1/api/listaEscuderias.dart';
 import 'package:fantasyf1/api/listaPilotos.dart';
+import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:http/http.dart' as http;
 
 import 'modelo/RaceEventModel.dart';
-
+import 'modelo/RaceScheduleModel.dart';
 
 class Client {
   final http.Client _client = http.Client();
@@ -42,7 +43,7 @@ class Client {
     mapa["dateOfBirth"] = respuesta3[6].split(":")[1];
     mapa["nationality"] = respuesta3[7].split(":")[1];
 
-    entityPiloto pilotoEntidad = new entityPiloto(
+    entityPiloto pilotoEntidad = entityPiloto(
         driverId: mapa["driverId"],
         permanentNumber: mapa["permanentNumber"],
         code: mapa["code"],
@@ -211,59 +212,26 @@ class Client {
     return listaEscuderia;
   }
 
- Future<RaceEventModel?> getResults(String year, String round, String raceType,{String? queryParams}) async {
+  Future<RaceEventModel?> getResults(String year, String round, String raceType,
+      {String? queryParams}) async {
     try {
-      var response = await http.get(Uri.parse('https://ergast.com/api/f1/$year/$round/$raceType.json?$queryParams'));
+      var response = await http.get(Uri.parse(
+          'https://ergast.com/api/f1/$year/$round/$raceType.json?$queryParams'));
       if (response.statusCode == 200) {
-
         var result = response.body;
 
         var json = jsonDecode(result);
 
-       // var res = jsonEncode(json["MRData"]["RaceTable"]["Races"]);
-
+        // var res = jsonEncode(json["MRData"]["RaceTable"]["Races"]);
 
         try {
-
           var r = RaceEventModel.fromJson(json);
         } catch (e) {
           print('Failed to parse JSON: $e');
           print('JSON String: $json');
         }
         final r = RaceEventModel.fromJson(json);
-return r;
-        /*switch (raceType) {
-          case "results":
-            {
-              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
-                return r;
-              } else {
-                return null;
-              }
-            }
-          case "qualifying":
-            {
-              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
-                r.first.mrData.raceTable.races.forEach((d) {
-                });
-                return r;
-              } else {
-                return null;
-              }
-            }
-          case "sprint":
-            {
-              if (r.isNotEmpty && r.first.mrData.raceTable.races.isNotEmpty) {
-                r.first.mrData.raceTable.races.forEach((d) {
-                });
-                return r;
-              } else {
-                return null;
-              }
-            }
-        }
-      }
-      return null;  */
+        return r;
       }
     } catch (ex) {
       print(ex);
@@ -272,4 +240,58 @@ return r;
     return null;
   }
 
+  Future<DriversModel?> getDrivers(String year, {String? queryParams}) async {
+    try {
+      var response = await http.get(Uri.parse(
+          'https://ergast.com/api/f1/$year/drivers.json?$queryParams'));
+      if (response.statusCode == 200) {
+        var result = response.body;
+
+        var json = jsonDecode(result);
+
+        // var res = jsonEncode(json["MRData"]["RaceTable"]["Races"]);
+
+        try {
+          var r = DriversModel.fromJson(json);
+        } catch (e) {
+          print('Failed to parse JSON: $e');
+          print('JSON String: $json');
+        }
+        final r = DriversModel.fromJson(json);
+        return r;
+      }
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
+    return null;
+  }
+
+  Future<RaceScheduleModel?> getRaces(String year,
+      {String? queryParams}) async {
+    try {
+      var response = await http.get(Uri.parse(
+          'https://ergast.com/api/f1/$year/circuits.json?$queryParams'));
+      if (response.statusCode == 200) {
+        var result = response.body;
+
+        var json = jsonDecode(result);
+
+        // var res = jsonEncode(json["MRData"]["RaceTable"]["Races"]);
+
+        try {
+          var r = RaceScheduleModel.fromJson(json);
+        } catch (e) {
+          print('Failed to parse JSON: $e');
+          print('JSON String: $json');
+        }
+        final r = RaceScheduleModel.fromJson(json);
+        return r;
+      }
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
+    return null;
+  }
 }

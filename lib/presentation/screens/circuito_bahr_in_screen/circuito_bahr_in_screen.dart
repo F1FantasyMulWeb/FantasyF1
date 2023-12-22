@@ -1,31 +1,11 @@
-import 'package:fantasyf1/api/listaCircuitos.dart';
+import 'package:fantasyf1/api/modelo/RaceScheduleModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
-import '../../../api/listaPilotos.dart';
-import '../../../api/manejoDeLaInformcion.dart';
+import 'package:flutter_avif/flutter_avif.dart';
 
-ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
-
-ListaCircuitos listaCircuitos = new ListaCircuitos();
-
-class CircuitoBahrInScreen extends StatefulWidget {
-  CircuitoBahrInScreen({Key? key}) : super(key: key);
-
-  @override
-  _CircuitoBahrInScreen createState() => _CircuitoBahrInScreen();
-
-  void setManejoDeLaInformcion(
-      ManejoDeLaInformcion manejoDeLaInformcionEntrada) {
-    manejoDeLaInformcion = manejoDeLaInformcionEntrada;
-  }
-}
-
-class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
-  @override
-  void initState() {
-    super.initState();
-    listaCircuitos = manejoDeLaInformcion.getListaCircuitos();
-  }
+class CircuitoBahrInScreen extends StatelessWidget {
+  final Circuit circuit;
+  CircuitoBahrInScreen({Key? key, required this.circuit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +31,14 @@ class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
                             alignment: Alignment.center,
                             children: [
                               CustomImageView(
-                                imagePath: ImageConstant.imgEllipse1,
-                                height: 363.v,
-                                width: 360.h,
-                                alignment: Alignment.center,
+                                width: 100.v,
+                                alignment: Alignment.centerRight,
+                                margin: EdgeInsets.only(right: 80),
+                                border: Border.all(
+                                    width: 2.5, color: Colors.black54),
+                                fit: BoxFit.fitWidth,
+                                file: ImageConstant.imgBandera(
+                                    circuit.location.country),
                               ),
                               Align(
                                 alignment: Alignment.center,
@@ -63,7 +47,7 @@ class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                        ImageConstant.imgGroup36,
+                                        ImageConstant.imgVector1,
                                       ),
                                       fit: BoxFit.cover,
                                     ),
@@ -72,17 +56,25 @@ class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        nombreCircuito().toString().tr,
+                                        circuit.circuitName,
                                         style: theme.textTheme.displaySmall,
                                       ),
                                       SizedBox(height: 10.v),
-                                      CustomImageView(
-                                        imagePath:
-                                            ImageConstant.imgImage26273x355,
-                                        height: 188.v,
-                                        width: 355.h,
-                                      ),
+                                      AvifImage.asset(
+                                          ImageConstant.imgCircuitoAvif(
+                                              circuit.circuitId),
+                                          height: 200,
+                                          fit: BoxFit.scaleDown,
+                                          alignment: Alignment.centerLeft),
                                       SizedBox(height: 18.v),
+                                      CustomImageView(
+                                        file: ImageConstant.imgBandera(
+                                            circuit.location.country),
+                                        margin: EdgeInsets.only(
+                                            top: 41.v,
+                                            right: 33.h,
+                                            bottom: 41.v),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -112,16 +104,13 @@ class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
                                 ),
                               ),
                               CustomImageView(
-                                imagePath: ImageConstant.imgImage27,
-                                height: 171.v,
-                                width: 198.h,
-                                alignment: Alignment.bottomRight,
-                              ),
-                              CustomImageView(
                                 svgPath: ImageConstant.imgArrowleft,
                                 height: 33.adaptSize,
                                 width: 33.adaptSize,
                                 alignment: Alignment.bottomLeft,
+                                onTap: () {
+                                  onTapImgArrowdownone(context);
+                                },
                                 margin: EdgeInsets.only(bottom: 7.v),
                               ),
                             ],
@@ -141,44 +130,19 @@ class _CircuitoBahrInScreen extends State<CircuitoBahrInScreen> {
 
   informacionCircuitoBahr() {
     StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write("Country: " +
-        listaCircuitos
-            .getListaCircuitos()[2]
-            .country
-            .toString()
-            .replaceAll("\"", ""));
+
+    stringBuffer.write("Country: " + circuit.location.country);
     stringBuffer.write("\n");
-    stringBuffer.write("Locality: " +
-        listaCircuitos
-            .getListaCircuitos()[2]
-            .locality
-            .toString()
-            .replaceAll("\"", ""));
+    stringBuffer.write("Locality: " + circuit.location.locality);
     stringBuffer.write("\n");
-    stringBuffer.write("Latitud: " +
-        listaCircuitos
-            .getListaCircuitos()[2]
-            .lat
-            .toString()
-            .replaceAll("\"", ""));
+    stringBuffer.write("Latitud: " + circuit.location.lat);
     stringBuffer.write("\n");
-    stringBuffer.write("Longitud: " +
-        listaCircuitos
-            .getListaCircuitos()[2]
-            .long
-            .toString()
-            .replaceAll("\"", ""));
+    stringBuffer.write("Longitud: " + circuit.location.long);
     stringBuffer.write("\n");
     return stringBuffer;
   }
 
-  nombreCircuito() {
-    StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write(listaCircuitos
-        .getListaCircuitos()[2]
-        .circuitName
-        .toString()
-        .replaceAll("\"", ""));
-    return stringBuffer;
+  onTapImgArrowdownone(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.listaCircuitosScreen);
   }
 }

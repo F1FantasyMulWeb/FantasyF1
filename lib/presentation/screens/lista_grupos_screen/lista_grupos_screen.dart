@@ -2,43 +2,32 @@ import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image_1.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../DataBase/databasecontroller.dart';
-import '../../../api/configuracionApi.dart';
+import '../../../provider/grupoactual.dart';
+import '../../../provider/usermodel.dart';
 
-class ListaGruposScreen extends StatefulWidget {
+class ListaGruposScreen extends ConsumerStatefulWidget {
   const ListaGruposScreen({Key? key}) : super(key: key);
 
   @override
-  _ListaGruposScreen createState() => _ListaGruposScreen();
+  ConsumerState<ListaGruposScreen> createState() => _ListaGruposScreen();
 }
 
-class _ListaGruposScreen extends State<ListaGruposScreen> {
-  DataBaseController clienteController =
-      DataBaseController(Supabase.instance.client);
-  List<String>? _listaGrupos;
+class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
+  DataBaseController clienteController = DataBaseController();
 
-  @override
-  void initState() {
-    initializeCarGlobal();
-    super.initState();
-    print(_listaGrupos);
-  }
-
-  void initializeCarGlobal() async {
-    List<dynamic> gl = await clienteController.selectGrupoName();
-    setState(() {
-      _listaGrupos = gl.cast<String>();
-    });
-    return null;
-  }
+  List<String> nombresGrupoFinales = [];
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
+    final userModel = ref.watch(userModelProvider);
+    final grupoActual = ref.watch(grupoActualModelProvider);
+    final _listaGrupos = userModel.listaGrupos;
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
@@ -50,75 +39,84 @@ class _ListaGruposScreen extends State<ListaGruposScreen> {
                 centerTitle: true,
                 title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
             body: SizedBox(
-                width: mediaQueryData.size.width,
-                child: SingleChildScrollView(
-                    child: Padding(
-                        padding: EdgeInsets.only(bottom: 5.v),
-                        child: Column(children: [
-                          Divider(),
-                          SizedBox(height: 16.v),
-                          Text("lbl_grupos".tr,
-                              style: theme.textTheme.displayMedium),
-                          SizedBox(height: 10.v),
-                          for (int i = 0; i < 6; i++)
-                            GestureDetector(
+              width: mediaQueryData.size.width,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 5.v),
+                child: Column(children: [
+                  Divider(),
+                  SizedBox(height: 5.v),
+                  SizedBox(height: 5.v),
+                  Text("lbl_grupos".tr, style: theme.textTheme.displayMedium),
+                  SizedBox(height: 10.v),
+                  Expanded(
+                    child: _listaGrupos.isEmpty
+                        ? Center(
+                            child: Text('Usted no tiene grupos',
+                                style: theme.textTheme.displayMedium))
+                        : ListView.builder(
+                            itemCount: _listaGrupos.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
                                 onTap: () {
+                                  grupoActual
+                                      .setnombreGrupo(_listaGrupos[index]);
+                                  grupoActual.cargarDato();
                                   onTapUserlistitem(context);
                                 },
-                                child: Container(
-                                    height: 71.v,
-                                    width: 328.h,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10.h, vertical: 2.v),
-                                    decoration: AppDecoration.fillWhiteA,
-                                    child: Stack(
-                                        alignment: Alignment.bottomLeft,
-                                        children: [
-                                          Align(
-                                              alignment: Alignment.center,
-                                              child: Container(
-                                                  margin: EdgeInsets.only(
-                                                      left: 20.h, right: 14.h),
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 126.h,
-                                                      vertical: 19.v),
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: fs.Svg(
-                                                              ImageConstant
-                                                                  .imgVector1),
-                                                          fit: BoxFit.cover)),
-                                                  child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        SizedBox(height: 2.v),
-                                                        Text("lbl".tr,
-                                                            style: theme
-                                                                .textTheme
-                                                                .titleLarge)
-                                                      ]))),
-                                          CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgDownload1,
-                                              height: 51.v,
-                                              width: 55.h,
-                                              radius:
-                                                  BorderRadius.circular(25.h),
-                                              alignment: Alignment.bottomLeft,
-                                              margin:
-                                                  EdgeInsets.only(bottom: 6.v))
-                                        ]))),
-                          SizedBox(height: 438.v),
-                          CustomImageView(
-                              svgPath: ImageConstant.imgBoton,
-                              height: 57.v,
-                              width: 65.h)
-                        ]))))));
+                                child: Row(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 30.0),
+                                      child: CustomImageView(
+                                          imagePath: ImageConstant.imgDownload1,
+                                          height: 51.v,
+                                          width: 55.h,
+                                          radius: BorderRadius.circular(25.h),
+                                          alignment: Alignment.bottomLeft,
+                                          margin: EdgeInsets.only(bottom: 6.v)),
+                                    ),
+                                    Expanded(
+                                      child: Center(
+                                        child: Text(_listaGrupos[index],
+                                            style:
+                                                CustomTextStyles.displayGrupos),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                  )
+                ]),
+              ),
+            ),
+            floatingActionButton: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                FloatingActionButton(
+                  heroTag: "btn1",
+                  onPressed: () {
+                    onTapCrearGrupo(context);
+                  },
+                  child: Icon(Icons.add), // Ícono del primer botón
+                  backgroundColor:
+                      Colors.redAccent, // Color de fondo del primer botón
+                ),
+                SizedBox(
+                  height: 10, // Espacio entre los botones
+                ),
+                FloatingActionButton(
+                  heroTag: "btn2",
+                  onPressed: () {
+                    onTapUnirseGrupo(context);
+                  },
+                  child: Icon(Icons.remove), // Ícono del segundo botón
+                  backgroundColor:
+                      Colors.blueAccent, // Color de fondo del segundo botón
+                ),
+              ],
+            )));
   }
 
   /// Navigates to the grupoScreen when the action is triggered.
@@ -128,5 +126,13 @@ class _ListaGruposScreen extends State<ListaGruposScreen> {
   /// to push the named route for the grupoScreen.
   onTapUserlistitem(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.grupoScreen);
+  }
+
+  onTapCrearGrupo(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.creargrupoScreen);
+  }
+
+  onTapUnirseGrupo(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
   }
 }

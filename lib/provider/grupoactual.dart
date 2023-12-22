@@ -13,19 +13,20 @@ class GrupoActualModel extends ChangeNotifier {
 
   String _codeGrupo = "";
   String _nombreGrupo = "";
-  Map<String,int> _nombresUsuariosGrupo = {};
+  Map<String, int> _nombresUsuariosGrupo = {};
   List<String> _listaPilotosDelGrupo = [];
 
   String get codeGrupo => _codeGrupo;
   String get nombreGrupo => _nombreGrupo;
-  Map<String,int> get nombresUsuariosGrupo => _nombresUsuariosGrupo;
+  Map<String, int> get nombresUsuariosGrupo => _nombresUsuariosGrupo;
   List<String> get listaPilotosDelGrupo => _listaPilotosDelGrupo;
 
   Future<void> cargarDato() async {
     _codeGrupo = await dataBaseController.selectCodeGroup(nombreGrupo);
     _nombresUsuariosGrupo =
         await dataBaseController.selectUsuariosDelGrupo(_codeGrupo);
-    _listaPilotosDelGrupo = await dataBaseController.selectPilotosDisponiblesDelGrupo(_codeGrupo);
+    _listaPilotosDelGrupo =
+        await dataBaseController.selectPilotosDisponiblesDelGrupo(_codeGrupo);
     notifyListeners();
   }
 
@@ -38,5 +39,4 @@ class GrupoActualModel extends ChangeNotifier {
     _codeGrupo = codeGrupo;
     notifyListeners();
   }
-
 }

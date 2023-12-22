@@ -1,6 +1,5 @@
+import 'package:fantasyf1/presentation/screens/anadir_grupo_screen/a%C3%B1adirgrupo_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../presentation/screens/a_adirgrupo_screen/a_adirgrupo_screen.dart';
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
 import '../presentation/screens/app_navigation_screen/app_navigation_screen.dart';
@@ -10,8 +9,6 @@ import '../presentation/screens/cambiarcontrase_a1screen_screen/cambiarcontrase_
 import '../presentation/screens/cambiarcontrase_a2screen_screen/cambiarcontrase_a2screen_screen.dart';
 import '../presentation/screens/cambiarcontrase_a3screen_one_screen/cambiarcontrase_a3screen_one_screen.dart';
 import '../presentation/screens/cambiarcontrase_a3screen_screen/cambiarcontrase_a3screen_screen.dart';
-import '../presentation/screens/checo_perez_screen/checo_perez_screen.dart';
-import '../presentation/screens/circuito_bahr_in_screen/circuito_bahr_in_screen.dart';
 import '../presentation/screens/circuito_de_albert_park_screen/circuito_de_albert_park_screen.dart';
 import '../presentation/screens/circuito_de_la_corniche_de_yeda_screen/circuito_de_la_corniche_de_yeda_screen.dart';
 import '../presentation/screens/circuito_de_m_naco_screen/circuito_de_m_naco_screen.dart';
@@ -29,14 +26,12 @@ import '../presentation/screens/lista_escuder_as_screen/lista_escuder_as_screen.
 import '../presentation/screens/lista_grupos_screen/lista_grupos_screen.dart';
 import '../presentation/screens/lista_jugadores_screen/lista_jugadores_screen.dart';
 import '../presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
-import '../presentation/screens/loginscreen_screen/loginscreen_screen.dart';
+import '../presentation/screens/loginscreen_screen/s21_login_registrarse_widget.dart';
 import '../presentation/screens/mainscreensinligas_screen/mainscreensinligas_screen.dart';
 import '../presentation/screens/mercado_screen/mercado_screen.dart';
-import '../presentation/screens/pantalla_carga/pantallacarga.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
 import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
-import '../presentation/screens/preloginscreen_screen/preloginscreen_screen.dart';
-import '../presentation/screens/registrarsescreen_screen/registrarsescreen_screen.dart';
+import '../presentation/screens/preloginscreen_screen/s11_pre_login_widget.dart';
 import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 
 class AppRoutes {
@@ -64,7 +59,6 @@ class AppRoutes {
 
   static const String loginscreenScreen = '/loginscreen_screen';
 
-  static const String registrarsescreenScreen = '/registrarsescreen_screen';
 
   static const String cambiarcontraseA1screenScreen =
       '/cambiarcontrase_a1screen_screen';
@@ -121,35 +115,32 @@ class AppRoutes {
   static const String circuitoDeMNacoScreen = '/circuito_de_m_naco_screen';
 
   static const String appNavigationScreen = '/app_navigation_screen';
-  static const String pantallaCargaScreen = '/pantalla_carga_screen';
 
   static Map<String, WidgetBuilder> routes = {
-    preloginscreenScreen: (context) => PreloginscreenScreen(),
+    preloginscreenScreen: (context) => S11PreLoginWidget(),
     ajustesOneScreen: (context) => AjustesOneScreen(),
     informaciNScreen: (context) => InformaciNScreen(),
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),
     avatarScreen: (context) => AvatarScreen(),
     creargrupoScreen: (context) => CreargrupoScreen(),
-    editAvatarScreen: (context) => EditAvatarScreen(path: "",userName: "",),
-    pantallaCargaScreen: (context) => PantallaCarga(),
+    editAvatarScreen: (context) => EditAvatarScreen(),
     listaJugadoresScreen: (context) => ListaJugadoresScreen(),
     listaEscuderAsScreen: (context) => ListaEscuderAsScreen(),
     listaPilotosScreen: (context) => ListaPilotosScreen(),
     listaCircuitosScreen: (context) => ListaCircuitosScreen(),
-    loginscreenScreen: (context) => LoginscreenScreen(),
-    registrarsescreenScreen: (context) => RegistrarsescreenScreen(),
+    loginscreenScreen: (context) => S21LoginRegistrarseWidget(),
     cambiarcontraseA1screenScreen: (context) => CambiarcontraseA1screenScreen(),
     mainscreensinligasScreen: (context) => MainscreensinligasScreen(),
-    aAdirgrupoScreen: (context) => AAdirgrupoScreen(),
+    aAdirgrupoScreen: (context) => AnadirGrupoScreen(),
     listaGruposScreen: (context) => ListaGruposScreen(),
     grupoScreen: (context) => GrupoScreen(),
     escuderiaRedBullScreen: (context) => EscuderiaRedBullScreen(),
     pilotoVerstapenScreen: (context) => PilotoVerstapenScreen(),
     tuspilotosScreen: (context) => TuspilotosScreen(),
-    circuitoBahrInScreen: (context) => CircuitoBahrInScreen(),
+    //circuitoBahrInScreen: (context) => CircuitoBahrInScreen(),
     cambiarcontraseA2screenScreen: (context) => CambiarcontraseA2screenScreen(),
     escuderiaAstonMartinScreen: (context) => EscuderiaAstonMartinScreen(),
-    checoPerezScreen: (context) => ChecoPerezScreen(),
+    //checoPerezScreen: (context) => ChecoPerezScreen(driver: driver),
     mercadoScreen: (context) => MercadoScreen(),
     circuitoDeLaCornicheDeYedaScreen: (context) =>
         CircuitoDeLaCornicheDeYedaScreen(),
