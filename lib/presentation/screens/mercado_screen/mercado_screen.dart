@@ -3,6 +3,7 @@ import 'package:fantasyf1/provider/grupoactual.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_title.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
+import 'package:fantasyf1/widgets/drivercard.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,7 +27,9 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
     List<String> pilotosDisponibles = [];
     mediaQueryData = MediaQuery.of(context);
     final groupModel = ref.watch(grupoActualModelProvider);
-
+    final listaPilotosGrupos = groupModel.listaPilotosDelGrupo;
+    print("Hola gente");
+    print(listaPilotosGrupos);
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -40,8 +43,30 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                 }),
             centerTitle: true,
             title: AppbarTitle(text: LocalizationExtension("lbl_mercado2").tr)),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverPadding(
+              padding: EdgeInsets.only(left: 13.h, top: 7.v),
+              sliver: SliverFillRemaining(
+                hasScrollBody: true, // Cambiado a true
+                child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  // shrinkWrap: true, // Removido
+                  separatorBuilder: (context, index) => SizedBox(height: 19.v),
+                  itemCount: listaPilotosGrupos.length,
+                  itemBuilder: (context, index) {
+                    String piloto = listaPilotosGrupos[index];
+                    return  DriverCard(driverName: piloto, driverImageAsset: "hola", price: 10, points: 100);
+                    //return  UserprofileItemWidget(idDriver: piloto);
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
+
   }
 
   /// Navigates back to the previous screen.

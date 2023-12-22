@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:fantasyf1/DataBase/supabaseservice.dart';
+import 'package:fantasyf1/api/TODOlistaPilotos.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -344,19 +345,24 @@ class DataBaseController {
 
   Future<List<String>> selectPilotosDisponiblesDelGrupo(var keyGrupo) async {
     List<String> nombrePilotos = [];
-    List<dynamic> response1 =
+    final response1 =
         await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
-    for (var i = 0; i < response1.length; i++) {
-      nombrePilotos = response1[i]["listaPilotosDisponible"];
+
+    final listaPilotos = response1[0]["listaPilotosDisponible"];
+
+    for (var i = 0; i < listaPilotos.length; i++) {
+      nombrePilotos.add(listaPilotos[i]);
     }
-    return nombrePilotos;
+
+     return nombrePilotos;
   }
 
   Future<void> comprarPiloto(var idPiloto, var idGrupo) async {
-    var idUsuario = await selectUserId();
-    final response = await client.from('PilotosGrupo').insert([
-      {'idUsuario': idUsuario, 'idGrupo': idGrupo, 'idPiloto': idPiloto}
-    ]);
-    final response1 = await client.from('Grupos').delete().eq('listaPilotosDisponible', idPiloto);
+
+    List<String> listaPiloto = await selectPilotosDisponiblesDelGrupo(idGrupo);
+    listaPiloto.remove(idPiloto);
+    final response1 = await client.from('Grupos').update({ 'listaPilotosDisponible' :  listaPiloto})
+        .eq('some_column', 'someValue')
+        .select();
   }
 }

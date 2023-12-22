@@ -96,6 +96,7 @@ class ChecoPerezScreen extends StatelessWidget {
                                                   ImageConstant.imgDriverAvif(
                                                       driver.driverId),
                                                   height: 250,
+                                                  fit: BoxFit.scaleDown,
                                                   alignment:
                                                       Alignment.centerLeft)
                                             ])),
