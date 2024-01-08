@@ -56,7 +56,11 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                   itemCount: listaPilotosGrupos.length,
                   itemBuilder: (context, index) {
                     String piloto = listaPilotosGrupos[index];
-                    return  DriverCard(driverName: piloto, driverImageAsset: "hola", price: 10, points: 100);
+                    return DriverCard(
+                        driverName: piloto,
+                        driverImageAsset: ImageConstant.imgDriverAvif(piloto),
+                        price: 10,
+                        points: 100);
                     //return  UserprofileItemWidget(idDriver: piloto);
                   },
                 ),
@@ -66,7 +70,6 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
         ),
       ),
     );
-
   }
 
   /// Navigates back to the previous screen.
