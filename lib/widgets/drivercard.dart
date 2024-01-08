@@ -21,55 +21,73 @@ class DriverCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 4,
-            offset: Offset(0, 2),
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 6,
+            offset: Offset(0, 3),
           ),
         ],
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Row(
         children: [
-          Image.asset(driverImageAsset, width: 100, height: 60), // Adjust size accordingly
-          SizedBox(height: 8),
-          Text(driverName, style: const TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Precio: ${price.toStringAsFixed(0)}M', style: TextStyle(fontSize: 16)),
-              Text('Puntos: $points', style: TextStyle(fontSize: 16)),
-            ],
+          Image.asset(
+            driverImageAsset,
+            width: 64,
+            height: 64,
           ),
-          SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    driverName,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Precio: ${price.toStringAsFixed(0)}M',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    'Puntos: $points',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Column(
             children: [
               ElevatedButton(
                 onPressed: onInfoPressed,
                 child: Text('Info'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
-                  ),
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(14),
                 ),
               ),
+              SizedBox(height: 8),
               ElevatedButton(
                 onPressed: onBuyPressed,
                 child: Text('Comprar'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  primary: Colors.red,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18),
                   ),
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 ),
               ),
             ],

@@ -7,13 +7,8 @@ import 'package:fantasyf1/widgets/drivercard.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
-import '../../../DataBase/databasecontroller.dart';
-import '../../../api/modelo/RaceEventModel.dart';
-import '../mercado_screen/widgets/userprofile_item_widget.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
+import '../../../api/modelo/DriversModel.dart';
+import '../checo_perez_screen/checo_perez_screen.dart';
 
 class MercadoScreen extends ConsumerStatefulWidget {
   const MercadoScreen({Key? key}) : super(key: key);
@@ -79,4 +74,12 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
   onTapCloseone(BuildContext context) {
     Navigator.pop(context);
   }
+  void onTapDriver(BuildContext context, Driver driver) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ChecoPerezScreen(driver: driver)));
+  }
+
 }
+
