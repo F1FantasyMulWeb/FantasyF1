@@ -60,7 +60,7 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                         driverName: piloto,
                         driverImageAsset: ImageConstant.imgDriverAvif(piloto),
                         price: 10,
-                        points: 100);
+                        points: 100, onInfoPressed: () {  }, onBuyPressed: () {  },);
                     //return  UserprofileItemWidget(idDriver: piloto);
                   },
                 ),
