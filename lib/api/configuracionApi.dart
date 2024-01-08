@@ -267,6 +267,31 @@ class Client {
     return null;
   }
 
+  Future<DriversModel?> getDriver(String driverName) async {
+    try {
+      var response = await http
+          .get(Uri.parse('https://ergast.com/api/f1/drivers/$driverName.json'));
+      if (response.statusCode == 200) {
+        var result = response.body;
+
+        var json = jsonDecode(result);
+
+        try {
+          var r = DriversModel.fromJson(json);
+        } catch (e) {
+          print('Failed to parse JSON: $e');
+          print('JSON String: $json');
+        }
+        final r = DriversModel.fromJson(json);
+        return r;
+      }
+    } catch (ex) {
+      print(ex);
+      return null;
+    }
+    return null;
+  }
+
   Future<RaceScheduleModel?> getRaces(String year,
       {String? queryParams}) async {
     try {

@@ -1,11 +1,14 @@
+import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:flutter/material.dart';
+
+import '../presentation/screens/checo_perez_screen/checo_perez_screen.dart';
 
 class DriverCard extends StatelessWidget {
   final String driverName;
   final String driverImageAsset;
   final double price;
   final int points;
-
+  final DriversModel? onInfoPressed;
 
   const DriverCard({
     Key? key,
@@ -13,7 +16,7 @@ class DriverCard extends StatelessWidget {
     required this.driverImageAsset,
     required this.price,
     required this.points,
-    //required this.onInfoPressed,
+    required this.onInfoPressed,
     //required this.onBuyPressed,
   }) : super(key: key);
 
@@ -40,7 +43,10 @@ class DriverCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  onTapDriver(this as BuildContext,
+                      onInfoPressed!.mrData.driverTable.drivers.first);
+                },
                 child: Text('Info'),
                 style: ElevatedButton.styleFrom(primary: Colors.red),
               ),
@@ -54,5 +60,12 @@ class DriverCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void onTapDriver(BuildContext context, Driver driver) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ChecoPerezScreen(driver: driver)));
   }
 }

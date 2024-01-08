@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 import '../../../DataBase/databasecontroller.dart';
+import '../../../api/configuracionApi.dart';
 import '../../../api/modelo/RaceEventModel.dart';
 import '../mercado_screen/widgets/userprofile_item_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +28,8 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
     List<String> pilotosDisponibles = [];
     mediaQueryData = MediaQuery.of(context);
     final groupModel = ref.watch(grupoActualModelProvider);
+    Client cliente = Client();
+
     final listaPilotosGrupos = groupModel.listaPilotosDelGrupo;
     print("Hola gente");
     print(listaPilotosGrupos);
@@ -57,10 +60,12 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                   itemBuilder: (context, index) {
                     String piloto = listaPilotosGrupos[index];
                     return DriverCard(
-                        driverName: piloto,
-                        driverImageAsset: ImageConstant.imgDriverAvif(piloto),
-                        price: 10,
-                        points: 100);
+                      driverName: piloto,
+                      driverImageAsset: ImageConstant.imgDriverAvif(piloto),
+                      price: 10,
+                      points: 100,
+                      onInfoPressed: await cliente.getDriver(piloto),
+                    );
                     //return  UserprofileItemWidget(idDriver: piloto);
                   },
                 ),
