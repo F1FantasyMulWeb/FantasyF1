@@ -8,7 +8,7 @@ class DriverCard extends StatelessWidget {
   final String driverImageAsset;
   final double price;
   final int points;
-  final DriversModel? onInfoPressed;
+  final Driver? onInfoPressed;
 
   const DriverCard({
     Key? key,
