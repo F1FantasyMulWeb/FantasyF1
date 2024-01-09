@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:fantasyf1/DataBase/supabaseservice.dart';
-import 'package:fantasyf1/api/TODOlistaPilotos.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';

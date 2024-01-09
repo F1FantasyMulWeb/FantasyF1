@@ -1,5 +1,6 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/api/modelo/DriversModel.dart';
+
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
@@ -43,11 +44,11 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
         body: drivers == null
             ? const Center(child: CircularProgressIndicator())
             : CustomScrollView(
-                slivers: <Widget>[
-                  const SliverToBoxAdapter(),
-                  buildDriverList(),
-                ],
-              ),
+          slivers: <Widget>[
+            const SliverToBoxAdapter(),
+            buildDriverList(),
+          ],
+        ),
       ),
     );
   }
@@ -55,7 +56,7 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
   Widget buildDriverList() {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) {
+            (context, index) {
           Driver driver = drivers![index];
           return buildDriverTile(driver);
         },
