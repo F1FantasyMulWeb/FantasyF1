@@ -58,21 +58,23 @@ class _MainscreensinligasScreenState
         child: SafeArea(
             child: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.white,
-                  leading: Builder(
-                    builder: (context) => IconButton(
-                      icon: Icon(Icons.menu),
-                      iconSize: 35, // Ajusta este valor para cambiar el tamaño del icono del menú
-                      onPressed: () => Scaffold.of(context).openDrawer(),
+                    backgroundColor: Colors.white,
+                    leading: Builder(
+                      builder: (context) => IconButton(
+                        icon: Icon(Icons.menu),
+                        iconSize:
+                            35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      ),
                     ),
-                  ),
                     actions: [
                       GestureDetector(
                         onTap: () {
                           onTapAvatarScreen(context);
                         },
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 30.h, vertical: 12.v),
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 30.h, vertical: 12.v),
                           decoration: AppDecoration.fillWhiteA.copyWith(
                             borderRadius: BorderRadiusStyle.roundedBorder15,
                           ),
@@ -80,19 +82,21 @@ class _MainscreensinligasScreenState
                             borderRadius: BorderRadiusStyle.roundedBorder15,
                             child: Image.file(
                               File(userModel.avatar),
-                              width: 50, // Ajusta el ancho de la imagen según tus necesidades
-                              height: 50, // Ajusta la altura de la imagen según tus necesidades
-                              fit: BoxFit.cover, // Ajusta el modo de ajuste de la imagen según tus necesidades
+                              width:
+                                  50, // Ajusta el ancho de la imagen según tus necesidades
+                              height:
+                                  50, // Ajusta la altura de la imagen según tus necesidades
+                              fit: BoxFit
+                                  .cover, // Ajusta el modo de ajuste de la imagen según tus necesidades
                               errorBuilder: (context, error, stackTrace) {
-                                return const Icon(Icons.error); // Muestra un icono de error si la carga falla
+                                return const Icon(Icons
+                                    .error); // Muestra un icono de error si la carga falla
                               },
                             ),
                           ),
                         ),
                       ),
-                    ]
-
-                ),
+                    ]),
                 drawer: Drawer(
                   backgroundColor: Colors.white,
                   child: ListView(
@@ -537,13 +541,14 @@ class _MainscreensinligasScreenState
                             ])))))));
   }
 
-
   onTapAvatarScreen(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.avatarScreen);
   }
+
   onTapCreargrupo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.creargrupoScreen);
   }
+
   onTapUnirseagrupo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
   }

@@ -1,6 +1,5 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 

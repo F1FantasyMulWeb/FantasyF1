@@ -5,11 +5,11 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 // ignore: must_be_immutable
 class UserprofileItemWidget extends StatelessWidget {
   final String idDriver;
-  UserprofileItemWidget({Key? key, required this.idDriver}): super(
+  UserprofileItemWidget({Key? key, required this.idDriver})
+      : super(
           key: key,
         );
 
-  
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -13,14 +13,14 @@ import '../../../DataBase/databasecontroller.dart';
 class AnadirGrupoScreen extends ConsumerStatefulWidget {
   AnadirGrupoScreen({Key? key})
       : super(
-    key: key,
-  );
+          key: key,
+        );
 
   @override
   ConsumerState<AnadirGrupoScreen> createState() => _AnadirGrupoScreen();
 }
-  class _AnadirGrupoScreen extends ConsumerState<AnadirGrupoScreen> {
 
+class _AnadirGrupoScreen extends ConsumerState<AnadirGrupoScreen> {
   TextEditingController codevalueoneController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();

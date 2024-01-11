@@ -1,5 +1,11 @@
+import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../DataBase/databasecontroller.dart';
@@ -15,15 +21,8 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'login_registrarse_model.dart';
+
 export 'login_registrarse_model.dart';
 
 class LoginRegistrarseWidget extends ConsumerStatefulWidget {
@@ -1757,9 +1756,7 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
 
         ref.read(userModelProvider).cargarDato();
         onTapIniciarsesin(context);
-      } else {
-
-      }
+      } else {}
     } catch (e) {
       if (kDebugMode) {
         print("Error: $e");

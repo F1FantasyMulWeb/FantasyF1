@@ -1,6 +1,5 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/api/modelo/DriversModel.dart';
-
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
