@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'login_registrarse_widget.dart' show LoginRegistrarseWidget;
-import 'package:flutter/material.dart';
 
 class LoginRegistrarseModel extends FlutterFlowModel<LoginRegistrarseWidget> {
   ///  State fields for stateful widgets in this component.
@@ -70,7 +71,6 @@ class LoginRegistrarseModel extends FlutterFlowModel<LoginRegistrarseWidget> {
     textFieldRepetirContrasenaRegistrarseFocusNode?.dispose();
     textFieldRepetirContrasenaRegistrarseController?.dispose();
   }
-
 
   /// Additional helper methods are added here.
 }

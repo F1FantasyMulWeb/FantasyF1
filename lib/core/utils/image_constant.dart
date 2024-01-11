@@ -248,7 +248,6 @@ class ImageConstant {
     return imagePathWithFileName;
   }
 
-
   static String imgCircuitoAvif(String circuito) {
     String Image1 = "$imagePath/circuitos/$circuito.avif";
 

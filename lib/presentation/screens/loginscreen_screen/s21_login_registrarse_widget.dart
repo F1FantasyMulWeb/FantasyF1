@@ -1,10 +1,11 @@
-import '../../componentes/header_logo_texto_f1/header_logo_texto_f1_widget.dart';
-import '../../componentes/tap_bar/login_registrarse/login_registrarse_widget.dart';
-import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../componentes/header_logo_texto_f1/header_logo_texto_f1_widget.dart';
+import '../../componentes/tap_bar/login_registrarse/login_registrarse_widget.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 's21_login_registrarse_model.dart';
+
 export 's21_login_registrarse_model.dart';
 
 class S21LoginRegistrarseWidget extends StatefulWidget {
@@ -77,8 +78,8 @@ class _S21LoginRegistrarseWidgetState extends State<S21LoginRegistrarseWidget> {
                     Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 20.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 70.0, 0.0, 20.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
-import 'verifica_tu_cuenta_widget.dart' show VerificaTuCuentaWidget;
+import 'parte_superior_app2_widget.dart' show ParteSuperiorApp2Widget;
 
-class VerificaTuCuentaModel extends FlutterFlowModel<VerificaTuCuentaWidget> {
+class ParteSuperiorApp2Model extends FlutterFlowModel<ParteSuperiorApp2Widget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}

@@ -1,5 +1,6 @@
 import 'package:fantasyf1/presentation/screens/anadir_grupo_screen/a%C3%B1adirgrupo_screen.dart';
 import 'package:flutter/material.dart';
+
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
 import '../presentation/screens/app_navigation_screen/app_navigation_screen.dart';
@@ -19,7 +20,7 @@ import '../presentation/screens/el_nano_screen/el_nano_screen.dart';
 import '../presentation/screens/escuderia_aston_martin_screen/escuderia_aston_martin_screen.dart';
 import '../presentation/screens/escuderia_mercedes_screen/escuderia_mercedes_screen.dart';
 import '../presentation/screens/escuderia_red_bull_screen/escuderia_red_bull_screen.dart';
-import '../presentation/screens/grupo_screen/grupo_screen.dart';
+import '../presentation/screens/grupo_screen/pantalla_interna_grupo_widget.dart';
 import '../presentation/screens/informaci_n_screen/informaci_n_screen.dart';
 import '../presentation/screens/lista_circuitos_screen/lista_circuitos_screen.dart';
 import '../presentation/screens/lista_escuder_as_screen/lista_escuder_as_screen.dart';
@@ -58,7 +59,6 @@ class AppRoutes {
   static const String listaCircuitosScreen = '/lista_circuitos_screen';
 
   static const String loginscreenScreen = '/loginscreen_screen';
-
 
   static const String cambiarcontraseA1screenScreen =
       '/cambiarcontrase_a1screen_screen';
@@ -133,7 +133,7 @@ class AppRoutes {
     mainscreensinligasScreen: (context) => MainscreensinligasScreen(),
     aAdirgrupoScreen: (context) => AnadirGrupoScreen(),
     listaGruposScreen: (context) => ListaGruposScreen(),
-    grupoScreen: (context) => GrupoScreen(),
+    grupoScreen: (context) => PantallaInternaGrupoWidget(),
     escuderiaRedBullScreen: (context) => EscuderiaRedBullScreen(),
     pilotoVerstapenScreen: (context) => PilotoVerstapenScreen(),
     tuspilotosScreen: (context) => TuspilotosScreen(),

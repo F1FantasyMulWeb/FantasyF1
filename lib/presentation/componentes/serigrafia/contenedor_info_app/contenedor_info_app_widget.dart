@@ -1,10 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../../../../flutter_flow/flutter_flow_theme.dart';
 import '../../../../flutter_flow/flutter_flow_util.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'contenedor_info_app_model.dart';
+
 export 'contenedor_info_app_model.dart';
 
 class ContenedorInfoAppWidget extends StatefulWidget {

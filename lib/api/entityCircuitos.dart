@@ -1,8 +1,7 @@
 class entityCircuitos {
-
   late final String? circuitId, url, circuitName, lat, long, locality, country;
 
-  entityCircuitos( {
+  entityCircuitos({
     required this.circuitId,
     required this.url,
     required this.circuitName,

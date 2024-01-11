@@ -1,6 +1,7 @@
 import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:flutter/material.dart';
 
+import '../flutter_flow/flutter_flow_theme.dart';
 import '../presentation/screens/checo_perez_screen/checo_perez_screen.dart';
 
 class DriverCard extends StatelessWidget {
@@ -9,6 +10,7 @@ class DriverCard extends StatelessWidget {
   final double price;
   final int points;
   final Driver? onInfoPressed;
+  final VoidCallback onBuyPressed;
 
   const DriverCard({
     Key? key,
@@ -17,43 +19,93 @@ class DriverCard extends StatelessWidget {
     required this.price,
     required this.points,
     required this.onInfoPressed,
-    //required this.onBuyPressed,
+    required this.onBuyPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          //Image.asset(driverImageAsset),
-          Text(driverName, style: TextStyle(fontWeight: FontWeight.bold)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Precio: $price M'),
-              Text('Puntos: $points'),
-            ],
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 6,
+            offset: const Offset(0, 3),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        ],
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            driverImageAsset,
+            width: 64,
+            height: 64,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    driverName,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Precio: ${price.toStringAsFixed(0)}M',
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  Text(
+                    'Puntos: $points',
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Column(
             children: [
               ElevatedButton(
-                onPressed: () {
-                  onTapDriver(this as BuildContext,
-                      onInfoPressed!.mrData.driverTable.drivers.first);
-                },
-                child: Text('Info'),
-                style: ElevatedButton.styleFrom(primary: Colors.red),
+                onPressed: () => onTapDriver(context, onInfoPressed!),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(14),
+                ),
+                child: Text('Info',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          color: const Color(0xFF000000),
+                          fontSize: 10.0,
+                          fontWeight: FontWeight.bold,
+                        )),
               ),
+              const SizedBox(height: 8),
               ElevatedButton(
-                onPressed: () {},
-                child: Text('Comprar'),
-                style: ElevatedButton.styleFrom(primary: Colors.red),
+                onPressed: onBuyPressed,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                ),
+                child: Text('Comprar',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          color: const Color(0xFF000000),
+                          fontSize: 10.0,
+                          fontWeight: FontWeight.bold,
+                        )),
               ),
             ],
           ),

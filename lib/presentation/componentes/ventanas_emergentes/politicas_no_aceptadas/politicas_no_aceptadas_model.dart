@@ -1,11 +1,7 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'politicas_no_aceptadas_widget.dart' show PoliticasNoAceptadasWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+
+import '/flutter_flow/flutter_flow_util.dart';
+import 'politicas_no_aceptadas_widget.dart' show PoliticasNoAceptadasWidget;
 
 class PoliticasNoAceptadasModel
     extends FlutterFlowModel<PoliticasNoAceptadasWidget> {

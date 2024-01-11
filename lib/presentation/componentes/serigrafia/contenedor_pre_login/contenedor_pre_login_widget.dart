@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
+
 import '../../../../flutter_flow/flutter_flow_theme.dart';
 import '../../../../flutter_flow/flutter_flow_util.dart';
 import '../../../../flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import '../../../../routes/app_routes.dart';
 import 'contenedor_pre_login_model.dart';
+
 export 'contenedor_pre_login_model.dart';
 
 class ContenedorPreLoginWidget extends StatefulWidget {
@@ -137,6 +136,7 @@ class _ContenedorPreLoginWidgetState extends State<ContenedorPreLoginWidget> {
       ),
     );
   }
+
   onTapVamosall(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.loginscreenScreen);
   }

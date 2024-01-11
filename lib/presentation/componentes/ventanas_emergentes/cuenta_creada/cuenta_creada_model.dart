@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'cuenta_creada_widget.dart' show CuentaCreadaWidget;
-import 'package:flutter/material.dart';
 
 class CuentaCreadaModel extends FlutterFlowModel<CuentaCreadaWidget> {
   /// Initialization and disposal methods.

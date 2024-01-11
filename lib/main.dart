@@ -4,7 +4,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'DataBase/supabaseservice.dart';
 import 'core/app_export.dart';

@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'cuenta_creada_model.dart';
+
 export 'cuenta_creada_model.dart';
 
 class CuentaCreadaWidget extends StatefulWidget {
@@ -119,8 +120,8 @@ class _CuentaCreadaWidgetState extends State<CuentaCreadaWidget> {
                   text: 'ACEPTAR',
                   options: FFButtonOptions(
                     height: 40.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: Colors.black,

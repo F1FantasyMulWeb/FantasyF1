@@ -6,15 +6,9 @@ import 'package:fantasyf1/widgets/app_bar/appbar_title.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/drivercard.dart';
 import 'package:flutter/material.dart';
-import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
-import '../../../DataBase/databasecontroller.dart';
+
 import '../../../api/configuracionApi.dart';
-import '../mercado_screen/widgets/userprofile_item_widget.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
 class MercadoScreen extends ConsumerStatefulWidget {
   const MercadoScreen({Key? key}) : super(key: key);
@@ -44,8 +38,6 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
     }
 
     initializeCarGlobal();
-    print("Hola gente");
-    print(listaPilotosGrupos);
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -71,6 +63,8 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                   separatorBuilder: (context, index) => SizedBox(height: 19.v),
                   itemCount: listaPilotosGrupos.length,
                   itemBuilder: (context, index) {
+                    print("Ruptura");
+                    print(drivers!);
                     String piloto = drivers![index].driverId;
                     return DriverCard(
                       driverName: piloto,
@@ -78,6 +72,7 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                       price: 10,
                       points: 100,
                       onInfoPressed: drivers![index],
+                      onBuyPressed: () {},
                     );
                     //return  UserprofileItemWidget(idDriver: piloto);
                   },

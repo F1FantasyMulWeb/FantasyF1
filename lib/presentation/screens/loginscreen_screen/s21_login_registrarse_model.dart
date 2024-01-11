@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../../../flutter_flow/flutter_flow_model.dart';
 import '../../componentes/header_logo_texto_f1/header_logo_texto_f1_model.dart';
 import '../../componentes/tap_bar/login_registrarse/login_registrarse_model.dart';
 import 's21_login_registrarse_widget.dart' show S21LoginRegistrarseWidget;
-import 'package:flutter/material.dart';
-
 
 class S21LoginRegistrarseModel
     extends FlutterFlowModel<S21LoginRegistrarseWidget> {

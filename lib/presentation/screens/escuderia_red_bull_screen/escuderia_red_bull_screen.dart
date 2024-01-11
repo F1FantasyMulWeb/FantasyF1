@@ -1,6 +1,7 @@
 import 'package:fantasyf1/api/listaEscuderias.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
+
 import '../../../api/manejoDeLaInformcion.dart';
 
 ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
@@ -77,7 +78,8 @@ class _EscuderiaRedBullScreen extends State<EscuderiaRedBullScreen> {
                                                       margin: EdgeInsets.only(
                                                           left: 7.h),
                                                       child: Text(
-                                                          informacionEscuderiaRedbull().toString()
+                                                          informacionEscuderiaRedbull()
+                                                              .toString()
                                                               .tr,
                                                           maxLines: 12,
                                                           overflow: TextOverflow

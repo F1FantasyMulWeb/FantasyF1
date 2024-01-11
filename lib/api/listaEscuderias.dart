@@ -1,4 +1,5 @@
 import 'dart:core';
+
 import 'package:fantasyf1/api/entityEscudarias.dart';
 
 class ListaEscuderias {

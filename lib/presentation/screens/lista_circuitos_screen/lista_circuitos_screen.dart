@@ -68,75 +68,88 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
                       ),
                     ),
                     if (circuit != null)
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          var i = circuit![index];
-                          // Tu código para construir cada ítem de la lista
-                          return Align(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              // Resto del código del ítem
-                                width: 380.h,
-                                margin: EdgeInsets.only(top: 5.v, right: 0.h),
-                                child: Stack(
-                                    alignment: Alignment.bottomLeft,
-                                    children: [
-                                      Container(
-                                          height: 75.v,
-                                          margin: EdgeInsets.only(bottom: 5.v),
-                                          padding: EdgeInsets.symmetric(vertical: 5.v),
-                                          decoration: AppDecoration.fillWhiteA,
-                                          child: Stack(
-                                              alignment: Alignment.topLeft,
-                                              fit: StackFit.loose,
-                                              children: [
-                                                CustomImageView(
-                                                    svgPath: ImageConstant.imgVector1,
-                                                    height: 180.h,
-                                                    width: 273.h,
-                                                    alignment: Alignment.center,
-                                                    onTap: () {
-                                                      onTapCircuits(context, i);
-                                                    }
-                                                ),
-                                                Align(
-                                                    alignment: Alignment.topLeft,
-                                                    child: Padding(
-                                                        padding: EdgeInsets.only(left: 15.h, top: 8.v),
-                                                        child: Row(
-                                                            children: [
-                                                              AvifImage.asset(
-                                                                  ImageConstant.imgCircuitoAvif(i.circuitId),
-                                                                  height: 200,
-                                                                  fit: BoxFit.scaleDown,
-                                                                  alignment: Alignment.centerLeft
-                                                              ),
-                                                              Padding(
-                                                                  padding: EdgeInsets.only(left: 16.h),
-                                                                  child: Text(
-                                                                    circuitos == null ? "" : i.circuitName,
-                                                                    style: theme.textTheme.displaySmall?.copyWith(
-                                                                      fontSize: 13, // El tamaño de fuente que prefieras
-                                                                      // Aquí puedes añadir otros atributos si es necesario
-                                                                    ),
-                                                                  )
-                                                              )
-                                                            ]
-                                                        )
-                                                    )
-                                                )
-                                              ]
-                                          )
-                                      )
-                                    ]
-                                )
-                            ),
-                          );
-                        },
-                        childCount: circuit!.length,
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            var i = circuit![index];
+                            // Tu código para construir cada ítem de la lista
+                            return Align(
+                              alignment: Alignment.centerRight,
+                              child: Container(
+                                  // Resto del código del ítem
+                                  width: 380.h,
+                                  margin: EdgeInsets.only(top: 5.v, right: 0.h),
+                                  child: Stack(
+                                      alignment: Alignment.bottomLeft,
+                                      children: [
+                                        Container(
+                                            height: 75.v,
+                                            margin:
+                                                EdgeInsets.only(bottom: 5.v),
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 5.v),
+                                            decoration:
+                                                AppDecoration.fillWhiteA,
+                                            child: Stack(
+                                                alignment: Alignment.topLeft,
+                                                fit: StackFit.loose,
+                                                children: [
+                                                  CustomImageView(
+                                                      svgPath: ImageConstant
+                                                          .imgVector1,
+                                                      height: 180.h,
+                                                      width: 273.h,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      onTap: () {
+                                                        onTapCircuits(
+                                                            context, i);
+                                                      }),
+                                                  Align(
+                                                      alignment:
+                                                          Alignment.topLeft,
+                                                      child: Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 15.h,
+                                                                  top: 8.v),
+                                                          child: Row(children: [
+                                                            AvifImage.asset(
+                                                                ImageConstant
+                                                                    .imgCircuitoAvif(i
+                                                                        .circuitId),
+                                                                height: 200,
+                                                                fit: BoxFit
+                                                                    .scaleDown,
+                                                                alignment: Alignment
+                                                                    .centerLeft),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        left: 16
+                                                                            .h),
+                                                                child: Text(
+                                                                  circuitos ==
+                                                                          null
+                                                                      ? ""
+                                                                      : i.circuitName,
+                                                                  style: theme
+                                                                      .textTheme
+                                                                      .displaySmall
+                                                                      ?.copyWith(
+                                                                    fontSize:
+                                                                        13, // El tamaño de fuente que prefieras
+                                                                    // Aquí puedes añadir otros atributos si es necesario
+                                                                  ),
+                                                                ))
+                                                          ])))
+                                                ]))
+                                      ])),
+                            );
+                          },
+                          childCount: circuit!.length,
+                        ),
                       ),
-                    ),
                   ],
                 ))));
   }

@@ -210,8 +210,7 @@ class DataBaseController {
     } catch (e) {}
 
     // Sube el nuevo archivo
-    final response =
-        await client.storage.from('F1Fantasy').upload(url, File(path));
+    await client.storage.from('F1Fantasy').upload(url, File(path));
     downloadAvatar();
   }
 
@@ -353,15 +352,17 @@ class DataBaseController {
       nombrePilotos.add(listaPilotos[i]);
     }
 
-     return nombrePilotos;
+    return nombrePilotos;
   }
 
   Future<void> comprarPiloto(var idPiloto, var idGrupo) async {
-
     List<String> listaPiloto = await selectPilotosDisponiblesDelGrupo(idGrupo);
     listaPiloto.remove(idPiloto);
-    final response1 = await client.from('Grupos').update({ 'listaPilotosDisponible' :  listaPiloto})
+    await client
+        .from('Grupos')
+        .update({'listaPilotosDisponible': listaPiloto})
         .eq('some_column', 'someValue')
+        .eq('idGrupo', idGrupo)
         .select();
   }
 }

@@ -1,11 +1,13 @@
-import '../../../flutter_flow/flutter_flow_theme.dart';
-import '../../../flutter_flow/flutter_flow_util.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../../flutter_flow/flutter_flow_util.dart';
 import '../../componentes/serigrafia/contenedor_info_app/contenedor_info_app_widget.dart';
 import '../../componentes/serigrafia/contenedor_pre_login/contenedor_pre_login_widget.dart';
 import 's11_pre_login_model.dart';
+
 export 's11_pre_login_model.dart';
 
 class S11PreLoginWidget extends StatefulWidget {
@@ -83,8 +85,8 @@ class _S11PreLoginWidgetState extends State<S11PreLoginWidget> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 50.0, 0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [

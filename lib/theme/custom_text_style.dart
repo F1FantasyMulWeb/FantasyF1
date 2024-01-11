@@ -55,9 +55,9 @@ class CustomTextStyles {
         fontSize: 45.fSize,
       );
   static get displayGrupos => theme.textTheme.displayMedium!.copyWith(
-    color: theme.colorScheme.onPrimary,
-    fontSize: 20.fSize,
-  );
+        color: theme.colorScheme.onPrimary,
+        fontSize: 20.fSize,
+      );
 
   static get displayMediumOnUserName => theme.textTheme.displaySmall!.copyWith(
         color: theme.colorScheme.onPrimary,
@@ -132,7 +132,7 @@ class CustomTextStyles {
   static get titleLargeOnPrimary => theme.textTheme.titleLarge!.copyWith(
         color: theme.colorScheme.onPrimary,
         fontWeight: FontWeight.w500,
-    fontSize: 30.fSize,
+        fontSize: 30.fSize,
       );
   static get titleLargeWhiteA700 => theme.textTheme.titleLarge!.copyWith(
         color: appTheme.whiteA700,

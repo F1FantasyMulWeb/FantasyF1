@@ -19,17 +19,18 @@ class UserModel extends ChangeNotifier {
   List<dynamic> get listaGrupos => _listaGrupos;
 
   Future<void> cargarDato() async {
-
     _userName = await dataBaseController.selectUserName();
     _avatar = await dataBaseController.downloadAvatarInicioUser(_userName);
     _listaGrupos = await dataBaseController.selectMisGruposName();
 
     notifyListeners();
   }
+
   Future<void> cargarGrupos() async {
     _listaGrupos = await dataBaseController.selectMisGruposName();
     notifyListeners();
   }
+
   Future<void> cargarImagen() async {
     _avatar = await dataBaseController.downloadAvatarInicioUser(_userName);
     notifyListeners();
@@ -39,9 +40,9 @@ class UserModel extends ChangeNotifier {
     _userName = userName;
     notifyListeners();
   }
+
   void setAvatar(String avatar) {
     _avatar = avatar;
     notifyListeners();
   }
-
 }

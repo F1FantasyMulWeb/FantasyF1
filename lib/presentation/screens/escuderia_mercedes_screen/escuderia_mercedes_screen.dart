@@ -9,7 +9,7 @@ ManejoDeLaInformcion manejoDeLaInformcion = new ManejoDeLaInformcion();
 ListaEscuderias listaEscuderias = new ListaEscuderias();
 
 class EscuderiaMercedesScreen extends StatefulWidget {
-  EscuderiaMercedesScreen({Key? key}) : super(key: key);
+  const EscuderiaMercedesScreen({super.key});
 
   @override
   _EscuderiaMercedesScreen createState() => _EscuderiaMercedesScreen();
@@ -59,7 +59,10 @@ class _EscuderiaMercedesScreen extends State<EscuderiaMercedesScreen> {
                                               Padding(
                                                   padding: EdgeInsets.only(
                                                       left: 57.h),
-                                                  child: Text(nombreCircuito().toString().tr,
+                                                  child: Text(
+                                                      nombreCircuito()
+                                                          .toString()
+                                                          .tr,
                                                       style: CustomTextStyles
                                                           .displaySmallWhiteA70001)),
                                               SizedBox(height: 34.v),
@@ -85,7 +88,8 @@ class _EscuderiaMercedesScreen extends State<EscuderiaMercedesScreen> {
                                                       margin: EdgeInsets.only(
                                                           left: 7.h),
                                                       child: Text(
-                                                          informacionEscuderiaMercedes().toString()
+                                                          informacionEscuderiaMercedes()
+                                                              .toString()
                                                               .tr,
                                                           maxLines: 12,
                                                           overflow: TextOverflow
