@@ -8,7 +8,7 @@ class DriverCard extends StatelessWidget {
   final String driverImageAsset;
   final double price;
   final int points;
-  final Driver? onInfoPressed;
+  //final Driver? onInfoPressed;
 
   const DriverCard({
     Key? key,
@@ -16,7 +16,7 @@ class DriverCard extends StatelessWidget {
     required this.driverImageAsset,
     required this.price,
     required this.points,
-    required this.onInfoPressed,
+    //required this.onInfoPressed,
     //required this.onBuyPressed,
   }) : super(key: key);
 
@@ -44,8 +44,7 @@ class DriverCard extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  onTapDriver(this as BuildContext,
-                      onInfoPressed!.mrData.driverTable.drivers.first);
+                  onTapDriver(this as BuildContext, driverName);
                 },
                 child: Text('Info'),
                 style: ElevatedButton.styleFrom(primary: Colors.red),
@@ -62,10 +61,12 @@ class DriverCard extends StatelessWidget {
     );
   }
 
-  void onTapDriver(BuildContext context, Driver driver) {
+  void onTapDriver(BuildContext context, String driverId) {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => ChecoPerezScreen(driver: driver)));
+            builder: (context) => ChecoPerezScreen.s(
+                  driverName: driverName,
+                )));
   }
 }

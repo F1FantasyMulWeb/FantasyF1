@@ -1,3 +1,4 @@
+import 'package:fantasyf1/api/TODOlistaPilotos.dart';
 import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/provider/grupoactual.dart';
@@ -28,24 +29,13 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
     List<String> pilotosDisponibles = [];
     mediaQueryData = MediaQuery.of(context);
     final groupModel = ref.watch(grupoActualModelProvider);
-    Client cliente = Client();
-    DriversModel? driversModel;
-    List<Driver>? drivers;
 
     final listaPilotosGrupos = groupModel.listaPilotosDelGrupo;
 
-    Future<void> initializeCarGlobal() async {
-      Client cliente = Client();
-      var gl = await cliente.getDrivers("2023");
-      setState(() {
-        driversModel = gl;
-        drivers = driversModel?.mrData.driverTable.drivers;
-      });
-    }
+    initState();
 
-    initializeCarGlobal();
     print("Hola gente");
-    print(listaPilotosGrupos);
+
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -71,13 +61,12 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                   separatorBuilder: (context, index) => SizedBox(height: 19.v),
                   itemCount: listaPilotosGrupos.length,
                   itemBuilder: (context, index) {
-                    String piloto = drivers![index].driverId;
+                    String piloto = listaPilotosGrupos[index];
                     return DriverCard(
                       driverName: piloto,
                       driverImageAsset: ImageConstant.imgDriverAvif(piloto),
                       price: 10,
                       points: 100,
-                      onInfoPressed: drivers![index],
                     );
                     //return  UserprofileItemWidget(idDriver: piloto);
                   },

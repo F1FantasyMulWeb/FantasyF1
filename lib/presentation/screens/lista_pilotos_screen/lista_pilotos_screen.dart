@@ -5,8 +5,6 @@ import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 
-import '../checo_perez_screen/checo_perez_screen.dart';
-
 class ListaPilotosScreen extends StatefulWidget {
   const ListaPilotosScreen({Key? key}) : super(key: key);
 
@@ -44,11 +42,11 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
         body: drivers == null
             ? const Center(child: CircularProgressIndicator())
             : CustomScrollView(
-          slivers: <Widget>[
-            const SliverToBoxAdapter(),
-            buildDriverList(),
-          ],
-        ),
+                slivers: <Widget>[
+                  const SliverToBoxAdapter(),
+                  buildDriverList(),
+                ],
+              ),
       ),
     );
   }
@@ -56,7 +54,7 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
   Widget buildDriverList() {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-            (context, index) {
+        (context, index) {
           Driver driver = drivers![index];
           return buildDriverTile(driver);
         },
@@ -67,42 +65,35 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
 
   Widget buildDriverTile(Driver driver) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-        child: InkWell(
-          onTap: () {
-            onTapDriver(context, driver);
-          },
-          child: Stack(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      child: Stack(
+        alignment: Alignment.centerLeft,
+        children: [
+          AvifImage.asset(
+            ImageConstant.imgDriverAvif(driver.driverId),
+            height: 200,
+            fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
-            children: [
-              AvifImage.asset(
-                ImageConstant.imgDriverAvif(driver.driverId),
-                height: 200,
-                fit: BoxFit.scaleDown,
-                alignment: Alignment.centerLeft,
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 20.0, bottom: 19.v),
-                  child: Text(
-                    driversModel == null
-                        ? "".tr
-                        : '${driver.givenName}\n${driver.familyName}',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.titleLarge,
-                  ),
-                ),
-              ),
-            ],
           ),
-        ));
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: EdgeInsets.only(right: 20.0, bottom: 19.v),
+              child: Text(
+                driversModel == null
+                    ? "".tr
+                    : '${driver.givenName}\n${driver.familyName}',
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleLarge,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   void onTapDriver(BuildContext context, Driver driver) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => ChecoPerezScreen(driver: driver)));
+    // Navegación a detalles del piloto
   }
 }
