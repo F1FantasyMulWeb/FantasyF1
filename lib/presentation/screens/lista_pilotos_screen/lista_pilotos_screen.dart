@@ -3,6 +3,7 @@ import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
+import '../info_pilotos_screen/info_pilotos.dart';
 
 class ListaPilotosScreen extends StatefulWidget {
   const ListaPilotosScreen({Key? key}) : super(key: key);
@@ -64,35 +65,42 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
 
   Widget buildDriverTile(Driver driver) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      child: Stack(
-        alignment: Alignment.centerLeft,
-        children: [
-          AvifImage.asset(
-            ImageConstant.imgDriverAvif(driver.driverId),
-            height: 200,
-            fit: BoxFit.scaleDown,
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        child: InkWell(
+          onTap: () {
+            onTapDriver(context, driver);
+          },
+          child: Stack(
             alignment: Alignment.centerLeft,
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: EdgeInsets.only(right: 20.0, bottom: 19.v),
-              child: Text(
-                driversModel == null
-                    ? "".tr
-                    : '${driver.givenName}\n${driver.familyName}',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleLarge,
+            children: [
+              AvifImage.asset(
+                ImageConstant.imgDriverAvif(driver.driverId),
+                height: 200,
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
               ),
-            ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: EdgeInsets.only(right: 20.0, bottom: 19.v),
+                  child: Text(
+                    driversModel == null
+                        ? "".tr
+                        : '${driver.givenName}\n${driver.familyName}',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.titleLarge,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
   }
 
   void onTapDriver(BuildContext context, Driver driver) {
-    // Navegación a detalles del piloto
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => Info_Pilotos(driver: driver)));
   }
 }

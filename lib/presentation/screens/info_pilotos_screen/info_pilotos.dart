@@ -6,11 +6,11 @@ import 'package:flutter_avif/flutter_avif.dart';
 
 import '../../../api/modelo/DriversModel.dart';
 
-class ChecoPerezScreen extends StatelessWidget {
+class Info_Pilotos extends StatelessWidget {
   Driver? driver;
   String? driverName;
-  ChecoPerezScreen({super.key, required this.driver});
-  ChecoPerezScreen.s({super.key, required this.driverName}) {
+  Info_Pilotos({super.key, required this.driver});
+  Info_Pilotos.s({super.key, required this.driverName}) {
     setDriver(driverName);
   }
   setDriver(driverName) async {
@@ -180,7 +180,7 @@ class ChecoPerezScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the checoPerezScreen.
   onTapImgArrowdownone(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.checoPerezScreen);
+    Navigator.pushNamed(context, AppRoutes.infopilotos);
   }
 
   String informacionPiloto() {

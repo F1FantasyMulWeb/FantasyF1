@@ -1,8 +1,6 @@
-import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:flutter/material.dart';
-
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../presentation/screens/checo_perez_screen/checo_perez_screen.dart';
+import '../presentation/screens/info_pilotos_screen/info_pilotos.dart';
 
 class DriverCard extends StatelessWidget {
   final String driverName;
@@ -12,13 +10,13 @@ class DriverCard extends StatelessWidget {
   final VoidCallback onBuyPressed;
 
   const DriverCard({
-    Key? key,
+    super.key,
     required this.driverName,
     required this.driverImageAsset,
     required this.price,
     required this.points,
     required this.onBuyPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +114,7 @@ class DriverCard extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => ChecoPerezScreen.s(
+            builder: (context) => Info_Pilotos.s(
               driverName: driverName,
             )));
   }
