@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:core';
-
 import 'package:fantasyf1/api/entityCircuitos.dart';
 import 'package:fantasyf1/api/entityEscudarias.dart';
 import 'package:fantasyf1/api/entityPiloto.dart';

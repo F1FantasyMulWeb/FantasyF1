@@ -1,5 +1,6 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
+import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 
@@ -72,10 +73,8 @@ class ChecoPerezScreen extends StatelessWidget {
                                                         children: [
                                                           Center(
                                                             child: Text(
-                                                              driver!.givenName +
-                                                                  ' ' +
-                                                                  driver!
-                                                                      .familyName,
+                                                              '${driver!.givenName} ${driver!
+                                                                      .familyName}',
                                                               style: CustomTextStyles
                                                                   .displaySmallWhiteA70001,
                                                               textAlign:
@@ -112,7 +111,7 @@ class ChecoPerezScreen extends StatelessWidget {
                                         width: 215.h,
                                         margin: EdgeInsets.only(
                                             left: 35.h, top: 40.v),
-                                        child: Text('${informacionPiloto()}',
+                                        child: Text(informacionPiloto(),
                                             maxLines: 9,
                                             overflow: TextOverflow.ellipsis,
                                             style: CustomTextStyles
