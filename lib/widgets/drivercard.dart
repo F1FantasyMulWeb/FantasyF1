@@ -9,7 +9,6 @@ class DriverCard extends StatelessWidget {
   final String driverImageAsset;
   final double price;
   final int points;
-  final Driver? onInfoPressed;
   final VoidCallback onBuyPressed;
 
   const DriverCard({
@@ -18,7 +17,6 @@ class DriverCard extends StatelessWidget {
     required this.driverImageAsset,
     required this.price,
     required this.points,
-    required this.onInfoPressed,
     required this.onBuyPressed,
   }) : super(key: key);
 
@@ -74,7 +72,7 @@ class DriverCard extends StatelessWidget {
           Column(
             children: [
               ElevatedButton(
-                onPressed: () => onTapDriver(context, onInfoPressed!),
+                onPressed: () => onTapDriver(context, driverName),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   shape: const CircleBorder(),
@@ -114,10 +112,12 @@ class DriverCard extends StatelessWidget {
     );
   }
 
-  void onTapDriver(BuildContext context, Driver driver) {
+  void onTapDriver(BuildContext context, String driverId) {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => ChecoPerezScreen(driver: driver)));
+            builder: (context) => ChecoPerezScreen.s(
+              driverName: driverName,
+            )));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:fantasyf1/api/TODOlistaPilotos.dart';
 import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/provider/grupoactual.dart';
@@ -6,9 +7,15 @@ import 'package:fantasyf1/widgets/app_bar/appbar_title.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/drivercard.dart';
 import 'package:flutter/material.dart';
+import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:get/get.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
+import '../../../DataBase/databasecontroller.dart';
 import '../../../api/configuracionApi.dart';
+import '../mercado_screen/widgets/userprofile_item_widget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
 class MercadoScreen extends ConsumerStatefulWidget {
   const MercadoScreen({Key? key}) : super(key: key);
@@ -22,22 +29,11 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
     List<String> pilotosDisponibles = [];
     mediaQueryData = MediaQuery.of(context);
     final groupModel = ref.watch(grupoActualModelProvider);
-    Client cliente = Client();
-    DriversModel? driversModel;
-    List<Driver>? drivers;
 
     final listaPilotosGrupos = groupModel.listaPilotosDelGrupo;
 
-    Future<void> initializeCarGlobal() async {
-      Client cliente = Client();
-      var gl = await cliente.getDrivers("2023");
-      setState(() {
-        driversModel = gl;
-        drivers = driversModel?.mrData.driverTable.drivers;
-      });
-    }
+    print("Hola gente");
 
-    initializeCarGlobal();
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -63,16 +59,13 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                   separatorBuilder: (context, index) => SizedBox(height: 19.v),
                   itemCount: listaPilotosGrupos.length,
                   itemBuilder: (context, index) {
-                    print("Ruptura");
-                    print(drivers!);
-                    String piloto = drivers![index].driverId;
+                    String piloto = listaPilotosGrupos[index];
                     return DriverCard(
                       driverName: piloto,
                       driverImageAsset: ImageConstant.imgDriverAvif(piloto),
                       price: 10,
                       points: 100,
-                      onInfoPressed: drivers![index],
-                      onBuyPressed: () {},
+                      onBuyPressed: () {  },
                     );
                     //return  UserprofileItemWidget(idDriver: piloto);
                   },

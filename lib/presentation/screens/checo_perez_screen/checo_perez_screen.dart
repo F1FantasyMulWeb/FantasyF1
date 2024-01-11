@@ -1,12 +1,22 @@
+import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
+import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 
 import '../../../api/modelo/DriversModel.dart';
 
 class ChecoPerezScreen extends StatelessWidget {
-  final Driver driver;
-  ChecoPerezScreen({Key? key, required this.driver}) : super(key: key);
+  Driver? driver;
+  String? driverName;
+  ChecoPerezScreen({super.key, required this.driver});
+  ChecoPerezScreen.s({super.key, required this.driverName}) {
+    setDriver(driverName);
+  }
+  setDriver(driverName) async {
+    Client client = Client();
+    driver = await client.getDriver(driverName!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +73,8 @@ class ChecoPerezScreen extends StatelessWidget {
                                                         children: [
                                                           Center(
                                                             child: Text(
-                                                              driver.givenName +
-                                                                  ' ' +
-                                                                  driver
-                                                                      .familyName,
+                                                              '${driver!.givenName} ${driver!
+                                                                      .familyName}',
                                                               style: CustomTextStyles
                                                                   .displaySmallWhiteA70001,
                                                               textAlign:
@@ -76,7 +84,7 @@ class ChecoPerezScreen extends StatelessWidget {
                                                           ),
                                                           CustomImageView(
                                                             file: ImageConstant
-                                                                .imgBandera(driver
+                                                                .imgBandera(driver!
                                                                     .nationality),
                                                             margin:
                                                                 EdgeInsets.only(
@@ -93,7 +101,7 @@ class ChecoPerezScreen extends StatelessWidget {
                                               ),
                                               AvifImage.asset(
                                                   ImageConstant.imgDriverAvif(
-                                                      driver.driverId),
+                                                      driver!.driverId),
                                                   height: 250,
                                                   fit: BoxFit.scaleDown,
                                                   alignment:
@@ -103,7 +111,7 @@ class ChecoPerezScreen extends StatelessWidget {
                                         width: 215.h,
                                         margin: EdgeInsets.only(
                                             left: 35.h, top: 40.v),
-                                        child: Text('${informacionPiloto()}',
+                                        child: Text(informacionPiloto(),
                                             maxLines: 9,
                                             overflow: TextOverflow.ellipsis,
                                             style: CustomTextStyles
@@ -177,14 +185,14 @@ class ChecoPerezScreen extends StatelessWidget {
 
   String informacionPiloto() {
     StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write("Nombre: " + driver.givenName + "\n");
-    stringBuffer.write("Nombre familia: " + driver.familyName + "\n");
+    stringBuffer.write("Nombre: " + driver!.givenName + "\n");
+    stringBuffer.write("Nombre familia: " + driver!.familyName + "\n");
     stringBuffer.write("Fecha de nacimiento: " +
-        driver.dateOfBirth.format('dd-MM-yyyy') +
+        driver!.dateOfBirth.format('dd-MM-yyyy') +
         "\n");
-    stringBuffer.write("Nacionalidad: " + driver.nationality + "\n");
-    stringBuffer.write("Codigo: " + driver.code + "\n");
-    stringBuffer.write("Numero: " + driver.permanentNumber + "\n");
+    stringBuffer.write("Nacionalidad: " + driver!.nationality + "\n");
+    stringBuffer.write("Codigo: " + driver!.code + "\n");
+    stringBuffer.write("Numero: " + driver!.permanentNumber + "\n");
 
     String info = stringBuffer.toString();
     return info;
