@@ -3,8 +3,7 @@ import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
-
-import '../checo_perez_screen/checo_perez_screen.dart';
+import '../info_pilotos_screen/info_pilotos.dart';
 
 class ListaPilotosScreen extends StatefulWidget {
   const ListaPilotosScreen({Key? key}) : super(key: key);
@@ -102,6 +101,6 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => ChecoPerezScreen(driver: driver)));
+            builder: (context) => Info_Pilotos(driver: driver)));
   }
 }

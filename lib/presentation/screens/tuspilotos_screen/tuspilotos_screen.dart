@@ -288,6 +288,6 @@ class TuspilotosScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the checoPerezScreen.
   onTapCheco(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.checoPerezScreen);
+    Navigator.pushNamed(context, AppRoutes.infopilotos);
   }
 }

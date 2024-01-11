@@ -85,7 +85,7 @@ class AppRoutes {
   static const String escuderiaAstonMartinScreen =
       '/escuderia_aston_martin_screen';
 
-  static const String checoPerezScreen = '/checo_perez_screen';
+  static const String infopilotos = '/info_pilotos_screen';
 
   static const String mercadoScreen = '/mercado_screen';
 
