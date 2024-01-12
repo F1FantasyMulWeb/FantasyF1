@@ -3,6 +3,7 @@ import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
+
 import '../info_pilotos_screen/info_pilotos.dart';
 
 class ListaPilotosScreen extends StatefulWidget {
@@ -98,9 +99,7 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
   }
 
   void onTapDriver(BuildContext context, Driver driver) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => Info_Pilotos(driver: driver)));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => Info_Pilotos(driver: driver)));
   }
 }

@@ -78,7 +78,7 @@ class DataBaseController {
       {
         'idUsuario': idUsuario,
         'idGrupo': response2[0]["idGrupo"],
-        'Dinero': 0,
+        'Dinero': 100,
         'esAdmin': true,
         'Victorias': 0,
         'Puntos': 0
@@ -111,7 +111,7 @@ class DataBaseController {
         {
           'idUsuario': idUsuario,
           'idGrupo': response2[0]["idGrupo"],
-          'Dinero': 0,
+          'Dinero': 100,
           'esAdmin': false,
           'Victorias': 0,
           'Puntos': 0
@@ -355,14 +355,64 @@ class DataBaseController {
     return nombrePilotos;
   }
 
-  Future<void> comprarPiloto(var idPiloto, var idGrupo) async {
-    List<String> listaPiloto = await selectPilotosDisponiblesDelGrupo(idGrupo);
+  Future<bool> comprarPiloto(var idPiloto, var keyGrupo, var dinero) async {
+    int idUsuario = await selectUserId();
+
+    List<String> listaPiloto = await selectPilotosDisponiblesDelGrupo(keyGrupo);
     listaPiloto.remove(idPiloto);
-    await client
+    final response1 = await client
         .from('Grupos')
         .update({'listaPilotosDisponible': listaPiloto})
-        .eq('some_column', 'someValue')
-        .eq('idGrupo', idGrupo)
+        .eq('keyGrupo', keyGrupo)
         .select();
+
+    List<dynamic> response5 =
+        await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+
+    final response2 = await client.from('PilotosGrupo').insert([
+      {
+        'idUsuario': idUsuario,
+        'idGrupo': response5[0]["idGrupo"],
+        'idPiloto': idPiloto,
+      }
+    ]);
+
+    final response3 = await client
+        .from('UsuarioAppGrupo')
+        .select()
+        .eq('idUsuario', idUsuario)
+        .eq('idGrupo', response5[0]["idGrupo"])
+        .select();
+
+    final response4 = await client
+        .from('UsuarioAppGrupo')
+        .update({'Dinero': response3[0]["Dinero"] - dinero})
+        .eq('idUsuario', idUsuario)
+        .eq('idGrupo', response5[0]["idGrupo"])
+        .select();
+
+    if (response1 == null ||
+        response2 == null ||
+        response3 == null ||
+        response4 == null ||
+        response5 == null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<List<String>> PilotosDeUnUsuarioEnUnGrupo(var idGrupo) async {
+    int idUsuario = await selectUserId();
+    List<String> listaPilotos = [];
+    List<dynamic> response1 = await client
+        .from('PilotosGrupo')
+        .select()
+        .eq('idUsuario', idUsuario)
+        .eq('idGrupo', idGrupo);
+    for (var i = 0; i < response1.length; i++) {
+      listaPilotos.add(response1[i]["idPiloto"]);
+    }
+    return listaPilotos;
   }
 }

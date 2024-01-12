@@ -30,6 +30,12 @@ class GrupoActualModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> cargarGrupo() async {
+    _listaPilotosDelGrupo =
+        await dataBaseController.selectPilotosDisponiblesDelGrupo(_codeGrupo);
+    notifyListeners();
+  }
+
   void setnombreGrupo(String nombreGrupo) {
     _nombreGrupo = nombreGrupo;
     notifyListeners();

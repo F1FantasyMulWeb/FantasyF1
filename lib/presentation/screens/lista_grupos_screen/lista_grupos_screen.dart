@@ -132,6 +132,6 @@ class _ListaGruposScreen extends ConsumerState<ListaGruposScreen> {
   }
 
   onTapUnirseGrupo(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
+    Navigator.pushNamed(context, AppRoutes.anadirGrupoScreen);
   }
 }

@@ -1,8 +1,8 @@
-import 'package:fantasyf1/presentation/screens/anadir_grupo_screen/a%C3%B1adirgrupo_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
+import '../presentation/screens/anadir_grupo_screen/s53_pantalla_unirse_grupo_widget.dart';
 import '../presentation/screens/app_navigation_screen/app_navigation_screen.dart';
 import '../presentation/screens/avatar_screen/avatar_screen.dart';
 import '../presentation/screens/bak_city_circuit_screen/bak_city_circuit_screen.dart';
@@ -14,7 +14,7 @@ import '../presentation/screens/circuito_de_albert_park_screen/circuito_de_alber
 import '../presentation/screens/circuito_de_la_corniche_de_yeda_screen/circuito_de_la_corniche_de_yeda_screen.dart';
 import '../presentation/screens/circuito_de_m_naco_screen/circuito_de_m_naco_screen.dart';
 import '../presentation/screens/circuito_urbano_de_miami_screen/circuito_urbano_de_miami_screen.dart';
-import '../presentation/screens/creargrupo_screen/creargrupo_screen.dart';
+import '../presentation/screens/creargrupo_screen/s54_pantalla_crear_grupo_widget.dart';
 import '../presentation/screens/edit_avatar_screen/edit_avatar_screen.dart';
 import '../presentation/screens/el_nano_screen/el_nano_screen.dart';
 import '../presentation/screens/escuderia_aston_martin_screen/escuderia_aston_martin_screen.dart';
@@ -46,7 +46,7 @@ class AppRoutes {
 
   static const String avatarScreen = '/avatar_screen';
 
-  static const String creargrupoScreen = '/creargrupo_screen';
+  static const String creargrupoScreen = '/s54_pantalla_crear_grupo_widget';
 
   static const String editAvatarScreen = '/edit_avatar_screen';
 
@@ -65,7 +65,7 @@ class AppRoutes {
 
   static const String mainscreensinligasScreen = '/mainscreensinligas_screen';
 
-  static const String aAdirgrupoScreen = '/a_adirgrupo_screen';
+  static const String anadirGrupoScreen = '/s53_pantalla_unirse_grupo_widget';
 
   static const String listaGruposScreen = '/lista_grupos_screen';
 
@@ -122,7 +122,7 @@ class AppRoutes {
     informaciNScreen: (context) => InformaciNScreen(),
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),
     avatarScreen: (context) => AvatarScreen(),
-    creargrupoScreen: (context) => CreargrupoScreen(),
+    creargrupoScreen: (context) => S54PantallaCrearGrupoWidget(),
     editAvatarScreen: (context) => EditAvatarScreen(),
     listaJugadoresScreen: (context) => ListaJugadoresScreen(),
     listaEscuderAsScreen: (context) => ListaEscuderAsScreen(),
@@ -131,7 +131,7 @@ class AppRoutes {
     loginscreenScreen: (context) => S21LoginRegistrarseWidget(),
     cambiarcontraseA1screenScreen: (context) => CambiarcontraseA1screenScreen(),
     mainscreensinligasScreen: (context) => MainscreensinligasScreen(),
-    aAdirgrupoScreen: (context) => AnadirGrupoScreen(),
+    anadirGrupoScreen: (context) => const S53PantallaUnirseGrupoWidget(),
     listaGruposScreen: (context) => ListaGruposScreen(),
     grupoScreen: (context) => PantallaInternaGrupoWidget(),
     escuderiaRedBullScreen: (context) => EscuderiaRedBullScreen(),

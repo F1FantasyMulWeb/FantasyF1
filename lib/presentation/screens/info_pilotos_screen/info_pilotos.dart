@@ -1,6 +1,5 @@
 import 'package:fantasyf1/api/configuracionApi.dart';
 import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 
@@ -73,8 +72,9 @@ class Info_Pilotos extends StatelessWidget {
                                                         children: [
                                                           Center(
                                                             child: Text(
-                                                              '${driver!.givenName} ${driver!
-                                                                      .familyName}',
+                                                              driver == null
+                                                                  ? "".tr
+                                                                  : '${driver!.givenName} ${driver!.familyName}',
                                                               style: CustomTextStyles
                                                                   .displaySmallWhiteA70001,
                                                               textAlign:
@@ -84,8 +84,11 @@ class Info_Pilotos extends StatelessWidget {
                                                           ),
                                                           CustomImageView(
                                                             file: ImageConstant
-                                                                .imgBandera(driver!
-                                                                    .nationality),
+                                                                .imgBandera(driver ==
+                                                                        null
+                                                                    ? "".tr
+                                                                    : driver!
+                                                                        .nationality),
                                                             margin:
                                                                 EdgeInsets.only(
                                                                     top: 41.v,
@@ -101,7 +104,9 @@ class Info_Pilotos extends StatelessWidget {
                                               ),
                                               AvifImage.asset(
                                                   ImageConstant.imgDriverAvif(
-                                                      driver!.driverId),
+                                                      driver == null
+                                                          ? "".tr
+                                                          : driver!.driverId),
                                                   height: 250,
                                                   fit: BoxFit.scaleDown,
                                                   alignment:

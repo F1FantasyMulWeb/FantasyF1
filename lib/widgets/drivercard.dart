@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../presentation/screens/info_pilotos_screen/info_pilotos.dart';
 
@@ -115,7 +116,7 @@ class DriverCard extends StatelessWidget {
         context,
         MaterialPageRoute(
             builder: (context) => Info_Pilotos.s(
-              driverName: driverName,
-            )));
+                  driverName: driverName,
+                )));
   }
 }

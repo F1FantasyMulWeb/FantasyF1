@@ -550,7 +550,7 @@ class _MainscreensinligasScreenState
   }
 
   onTapUnirseagrupo(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
+    Navigator.pushNamed(context, AppRoutes.anadirGrupoScreen);
   }
 
   onTaplistaPilotos(BuildContext context) {

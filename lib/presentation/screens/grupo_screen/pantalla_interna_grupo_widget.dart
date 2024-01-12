@@ -129,10 +129,12 @@ class _PantallaInternaGrupoWidgetState
                           ),
                           child: FFButtonWidget(
                             onPressed: () {
-                              Clipboard.setData(ClipboardData(text: grupoActual.codeGrupo));
+                              Clipboard.setData(
+                                  ClipboardData(text: grupoActual.codeGrupo));
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Texto copiado al portapapeles'),
+                                  content:
+                                      Text('Texto copiado al portapapeles'),
                                 ),
                               );
                             },
@@ -327,8 +329,9 @@ class _PantallaInternaGrupoWidgetState
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     25.0, 0.0, 25.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                 color: const Color(0xCDFF0007),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
@@ -373,8 +376,9 @@ class _PantallaInternaGrupoWidgetState
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     25.0, 0.0, 25.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                 color: Color(0xCDFF0007),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
@@ -406,7 +410,8 @@ class _PantallaInternaGrupoWidgetState
                               ),
                             ),
                             child: FFButtonWidget(
-                              onPressed: () {
+                              onPressed: () async {
+                                //await grupoActual.cargarGrupo();
                                 onTapMercado(context);
                               },
                               text: 'MERCADO',
@@ -419,8 +424,9 @@ class _PantallaInternaGrupoWidgetState
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     25.0, 0.0, 25.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                 color: Color(0xCDFF0007),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
@@ -431,7 +437,7 @@ class _PantallaInternaGrupoWidgetState
                                       fontWeight: FontWeight.bold,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -442,7 +448,7 @@ class _PantallaInternaGrupoWidgetState
                           Container(
                             width: 300.0,
                             height: 100.0,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color(0xFFF6F6F6),
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(0.0),
@@ -456,7 +462,7 @@ class _PantallaInternaGrupoWidgetState
                                 print('Button pressed ...');
                               },
                               text: 'INFORMACIÓN',
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.info_rounded,
                                 color: Color(0xFFF6F6F6),
                                 size: 30.0,
@@ -465,7 +471,7 @@ class _PantallaInternaGrupoWidgetState
                                 height: 40.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     25.0, 0.0, 25.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: Color(0xCDFF0007),
                                 textStyle: FlutterFlowTheme.of(context)
@@ -477,7 +483,7 @@ class _PantallaInternaGrupoWidgetState
                                       fontWeight: FontWeight.bold,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
@@ -485,7 +491,7 @@ class _PantallaInternaGrupoWidgetState
                               ),
                             ),
                           ),
-                        ].divide(SizedBox(height: 25.0)),
+                        ].divide(const SizedBox(height: 25.0)),
                       ),
                     ),
                   ),
@@ -495,19 +501,22 @@ class _PantallaInternaGrupoWidgetState
           ),
         ),
       ),
-
     );
-
   }
+
   onTapClasificacionro(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.listaJugadoresScreen);
   }
+
   onTapArrowleftone(BuildContext context) {
     Navigator.pop(context);
   }
+
   onTapMercado(BuildContext context) {
+
     Navigator.pushNamed(context, AppRoutes.mercadoScreen);
   }
+
   onTapAjustes(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.ajustesScreen);
   }

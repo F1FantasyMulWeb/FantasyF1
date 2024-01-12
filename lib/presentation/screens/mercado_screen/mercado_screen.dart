@@ -1,5 +1,3 @@
-import 'package:fantasyf1/api/TODOlistaPilotos.dart';
-import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/provider/grupoactual.dart';
 import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
@@ -7,15 +5,9 @@ import 'package:fantasyf1/widgets/app_bar/appbar_title.dart';
 import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
 import 'package:fantasyf1/widgets/drivercard.dart';
 import 'package:flutter/material.dart';
-import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
+
 import '../../../DataBase/databasecontroller.dart';
-import '../../../api/configuracionApi.dart';
-import '../mercado_screen/widgets/userprofile_item_widget.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as fs;
 
 class MercadoScreen extends ConsumerStatefulWidget {
   const MercadoScreen({Key? key}) : super(key: key);
@@ -26,14 +18,12 @@ class MercadoScreen extends ConsumerStatefulWidget {
 class _MercadoScreen extends ConsumerState<MercadoScreen> {
   @override
   Widget build(BuildContext context) {
-    List<String> pilotosDisponibles = [];
     mediaQueryData = MediaQuery.of(context);
     final groupModel = ref.watch(grupoActualModelProvider);
 
     final listaPilotosGrupos = groupModel.listaPilotosDelGrupo;
 
-    print("Hola gente");
-
+    final DataBaseController dataBaseController = DataBaseController();
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -65,7 +55,13 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                       driverImageAsset: ImageConstant.imgDriverAvif(piloto),
                       price: 10,
                       points: 100,
-                      onBuyPressed: () {  },
+                      onBuyPressed: () async {
+                        await dataBaseController.comprarPiloto(piloto, groupModel.codeGrupo, 10);
+                        await groupModel.cargarGrupo();
+                        setState(() {
+
+                        });
+                      },
                     );
                     //return  UserprofileItemWidget(idDriver: piloto);
                   },

@@ -1349,7 +1349,7 @@ class AppNavigationScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the aAdirgrupoScreen.
   onTapAadirGrupo(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.aAdirgrupoScreen);
+    Navigator.pushNamed(context, AppRoutes.anadirGrupoScreen);
   }
 
   /// Navigates to the listaGruposScreen when the action is triggered.
