@@ -290,6 +290,9 @@ class ImageConstant {
       case 'Mexican':
         l = 'mexico';
         break;
+      case 'New Zealander':
+        l = 'newZealand';
+        break;
       case 'German':
         l = 'germany';
         break;

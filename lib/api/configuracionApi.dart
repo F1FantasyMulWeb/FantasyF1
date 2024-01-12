@@ -9,6 +9,7 @@ import 'package:fantasyf1/api/listaPilotos.dart';
 import 'package:fantasyf1/api/modelo/DriversModel.dart';
 import 'package:http/http.dart' as http;
 
+import 'modelo/DriverModel.dart' hide Driver;
 import 'modelo/RaceEventModel.dart' hide Driver;
 import 'modelo/RaceScheduleModel.dart';
 
@@ -267,7 +268,7 @@ class Client {
     return null;
   }
 
-  Future<Driver?> getDriver(String driverName) async {
+  Future<DriverModel?> getDriver(String driverName) async {
     try {
       var response = await http
           .get(Uri.parse('https://ergast.com/api/f1/drivers/$driverName.json'));
@@ -275,15 +276,14 @@ class Client {
         var result = response.body;
 
         var json = jsonDecode(result);
-        var res = jsonDecode(json["MRData"]["DriverTable"]["Drivers"]);
 
         try {
-          var r = DriversModel.fromJson(res);
+          var r = DriverModel.fromMap(json);
         } catch (e) {
           print('Failed to parse JSON: $e');
           print('JSON String: $json');
         }
-        final r = Driver.fromJson(res);
+        final r = DriverModel.fromMap(json);
         return r;
       }
     } catch (ex) {

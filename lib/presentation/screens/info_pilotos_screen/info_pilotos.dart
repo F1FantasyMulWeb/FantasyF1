@@ -3,19 +3,44 @@ import 'package:fantasyf1/core/app_export.dart';
 import 'package:fantasyf1/widgets/custom_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
+import 'package:get/get_utils/get_utils.dart';
 
-import '../../../api/modelo/DriversModel.dart';
+import '../../../api/modelo/DriverModel.dart';
+import '../../../api/modelo/DriversModel.dart' hide Driver;
 
-class Info_Pilotos extends StatelessWidget {
+class Info_Pilotos extends StatefulWidget {
   Driver? driver;
   String? driverName;
   Info_Pilotos({super.key, required this.driver});
-  Info_Pilotos.s({super.key, required this.driverName}) {
-    setDriver(driverName);
-  }
+  Info_Pilotos.s({super.key, required this.driverName}) {}
+
   setDriver(driverName) async {
     Client client = Client();
-    driver = await client.getDriver(driverName!);
+    DriverModel? dm = await client.getDriver(driverName);
+    driver = dm!.mrData.driverTable.drivers.first;
+  }
+
+  @override
+  State<Info_Pilotos> createState() => _Info_PilotosState();
+}
+
+class _Info_PilotosState extends State<Info_Pilotos> {
+  Driver? driver;
+  String? driverName;
+  @override
+  void initState() {
+    driverName = widget.driverName;
+    super.initState();
+    setDriver(driverName);
+    print(driverName);
+  }
+
+  setDriver(driverName) async {
+    Client client = Client();
+    DriverModel? dm = await client.getDriver(driverName);
+    setState(() {
+      driver = dm!.mrData.driverTable.drivers.first;
+    });
   }
 
   @override
@@ -73,8 +98,10 @@ class Info_Pilotos extends StatelessWidget {
                                                         children: [
                                                           Center(
                                                             child: Text(
-                                                              '${driver!.givenName} ${driver!
-                                                                      .familyName}',
+                                                              widget.driver ==
+                                                                      null
+                                                                  ? ""
+                                                                  : '${widget.driver!.givenName} ${widget.driver!.familyName}',
                                                               style: CustomTextStyles
                                                                   .displaySmallWhiteA70001,
                                                               textAlign:
@@ -84,8 +111,13 @@ class Info_Pilotos extends StatelessWidget {
                                                           ),
                                                           CustomImageView(
                                                             file: ImageConstant
-                                                                .imgBandera(driver!
-                                                                    .nationality),
+                                                                .imgBandera(widget
+                                                                            .driver ==
+                                                                        null
+                                                                    ? ""
+                                                                    : widget
+                                                                        .driver!
+                                                                        .nationality),
                                                             margin:
                                                                 EdgeInsets.only(
                                                                     top: 41.v,
@@ -100,8 +132,12 @@ class Info_Pilotos extends StatelessWidget {
                                                 ),
                                               ),
                                               AvifImage.asset(
-                                                  ImageConstant.imgDriverAvif(
-                                                      driver!.driverId),
+                                                  widget.driver == null
+                                                      ? ""
+                                                      : ImageConstant
+                                                          .imgDriverAvif(widget
+                                                              .driver!
+                                                              .driverId),
                                                   height: 250,
                                                   fit: BoxFit.scaleDown,
                                                   alignment:
@@ -111,7 +147,10 @@ class Info_Pilotos extends StatelessWidget {
                                         width: 215.h,
                                         margin: EdgeInsets.only(
                                             left: 35.h, top: 40.v),
-                                        child: Text(informacionPiloto(),
+                                        child: Text(
+                                            widget.driver == null
+                                                ? ""
+                                                : informacionPiloto(),
                                             maxLines: 9,
                                             overflow: TextOverflow.ellipsis,
                                             style: CustomTextStyles
@@ -134,32 +173,6 @@ class Info_Pilotos extends StatelessWidget {
                                                     onTapImgArrowleftone(
                                                         context);
                                                   }),
-                                              Column(children: [
-                                                CustomImageView(
-                                                    svgPath: ImageConstant
-                                                        .imgArrowup,
-                                                    height: 20.adaptSize,
-                                                    width: 20.adaptSize),
-                                                SizedBox(height: 6.v),
-                                                CustomImageView(
-                                                    imagePath: ImageConstant
-                                                        .img_max_verstappen_icon,
-                                                    height: 45.adaptSize,
-                                                    width: 45.adaptSize,
-                                                    radius:
-                                                        BorderRadius.circular(
-                                                            22.h)),
-                                                SizedBox(height: 6.v),
-                                                CustomImageView(
-                                                    svgPath: ImageConstant
-                                                        .imgArrowdown,
-                                                    height: 20.adaptSize,
-                                                    width: 20.adaptSize,
-                                                    onTap: () {
-                                                      onTapImgArrowdownone(
-                                                          context);
-                                                    })
-                                              ])
                                             ]))
                                   ]))))
                 ]))));
@@ -185,14 +198,14 @@ class Info_Pilotos extends StatelessWidget {
 
   String informacionPiloto() {
     StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write("Nombre: " + driver!.givenName + "\n");
-    stringBuffer.write("Nombre familia: " + driver!.familyName + "\n");
+    stringBuffer.write("Nombre: " + widget.driver!.givenName + "\n");
+    stringBuffer.write("Nombre familia: " + widget.driver!.familyName + "\n");
     stringBuffer.write("Fecha de nacimiento: " +
-        driver!.dateOfBirth.format('dd-MM-yyyy') +
+        widget.driver!.dateOfBirth.format('dd-MM-yyyy') +
         "\n");
-    stringBuffer.write("Nacionalidad: " + driver!.nationality + "\n");
-    stringBuffer.write("Codigo: " + driver!.code + "\n");
-    stringBuffer.write("Numero: " + driver!.permanentNumber + "\n");
+    stringBuffer.write("Nacionalidad: " + widget.driver!.nationality + "\n");
+    stringBuffer.write("Codigo: " + widget.driver!.code + "\n");
+    stringBuffer.write("Numero: " + widget.driver!.permanentNumber + "\n");
 
     String info = stringBuffer.toString();
     return info;

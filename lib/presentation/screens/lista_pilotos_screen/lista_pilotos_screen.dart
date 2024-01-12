@@ -101,6 +101,8 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => Info_Pilotos(driver: driver)));
+            builder: (context) => Info_Pilotos.s(
+                  driverName: driver.driverId,
+                )));
   }
 }
