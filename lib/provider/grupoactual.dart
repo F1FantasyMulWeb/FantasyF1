@@ -11,11 +11,13 @@ final grupoActualModelProvider =
 class GrupoActualModel extends ChangeNotifier {
   DataBaseController dataBaseController = DataBaseController();
 
+  int _idGrupo = 0;
   String _codeGrupo = "";
   String _nombreGrupo = "";
   Map<String, int> _nombresUsuariosGrupo = {};
   List<String> _listaPilotosDelGrupo = [];
 
+  int get idGrupoActual => _idGrupo;
   String get codeGrupo => _codeGrupo;
   String get nombreGrupo => _nombreGrupo;
   Map<String, int> get nombresUsuariosGrupo => _nombresUsuariosGrupo;
@@ -28,6 +30,7 @@ class GrupoActualModel extends ChangeNotifier {
     _listaPilotosDelGrupo =
         await dataBaseController.selectPilotosDisponiblesDelGrupo(_codeGrupo);
     notifyListeners();
+    _idGrupo = await dataBaseController.selectIdGroup(nombreGrupo);
   }
 
   Future<void> cargarGrupo() async {

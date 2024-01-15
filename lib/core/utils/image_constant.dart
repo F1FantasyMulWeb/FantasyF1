@@ -254,8 +254,8 @@ class ImageConstant {
     return Image1;
   }
 
-  static File imgBandera(String pais) {
-    String l = pais;
+  static String imgBandera(String pais) {
+    String l = pais.toLowerCase();
     switch (pais) {
       case 'Spanish':
         l = 'spain';
@@ -303,9 +303,10 @@ class ImageConstant {
         l = 'usa';
         break;
     }
+
     l = l + '.png';
 
-    var Image1 = File('$imagePath/banderas/$l');
+    String Image1 = '$imagePath/banderas/$l';
     return Image1;
   }
 }

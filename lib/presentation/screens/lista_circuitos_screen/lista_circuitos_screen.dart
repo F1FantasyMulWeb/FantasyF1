@@ -46,13 +46,31 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
-                leadingWidth: 64.h,
-                leading: AppbarImage(
-                    svgPath: ImageConstant.imgMenu,
-                    margin:
-                        EdgeInsets.only(left: 31.h, top: 11.v, bottom: 12.v)),
-                centerTitle: true,
-                title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
+              leadingWidth: 64.h,
+              leading: AppbarImage(
+                  svgPath: ImageConstant.imgMenu,
+                  margin: EdgeInsets.only(left: 31.h, top: 11.v, bottom: 12.v)),
+              centerTitle: true,
+              title: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Container(
+                  width: 60.0,
+                  height: 30.0,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFF6F6F6),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      'assets/images/logoF1F_IconoEncabezado.png',
+                      width: 300.0,
+                      height: 200.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             body: SizedBox(
                 width: mediaQueryData.size.width,
                 child: CustomScrollView(

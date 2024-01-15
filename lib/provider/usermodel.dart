@@ -12,11 +12,11 @@ class UserModel extends ChangeNotifier {
   DataBaseController dataBaseController = DataBaseController();
   String _userName = "?????";
   String _avatar = ImageConstant.imgDownload169x169;
-  List<dynamic> _listaGrupos = [];
+  Map<String, int> _listaGrupos = {};
 
   String get userName => _userName;
   String get avatar => _avatar;
-  List<dynamic> get listaGrupos => _listaGrupos;
+  Map<String, int> get listaGrupos => _listaGrupos;
 
   Future<void> cargarDato() async {
     _userName = await dataBaseController.selectUserName();

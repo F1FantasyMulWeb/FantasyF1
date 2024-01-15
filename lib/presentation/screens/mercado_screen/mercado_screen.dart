@@ -53,13 +53,12 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                     return DriverCard(
                       driverName: piloto,
                       driverImageAsset: ImageConstant.imgDriverAvif(piloto),
-                      price: 10,
+                      price: 1,
                       points: 100,
                       onBuyPressed: () async {
                         await dataBaseController.comprarPiloto(piloto, groupModel.codeGrupo, 10);
                         await groupModel.cargarGrupo();
                         setState(() {
-
                         });
                       },
                     );

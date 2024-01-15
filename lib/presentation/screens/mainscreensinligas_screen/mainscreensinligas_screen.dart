@@ -61,9 +61,10 @@ class _MainscreensinligasScreenState
                     backgroundColor: Colors.white,
                     leading: Builder(
                       builder: (context) => IconButton(
-                        icon: Icon(Icons.menu),
+                        icon: const Icon(Icons.menu),
                         iconSize:
-                            35, // Ajusta este valor para cambiar el tamaño del icono del menú
+                            35,
+                        color: Colors.black,
                         onPressed: () => Scaffold.of(context).openDrawer(),
                       ),
                     ),
@@ -83,14 +84,14 @@ class _MainscreensinligasScreenState
                             child: Image.file(
                               File(userModel.avatar),
                               width:
-                                  50, // Ajusta el ancho de la imagen según tus necesidades
+                                  50,
                               height:
-                                  50, // Ajusta la altura de la imagen según tus necesidades
+                                  50,
                               fit: BoxFit
-                                  .cover, // Ajusta el modo de ajuste de la imagen según tus necesidades
+                                  .cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return const Icon(Icons
-                                    .error); // Muestra un icono de error si la carga falla
+                                    .error);
                               },
                             ),
                           ),
@@ -107,13 +108,13 @@ class _MainscreensinligasScreenState
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Container(
+                            SizedBox(
                               width: 200.0, // Establece el ancho que desees
                               height: 200.0, // Establece el alto que desees
                               child: Image.asset(ImageConstant.imgLogo),
                             ),
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(48),
                                     bottomRight: Radius.circular(0),
@@ -136,7 +137,7 @@ class _MainscreensinligasScreenState
                       ListTile(
                         title: ElevatedButton.icon(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.home,
                             color: Color(0xCC000000),
                             size: 25,

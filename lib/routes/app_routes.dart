@@ -21,10 +21,11 @@ import '../presentation/screens/escuderia_aston_martin_screen/escuderia_aston_ma
 import '../presentation/screens/escuderia_mercedes_screen/escuderia_mercedes_screen.dart';
 import '../presentation/screens/escuderia_red_bull_screen/escuderia_red_bull_screen.dart';
 import '../presentation/screens/grupo_screen/pantalla_interna_grupo_widget.dart';
+import '../presentation/screens/info_pilotos_screen/info_pilotos.dart';
 import '../presentation/screens/informaci_n_screen/informaci_n_screen.dart';
 import '../presentation/screens/lista_circuitos_screen/lista_circuitos_screen.dart';
 import '../presentation/screens/lista_escuder_as_screen/lista_escuder_as_screen.dart';
-import '../presentation/screens/lista_grupos_screen/lista_grupos_screen.dart';
+import '../presentation/screens/lista_grupos_screen/s51_pantalla_listado_grupos_widget.dart';
 import '../presentation/screens/lista_jugadores_screen/lista_jugadores_screen.dart';
 import '../presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
 import '../presentation/screens/loginscreen_screen/s21_login_registrarse_widget.dart';
@@ -132,7 +133,7 @@ class AppRoutes {
     cambiarcontraseA1screenScreen: (context) => CambiarcontraseA1screenScreen(),
     mainscreensinligasScreen: (context) => MainscreensinligasScreen(),
     anadirGrupoScreen: (context) => const S53PantallaUnirseGrupoWidget(),
-    listaGruposScreen: (context) => ListaGruposScreen(),
+    listaGruposScreen: (context) => S51PantallaListadoGruposWidget(),
     grupoScreen: (context) => PantallaInternaGrupoWidget(),
     escuderiaRedBullScreen: (context) => EscuderiaRedBullScreen(),
     pilotoVerstapenScreen: (context) => PilotoVerstapenScreen(),
@@ -140,7 +141,7 @@ class AppRoutes {
     //circuitoBahrInScreen: (context) => CircuitoBahrInScreen(),
     cambiarcontraseA2screenScreen: (context) => CambiarcontraseA2screenScreen(),
     escuderiaAstonMartinScreen: (context) => EscuderiaAstonMartinScreen(),
-    //checoPerezScreen: (context) => ChecoPerezScreen(driver: driver),
+    infopilotos: (context) => Info_Pilotos(driver: null),
     mercadoScreen: (context) => MercadoScreen(),
     circuitoDeLaCornicheDeYedaScreen: (context) =>
         CircuitoDeLaCornicheDeYedaScreen(),

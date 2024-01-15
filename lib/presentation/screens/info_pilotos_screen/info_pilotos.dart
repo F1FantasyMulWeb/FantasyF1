@@ -82,20 +82,6 @@ class Info_Pilotos extends StatelessWidget {
                                                                       .center,
                                                             ),
                                                           ),
-                                                          CustomImageView(
-                                                            file: ImageConstant
-                                                                .imgBandera(driver ==
-                                                                        null
-                                                                    ? "".tr
-                                                                    : driver!
-                                                                        .nationality),
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    top: 41.v,
-                                                                    right: 33.h,
-                                                                    bottom:
-                                                                        41.v),
-                                                          ),
                                                         ],
                                                       ),
                                                     );
@@ -110,7 +96,22 @@ class Info_Pilotos extends StatelessWidget {
                                                   height: 250,
                                                   fit: BoxFit.scaleDown,
                                                   alignment:
-                                                      Alignment.centerLeft)
+                                                      Alignment.centerLeft),
+                                              Positioned(
+                                                top: -30.v,
+                                                right: 33.h,
+                                                bottom: 41.v,
+                                                child: SizedBox(
+                                                  width: 64.0,
+                                                  height: 64.0,
+                                                  child: FittedBox(
+                                                    fit: BoxFit.contain,
+                                                    child: Image.asset(
+                                                      ImageConstant.imgBandera(driver == null ? "".tr : driver!.nationality),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
                                             ])),
                                     Container(
                                         width: 215.h,

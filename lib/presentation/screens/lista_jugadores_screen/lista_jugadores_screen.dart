@@ -77,7 +77,6 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                               Align(
                                 alignment: Alignment.center,
                                 child: Container(
-                                  width: 273.h,
                                   margin: EdgeInsets.only(
                                       left: 20.h, top: 1.v, right: 14.h),
                                   padding: EdgeInsets.symmetric(
@@ -98,7 +97,7 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                                                   theme.textTheme.titleLarge)),
                                       Padding(
                                           padding: EdgeInsets.only(
-                                              left: 50.h, top: 3.v),
+                                              left: 20.h, top: 3.v),
                                           child: Text(puntos.toString()!,
                                               style: CustomTextStyles
                                                   .headlineMediumFormula1))

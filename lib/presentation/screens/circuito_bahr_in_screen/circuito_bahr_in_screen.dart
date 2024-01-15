@@ -37,7 +37,7 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                 border: Border.all(
                                     width: 2.5, color: Colors.black54),
                                 fit: BoxFit.fitWidth,
-                                file: ImageConstant.imgBandera(
+                                imagePath: ImageConstant.imgBandera(
                                     circuit.location.country),
                               ),
                               Align(
@@ -67,14 +67,15 @@ class CircuitoBahrInScreen extends StatelessWidget {
                                           fit: BoxFit.scaleDown,
                                           alignment: Alignment.centerLeft),
                                       SizedBox(height: 18.v),
-                                      CustomImageView(
-                                        file: ImageConstant.imgBandera(
-                                            circuit.location.country),
-                                        margin: EdgeInsets.only(
-                                            top: 41.v,
-                                            right: 33.h,
-                                            bottom: 41.v),
-                                      ),
+                                  CustomImageView(
+                                    width: 100.v,
+                                    alignment: Alignment.centerRight,
+                                    margin: EdgeInsets.only(right: 80),
+                                    border: Border.all(
+                                        width: 2.5, color: Colors.black54),
+                                    fit: BoxFit.fitWidth,
+                                    imagePath: ImageConstant.imgBandera(
+                                        circuit.location.country)),
                                     ],
                                   ),
                                 ),
