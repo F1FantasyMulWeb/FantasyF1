@@ -100,9 +100,10 @@ class DataBaseController {
       return response[0]["keyGrupo"];
     }
   }
+
   Future<int> selectIdGroup(String nombreGrupo) async {
     List<dynamic> response =
-    await client.from('Grupos').select().eq('nombreGrupo', nombreGrupo);
+        await client.from('Grupos').select().eq('nombreGrupo', nombreGrupo);
     if (response.isEmpty) {
       return 0;
     } else {
@@ -157,7 +158,6 @@ class DataBaseController {
     return result;
   }
 
-
   Future<Map<String, int>> selectMisGruposName() async {
     Map<String, int> gruposInfo = {};
     List<int> idGrupos = [];
@@ -173,7 +173,8 @@ class DataBaseController {
     for (var i = 0; i < idGrupos.length; i++) {
       try {
         idGrupo = idGrupos[i];
-        List<dynamic> responseGrupo = await client.from('Grupos').select().eq('idGrupo', idGrupo);
+        List<dynamic> responseGrupo =
+            await client.from('Grupos').select().eq('idGrupo', idGrupo);
         List<dynamic> responseJugadores = await client
             .from('UsuarioAppGrupo')
             .select()
@@ -188,7 +189,6 @@ class DataBaseController {
     }
     return gruposInfo;
   }
-
 
   Future<bool> checkEmail(String email) async {
     List<dynamic> response =
@@ -368,6 +368,30 @@ class DataBaseController {
     return nombrePilotos;
   }
 
+  Future<List<Map<String, dynamic>>> selectPilotosDisponiblesDelGrupoConPrecio(//Eliminar
+      var keyGrupo) async {
+    List<Map<String, dynamic>> pilotosConPrecio = [];
+    final responseGrupo =
+        await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+
+    final listaPilotos = responseGrupo[0]["listaPilotosDisponible"];
+
+    print(listaPilotos);
+    for (var piloto in listaPilotos) {
+      List<dynamic> responsePiloto =
+          await client.from('Pilotos').select('Precio').eq('idName', piloto);
+
+      if (responsePiloto.isNotEmpty) {
+        pilotosConPrecio
+            .add({'nombre': piloto, 'precio': responsePiloto[0]['Precio']});
+      }
+    }
+    print("Como esta");
+    print(pilotosConPrecio);
+
+    return pilotosConPrecio;
+  }
+
   Future<bool> comprarPiloto(var idPiloto, var keyGrupo, var dinero) async {
     int idUsuario = await selectUserId();
 
@@ -430,34 +454,57 @@ class DataBaseController {
   }
 
   Future<int> cantidadDePersonasEnUnGrupo(var idGrupo) async {
-    List<dynamic> response1 = await client
-        .from('UsuarioAppGrupo')
-        .select()
-        .eq('idGrupo', idGrupo);
+    List<dynamic> response1 =
+        await client.from('UsuarioAppGrupo').select().eq('idGrupo', idGrupo);
     return response1.length;
   }
-
 
   Future<int> precioPiloto(String idPiloto) async {
     print(idPiloto);
     final response1 =
-    await client.from('Piloto').select().eq('idName',"de_vries");
-    print(await client.from('Piloto').select().eq('idName',"de_vries"));
+        await client.from('Pilotos').select().eq('idName', "de_vries");
     return response1[0]["Precio"];
   }
 
-
   Future<int> puntosPiloto(var idPiloto) async {
     List<dynamic> response1 =
-    await client.from('Piloto').select().eq('idName', idPiloto);
+        await client.from('Pilotos').select().eq('idName', idPiloto);
     return response1[0]["Puntos"];
   }
 
-
   Future<String> nombrePioloto(var idPiloto) async {
     List<dynamic> response1 =
-    await client.from('Piloto').select().eq('idName', idPiloto);
+        await client.from('Pilotos').select().eq('idName', idPiloto);
     return response1[0]["Name"];
   }
 
+  Future<Map<String, List<Object>>> selectPilotosDisponiblesDelGrupo1(
+      var keyGrupo) async {
+    Map<String, List<Object>> listaPilotosDatos = {};
+    List<String> nombrePilotos = [];
+    final response1 =
+    await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+
+    List<dynamic> response2;
+
+    final listaPilotos = response1[0]["listaPilotosDisponible"];
+    List<String> listaNombres = [];
+    List<int> listaPrecios = [];
+    List<int> listaPuntos = [];
+
+    for (var i = 0; i < listaPilotos.length; i++) {
+      nombrePilotos.add(listaPilotos[i]);
+      response2 =
+      await client.from('Pilotos').select().eq('idName', listaPilotos[i]);
+      listaNombres.add(response2[0]["Name"]);
+      listaPrecios.add(response2[0]["Precio"]);
+      listaPuntos.add(response2[0]["Puntos"]);
+      listaPilotosDatos[listaPilotos[i]] = [listaNombres[i], listaPrecios[i], listaPuntos[i]];
+    }
+    print(listaPilotosDatos);
+    return listaPilotosDatos;
+  }
+
 }
+
+
