@@ -6,7 +6,7 @@ import '../presentation/screens/info_pilotos_screen/info_pilotos.dart';
 class DriverCard extends StatelessWidget {
   final String driverName;
   final String driverImageAsset;
-  final double price;
+  final int price;
   final int points;
   final VoidCallback onBuyPressed;
 

@@ -17,21 +17,28 @@ class GrupoActualModel extends ChangeNotifier {
   Map<String, List<Object>> _listaPilotosDelGrupo = {};
 
   int get idGrupoActual => _idGrupo;
+
   String get codeGrupo => _codeGrupo;
+
   String get nombreGrupo => _nombreGrupo;
+
   Map<String, int> get nombresUsuariosGrupo => _nombresUsuariosGrupo;
+
   Map<String, List<Object>> get listaPilotosDelGrupo => _listaPilotosDelGrupo;
 
   Future<void> cargarDato() async {
     _codeGrupo = await dataBaseController.selectCodeGroup(nombreGrupo);
-    _nombresUsuariosGrupo = await dataBaseController.selectUsuariosDelGrupo(_codeGrupo);
-    _listaPilotosDelGrupo = await dataBaseController.selectPilotosDisponiblesDelGrupo1(_codeGrupo);
+    _nombresUsuariosGrupo =
+    await dataBaseController.selectUsuariosDelGrupo(_codeGrupo);
+    _listaPilotosDelGrupo =
+    await dataBaseController.selectPilotosDisponiblesDelGrupo1(_codeGrupo);
     notifyListeners();
     _idGrupo = await dataBaseController.selectIdGroup(nombreGrupo);
   }
 
   Future<void> cargarGrupo() async {
-    _listaPilotosDelGrupo = await dataBaseController.selectPilotosDisponiblesDelGrupo1(_codeGrupo);
+    _listaPilotosDelGrupo =
+    await dataBaseController.selectPilotosDisponiblesDelGrupo1(_codeGrupo);
     notifyListeners();
   }
 
@@ -44,3 +51,4 @@ class GrupoActualModel extends ChangeNotifier {
     _codeGrupo = codeGrupo;
     notifyListeners();
   }
+}

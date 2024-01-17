@@ -233,7 +233,7 @@ class _S51PantallaListadoGruposWidgetState
                                 grupoActual
                                     .setnombreGrupo(entry.key);
                                 grupoActual.cargarDato();
-                                dataBaseController.selectPilotosDisponiblesDelGrupo1(grupoActual.codeGrupo);
+                                //dataBaseController.selectPilotosDisponiblesDelGrupo1(grupoActual.codeGrupo);
                                 onTapUserlistitem(context);
                               },
                             ),

@@ -45,24 +45,33 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                 hasScrollBody: true, // Cambiado a true
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
-                  // shrinkWrap: true, // Removido
                   separatorBuilder: (context, index) => SizedBox(height: 19.v),
                   itemCount: listaPilotosGrupos.length,
                   itemBuilder: (context, index) {
-                    String piloto = listaPilotosGrupos[index];
-                    return DriverCard(
-                      driverName: piloto,
-                      driverImageAsset: ImageConstant.imgDriverAvif(piloto),
-                      price: 1,
-                      points: 100,
-                      onBuyPressed: () async {
-                        await dataBaseController.comprarPiloto(piloto, groupModel.codeGrupo, 10);
-                        await groupModel.cargarGrupo();
-                        setState(() {
-                        });
-                      },
-                    );
-                    //return  UserprofileItemWidget(idDriver: piloto);
+                    String pilotoId = listaPilotosGrupos.keys.elementAt(index);
+                    var pilotoDatos = listaPilotosGrupos[pilotoId];
+
+                    // Verifica si los datos del piloto están disponibles
+                    if (pilotoDatos != null && pilotoDatos.length >= 3) {
+                      String pilotoNombre = pilotoDatos[0] as String; // El nombre del piloto
+                      int precio = pilotoDatos[1] as int; // El precio del piloto
+                      int puntos = pilotoDatos[2] as int; // Los puntos del piloto
+
+                      return DriverCard(
+                        driverName: pilotoNombre,
+                        driverImageAsset: ImageConstant.imgDriverAvif(pilotoId),
+                        price: precio,
+                        points: puntos,
+                        onBuyPressed: () async {
+                          await dataBaseController.comprarPiloto(pilotoId, groupModel.codeGrupo, 10);
+                          await groupModel.cargarGrupo();
+                          setState(() {});
+                        },
+                      );
+                    } else {
+                      // Retornar un widget alternativo si los datos del piloto no están disponibles
+                      return SizedBox(height: 19.v); // O cualquier otro widget que prefieras
+                    }
                   },
                 ),
               ),
