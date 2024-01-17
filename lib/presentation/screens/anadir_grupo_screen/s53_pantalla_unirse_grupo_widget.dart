@@ -1,7 +1,10 @@
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../DataBase/databasecontroller.dart';
+import '../../../provider/usermodel.dart';
 import '../../componentes/parte_superior_app_2/parte_superior_app2_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,20 +13,20 @@ import 's53_pantalla_unirse_grupo_model.dart';
 
 export 's53_pantalla_unirse_grupo_model.dart';
 
-class S53PantallaUnirseGrupoWidget extends StatefulWidget {
-  const S53PantallaUnirseGrupoWidget({Key? key}) : super(key: key);
+class S53PantallaUnirseGrupoWidget extends ConsumerStatefulWidget {
+  const S53PantallaUnirseGrupoWidget({super.key});
 
   @override
-  _S53PantallaUnirseGrupoWidgetState createState() =>
+  ConsumerState<S53PantallaUnirseGrupoWidget> createState() =>
       _S53PantallaUnirseGrupoWidgetState();
 }
 
 class _S53PantallaUnirseGrupoWidgetState
-    extends State<S53PantallaUnirseGrupoWidget> {
+    extends ConsumerState<S53PantallaUnirseGrupoWidget> {
   late S53PantallaUnirseGrupoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
+  DataBaseController clienteController = DataBaseController();
   @override
   void initState() {
     super.initState();
@@ -47,6 +50,7 @@ class _S53PantallaUnirseGrupoWidgetState
 
   @override
   Widget build(BuildContext context) {
+    final userModel = ref.watch(userModelProvider);
     if (isiOS) {
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
@@ -381,20 +385,33 @@ class _S53PantallaUnirseGrupoWidgetState
                                 .secondaryBackground,
                           ),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              final b = await clienteController.sendDataUsuarioGrupo(
+                                  _model.textFieldCodigoAccesoGrupoController.text,
+                                  _model.textFieldContrasenaGrupoController.text
+                              );
+                              void updateUI(String message) {
+                                _mostrarDialogo(context, message);
+                                userModel.cargarGrupos();
+                              }
+
+                              if (b == true) {
+                                updateUI("Grupo añadido");
+                              } else {
+                                updateUI("Grupo no añadido");
+                              }
                             },
                             text: 'UNIRSE AL GRUPO',
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.login_rounded,
                               color: Color(0xFFF6F6F6),
                               size: 20.0,
                             ),
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: Color(0xCDFF0007),
                               textStyle: FlutterFlowTheme.of(context)
@@ -422,6 +439,25 @@ class _S53PantallaUnirseGrupoWidgetState
           ),
         ),
       ),
+    );
+  }
+  void _mostrarDialogo(BuildContext context, String mensaje) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          content: Text(mensaje),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cerrar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
