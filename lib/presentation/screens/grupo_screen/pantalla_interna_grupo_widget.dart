@@ -105,7 +105,7 @@ class _PantallaInternaGrupoWidgetState
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               color: const Color(0xFF060606),
-                              fontSize: 50.0,
+                              fontSize: 40.0,
                               fontWeight: FontWeight.w600,
                             ),
                       ),

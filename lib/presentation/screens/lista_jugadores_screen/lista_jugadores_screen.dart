@@ -37,7 +37,22 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                       onTapCloseone(context);
                     }),
                 centerTitle: true,
-                title: AppbarImage1(imagePath: ImageConstant.imgLogo)),
+                title: Container(
+                  width: 60.0,
+                  height: 30.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF6F6F6),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      'assets/images/logoF1F_IconoEncabezado.png',
+                      width: 300.0,
+                      height: 200.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),),
             body: CustomScrollView(
               slivers: <Widget>[
                 SliverToBoxAdapter(

@@ -67,7 +67,7 @@ class DriverCard extends StatelessWidget {
                     children: [
                       Text(
                         driverName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),

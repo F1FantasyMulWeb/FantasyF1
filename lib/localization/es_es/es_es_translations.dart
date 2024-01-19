@@ -1,4 +1,4 @@
-final Map<String, String> esEs = {
+ final Map<String, String> esEs = {
   // preLoginScreen Screen
   "lbl_vamos_all": "Vamos allá!",
   "msg_bienvenido_a_formula": "¡Bienvenido a\nFormula 1 Fantasy!",
@@ -253,7 +253,7 @@ final Map<String, String> esEs = {
   "msg_error_email": "Email inválido",
   "msg_error_password": "Contraseña vacía",
   "msg_error_user": "Usuario vacío",
-  "msg_error_pass_min": "Contraseña muy cortam min 10 caracteres",
+  "msg_error_pass_min": "Contraseña muy corta, introduce min 10 caracteres",
   "msg_error_pass_may": "Falta letra mayúscula",
   "msg_error_pass_num": "Falta un número",
   "msg_error_pass_caraspec": "Falta carácter especial",

@@ -144,7 +144,7 @@ class _MainscreensinligasScreenState
                           ),
                           label: Text(
                             'lbl_inicio'.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
                               fontSize: 20,
@@ -162,22 +162,22 @@ class _MainscreensinligasScreenState
                       ListTile(
                         title: ElevatedButton.icon(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.flag,
                             color: Color(0xCC000000),
                             size: 25,
                           ),
                           label: Text(
                             'lbl_camp'.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
                               fontSize: 20,
                             ),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF7E8489),
-                            fixedSize: Size(double.infinity, 50),
+                            backgroundColor: const Color(0xFF7E8489),
+                            fixedSize: const Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
@@ -196,7 +196,7 @@ class _MainscreensinligasScreenState
                           ),
                           label: Text(
                             'lbl_circuito'.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
                               fontSize: 20,
@@ -216,14 +216,14 @@ class _MainscreensinligasScreenState
                           onPressed: () {
                             onTaplistaPilotos(context);
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.home,
                             color: Color(0xCC000000),
                             size: 25,
                           ),
                           label: Text(
                             'lbl_pilotos_drw'.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
                               fontSize: 20,
@@ -241,14 +241,14 @@ class _MainscreensinligasScreenState
                       ListTile(
                         title: ElevatedButton.icon(
                           onPressed: () {},
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.home,
                             color: Color(0xCC000000),
                             size: 25,
                           ),
                           label: Text(
                             'lbl_esc'.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
                               fontSize: 20,
@@ -318,15 +318,17 @@ class _MainscreensinligasScreenState
                       ),
                       ListTile(
                         title: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.account_circle,
+                          onPressed: () {
+                            onTapAvatarScreen(context);
+                          },
+                          icon: const Icon(
+                             Icons.account_circle,
                             color: Color(0xCC000000),
                             size: 25,
                           ),
                           label: Text(
                             'lbl_cuenta'.tr,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'Readex Pro',
                               color: Color(0xCC000000),
                               fontSize: 20,

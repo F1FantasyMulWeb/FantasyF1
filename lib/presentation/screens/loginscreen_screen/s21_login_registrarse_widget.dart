@@ -61,9 +61,9 @@ class _S21LoginRegistrarseWidgetState extends State<S21LoginRegistrarseWidget> {
             child: Visibility(
               visible: responsiveVisibility(
                 context: context,
-                tablet: false,
-                tabletLandscape: false,
-                desktop: false,
+                tablet: true,
+                tabletLandscape: true,
+                desktop: true,
               ),
               child: SingleChildScrollView(
                 child: Stack(

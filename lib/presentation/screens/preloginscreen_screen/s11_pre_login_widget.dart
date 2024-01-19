@@ -62,9 +62,9 @@ class _S11PreLoginWidgetState extends State<S11PreLoginWidget> {
             child: Visibility(
               visible: responsiveVisibility(
                 context: context,
-                tablet: false,
-                tabletLandscape: false,
-                desktop: false,
+                tablet: true,
+                tabletLandscape: true,
+                desktop: true,
               ),
               child: Stack(
                 children: [

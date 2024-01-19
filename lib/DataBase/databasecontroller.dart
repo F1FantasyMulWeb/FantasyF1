@@ -368,7 +368,8 @@ class DataBaseController {
     return nombrePilotos;
   }
 
-  Future<List<Map<String, dynamic>>> selectPilotosDisponiblesDelGrupoConPrecio(//Eliminar
+  Future<List<Map<String, dynamic>>> selectPilotosDisponiblesDelGrupoConPrecio(
+      //Eliminar
       var keyGrupo) async {
     List<Map<String, dynamic>> pilotosConPrecio = [];
     final responseGrupo =
@@ -483,7 +484,7 @@ class DataBaseController {
     Map<String, List<Object>> listaPilotosDatos = {};
     List<String> nombrePilotos = [];
     final response1 =
-    await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+        await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
 
     List<dynamic> response2;
 
@@ -495,16 +496,32 @@ class DataBaseController {
     for (var i = 0; i < listaPilotos.length; i++) {
       nombrePilotos.add(listaPilotos[i]);
       response2 =
-      await client.from('Pilotos').select().eq('idName', listaPilotos[i]);
+          await client.from('Pilotos').select().eq('idName', listaPilotos[i]);
       listaNombres.add(response2[0]["Name"]);
       listaPrecios.add(response2[0]["Precio"]);
       listaPuntos.add(response2[0]["Puntos"]);
-      listaPilotosDatos[listaPilotos[i]] = [listaNombres[i], listaPrecios[i], listaPuntos[i]];
+      listaPilotosDatos[listaPilotos[i]] = [
+        listaNombres[i],
+        listaPrecios[i],
+        listaPuntos[i]
+      ];
     }
     print(listaPilotosDatos);
     return listaPilotosDatos;
   }
 
+  Future<List<String>> selectImagenesJugadores(String codeGrupo) async {
+    List<String> listaImagenes = [];
+    List<String> listaJugadores = [];
+    List<dynamic> response1 =
+        client.from('UsuarioAppGrupo').select().eq('idGrupo', codeGrupo) as List;
+
+    for (var i = 0; i < response1.length; i++) {
+      listaJugadores.add(response1[i]["idUsuario"]);
+    }
+    for (var i = 0; i < listaJugadores.length; i++) {
+      listaImagenes.add(await downloadAvatarInicioUser(listaJugadores[i]));
+    }
+    return listaImagenes;
+  }
 }
-
-

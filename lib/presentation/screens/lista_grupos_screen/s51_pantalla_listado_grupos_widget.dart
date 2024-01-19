@@ -133,7 +133,7 @@ class _S51PantallaListadoGruposWidgetState
                         ),
                         child: FFButtonWidget(
                           onPressed: () {
-                            print('Button pressed ...');
+                            onTapUserlistitem(context);
                           },
                           text: 'UNIRSE GRUPO',
                           icon: const Icon(
@@ -176,7 +176,7 @@ class _S51PantallaListadoGruposWidgetState
                         ),
                         child: FFButtonWidget(
                           onPressed: () {
-                            print('Button pressed ...');
+                            onTapCrearGrupo(context);
                           },
                           text: 'CREAR GRUPO',
                           icon: const Icon(
