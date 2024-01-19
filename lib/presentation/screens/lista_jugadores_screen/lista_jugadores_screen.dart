@@ -23,8 +23,8 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     final grupoActual = ref.watch(grupoActualModelProvider);
-    Map<String, int> nombresUsuariosGrupoFinales =
-        grupoActual.nombresUsuariosGrupo;
+    Map<String, Map<String, dynamic>> nombresUsuariosGrupoFinales = grupoActual.infoJugadores;
+
     return SafeArea(
         child: Scaffold(
             appBar: CustomAppBar(
@@ -40,7 +40,7 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                 title: Container(
                   width: 60.0,
                   height: 30.0,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0xFFF6F6F6),
                   ),
                   child: ClipRRect(
@@ -72,10 +72,14 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                 ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      String jugador =
-                          nombresUsuariosGrupoFinales.keys.elementAt(index);
-                      int? puntos = nombresUsuariosGrupoFinales[jugador];
+                        (context, index) {
+                      String jugador = nombresUsuariosGrupoFinales.keys.elementAt(index);
+                      // Proporciona un mapa vacío como valor por defecto si el resultado es nulo
+                      Map<String, dynamic> infoJugador = nombresUsuariosGrupoFinales[jugador] ?? {};
+
+                      int? puntos = infoJugador["puntos"];
+                      String? imagePath = infoJugador["imagen"];
+
                       return GestureDetector(
                         onTap: () {
                           onTapUserlistitem(context);
@@ -83,8 +87,7 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                         child: Container(
                           height: 71.v,
                           width: 328.h,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10.h, vertical: 2.v),
+                          padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 2.v),
                           decoration: AppDecoration.fillWhiteA,
                           child: Stack(
                             alignment: Alignment.bottomLeft,
@@ -92,36 +95,27 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                               Align(
                                 alignment: Alignment.center,
                                 child: Container(
-                                  margin: EdgeInsets.only(
-                                      left: 20.h, top: 1.v, right: 14.h),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 29.h, vertical: 14.v),
+                                  margin: EdgeInsets.only(left: 20.h, top: 1.v, right: 14.h),
+                                  padding: EdgeInsets.symmetric(horizontal: 29.h, vertical: 14.v),
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
-                                          image:
-                                              fs.Svg(ImageConstant.imgVector1),
+                                          image: fs.Svg(ImageConstant.imgVector1),
                                           fit: BoxFit.cover)),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 6.v),
-                                          child: Text(jugador,
-                                              style:
-                                                  theme.textTheme.titleLarge)),
+                                          padding: EdgeInsets.symmetric(vertical: 6.v),
+                                          child: Text(jugador, style: theme.textTheme.titleLarge)),
                                       Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 20.h, top: 3.v),
-                                          child: Text(puntos.toString()!,
-                                              style: CustomTextStyles
-                                                  .headlineMediumFormula1))
+                                          padding: EdgeInsets.only(left: 20.h, top: 3.v),
+                                          child: Text(puntos?.toString() ?? '0', style: CustomTextStyles.headlineMediumFormula1))
                                     ],
                                   ),
                                 ),
                               ),
                               CustomImageView(
-                                  imagePath: ImageConstant.imgDownload51x55,
+                                  imagePath: imagePath ?? ImageConstant.imgDownload169x169,
                                   height: 51.v,
                                   width: 55.h,
                                   radius: BorderRadius.circular(25.h),
@@ -135,6 +129,7 @@ class _ListaJugadoresScreen extends ConsumerState<ListaJugadoresScreen> {
                     childCount: nombresUsuariosGrupoFinales.length,
                   ),
                 ),
+
               ],
             )));
   }

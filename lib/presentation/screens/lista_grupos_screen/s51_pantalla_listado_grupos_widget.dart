@@ -222,7 +222,8 @@ class _S51PantallaListadoGruposWidgetState
                     child: ListView(
                       padding: EdgeInsets.zero,
                       scrollDirection: Axis.vertical,
-                      children: _listaGrupos.entries
+                      children: _listaGrupos.isNotEmpty
+                          ? _listaGrupos.entries
                           .map<Widget>((MapEntry<String, int> entry) {
                         return Column(
                           children: [
@@ -230,17 +231,32 @@ class _S51PantallaListadoGruposWidgetState
                               nombreGrupo: entry.key,
                               cantidadJugadores: entry.value,
                               onTap: () {
-                                grupoActual
-                                    .setnombreGrupo(entry.key);
+                                grupoActual.setnombreGrupo(entry.key);
                                 grupoActual.cargarDato();
-                                //dataBaseController.selectPilotosDisponiblesDelGrupo1(grupoActual.codeGrupo);
                                 onTapUserlistitem(context);
                               },
                             ),
                             const SizedBox(height: 10.0),
                           ],
                         );
-                      }).toList(),
+                      }).toList()
+                          : [
+                        Expanded(
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Text(
+                                'Usted no está en ningún grupo',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Readex Pro',
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
