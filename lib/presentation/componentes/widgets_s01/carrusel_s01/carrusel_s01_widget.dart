@@ -174,7 +174,7 @@ class _CarruselS01WidgetState extends State<CarruselS01Widget> {
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.asset(
-                'assets/images/carruseles/carrusel_1/carrusel_Imagen10.png',
+                'assets/images/carruseles/carrusel_s01/carrusel_Imagen10.png',
                 fit: BoxFit.cover,
                 alignment: Alignment(-0.35, 0.0),
               ),
