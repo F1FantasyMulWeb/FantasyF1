@@ -1,4 +1,4 @@
-import 'package:fantasyf1/DataBase/databasecontroller.dart';
+import 'package:FantasyF1/DataBase/databasecontroller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../provider/grupoactual.dart';

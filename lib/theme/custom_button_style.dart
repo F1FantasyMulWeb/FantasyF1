@@ -1,4 +1,4 @@
-import 'package:fantasyf1/core/app_export.dart';
+import 'package:FantasyF1/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 /// A class that offers pre-defined button styles for customizing button appearance.

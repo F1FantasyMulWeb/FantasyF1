@@ -1,9 +1,9 @@
-import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/provider/grupoactual.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_title.dart';
-import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
-import 'package:fantasyf1/widgets/drivercard.dart';
+import 'package:FantasyF1/core/app_export.dart';
+import 'package:FantasyF1/provider/grupoactual.dart';
+import 'package:FantasyF1/widgets/app_bar/appbar_image.dart';
+import 'package:FantasyF1/widgets/app_bar/appbar_title.dart';
+import 'package:FantasyF1/widgets/app_bar/custom_app_bar.dart';
+import 'package:FantasyF1/widgets/drivercard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

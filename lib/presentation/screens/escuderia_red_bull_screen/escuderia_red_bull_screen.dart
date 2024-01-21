@@ -1,5 +1,5 @@
-import 'package:fantasyf1/api/listaEscuderias.dart';
-import 'package:fantasyf1/core/app_export.dart';
+import 'package:FantasyF1/api/listaEscuderias.dart';
+import 'package:FantasyF1/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/manejoDeLaInformcion.dart';

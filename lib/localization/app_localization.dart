@@ -1,4 +1,4 @@
-import 'package:fantasyf1/localization/es_es/es_es_translations.dart';
+import 'package:FantasyF1/localization/es_es/es_es_translations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 

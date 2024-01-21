@@ -1,4 +1,4 @@
-import 'package:fantasyf1/core/app_export.dart';
+import 'package:FantasyF1/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 class AppNavigationScreen extends StatelessWidget {
@@ -1217,7 +1217,7 @@ class AppNavigationScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the preloginscreenScreen.
   onTapPreLoginScreen(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.preloginscreenScreen);
+    Navigator.pushNamed(context, AppRoutes.s01_1_bienvenida);
   }
 
   /// Navigates to the ajustesOneScreen when the action is triggered.
