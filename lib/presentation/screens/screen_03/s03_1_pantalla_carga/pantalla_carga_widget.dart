@@ -105,12 +105,9 @@ class _S031PantallaCargaMvWidgetState extends State<S031PantallaCargaMvWidget> {
                               ),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  GoRouter.of(context).prepareAuthEvent();
-                                  await authManager.signOut();
-                                  GoRouter.of(context).clearRedirectLocation();
+                                  ;
 
-                                  context.goNamedAuth(
-                                      'S01-1_bienvenida', context.mounted);
+
                                 },
                                 text: 'CONTINUAR...',
                                 options: FFButtonOptions(

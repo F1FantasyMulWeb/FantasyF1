@@ -1,9 +1,9 @@
+import '../cont_encabezado_menu/cont_encabezado_menu_model.dart';
+import '../cont_opciones_cuenta_mv/cont_opciones_cuenta_mv_model.dart';
+import '../cont_opciones_cuenta_pc/cont_opciones_cuenta_pc_model.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/componentes/widgets_menu_lateral/cont_encabezado_menu/cont_encabezado_menu_widget.dart';
-import '/pages/componentes/widgets_menu_lateral/cont_opciones_cuenta_mv/cont_opciones_cuenta_mv_widget.dart';
-import '/pages/componentes/widgets_menu_lateral/cont_opciones_cuenta_pc/cont_opciones_cuenta_pc_widget.dart';
 import 'cont_menu_lateral_widget.dart' show ContMenuLateralWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

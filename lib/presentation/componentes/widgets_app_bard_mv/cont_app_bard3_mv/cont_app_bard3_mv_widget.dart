@@ -1,3 +1,4 @@
+import 'package:FantasyF1/flutter_flow/nav/nav.dart';
 import 'package:go_router/go_router.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';

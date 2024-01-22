@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../presentation/screens/s01_bienvenida/s01_1_bienvenida_widget.dart';
-
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
 import '../presentation/screens/anadir_grupo_screen/s53_pantalla_unirse_grupo_widget.dart';
@@ -119,7 +117,7 @@ class AppRoutes {
   static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
-    s01_1_bienvenida: (context) => S011BienvenidaWidget(),
+    //s01_1_bienvenida: (context) => (),
     ajustesOneScreen: (context) => AjustesOneScreen(),
     informaciNScreen: (context) => InformaciNScreen(),
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),
