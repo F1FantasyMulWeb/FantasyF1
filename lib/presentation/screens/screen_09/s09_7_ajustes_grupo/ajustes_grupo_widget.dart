@@ -1,3 +1,6 @@
+import '../../../componentes/cont_acciones_internas_grupo_widget.dart';
+import '../../../componentes/cont_apartados_internos_grupo_widget.dart';
+import '../../../componentes/cont_info_interna_grupo_widget.dart';
 import '../../../componentes/widgets_app_bard_mv/cont_app_bard3_mv/cont_app_bard3_mv_widget.dart';
 import '../../../componentes/widgets_menu_lateral/cont_menu_lateral/cont_menu_lateral_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
