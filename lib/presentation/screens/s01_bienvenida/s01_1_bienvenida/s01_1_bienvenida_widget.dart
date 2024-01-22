@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 's01_1_bienvenida_model.dart';
-export 's01_1_bienvenida_model.dart';
+import 'bienvenida_app_model.dart';
+export 'bienvenida_app_model.dart';
 
 class S011BienvenidaWidget extends StatefulWidget {
   const S011BienvenidaWidget({Key? key}) : super(key: key);
