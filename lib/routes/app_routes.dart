@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../presentation/screens/s01_bienvenida/s01_1_bienvenida/s01_1_bienvenida_widget.dart';
+import '../presentation/screens/s01_bienvenida/s01_1_bienvenida_widget.dart';
 
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
