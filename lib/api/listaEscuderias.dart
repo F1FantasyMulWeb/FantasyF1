@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:fantasyf1/api/entityEscudarias.dart';
+import 'package:FantasyF1/api/entityEscudarias.dart';
 
 class ListaEscuderias {
   List<entityEscudarias> escuderias = [];

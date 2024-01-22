@@ -1,8 +1,8 @@
-import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/widgets/app_bar/appbar_image.dart';
-import 'package:fantasyf1/widgets/app_bar/custom_app_bar.dart';
-import 'package:fantasyf1/widgets/custom_elevated_button.dart';
-import 'package:fantasyf1/widgets/custom_text_form_field.dart';
+import 'package:FantasyF1/core/app_export.dart';
+import 'package:FantasyF1/widgets/app_bar/appbar_image.dart';
+import 'package:FantasyF1/widgets/app_bar/custom_app_bar.dart';
+import 'package:FantasyF1/widgets/custom_elevated_button.dart';
+import 'package:FantasyF1/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 // ignore_for_file: must_be_immutable

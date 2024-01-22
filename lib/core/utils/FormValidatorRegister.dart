@@ -1,4 +1,4 @@
-import 'package:fantasyf1/localization/app_localization.dart';
+import 'package:FantasyF1/localization/app_localization.dart';
 import 'package:get/get_utils/get_utils.dart';
 
 class FormValidatorRegister {

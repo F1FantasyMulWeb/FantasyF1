@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:fantasyf1/api/entityCircuitos.dart';
+import 'package:FantasyF1/api/entityCircuitos.dart';
 
 class ListaCircuitos {
   List<entityCircuitos> circuitos = [];

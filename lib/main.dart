@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      title: 'fantasyf1',
+      title: 'FantasyF1',
       debugShowCheckedModeBanner: false,
       navigatorKey: NavigatorService.navigatorKey,
       localizationsDelegates: const [
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           '',
         ),
       ],
-      initialRoute: AppRoutes.preloginscreenScreen,
+      initialRoute: AppRoutes.s01_1_bienvenida,
       routes: AppRoutes.routes,
     );
     

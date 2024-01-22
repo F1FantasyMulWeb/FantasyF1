@@ -1,5 +1,5 @@
-import 'package:fantasyf1/api/modelo/RaceScheduleModel.dart';
-import 'package:fantasyf1/core/app_export.dart';
+import 'package:FantasyF1/api/modelo/RaceScheduleModel.dart';
+import 'package:FantasyF1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 

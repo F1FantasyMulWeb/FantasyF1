@@ -1,5 +1,5 @@
-import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/widgets/base_button.dart';
+import 'package:FantasyF1/core/app_export.dart';
+import 'package:FantasyF1/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 
 class CustomOutlinedButton extends BaseButton {

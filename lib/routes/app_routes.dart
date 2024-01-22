@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../presentation/screens/s01_bienvenida/s01_1_bienvenida/s01_1_bienvenida_widget.dart';
+
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
 import '../presentation/screens/anadir_grupo_screen/s53_pantalla_unirse_grupo_widget.dart';
@@ -33,11 +35,10 @@ import '../presentation/screens/mainscreensinligas_screen/mainscreensinligas_scr
 import '../presentation/screens/mercado_screen/mercado_screen.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
 import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
-import '../presentation/screens/preloginscreen_screen/s11_pre_login_widget.dart';
 import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 
 class AppRoutes {
-  static const String preloginscreenScreen = '/preloginscreen_screen';
+  static const String s01_1_bienvenida = '/s01_1_bienvenida';
 
   static const String ajustesOneScreen = '/ajustes_one_screen';
 
@@ -118,7 +119,7 @@ class AppRoutes {
   static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
-    preloginscreenScreen: (context) => S11PreLoginWidget(),
+    s01_1_bienvenida: (context) => S011BienvenidaWidget(),
     ajustesOneScreen: (context) => AjustesOneScreen(),
     informaciNScreen: (context) => InformaciNScreen(),
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),

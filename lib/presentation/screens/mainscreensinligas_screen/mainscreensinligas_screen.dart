@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:fantasyf1/core/app_export.dart';
-import 'package:fantasyf1/widgets/custom_elevated_button.dart';
+import 'package:FantasyF1/core/app_export.dart';
+import 'package:FantasyF1/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
