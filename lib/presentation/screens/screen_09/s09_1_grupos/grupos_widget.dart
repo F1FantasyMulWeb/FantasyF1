@@ -1,9 +1,11 @@
+import 'package:go_router/go_router.dart';
+
+import '../../../componentes/test_fields/vista_grupo/vista_grupo_widget.dart';
+import '../../../componentes/widgets_app_bard_mv/cont_app_bard2_mv/cont_app_bard2_mv_widget.dart';
+import '../../../componentes/widgets_menu_lateral/cont_menu_lateral/cont_menu_lateral_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/componentes/test_fields_redefinir_pendiente/vista_grupo/vista_grupo_widget.dart';
-import '/pages/componentes/widgets_app_bard_mv/cont_app_bard2_mv/cont_app_bard2_mv_widget.dart';
-import '/pages/componentes/widgets_menu_lateral/cont_menu_lateral/cont_menu_lateral_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -261,7 +263,7 @@ class _S091GruposWidgetState extends State<S091GruposWidget> {
                                         child: wrapWithModel(
                                           model: _model.vistaGrupoModel,
                                           updateCallback: () => setState(() {}),
-                                          child: VistaGrupoWidget(),
+                                          child: VistaGrupoWidget(nombreGrupo: '', cantidadJugadores: 0, onTap: () {  },),
                                         ),
                                       ),
                                     ].divide(SizedBox(height: 10.0)),
