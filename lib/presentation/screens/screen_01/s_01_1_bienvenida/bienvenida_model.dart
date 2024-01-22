@@ -1,10 +1,11 @@
+import '../../../componentes/widgets_s01/carrusel_s01/carrusel_s01_model.dart';
+import '../../../componentes/widgets_s01/cont_bienvenida/cont_bienvenida_model.dart';
+import '../../../componentes/widgets_s01/cont_info_app/cont_info_app_model.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/componentes_internos/widgets_s01/carrusel_s01/carrusel_s01_widget.dart';
-import '/pages/componentes_internos/widgets_s01/cont_bienvenida/cont_bienvenida_widget.dart';
-import '/pages/componentes_internos/widgets_s01/cont_info_app/cont_info_app_widget.dart';
-import 's011_bienvenida_widget.dart' show S011BienvenidaWidget;
+
+import 'bienvenida_widget.dart' show S011BienvenidaWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
