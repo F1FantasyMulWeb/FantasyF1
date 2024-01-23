@@ -1,22 +1,47 @@
 import 'package:FantasyF1/core/app_export.dart';
-import 'package:FantasyF1/presentation/screens/circuito_bahr_in_screen/circuito_bahr_in_screen.dart';
-import 'package:FantasyF1/widgets/app_bar/appbar_image.dart';
-import 'package:FantasyF1/widgets/app_bar/appbar_image_1.dart';
-import 'package:FantasyF1/widgets/app_bar/custom_app_bar.dart';
+import 'package:FantasyF1/presentation/componentes/widgets_app_bard_mv/cont_app_bard1_mv/cont_app_bard1_mv_widget.dart';
+import 'package:FantasyF1/presentation/screens/lista_circuitos_screen/lista_circuitos_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 
 import '../../../api/configuracionApi.dart';
 import '../../../api/modelo/RaceScheduleModel.dart';
+import '../../../flutter_flow/flutter_flow_model.dart';
+import '../../componentes/widgets_menu_lateral/cont_menu_lateral/cont_menu_lateral_widget.dart';
+import '../info_circuito/infocircuito_screen.dart';
 
 class ListaCircuitosScreen extends StatefulWidget {
-  const ListaCircuitosScreen({Key? key}) : super(key: key);
+  const ListaCircuitosScreen({
+    Key? key,
+    String? rutaPagina,
+  })  : this.rutaPagina = rutaPagina ?? 'lista_circuitos',
+        super(key: key);
+
+  final String rutaPagina;
 
   @override
   _ListaCircuitosScreen createState() => _ListaCircuitosScreen();
 }
 
 class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
+  late Lista_circuitos_model _model;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => Lista_circuitos_model());
+    initializeCarGlobal();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
   RaceScheduleModel? circuitos = null;
   List<Circuit>? circuit = null;
 
@@ -34,51 +59,37 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
   }
 
   @override
-  void initState() {
-    initializeCarGlobal();
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
         child: Scaffold(
-            appBar: CustomAppBar(
-              leadingWidth: 64.h,
-              leading: AppbarImage(
-                  svgPath: ImageConstant.imgMenu,
-                  margin: EdgeInsets.only(left: 31.h, top: 11.v, bottom: 12.v)),
-              centerTitle: true,
-              title: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Container(
-                  width: 60.0,
-                  height: 30.0,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFF6F6F6),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      'assets/images/logoF1F_IconoEncabezado.png',
-                      width: 300.0,
-                      height: 200.0,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+          drawer: Container(
+            width: 300.0,
+            child: Drawer(
+              elevation: 16.0,
+              child: wrapWithModel(
+                model: _model.contMenuLateralModel,
+                updateCallback: () => setState(() {}),
+                child: ContMenuLateralWidget(
+                  rutaPagina: widget.rutaPagina,
                 ),
               ),
             ),
-            body: SizedBox(
-                width: mediaQueryData.size.width,
+          ),
+            body: Column(
+              children: [
+              wrapWithModel(
+              model: _model.contAppBard2MvModel,
+              updateCallback: () => setState(() {}),
+              child: const ContAppBard1MvWidget(),
+            ),
+            Expanded(
                 child: CustomScrollView(
                   slivers: <Widget>[
                     SliverToBoxAdapter(
                       child: Column(
                         children: [
-                          Divider(),
+                          const Divider(),
                           SizedBox(height: 9.v),
                           Text("lbl_circuitos".tr,
                               style: theme.textTheme.displayMedium),
@@ -90,11 +101,9 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
                             var i = circuit![index];
-                            // Tu código para construir cada ítem de la lista
                             return Align(
                               alignment: Alignment.centerRight,
                               child: Container(
-                                  // Resto del código del ítem
                                   width: 380.h,
                                   margin: EdgeInsets.only(top: 5.v, right: 0.h),
                                   child: Stack(
@@ -169,32 +178,15 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
                         ),
                       ),
                   ],
-                ))));
+                ))],),));
   }
 
-  /// Navigates to the circuitoUrbanoDeMiamiScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the circuitoUrbanoDeMiamiScreen.
-  onTapStackmiami(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.circuitoUrbanoDeMiamiScreen);
-  }
-
-  /// Navigates to the circuitoDeAlbertParkScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the circuitoDeAlbertParkScreen.
-  onTapStackvectorone(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.circuitoDeAlbertParkScreen);
-  }
 
   onTapCircuits(BuildContext context, Circuit circuit) {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => CircuitoBahrInScreen(circuit: circuit)));
+            builder: (context) => Infocircuito_screen(circuit: circuit)));
   }
 
   /// Navigates to the circuitoBahrInScreen when the action is triggered.
@@ -203,10 +195,8 @@ class _ListaCircuitosScreen extends State<ListaCircuitosScreen> {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the circuitoBahrInScreen.
   onTapStackbahrin(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.circuitoBahrInScreen);
+    Navigator.pushNamed(context, AppRoutes.infoCircuito);
   }
 
-  onTapYeda(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.circuitoDeLaCornicheDeYedaScreen);
-  }
+
 }

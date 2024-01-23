@@ -1,3 +1,4 @@
+import 'package:FantasyF1/core/app_export.dart';
 import 'package:go_router/go_router.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -64,7 +65,7 @@ class _ContBienvenidaWidgetState extends State<ContBienvenidaWidget> {
                 width: MediaQuery.sizeOf(context).width * 0.75,
                 decoration: BoxDecoration(
                   color: Color(0xCDFFFFFF),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 4.0,
                       color: Color(0x33000000),
@@ -102,7 +103,7 @@ class _ContBienvenidaWidgetState extends State<ContBienvenidaWidget> {
                         child: Align(
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
-                            'Prepárate para vivir la emoción y la adrenalina de la Fórmula 1 como nunca antes. ¿Tienes lo que se necesita para llevar a tu equipo a la victoria y convertirte en el campeón?',
+                            'msg_prep_rate_para_vivir'.tr,
                             textAlign: TextAlign.center,
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
@@ -120,15 +121,15 @@ class _ContBienvenidaWidgetState extends State<ContBienvenidaWidget> {
                         decoration: BoxDecoration(),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.goNamed('s02-1_loginregistrarse');
+                            onTapLogin(context);
                           },
                           text: '¡VAMOS ALLÁ!',
                           options: FFButtonOptions(
                             width: 275.0,
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFF26457),
                             textStyle: FlutterFlowTheme.of(context)
@@ -229,15 +230,15 @@ class _ContBienvenidaWidgetState extends State<ContBienvenidaWidget> {
                         decoration: BoxDecoration(),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.goNamed('s02-1_loginregistrarse');
+                            onTapLogin(context);
                           },
                           text: '¡VAMOS ALLÁ!',
                           options: FFButtonOptions(
                             width: 275.0,
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: Color(0xFFF26457),
                             textStyle: FlutterFlowTheme.of(context)
@@ -264,6 +265,10 @@ class _ContBienvenidaWidgetState extends State<ContBienvenidaWidget> {
             ],
           ),
       ],
+    );
+  }
+  onTapLogin(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.loginscreenScreen
     );
   }
 }

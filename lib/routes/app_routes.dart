@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../presentation/screens/campeonatos_screen/campeonatos_widget.dart';
+import '../presentation/screens/mainscreensinligas_screen/main_widget.dart';
 import '../presentation/screens/s01_bienvenida/s01_1_bienvenida/s01_1_bienvenida_widget.dart';
 
 import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
 import '../presentation/screens/anadir_grupo_screen/s53_pantalla_unirse_grupo_widget.dart';
-import '../presentation/screens/app_navigation_screen/app_navigation_screen.dart';
 import '../presentation/screens/avatar_screen/avatar_screen.dart';
 import '../presentation/screens/bak_city_circuit_screen/bak_city_circuit_screen.dart';
 import '../presentation/screens/cambiarcontrase_a1screen_screen/cambiarcontrase_a1screen_screen.dart';
 import '../presentation/screens/cambiarcontrase_a2screen_screen/cambiarcontrase_a2screen_screen.dart';
 import '../presentation/screens/cambiarcontrase_a3screen_one_screen/cambiarcontrase_a3screen_one_screen.dart';
 import '../presentation/screens/cambiarcontrase_a3screen_screen/cambiarcontrase_a3screen_screen.dart';
-import '../presentation/screens/circuito_de_albert_park_screen/circuito_de_albert_park_screen.dart';
-import '../presentation/screens/circuito_de_la_corniche_de_yeda_screen/circuito_de_la_corniche_de_yeda_screen.dart';
-import '../presentation/screens/circuito_de_m_naco_screen/circuito_de_m_naco_screen.dart';
-import '../presentation/screens/circuito_urbano_de_miami_screen/circuito_urbano_de_miami_screen.dart';
 import '../presentation/screens/creargrupo_screen/s54_pantalla_crear_grupo_widget.dart';
 import '../presentation/screens/edit_avatar_screen/edit_avatar_screen.dart';
 import '../presentation/screens/el_nano_screen/el_nano_screen.dart';
@@ -31,7 +28,6 @@ import '../presentation/screens/lista_grupos_screen/s51_pantalla_listado_grupos_
 import '../presentation/screens/lista_jugadores_screen/lista_jugadores_screen.dart';
 import '../presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
 import '../presentation/screens/loginscreen_screen/s21_login_registrarse_widget.dart';
-import '../presentation/screens/mainscreensinligas_screen/mainscreensinligas_screen.dart';
 import '../presentation/screens/mercado_screen/mercado_screen.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
 import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
@@ -43,6 +39,8 @@ class AppRoutes {
   static const String ajustesOneScreen = '/ajustes_one_screen';
 
   static const String informaciNScreen = '/informaci_n_screen';
+
+  static const String campeonatosScreen = '/campeonatos_screen';
 
   static const String perfilCarrerasScreen = '/perfil_carreras_screen';
 
@@ -79,7 +77,7 @@ class AppRoutes {
 
   static const String tuspilotosScreen = '/tuspilotos_screen';
 
-  static const String circuitoBahrInScreen = '/circuito_bahr_in_screen';
+  static const String infoCircuito = '/info_circuito';
 
   static const String cambiarcontraseA2screenScreen =
       '/cambiarcontrase_a2screen_screen';
@@ -91,8 +89,7 @@ class AppRoutes {
 
   static const String mercadoScreen = '/mercado_screen';
 
-  static const String circuitoDeLaCornicheDeYedaScreen =
-      '/circuito_de_la_corniche_de_yeda_screen';
+
 
   static const String cambiarcontraseA3screenOneScreen =
       '/cambiarcontrase_a3screen_one_screen';
@@ -106,21 +103,16 @@ class AppRoutes {
 
   static const String ajustesScreen = '/ajustes_screen';
 
-  static const String circuitoDeAlbertParkScreen =
-      '/circuito_de_albert_park_screen';
 
   static const String bakCityCircuitScreen = '/bak_city_circuit_screen';
 
-  static const String circuitoUrbanoDeMiamiScreen =
-      '/circuito_urbano_de_miami_screen';
 
-  static const String circuitoDeMNacoScreen = '/circuito_de_m_naco_screen';
 
-  static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
     s01_1_bienvenida: (context) => S011BienvenidaWidget(),
     ajustesOneScreen: (context) => AjustesOneScreen(),
+    campeonatosScreen: (context) => CampeonatosWidget(),
     informaciNScreen: (context) => InformaciNScreen(),
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),
     avatarScreen: (context) => AvatarScreen(),
@@ -132,7 +124,7 @@ class AppRoutes {
     listaCircuitosScreen: (context) => ListaCircuitosScreen(),
     loginscreenScreen: (context) => S21LoginRegistrarseWidget(),
     cambiarcontraseA1screenScreen: (context) => CambiarcontraseA1screenScreen(),
-    mainscreensinligasScreen: (context) => MainscreensinligasScreen(),
+    mainscreensinligasScreen: (context) => MainWidget(),
     anadirGrupoScreen: (context) => const S53PantallaUnirseGrupoWidget(),
     listaGruposScreen: (context) => S51PantallaListadoGruposWidget(),
     grupoScreen: (context) => PantallaInternaGrupoWidget(),
@@ -144,18 +136,11 @@ class AppRoutes {
     escuderiaAstonMartinScreen: (context) => EscuderiaAstonMartinScreen(),
     infopilotos: (context) => Info_Pilotos(driver: null),
     mercadoScreen: (context) => MercadoScreen(),
-    circuitoDeLaCornicheDeYedaScreen: (context) =>
-        CircuitoDeLaCornicheDeYedaScreen(),
     cambiarcontraseA3screenOneScreen: (context) =>
         CambiarcontraseA3screenOneScreen(),
     cambiarcontraseA3screenScreen: (context) => CambiarcontraseA3screenScreen(),
     escuderiaMercedesScreen: (context) => EscuderiaMercedesScreen(),
     elNanoScreen: (context) => ElNanoScreen(),
-    ajustesScreen: (context) => AjustesScreen(),
-    circuitoDeAlbertParkScreen: (context) => CircuitoDeAlbertParkScreen(),
-    bakCityCircuitScreen: (context) => BakCityCircuitScreen(),
-    circuitoUrbanoDeMiamiScreen: (context) => CircuitoUrbanoDeMiamiScreen(),
-    circuitoDeMNacoScreen: (context) => CircuitoDeMNacoScreen(),
-    appNavigationScreen: (context) => AppNavigationScreen()
+    ajustesScreen: (context) => AjustesScreen()
   };
 }
