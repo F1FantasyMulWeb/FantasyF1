@@ -171,9 +171,7 @@ class _ContOpcionesCuentaMvWidgetState
                       if (widget.paginaActual == 'ajustes') {
                         return;
                       }
-
-                      //context.pushNamed('S12-1_ajustes_Mv');
-
+                      onTapAjustes(context);
                       return;
                     },
                     text: 'Ajustes',
@@ -260,5 +258,9 @@ class _ContOpcionesCuentaMvWidgetState
 
   onTapAvatarScreen(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.avatarScreen);
+  }
+
+  onTapAjustes(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.ajustesScreen);
   }
 }

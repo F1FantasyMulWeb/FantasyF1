@@ -8,14 +8,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../DataBase/databasecontroller.dart';
+import '../../../flutter_flow/flutter_flow_model.dart';
+import '../../componentes/widgets_app_bard_mv/cont_app_bard2_mv/cont_app_bard2_mv_widget.dart';
+import '../../componentes/widgets_app_bard_mv/cont_app_bard3_mv/cont_app_bard3_mv_widget.dart';
+import '../../componentes/widgets_menu_lateral/cont_menu_lateral/cont_menu_lateral_widget.dart';
+import 'mercado_pilotos_grupo_model.dart';
 
 class MercadoScreen extends ConsumerStatefulWidget {
-  const MercadoScreen({Key? key}) : super(key: key);
+  const MercadoScreen({
+    Key? key,String? rutaPagina,})  : this.rutaPagina = rutaPagina ?? 'mercadopilotosgrupo',
+        super(key: key);
+
+  final String rutaPagina;
 
   ConsumerState<MercadoScreen> createState() => _MercadoScreen();
 }
 
 class _MercadoScreen extends ConsumerState<MercadoScreen> {
+
+  late MercadoPilotosGrupoModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => MercadoPilotosGrupoModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
@@ -26,19 +55,46 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
     final DataBaseController dataBaseController = DataBaseController();
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar(
-            height: 130.v,
-            leadingWidth: 36.h,
-            leading: AppbarImage(
-                svgPath: ImageConstant.imgClose,
-                margin: EdgeInsets.only(left: 20.h, bottom: 50.v),
-                onTap: () {
-                  onTapCloseone(context);
-                }),
-            centerTitle: true,
-            title: AppbarTitle(text: LocalizationExtension("lbl_mercado2").tr)),
+        drawer: Container(
+          width: 300.0,
+          child: Drawer(
+            elevation: 16.0,
+            child: wrapWithModel(
+              model: _model.contMenuLateralModel,
+              updateCallback: () => setState(() {}),
+              child: ContMenuLateralWidget(
+                rutaPagina: widget.rutaPagina,
+              ),
+            ),
+          ),
+        ),
         body: CustomScrollView(
           slivers: <Widget>[
+            SliverAppBar(
+        pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: wrapWithModel(
+                  model: _model.contMenuLateralModel,
+                  updateCallback: () => setState(() {}),
+                  child: const ContAppBard3MvWidget(),
+                ),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Mercado",
+                    style:  TextStyle(
+                      fontFamily: 'Readex Pro',
+                      color: Color(0xCC000000),
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             SliverPadding(
               padding: EdgeInsets.only(left: 13.h, top: 7.v),
               sliver: SliverFillRemaining(

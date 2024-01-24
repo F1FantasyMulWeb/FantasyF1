@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../presentation/screens/ajustes_one_screen/ajustes_widget.dart';
 import '../presentation/screens/campeonatos_screen/campeonatos_widget.dart';
 import '../presentation/screens/garaje_screen/garaje_grupo_widget.dart';
 import '../presentation/screens/mainscreensinligas_screen/main_widget.dart';
 import '../presentation/screens/s01_bienvenida/s01_1_bienvenida/s01_1_bienvenida_widget.dart';
 
-import '../presentation/screens/ajustes_one_screen/ajustes_one_screen.dart';
 import '../presentation/screens/ajustes_screen/ajustes_screen.dart';
 import '../presentation/screens/anadir_grupo_screen/s53_pantalla_unirse_grupo_widget.dart';
 import '../presentation/screens/avatar_screen/avatar_screen.dart';
-import '../presentation/screens/bak_city_circuit_screen/bak_city_circuit_screen.dart';
 import '../presentation/screens/cambiarcontrase_a1screen_screen/cambiarcontrase_a1screen_screen.dart';
 import '../presentation/screens/cambiarcontrase_a2screen_screen/cambiarcontrase_a2screen_screen.dart';
 import '../presentation/screens/cambiarcontrase_a3screen_one_screen/cambiarcontrase_a3screen_one_screen.dart';
@@ -37,7 +36,6 @@ import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 class AppRoutes {
   static const String s01_1_bienvenida = '/s01_1_bienvenida';
 
-  static const String ajustesOneScreen = '/ajustes_one_screen';
 
   static const String informaciNScreen = '/informaci_n_screen';
 
@@ -114,7 +112,7 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     s01_1_bienvenida: (context) => S011BienvenidaWidget(),
-    ajustesOneScreen: (context) => AjustesOneScreen(),
+    ajustesScreen: (context) => AjustesWidget(),
     garaje_screen: (context) => GarajeGrupoWidget(),
     campeonatosScreen: (context) => CampeonatosWidget(),
     informaciNScreen: (context) => InformaciNScreen(),

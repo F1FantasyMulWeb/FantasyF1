@@ -59,457 +59,465 @@ class _PantallaInternaGrupoWidgetState
       );
     }
 
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: const Color(0xFFF6F6F6),
-        drawer: Container(
-          width: 300.0,
-          child: Drawer(
-            elevation: 16.0,
-            child: wrapWithModel(
-              model: _model.contMenuLateralModel2,
-              updateCallback: () => setState(() {}),
-              child: ContMenuLateralWidget(
-                rutaPagina: widget.rutaPagina,
+    return SafeArea(
+      child: GestureDetector(
+        onTap: () => _model.unfocusNode.canRequestFocus
+            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+            : FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          key: scaffoldKey,
+          backgroundColor: const Color(0xFFF6F6F6),
+          drawer: Container(
+            width: 300.0,
+            child: Drawer(
+              elevation: 16.0,
+              child: wrapWithModel(
+                model: _model.contMenuLateralModel2,
+                updateCallback: () => setState(() {}),
+                child: ContMenuLateralWidget(
+                  rutaPagina: widget.rutaPagina,
+                ),
               ),
             ),
           ),
-        ),
-        body: SafeArea(
-          top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-            child: Container(
-              width: 393.0,
-              height: 852.0,
-              decoration: const BoxDecoration(
-                color: Color(0xFFF6F6F6),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  wrapWithModel(
-                    model: _model.contAppBard2MvModel,
-                    updateCallback: () => setState(() {}),
-                    child: const ContAppBard2MvWidget(),
-                  ),
-                  const SizedBox(
-                    width: 393.0,
-                    child: Divider(
-                      thickness: 2.0,
-                      color: Color(0xFF060606),
+          body: SafeArea(
+            top: true,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              child: Container(
+                width: 393.0,
+                height: 852.0,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFF6F6F6),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    wrapWithModel(
+                      model: _model.contAppBard2MvModel,
+                      updateCallback: () => setState(() {}),
+                      child: const ContAppBard2MvWidget(),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        0.0, 15.0, 0.0, 15.0),
-                    child: Container(
-                      width: 300.0,
-                      height: 70.0,
+                    const SizedBox(
+                      width: 393.0,
+                      child: Divider(
+                        thickness: 2.0,
+                        color: Color(0xFF060606),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 15.0, 0.0, 15.0),
+                      child: Container(
+                        width: 300.0,
+                        height: 70.0,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFF6F6F6),
+                        ),
+                        child: Text(
+                          grupoActual.nombreGrupo,
+                          textAlign: TextAlign.center,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: const Color(0xFF060606),
+                                    fontSize: 40.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 311.0,
+                      height: 45.0,
                       decoration: const BoxDecoration(
                         color: Color(0xFFF6F6F6),
                       ),
-                      child: Text(
-                        grupoActual.nombreGrupo,
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              color: const Color(0xFF060606),
-                              fontSize: 40.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 311.0,
-                    height: 45.0,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFF6F6F6),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 151.0,
-                          height: 40.0,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFF6F6F6),
-                          ),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              Clipboard.setData(
-                                  ClipboardData(text: grupoActual.codeGrupo));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content:
-                                      Text('Texto copiado al portapapeles'),
-                                ),
-                              );
-                            },
-                            text: 'COPY CODE',
-                            icon: const Icon(
-                              Icons.content_copy,
-                              color: Color(0xFFF6F6F6),
-                              size: 20.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 10.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF060606),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFFF6F6F6),
-                                    fontSize: 12.0,
-                                  ),
-                              elevation: 0.0,
-                              borderSide: const BorderSide(
-                                width: 0.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(10.0),
-                                bottomRight: Radius.circular(10.0),
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(10.0),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFF6F6F6),
-                          ),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: 'EDITAR',
-                            icon: const Icon(
-                              Icons.people,
-                              color: Color(0xFFF6F6F6),
-                              size: 20.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 40.0,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF060606),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFFF6F6F6),
-                                    fontSize: 12.0,
-                                  ),
-                              elevation: 0.0,
-                              borderSide: const BorderSide(
-                                width: 0.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFF6F6F6),
-                          ),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              onTapAjustes(context);
-                            },
-                            text: 'EDITAR',
-                            icon: const Icon(
-                              Icons.settings_sharp,
-                              color: Color(0xFFF6F6F6),
-                              size: 20.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 40.0,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF060606),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: const Color(0xFFF6F6F6),
-                                    fontSize: 12.0,
-                                  ),
-                              elevation: 0.0,
-                              borderSide: const BorderSide(
-                                width: 0.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: const BoxDecoration(
-                            color: Color(0xFFF6F6F6),
-                          ),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: '',
-                            icon: const Icon(
-                              Icons.delete_forever,
-                              color: Color(0xFFF6F6F6),
-                              size: 20.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 40.0,
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  7.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF060606),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFFF6F6F6),
-                                    fontSize: 12.0,
-                                  ),
-                              elevation: 0.0,
-                              borderSide: BorderSide(
-                                width: 0.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                        ),
-                      ].divide(SizedBox(width: 10.0)),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                    child: Container(
-                      width: 302.0,
-                      height: 475.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFF6F6F6),
-                      ),
-                      child: Column(
+                      child: Row(
                         mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            width: 300.0,
-                            height: 100.0,
+                            width: 151.0,
+                            height: 40.0,
                             decoration: const BoxDecoration(
                               color: Color(0xFFF6F6F6),
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(0.0),
-                                bottomRight: Radius.circular(0.0),
-                                topLeft: Radius.circular(0.0),
-                                topRight: Radius.circular(0.0),
-                              ),
                             ),
                             child: FFButtonWidget(
                               onPressed: () {
-                                onTapClasificacionro(context);
+                                Clipboard.setData(
+                                    ClipboardData(text: grupoActual.codeGrupo));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content:
+                                        Text('Texto copiado al portapapeles'),
+                                  ),
+                                );
                               },
-                              text: 'CLASIFICACIÓN',
+                              text: 'COPY CODE',
                               icon: const Icon(
-                                Icons.star,
+                                Icons.content_copy,
                                 color: Color(0xFFF6F6F6),
-                                size: 25.0,
+                                size: 20.0,
                               ),
                               options: FFButtonOptions(
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    25.0, 0.0, 25.0, 0.0),
+                                    10.0, 0.0, 10.0, 0.0),
                                 iconPadding:
                                     const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xCDFF0007),
+                                color: Color(0xFF060606),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       color: const Color(0xFFF6F6F6),
-                                      fontSize: 25.0,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.0,
                                     ),
-                                elevation: 3.0,
+                                elevation: 0.0,
                                 borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                  width: 0.0,
                                 ),
-                                borderRadius: BorderRadius.circular(25.0),
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(10.0),
+                                  bottomRight: Radius.circular(10.0),
+                                  topLeft: Radius.circular(10.0),
+                                  topRight: Radius.circular(10.0),
+                                ),
                               ),
                             ),
                           ),
                           Container(
-                            width: 300.0,
-                            height: 100.0,
+                            width: 40.0,
+                            height: 40.0,
                             decoration: const BoxDecoration(
                               color: Color(0xFFF6F6F6),
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(0.0),
-                                bottomRight: Radius.circular(0.0),
-                                topLeft: Radius.circular(0.0),
-                                topRight: Radius.circular(0.0),
-                              ),
-                            ),
-                            child: FFButtonWidget(
-                              onPressed: () {
-                                onTapGaraje(context);
-                              },
-                              text: 'TUS PILOTOS',
-                              icon: const Icon(
-                                Icons.groups,
-                                color: Color(0xFFF6F6F6),
-                                size: 40.0,
-                              ),
-                              options: FFButtonOptions(
-                                height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    25.0, 0.0, 25.0, 0.0),
-                                iconPadding:
-                                    const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                color: Color(0xCDFF0007),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Color(0xFFF6F6F6),
-                                      fontSize: 25.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 300.0,
-                            height: 100.0,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFF6F6F6),
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(0.0),
-                                bottomRight: Radius.circular(0.0),
-                                topLeft: Radius.circular(0.0),
-                                topRight: Radius.circular(0.0),
-                              ),
-                            ),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                //await grupoActual.cargarGrupo();
-                                onTapMercado(context);
-                              },
-                              text: 'MERCADO',
-                              icon: const Icon(
-                                Icons.shopping_cart,
-                                color: Color(0xFFF6F6F6),
-                                size: 30.0,
-                              ),
-                              options: FFButtonOptions(
-                                height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    25.0, 0.0, 25.0, 0.0),
-                                iconPadding:
-                                    const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                color: Color(0xCDFF0007),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Color(0xFFF6F6F6),
-                                      fontSize: 25.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 300.0,
-                            height: 100.0,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFF6F6F6),
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(0.0),
-                                bottomRight: Radius.circular(0.0),
-                                topLeft: Radius.circular(0.0),
-                                topRight: Radius.circular(0.0),
-                              ),
                             ),
                             child: FFButtonWidget(
                               onPressed: () {
                                 print('Button pressed ...');
                               },
-                              text: 'INFORMACIÓN',
+                              text: 'EDITAR',
                               icon: const Icon(
-                                Icons.info_rounded,
+                                Icons.people,
                                 color: Color(0xFFF6F6F6),
-                                size: 30.0,
+                                size: 20.0,
                               ),
                               options: FFButtonOptions(
+                                width: 40.0,
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    25.0, 0.0, 25.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: Color(0xCDFF0007),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 0.0, 0.0),
+                                color: Color(0xFF060606),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       color: Color(0xFFF6F6F6),
-                                      fontSize: 25.0,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.0,
                                     ),
-                                elevation: 3.0,
+                                elevation: 0.0,
                                 borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                  width: 0.0,
                                 ),
-                                borderRadius: BorderRadius.circular(25.0),
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 25.0)),
+                          Container(
+                            width: 40.0,
+                            height: 40.0,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFF6F6F6),
+                            ),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                onTapAjustes(context);
+                              },
+                              text: 'EDITAR',
+                              icon: const Icon(
+                                Icons.settings_sharp,
+                                color: Color(0xFFF6F6F6),
+                                size: 20.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: 40.0,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 0.0, 0.0),
+                                color: const Color(0xFF060606),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: const Color(0xFFF6F6F6),
+                                      fontSize: 12.0,
+                                    ),
+                                elevation: 0.0,
+                                borderSide: const BorderSide(
+                                  width: 0.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 40.0,
+                            height: 40.0,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFF6F6F6),
+                            ),
+                            child: FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: '',
+                              icon: const Icon(
+                                Icons.delete_forever,
+                                color: Color(0xFFF6F6F6),
+                                size: 20.0,
+                              ),
+                              options: FFButtonOptions(
+                                width: 40.0,
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding:
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        7.0, 0.0, 0.0, 0.0),
+                                color: Color(0xFF060606),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Color(0xFFF6F6F6),
+                                      fontSize: 12.0,
+                                    ),
+                                elevation: 0.0,
+                                borderSide: BorderSide(
+                                  width: 0.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                        ].divide(SizedBox(width: 10.0)),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                      child: Container(
+                        width: 302.0,
+                        height: 475.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF6F6F6),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 300.0,
+                              height: 100.0,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFF6F6F6),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(0.0),
+                                  bottomRight: Radius.circular(0.0),
+                                  topLeft: Radius.circular(0.0),
+                                  topRight: Radius.circular(0.0),
+                                ),
+                              ),
+                              child: FFButtonWidget(
+                                onPressed: () {
+                                  onTapClasificacionro(context);
+                                },
+                                text: 'CLASIFICACIÓN',
+                                icon: const Icon(
+                                  Icons.star,
+                                  color: Color(0xFFF6F6F6),
+                                  size: 25.0,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      25.0, 0.0, 25.0, 0.0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                  color: const Color(0xCDFF0007),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: const Color(0xFFF6F6F6),
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 300.0,
+                              height: 100.0,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFF6F6F6),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(0.0),
+                                  bottomRight: Radius.circular(0.0),
+                                  topLeft: Radius.circular(0.0),
+                                  topRight: Radius.circular(0.0),
+                                ),
+                              ),
+                              child: FFButtonWidget(
+                                onPressed: () {
+                                  onTapGaraje(context);
+                                },
+                                text: 'TUS PILOTOS',
+                                icon: const Icon(
+                                  Icons.groups,
+                                  color: Color(0xFFF6F6F6),
+                                  size: 40.0,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      25.0, 0.0, 25.0, 0.0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                  color: Color(0xCDFF0007),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Color(0xFFF6F6F6),
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 300.0,
+                              height: 100.0,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFF6F6F6),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(0.0),
+                                  bottomRight: Radius.circular(0.0),
+                                  topLeft: Radius.circular(0.0),
+                                  topRight: Radius.circular(0.0),
+                                ),
+                              ),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  //await grupoActual.cargarGrupo();
+                                  onTapMercado(context);
+                                },
+                                text: 'MERCADO',
+                                icon: const Icon(
+                                  Icons.shopping_cart,
+                                  color: Color(0xFFF6F6F6),
+                                  size: 30.0,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      25.0, 0.0, 25.0, 0.0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                  color: Color(0xCDFF0007),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Color(0xFFF6F6F6),
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 300.0,
+                              height: 100.0,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFF6F6F6),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(0.0),
+                                  bottomRight: Radius.circular(0.0),
+                                  topLeft: Radius.circular(0.0),
+                                  topRight: Radius.circular(0.0),
+                                ),
+                              ),
+                              child: FFButtonWidget(
+                                onPressed: () {
+                                  print('Button pressed ...');
+                                },
+                                text: 'INFORMACIÓN',
+                                icon: const Icon(
+                                  Icons.info_rounded,
+                                  color: Color(0xFFF6F6F6),
+                                  size: 30.0,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      25.0, 0.0, 25.0, 0.0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                  color: Color(0xCDFF0007),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Color(0xFFF6F6F6),
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                              ),
+                            ),
+                          ].divide(const SizedBox(height: 25.0)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -527,13 +535,13 @@ class _PantallaInternaGrupoWidgetState
   }
 
   onTapMercado(BuildContext context) {
-
     Navigator.pushNamed(context, AppRoutes.mercadoScreen);
   }
 
   onTapAjustes(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.ajustesScreen);
   }
+
   onTapGaraje(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.garaje_screen);
   }
