@@ -5,13 +5,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../provider/grupoactual.dart';
 import '../../../routes/app_routes.dart';
 import '../../componentes/parte_superior_app_2/parte_superior_app2_widget.dart';
+import '../../componentes/widgets_app_bard_mv/cont_app_bard2_mv/cont_app_bard2_mv_widget.dart';
+import '../../componentes/widgets_menu_lateral/cont_menu_lateral/cont_menu_lateral_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'pantalla_interna_grupo_model.dart';
 
 class PantallaInternaGrupoWidget extends ConsumerStatefulWidget {
-  const PantallaInternaGrupoWidget({Key? key}) : super(key: key);
+  const PantallaInternaGrupoWidget({
+    Key? key,
+    String? rutaPagina,
+  })  : this.rutaPagina = rutaPagina ?? 'pantalla_interna_grupo_widget',
+        super(key: key);
+
+  final String rutaPagina;
 
   @override
   ConsumerState<PantallaInternaGrupoWidget> createState() =>
@@ -58,8 +66,18 @@ class _PantallaInternaGrupoWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFFF6F6F6),
-        drawer: const Drawer(
-          elevation: 16.0,
+        drawer: Container(
+          width: 300.0,
+          child: Drawer(
+            elevation: 16.0,
+            child: wrapWithModel(
+              model: _model.contMenuLateralModel2,
+              updateCallback: () => setState(() {}),
+              child: ContMenuLateralWidget(
+                rutaPagina: widget.rutaPagina,
+              ),
+            ),
+          ),
         ),
         body: SafeArea(
           top: true,
@@ -74,14 +92,10 @@ class _PantallaInternaGrupoWidgetState
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        30.0, 10.0, 30.0, 2.0),
-                    child: wrapWithModel(
-                      model: _model.parteSuperiorApp2Model,
-                      updateCallback: () => setState(() {}),
-                      child: const ParteSuperiorApp2Widget(),
-                    ),
+                  wrapWithModel(
+                    model: _model.contAppBard2MvModel,
+                    updateCallback: () => setState(() {}),
+                    child: const ContAppBard2MvWidget(),
                   ),
                   const SizedBox(
                     width: 393.0,
@@ -364,7 +378,7 @@ class _PantallaInternaGrupoWidgetState
                             ),
                             child: FFButtonWidget(
                               onPressed: () {
-                                print('Button pressed ...');
+                                onTapGaraje(context);
                               },
                               text: 'TUS PILOTOS',
                               icon: const Icon(
@@ -519,5 +533,8 @@ class _PantallaInternaGrupoWidgetState
 
   onTapAjustes(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.ajustesScreen);
+  }
+  onTapGaraje(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.garaje_screen);
   }
 }

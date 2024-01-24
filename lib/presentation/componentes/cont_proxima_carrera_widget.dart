@@ -1,3 +1,7 @@
+import 'package:FantasyF1/api/configuracionApi.dart';
+import 'package:FantasyF1/api/modelo/RaceEventModel.dart';
+import 'package:FantasyF1/api/modelo/RaceScheduleModel.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -18,7 +22,7 @@ class ContProximaCarreraWidget extends StatefulWidget {
 
 class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
   late ContProximaCarreraModel _model;
-
+  Race? _circuit;
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
@@ -29,7 +33,7 @@ class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ContProximaCarreraModel());
-
+    getNextCarrera();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -92,7 +96,7 @@ class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
                       height: 45.0,
                       decoration: BoxDecoration(),
                       child: AutoSizeText(
-                        'Desconocido',
+                        _circuit?.raceName ?? 'Cargando...',
                         textAlign: TextAlign.start,
                         maxLines: 2,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -158,5 +162,13 @@ class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
         ),
       ),
     );
+  }
+
+  Future<void> getNextCarrera() async {
+    Client client = new Client();
+
+    RaceEventModel? raceEventModel = await client
+        .getResults("current", "5", "results", queryParams: "limit=15");
+    _circuit = raceEventModel!.mrData.raceTable.races.last;
   }
 }

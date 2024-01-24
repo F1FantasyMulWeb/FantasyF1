@@ -54,8 +54,8 @@ class _MainWidgetState extends State<MainWidget> {
         ),
       );
     }
-
-    return Title(
+return SafeArea(
+    child: Title(
         title: 'S04-1_inicio',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
@@ -327,7 +327,7 @@ class _MainWidgetState extends State<MainWidget> {
               ),
             ),
           ),
-        ));
+        )),);
   }
 
   onTapGrupos(BuildContext context) {

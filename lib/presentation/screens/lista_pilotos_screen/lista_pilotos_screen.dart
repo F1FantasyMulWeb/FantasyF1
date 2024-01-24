@@ -4,10 +4,19 @@ import 'package:FantasyF1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 
+import '../../../flutter_flow/flutter_flow_model.dart';
+import '../../componentes/widgets_app_bard_mv/cont_app_bard2_mv/cont_app_bard2_mv_widget.dart';
+import '../../componentes/widgets_menu_lateral/cont_menu_lateral/cont_menu_lateral_widget.dart';
 import '../info_pilotos_screen/info_pilotos.dart';
+import 'lista_pilotos_model.dart';
 
 class ListaPilotosScreen extends StatefulWidget {
-  const ListaPilotosScreen({Key? key}) : super(key: key);
+  const ListaPilotosScreen({
+    Key? key,String? rutaPagina,})  : this.rutaPagina = rutaPagina ?? 'lista_pilotos_screen',
+        super(key: key);
+
+  final String rutaPagina;
+
 
   @override
   _ListaPilotosScreen createState() => _ListaPilotosScreen();
@@ -16,12 +25,27 @@ class ListaPilotosScreen extends StatefulWidget {
 class _ListaPilotosScreen extends State<ListaPilotosScreen> {
   DriversModel? driversModel;
   List<Driver>? drivers;
+  late Lista_pilotos_model _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => Lista_pilotos_model());
     initializeCarGlobal();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
+
+
 
   Future<void> initializeCarGlobal() async {
     Client cliente = Client();
@@ -36,38 +60,39 @@ class _ListaPilotosScreen extends State<ListaPilotosScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Container(
-            width: 60.0,
-            height: 30.0,
-            decoration: const BoxDecoration(
-              color: Color(0xFFF6F6F6),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                'assets/images/logoF1F_IconoEncabezado.png',
-                width: 300.0,
-                height: 200.0,
-                fit: BoxFit.cover,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: wrapWithModel(
+            model: _model.contAppBard2MvModel,
+            updateCallback: () => setState(() {}),
+            child: const ContAppBard2MvWidget(),
+          ),
+        ),
+        drawer: Container(
+          width: 300.0,
+          child: Drawer(
+            elevation: 16.0,
+            child: wrapWithModel(
+              model: _model.contMenuLateralModel,
+              updateCallback: () => setState(() {}),
+              child: ContMenuLateralWidget(
+                rutaPagina: widget.rutaPagina,
               ),
             ),
           ),
-          centerTitle: true,
         ),
-        drawer: const Drawer(), // Drawer setup
         body: drivers == null
             ? const Center(child: CircularProgressIndicator())
             : CustomScrollView(
-                slivers: <Widget>[
-                  const SliverToBoxAdapter(),
-                  buildDriverList(),
-                ],
-              ),
+          slivers: <Widget>[
+            const SliverToBoxAdapter(),
+            buildDriverList(),
+          ],
+        ),
       ),
     );
   }
+
 
   Widget buildDriverList() {
     return SliverList(

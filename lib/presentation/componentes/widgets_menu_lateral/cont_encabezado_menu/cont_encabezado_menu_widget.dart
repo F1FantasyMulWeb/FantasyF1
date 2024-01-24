@@ -54,7 +54,7 @@ class _ContEncabezadoMenuWidgetState extends State<ContEncabezadoMenuWidget> {
         color: Color(0xFFF6F6F6),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
@@ -105,51 +105,48 @@ class _ContEncabezadoMenuWidgetState extends State<ContEncabezadoMenuWidget> {
               tabletLandscape: false,
               desktop: false,
             ))
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(50.0, 10.0, 0.0, 10.0),
-                child: Container(
-                  width: 35.0,
-                  height: 35.0,
-                  decoration: BoxDecoration(),
-                  child: badges.Badge(
-                    badgeContent: Text(
-                      valueOrDefault<String>(
-                        _model.cantNotificaciones?.toString(),
-                        '0',
-                      ),
-                      style: FlutterFlowTheme.of(context).titleSmall.override(
-                            fontFamily: 'Readex Pro',
-                            color: Color(0xFFF6F6F6),
-                            fontSize: 10.0,
-                          ),
+              Container(
+                width: 35.0,
+                height: 35.0,
+                decoration: BoxDecoration(),
+                child: badges.Badge(
+                  badgeContent: Text(
+                    valueOrDefault<String>(
+                      _model.cantNotificaciones?.toString(),
+                      '0',
                     ),
-                    showBadge: true,
-                    shape: badges.BadgeShape.circle,
-                    badgeColor: Color(0xFFFF0007),
-                    elevation: 4.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
-                    position: badges.BadgePosition.topEnd(),
-                    animationType: badges.BadgeAnimationType.scale,
-                    toAnimate: true,
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        if (widget.paginaActual == 'notificaciones_Mv') {
-                          return;
-                        }
-
-                        //context.pushNamed('S13-1_notificaciones_Mv');
-
+                    style: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: Color(0xFFF6F6F6),
+                          fontSize: 10.0,
+                        ),
+                  ),
+                  showBadge: true,
+                  shape: badges.BadgeShape.circle,
+                  badgeColor: Color(0xFFFF0007),
+                  elevation: 4.0,
+                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                  position: badges.BadgePosition.topEnd(),
+                  animationType: badges.BadgeAnimationType.scale,
+                  toAnimate: true,
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      if (widget.paginaActual == 'notificaciones_Mv') {
                         return;
-                      },
-                      child: const Icon(
-                        Icons.notifications_sharp,
-                        color: Color(0xFF060606),
-                        size: 30.0,
-                      ),
+                      }
+
+                      //context.pushNamed('S13-1_notificaciones_Mv');
+
+                      return;
+                    },
+                    child: const Icon(
+                      Icons.notifications_sharp,
+                      color: Color(0xFF060606),
+                      size: 30.0,
                     ),
                   ),
                 ),
@@ -216,7 +213,8 @@ class _ContEncabezadoMenuWidgetState extends State<ContEncabezadoMenuWidget> {
               desktop: false,
             ))
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                 child: Container(
                   width: 45.0,
                   height: 35.0,
@@ -230,7 +228,8 @@ class _ContEncabezadoMenuWidgetState extends State<ContEncabezadoMenuWidget> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        5.0, 0.0, 0.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -255,7 +254,8 @@ class _ContEncabezadoMenuWidgetState extends State<ContEncabezadoMenuWidget> {
               tabletLandscape: false,
             ))
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 20.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 20.0, 0.0),
                 child: Container(
                   width: 35.0,
                   height: 35.0,
@@ -295,6 +295,7 @@ class _ContEncabezadoMenuWidgetState extends State<ContEncabezadoMenuWidget> {
       ),
     );
   }
+
   onTapAvatarScreen(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.avatarScreen);
   }

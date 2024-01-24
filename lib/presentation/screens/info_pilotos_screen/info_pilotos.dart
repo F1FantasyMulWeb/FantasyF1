@@ -44,13 +44,13 @@ class Info_Pilotos extends StatelessWidget {
                                                 child: LayoutBuilder(
                                                   builder:
                                                       (BuildContext context,
-                                                          BoxConstraints
-                                                              constraints) {
+                                                      BoxConstraints
+                                                      constraints) {
                                                     return Container(
                                                       width:
-                                                          constraints.maxWidth,
+                                                      constraints.maxWidth,
                                                       height:
-                                                          constraints.maxHeight,
+                                                      constraints.maxHeight,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
                                                           image: AssetImage(
@@ -60,15 +60,15 @@ class Info_Pilotos extends StatelessWidget {
                                                         ),
                                                       ),
                                                       padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 10.h,
-                                                              vertical: 7.v),
+                                                      EdgeInsets.symmetric(
+                                                          horizontal: 10.h,
+                                                          vertical: 7.v),
                                                       child: Column(
                                                         mainAxisSize:
-                                                            MainAxisSize.min,
+                                                        MainAxisSize.min,
                                                         crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
+                                                        CrossAxisAlignment
+                                                            .end,
                                                         children: [
                                                           Center(
                                                             child: Text(
@@ -78,8 +78,8 @@ class Info_Pilotos extends StatelessWidget {
                                                               style: CustomTextStyles
                                                                   .displaySmallWhiteA70001,
                                                               textAlign:
-                                                                  TextAlign
-                                                                      .center,
+                                                              TextAlign
+                                                                  .center,
                                                             ),
                                                           ),
                                                         ],
@@ -96,7 +96,7 @@ class Info_Pilotos extends StatelessWidget {
                                                   height: 250,
                                                   fit: BoxFit.scaleDown,
                                                   alignment:
-                                                      Alignment.centerLeft),
+                                                  Alignment.centerLeft),
                                               Positioned(
                                                 top: -30.v,
                                                 right: 33.h,
@@ -127,7 +127,7 @@ class Info_Pilotos extends StatelessWidget {
                                             left: 28.h, top: 12.v, right: 44.h),
                                         child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               CustomImageView(
                                                   svgPath: ImageConstant
@@ -153,8 +153,8 @@ class Info_Pilotos extends StatelessWidget {
                                                     height: 45.adaptSize,
                                                     width: 45.adaptSize,
                                                     radius:
-                                                        BorderRadius.circular(
-                                                            22.h)),
+                                                    BorderRadius.circular(
+                                                        22.h)),
                                                 SizedBox(height: 6.v),
                                                 CustomImageView(
                                                     svgPath: ImageConstant

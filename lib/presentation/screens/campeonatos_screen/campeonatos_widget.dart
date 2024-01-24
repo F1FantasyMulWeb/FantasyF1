@@ -93,7 +93,7 @@ class _CampeonatosWidgetState extends State<CampeonatosWidget> {
                       wrapWithModel(
                         model: _model.contAppBard2MvModel,
                         updateCallback: () => setState(() {}),
-                        child: ContAppBard2MvWidget(),
+                        child: const ContAppBard2MvWidget(),
                       ),
                       const SizedBox(
                         width: 393.0,
@@ -105,7 +105,7 @@ class _CampeonatosWidgetState extends State<CampeonatosWidget> {
                       Container(
                         width: 300.0,
                         height: 750.0,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                       ),
                     ],
                   ),

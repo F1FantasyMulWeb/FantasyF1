@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 import '../../../flutter_flow/flutter_flow_model.dart';
 import '../../componentes/widgets_app_bard_mv/cont_app_bard1_mv/cont_app_bard1_mv_widget.dart';
+import '../../componentes/widgets_menu_lateral/cont_menu_lateral/cont_menu_lateral_widget.dart';
 import 'info_circuitos_model.dart';
 
 class Infocircuito_screen extends StatefulWidget {
   final Circuit circuit;
-  const Infocircuito_screen({Key? key, required this.circuit}) : super(key: key);
+
+  const Infocircuito_screen({Key? key, required this.circuit,String? rutaPagina,}) :
+        this.rutaPagina = rutaPagina ?? 'info_circuito',
+        super(key: key);
+  final String rutaPagina;
 
   @override
   _Infocircuito_screenState createState() => _Infocircuito_screenState();
@@ -39,6 +44,19 @@ class _Infocircuito_screenState extends State<Infocircuito_screen> {
 
     return SafeArea(
       child: Scaffold(
+        drawer: Container(
+          width: 300.0,
+          child: Drawer(
+            elevation: 16.0,
+            child: wrapWithModel(
+              model: _model.contMenuLateralModel,
+              updateCallback: () => setState(() {}),
+              child: ContMenuLateralWidget(
+                rutaPagina: widget.rutaPagina,
+              ),
+            ),
+          ),
+        ),
         body: SizedBox(
           width: double.maxFinite,
           child: Column(
@@ -48,6 +66,7 @@ class _Infocircuito_screenState extends State<Infocircuito_screen> {
                 updateCallback: () => setState(() {}),
                 child:  const ContAppBard1MvWidget(),
               ),
+
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(

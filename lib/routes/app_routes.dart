@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../presentation/screens/campeonatos_screen/campeonatos_widget.dart';
+import '../presentation/screens/garaje_screen/garaje_grupo_widget.dart';
 import '../presentation/screens/mainscreensinligas_screen/main_widget.dart';
 import '../presentation/screens/s01_bienvenida/s01_1_bienvenida/s01_1_bienvenida_widget.dart';
 
@@ -41,6 +42,8 @@ class AppRoutes {
   static const String informaciNScreen = '/informaci_n_screen';
 
   static const String campeonatosScreen = '/campeonatos_screen';
+
+  static const String garaje_screen = '/garaje_screen';
 
   static const String perfilCarrerasScreen = '/perfil_carreras_screen';
 
@@ -112,6 +115,7 @@ class AppRoutes {
   static Map<String, WidgetBuilder> routes = {
     s01_1_bienvenida: (context) => S011BienvenidaWidget(),
     ajustesOneScreen: (context) => AjustesOneScreen(),
+    garaje_screen: (context) => GarajeGrupoWidget(),
     campeonatosScreen: (context) => CampeonatosWidget(),
     informaciNScreen: (context) => InformaciNScreen(),
     perfilCarrerasScreen: (context) => PerfilCarrerasScreen(),

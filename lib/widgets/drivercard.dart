@@ -131,6 +131,7 @@ class DriverCard extends StatelessWidget {
   }
 
   void onTapDriver(BuildContext context, String driverId) {
+    print('Tapped on $driverName');
     Navigator.push(
         context,
         MaterialPageRoute(

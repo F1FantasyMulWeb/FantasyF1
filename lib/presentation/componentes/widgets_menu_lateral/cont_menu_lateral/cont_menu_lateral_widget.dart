@@ -22,7 +22,8 @@ class ContMenuLateralWidget extends ConsumerStatefulWidget {
   final String? rutaPagina;
 
   @override
-  ConsumerState<ContMenuLateralWidget> createState() => _ContMenuLateralWidgetState();
+  ConsumerState<ContMenuLateralWidget> createState() =>
+      _ContMenuLateralWidgetState();
 }
 
 class _ContMenuLateralWidgetState extends ConsumerState<ContMenuLateralWidget> {
@@ -51,7 +52,6 @@ class _ContMenuLateralWidgetState extends ConsumerState<ContMenuLateralWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return Stack(
       children: [
         if (responsiveVisibility(
@@ -61,643 +61,653 @@ class _ContMenuLateralWidgetState extends ConsumerState<ContMenuLateralWidget> {
           desktop: false,
         ))
           SingleChildScrollView(
-          child:Container(
-            width: 300.0,
-            height: 852.0,
-            decoration: const BoxDecoration(
-              color: Color(0xFFF6F6F6),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
-                child:Container(
-                  width: 300.0,
-                  height: 50.0,
-                  decoration: BoxDecoration(),
-                  child: wrapWithModel(
-                    model: _model.contEncabezadoMenuModel1,
-                    updateCallback: () => setState(() {}),
-                    child: ContEncabezadoMenuWidget(
-                      paginaActual: widget.rutaPagina!,
+            child: Container(
+              width: 300.0,
+              height: 852.0,
+              decoration: const BoxDecoration(
+                color: Color(0xFFF6F6F6),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: 300.0,
+                    height: 50.0,
+                    decoration: const BoxDecoration(),
+                    child: wrapWithModel(
+                      model: _model.contEncabezadoMenuModel1,
+                      updateCallback: () => setState(() {}),
+                      child: ContEncabezadoMenuWidget(
+                        paginaActual: widget.rutaPagina!,
+                      ),
                     ),
                   ),
-                ),),
-                const Divider(
-                  thickness: 2.0,
-                  color: Color(0xFF060606),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                  child: Container(
-                    width: 260.0,
-                    height: 745.0,
-                    decoration: BoxDecoration(),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 15.0),
-                          child: Container(
-                            width: 260.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(),
-                            child: MouseRegion(
-                              opaque: false,
-                              cursor: MouseCursor.defer ?? MouseCursor.defer,
-                              onEnter: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered1 = true);
-                              }),
-                              onExit: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered1 = false);
-                              }),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (widget.rutaPagina == 'inicio') {
-                                    return;
-                                  }
+                  const Divider(
+                    thickness: 2.0,
+                    color: Color(0xFF060606),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                    child: Container(
+                      width: 260.0,
+                      height: 745.0,
+                      decoration: BoxDecoration(),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 15.0),
+                            child: Container(
+                              width: 260.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(),
+                              child: MouseRegion(
+                                opaque: false,
+                                cursor: MouseCursor.defer ?? MouseCursor.defer,
+                                onEnter: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered1 = true);
+                                }),
+                                onExit: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered1 = false);
+                                }),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (widget.rutaPagina == 'inicio') {
+                                      return;
+                                    }
 
-                                  onTapMainScreen(context);
-                                  return;
-                                },
-                                text: 'INICIO',
-                                icon: const Icon(
-                                  Icons.home_rounded,
-                                  color: Color(0xFF060606),
-                                  size: 25.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      25.0, 0.0, 125.0, 0.0),
-                                  iconPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.mouseRegionHovered1! ||
-                                            (widget.rutaPagina == 'inicio_Mv')
-                                        ? Color(0xFFF26457)
-                                        : Color(0xCDFFFFFF),
-                                    Color(0xCDFFFFFF),
+                                    onTapMainScreen(context);
+                                    return;
+                                  },
+                                  text: 'INICIO',
+                                  icon: const Icon(
+                                    Icons.home_rounded,
+                                    color: Color(0xFF060606),
+                                    size: 25.0,
                                   ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xFF060606),
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 125.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
                                     color: valueOrDefault<Color>(
                                       _model.mouseRegionHovered1! ||
                                               (widget.rutaPagina == 'inicio_Mv')
                                           ? Color(0xFFF26457)
-                                          : Color(0xFF060606),
-                                      Color(0xFF060606),
+                                          : Color(0xCDFFFFFF),
+                                      Color(0xCDFFFFFF),
                                     ),
-                                    width: 2.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xFF060606),
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: valueOrDefault<Color>(
+                                        _model.mouseRegionHovered1! ||
+                                                (widget.rutaPagina ==
+                                                    'inicio_Mv')
+                                            ? Color(0xFFF26457)
+                                            : Color(0xFF060606),
+                                        Color(0xFF060606),
+                                      ),
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 260.0,
-                          height: 25.0,
-                          decoration: BoxDecoration(),
-                          child: Text(
-                            'INFORMACION',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xFF060606),
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const Divider(
-                          thickness: 2.0,
-                          color: Color(0xFF060606),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 10.0),
-                          child: Container(
+                          Container(
                             width: 260.0,
-                            height: 40.0,
+                            height: 25.0,
                             decoration: BoxDecoration(),
-                            child: MouseRegion(
-                              opaque: false,
-                              cursor: MouseCursor.defer ?? MouseCursor.defer,
-                              onEnter: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered2 = true);
-                              }),
-                              onExit: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered2 = false);
-                              }),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (widget.rutaPagina == 'campeonatos') {
-                                    return;
-                                  }
-
-                                  onTapCampeonatoScreen(context);
-
-                                  return;
-                                },
-                                text: 'CAMPEONATOS',
-                                icon: const Icon(
-                                  Icons.workspace_premium_outlined,
-                                  color: Color(0xFF060606),
-                                  size: 25.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      25.0, 0.0, 45.0, 0.0),
-                                  iconPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.mouseRegionHovered2! ||
-                                            (widget.rutaPagina ==
-                                                'campeonatos_Mv')
-                                        ? Color(0xFFF26457)
-                                        : Color(0xCDFFFFFF),
-                                    Color(0xCDFFFFFF),
+                            child: Text(
+                              'INFORMACION',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF060606),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xFF060606),
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
+                            ),
+                          ),
+                          const Divider(
+                            thickness: 2.0,
+                            color: Color(0xFF060606),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: Container(
+                              width: 260.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(),
+                              child: MouseRegion(
+                                opaque: false,
+                                cursor: MouseCursor.defer ?? MouseCursor.defer,
+                                onEnter: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered2 = true);
+                                }),
+                                onExit: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered2 = false);
+                                }),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (widget.rutaPagina == 'campeonatos') {
+                                      return;
+                                    }
+
+                                    onTapCampeonatoScreen(context);
+
+                                    return;
+                                  },
+                                  text: 'CAMPEONATOS',
+                                  icon: const Icon(
+                                    Icons.workspace_premium_outlined,
+                                    color: Color(0xFF060606),
+                                    size: 25.0,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 45.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
                                     color: valueOrDefault<Color>(
                                       _model.mouseRegionHovered2! ||
                                               (widget.rutaPagina ==
                                                   'campeonatos_Mv')
                                           ? Color(0xFFF26457)
-                                          : Color(0xFF060606),
-                                      Color(0xFF060606),
+                                          : Color(0xCDFFFFFF),
+                                      Color(0xCDFFFFFF),
                                     ),
-                                    width: 2.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xFF060606),
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: valueOrDefault<Color>(
+                                        _model.mouseRegionHovered2! ||
+                                                (widget.rutaPagina ==
+                                                    'campeonatos_Mv')
+                                            ? Color(0xFFF26457)
+                                            : Color(0xFF060606),
+                                        Color(0xFF060606),
+                                      ),
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 10.0),
-                          child: Container(
-                            width: 260.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(),
-                            child: MouseRegion(
-                              opaque: false,
-                              cursor: MouseCursor.defer ?? MouseCursor.defer,
-                              onEnter: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered3 = true);
-                              }),
-                              onExit: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered3 = false);
-                              }),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (widget.rutaPagina == 'circuitos') {
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: Container(
+                              width: 260.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(),
+                              child: MouseRegion(
+                                opaque: false,
+                                cursor: MouseCursor.defer ?? MouseCursor.defer,
+                                onEnter: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered3 = true);
+                                }),
+                                onExit: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered3 = false);
+                                }),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (widget.rutaPagina == 'circuitos') {
+                                      return;
+                                    }
+
+                                    onTaplistaCircuitos(context);
+
                                     return;
-                                  }
-
-                                  onTaplistaCircuitos(context);
-
-                                  return;
-                                },
-                                text: 'CIRCUITOS',
-                                icon: const Icon(
-                                  Icons.add_road,
-                                  size: 25.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      25.0, 0.0, 90.0, 0.0),
-                                  iconPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.mouseRegionHovered3! ||
-                                            (widget.rutaPagina ==
-                                                'circuitos_Mv')
-                                        ? Color(0xFFF26457)
-                                        : Color(0xCDFFFFFF),
-                                    Color(0xCDFFFFFF),
+                                  },
+                                  text: 'CIRCUITOS',
+                                  icon: const Icon(
+                                    Icons.add_road,
+                                    size: 25.0,
                                   ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xFF060606),
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 90.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
                                     color: valueOrDefault<Color>(
                                       _model.mouseRegionHovered3! ||
                                               (widget.rutaPagina ==
                                                   'circuitos_Mv')
                                           ? Color(0xFFF26457)
-                                          : Color(0xFF060606),
-                                      Color(0xFF060606),
+                                          : Color(0xCDFFFFFF),
+                                      Color(0xCDFFFFFF),
                                     ),
-                                    width: 2.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xFF060606),
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: valueOrDefault<Color>(
+                                        _model.mouseRegionHovered3! ||
+                                                (widget.rutaPagina ==
+                                                    'circuitos_Mv')
+                                            ? Color(0xFFF26457)
+                                            : Color(0xFF060606),
+                                        Color(0xFF060606),
+                                      ),
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 10.0),
-                          child: Container(
-                            width: 260.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(),
-                            child: MouseRegion(
-                              opaque: false,
-                              cursor: MouseCursor.defer ?? MouseCursor.defer,
-                              onEnter: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered4 = true);
-                              }),
-                              onExit: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered4 = false);
-                              }),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (widget.rutaPagina == 'escuderias') {
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: Container(
+                              width: 260.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(),
+                              child: MouseRegion(
+                                opaque: false,
+                                cursor: MouseCursor.defer ?? MouseCursor.defer,
+                                onEnter: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered4 = true);
+                                }),
+                                onExit: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered4 = false);
+                                }),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (widget.rutaPagina == 'escuderias') {
+                                      return;
+                                    }
+
+                                    //context.pushNamed('S07-1_escuderias');
+
                                     return;
-                                  }
-
-                                  //context.pushNamed('S07-1_escuderias');
-
-                                  return;
-                                },
-                                text: 'ESCUDERÍAS',
-                                icon: const Icon(
-                                  Icons.build_rounded,
-                                  color: Color(0xFF060606),
-                                  size: 25.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      25.0, 0.0, 75.0, 0.0),
-                                  iconPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.mouseRegionHovered4! ||
-                                            (widget.rutaPagina ==
-                                                'escuderias_Mv')
-                                        ? Color(0xFFF26457)
-                                        : Color(0xCDFFFFFF),
-                                    Color(0xCDFFFFFF),
+                                  },
+                                  text: 'ESCUDERÍAS',
+                                  icon: const Icon(
+                                    Icons.build_rounded,
+                                    color: Color(0xFF060606),
+                                    size: 25.0,
                                   ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF060606),
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 75.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
                                     color: valueOrDefault<Color>(
                                       _model.mouseRegionHovered4! ||
                                               (widget.rutaPagina ==
                                                   'escuderias_Mv')
                                           ? Color(0xFFF26457)
-                                          : Color(0xFF060606),
-                                      Color(0xFF060606),
+                                          : Color(0xCDFFFFFF),
+                                      Color(0xCDFFFFFF),
                                     ),
-                                    width: 2.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: const Color(0xFF060606),
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: valueOrDefault<Color>(
+                                        _model.mouseRegionHovered4! ||
+                                                (widget.rutaPagina ==
+                                                    'escuderias_Mv')
+                                            ? Color(0xFFF26457)
+                                            : Color(0xFF060606),
+                                        Color(0xFF060606),
+                                      ),
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 15.0),
-                          child: Container(
-                            width: 260.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(),
-                            child: MouseRegion(
-                              opaque: false,
-                              cursor: MouseCursor.defer ?? MouseCursor.defer,
-                              onEnter: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered5 = true);
-                              }),
-                              onExit: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered5 = false);
-                              }),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (widget.rutaPagina == 'pilotos') {
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 15.0),
+                            child: Container(
+                              width: 260.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(),
+                              child: MouseRegion(
+                                opaque: false,
+                                cursor: MouseCursor.defer ?? MouseCursor.defer,
+                                onEnter: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered5 = true);
+                                }),
+                                onExit: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered5 = false);
+                                }),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (widget.rutaPagina == 'pilotos') {
+                                      return;
+                                    }
+
+                                    onTaplistaPilotos(context);
+
                                     return;
-                                  }
-
-                                  onTaplistaPilotos(context);
-
-                                  return;
-                                },
-                                text: 'PILOTOS',
-                                icon: const Icon(
-                                  Icons.man_sharp,
-                                  color: Color(0xFF060606),
-                                  size: 25.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      25.0, 0.0, 110.0, 0.0),
-                                  iconPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.mouseRegionHovered5! ||
-                                            (widget.rutaPagina == 'pilotos_Mv')
-                                        ? Color(0xFFF26457)
-                                        : Color(0xCDFFFFFF),
-                                    Color(0xCDFFFFFF),
+                                  },
+                                  text: 'PILOTOS',
+                                  icon: const Icon(
+                                    Icons.man_sharp,
+                                    color: Color(0xFF060606),
+                                    size: 25.0,
                                   ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: const Color(0xFF060606),
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 110.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
                                     color: valueOrDefault<Color>(
                                       _model.mouseRegionHovered5! ||
                                               (widget.rutaPagina ==
                                                   'pilotos_Mv')
-                                          ? const Color(0xFFF26457)
-                                          : const Color(0xFF060606),
-                                      const Color(0xFF060606),
+                                          ? Color(0xFFF26457)
+                                          : Color(0xCDFFFFFF),
+                                      Color(0xCDFFFFFF),
                                     ),
-                                    width: 2.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: const Color(0xFF060606),
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: valueOrDefault<Color>(
+                                        _model.mouseRegionHovered5! ||
+                                                (widget.rutaPagina ==
+                                                    'pilotos_Mv')
+                                            ? const Color(0xFFF26457)
+                                            : const Color(0xFF060606),
+                                        const Color(0xFF060606),
+                                      ),
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 260.0,
-                          height: 25.0,
-                          decoration: const BoxDecoration(),
-                          child: Text(
-                            'MULTIJUGADOR',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xFF060606),
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const Divider(
-                          thickness: 2.0,
-                          color: Color(0xFF060606),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 15.0),
-                          child: Container(
+                          Container(
                             width: 260.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(),
-                            child: MouseRegion(
-                              opaque: false,
-                              cursor: MouseCursor.defer ?? MouseCursor.defer,
-                              onEnter: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered6 = true);
-                              }),
-                              onExit: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered6 = false);
-                              }),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (widget.rutaPagina == 'grupos') {
-                                    return;
-                                  }
-
-                                  onTapGrupos(context);
-
-                                  return;
-                                },
-                                text: 'GRUPOS',
-                                icon: const Icon(
-                                  Icons.groups_sharp,
-                                  color: Color(0xFF060606),
-                                  size: 25.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      25.0, 0.0, 115.0, 0.0),
-                                  iconPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.mouseRegionHovered6! ||
-                                            (widget.rutaPagina == 'grupos') ||
-                                            (widget.rutaPagina ==
-                                                'grupos_interna')
-                                        ? Color(0xFFF26457)
-                                        : Color(0xCDFFFFFF),
-                                    Color(0xCDFFFFFF),
+                            height: 25.0,
+                            decoration: const BoxDecoration(),
+                            child: Text(
+                              'MULTIJUGADOR',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF060606),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xFF060606),
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
+                            ),
+                          ),
+                          const Divider(
+                            thickness: 2.0,
+                            color: Color(0xFF060606),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 15.0),
+                            child: Container(
+                              width: 260.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(),
+                              child: MouseRegion(
+                                opaque: false,
+                                cursor: MouseCursor.defer ?? MouseCursor.defer,
+                                onEnter: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered6 = true);
+                                }),
+                                onExit: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered6 = false);
+                                }),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (widget.rutaPagina == 'grupos') {
+                                      return;
+                                    }
+
+                                    onTapGrupos(context);
+
+                                    return;
+                                  },
+                                  text: 'GRUPOS',
+                                  icon: const Icon(
+                                    Icons.groups_sharp,
+                                    color: Color(0xFF060606),
+                                    size: 25.0,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 115.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
                                     color: valueOrDefault<Color>(
                                       _model.mouseRegionHovered6! ||
                                               (widget.rutaPagina == 'grupos') ||
                                               (widget.rutaPagina ==
                                                   'grupos_interna')
                                           ? Color(0xFFF26457)
-                                          : Color(0xFF060606),
-                                      Color(0xFF060606),
+                                          : Color(0xCDFFFFFF),
+                                      Color(0xCDFFFFFF),
                                     ),
-                                    width: 2.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xFF060606),
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: valueOrDefault<Color>(
+                                        _model.mouseRegionHovered6! ||
+                                                (widget.rutaPagina ==
+                                                    'grupos') ||
+                                                (widget.rutaPagina ==
+                                                    'grupos_interna')
+                                            ? Color(0xFFF26457)
+                                            : Color(0xFF060606),
+                                        Color(0xFF060606),
+                                      ),
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 260.0,
-                          height: 25.0,
-                          decoration: BoxDecoration(),
-                          child: Text(
-                            'TUTORIALES',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xFF060606),
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                        const Divider(
-                          thickness: 2.0,
-                          color: Color(0xFF060606),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 80.0),
-                          child: Container(
+                          Container(
                             width: 260.0,
-                            height: 40.0,
+                            height: 25.0,
                             decoration: BoxDecoration(),
-                            child: MouseRegion(
-                              opaque: false,
-                              cursor: MouseCursor.defer ?? MouseCursor.defer,
-                              onEnter: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered7 = true);
-                              }),
-                              onExit: ((event) async {
-                                setState(
-                                    () => _model.mouseRegionHovered7 = false);
-                              }),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (widget.rutaPagina == 'comoJugar') {
-                                    return;
-                                  }
-
-                                  //context.pushNamed('S10-1_comoJugar_Mv');
-
-                                  return;
-                                },
-                                text: 'COMO JUGAR',
-                                icon: const Icon(
-                                  Icons.videogame_asset,
-                                  color: Color(0xFF060606),
-                                  size: 25.0,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      25.0, 0.0, 65.0, 0.0),
-                                  iconPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                  color: valueOrDefault<Color>(
-                                    _model.mouseRegionHovered7! ||
-                                            (widget.rutaPagina ==
-                                                'comoJugar_Mv')
-                                        ? Color(0xFFF26457)
-                                        : Color(0xCDFFFFFF),
-                                    Color(0xCDFFFFFF),
+                            child: Text(
+                              'TUTORIALES',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF060606),
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xFF060606),
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: BorderSide(
+                            ),
+                          ),
+                          const Divider(
+                            thickness: 2.0,
+                            color: Color(0xFF060606),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 80.0),
+                            child: Container(
+                              width: 260.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(),
+                              child: MouseRegion(
+                                opaque: false,
+                                cursor: MouseCursor.defer ?? MouseCursor.defer,
+                                onEnter: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered7 = true);
+                                }),
+                                onExit: ((event) async {
+                                  setState(
+                                      () => _model.mouseRegionHovered7 = false);
+                                }),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (widget.rutaPagina == 'comoJugar') {
+                                      return;
+                                    }
+
+                                    //context.pushNamed('S10-1_comoJugar_Mv');
+
+                                    return;
+                                  },
+                                  text: 'COMO JUGAR',
+                                  icon: const Icon(
+                                    Icons.videogame_asset,
+                                    color: Color(0xFF060606),
+                                    size: 25.0,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 0.0, 65.0, 0.0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
                                     color: valueOrDefault<Color>(
                                       _model.mouseRegionHovered7! ||
                                               (widget.rutaPagina ==
                                                   'comoJugar_Mv')
                                           ? Color(0xFFF26457)
-                                          : Color(0xFF060606),
-                                      Color(0xFF060606),
+                                          : Color(0xCDFFFFFF),
+                                      Color(0xCDFFFFFF),
                                     ),
-                                    width: 2.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xFF060606),
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: valueOrDefault<Color>(
+                                        _model.mouseRegionHovered7! ||
+                                                (widget.rutaPagina ==
+                                                    'comoJugar_Mv')
+                                            ? Color(0xFFF26457)
+                                            : Color(0xFF060606),
+                                        Color(0xFF060606),
+                                      ),
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 260.0,
-                          height: 175.0,
-                          decoration: BoxDecoration(),
-                          child: wrapWithModel(
-                            model: _model.contOpcionesCuentaMvModel,
-                            updateCallback: () => setState(() {}),
-                            child: ContOpcionesCuentaMvWidget(
-                              paginaActual: widget.rutaPagina!,
+                          Container(
+                            width: 260.0,
+                            height: 175.0,
+                            decoration: BoxDecoration(),
+                            child: wrapWithModel(
+                              model: _model.contOpcionesCuentaMvModel,
+                              updateCallback: () => setState(() {}),
+                              child: ContOpcionesCuentaMvWidget(
+                                paginaActual: widget.rutaPagina!,
+                              ),
                             ),
                           ),
-                        ),
-                      ].divide(SizedBox(height: 0.0)),
+                        ].divide(SizedBox(height: 0.0)),
+                      ),
                     ),
                   ),
-                ),
-              ].divide(SizedBox(height: 0.0)),
+                ].divide(SizedBox(height: 0.0)),
+              ),
             ),
-          ),),
+          ),
         if (responsiveVisibility(
           context: context,
           phone: false,
@@ -1359,6 +1369,7 @@ class _ContMenuLateralWidgetState extends ConsumerState<ContMenuLateralWidget> {
   onTapMainScreen(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen);
   }
+
   onTapCampeonatoScreen(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.campeonatosScreen);
   }

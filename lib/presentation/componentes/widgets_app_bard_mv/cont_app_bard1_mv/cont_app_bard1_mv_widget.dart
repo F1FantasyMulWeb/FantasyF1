@@ -63,7 +63,7 @@ class _ContAppBard1MvWidgetState extends ConsumerState<ContAppBard1MvWidget> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
               child: Container(
                 width: 40.0,
                 height: 40.0,

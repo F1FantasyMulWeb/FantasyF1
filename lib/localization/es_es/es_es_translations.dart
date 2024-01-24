@@ -249,6 +249,10 @@
   "msg_registro_exitoso": "El registro se ha realizado con exito,\n"
       "vaya a su correo y verifique su cuenta",
 
+   //Alerta1
+    "msg_alerta1":'  En el caso de que tengas\n  algún piloto de reserva,\n  podrás realizar cambios\n  editando los pilotos y\n  estableciéndolos como\n  pilotos principales.  ',
+
+
 //FormValidator
   "msg_error_email": "Email inválido",
   "msg_error_password": "Contraseña vacía",
