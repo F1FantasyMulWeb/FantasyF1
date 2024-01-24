@@ -119,7 +119,7 @@ class _MercadoScreen extends ConsumerState<MercadoScreen> {
                         price: precio,
                         points: puntos,
                         onBuyPressed: () async {
-                          await dataBaseController.comprarPiloto(pilotoId, groupModel.codeGrupo, 10);
+                          await dataBaseController.comprarPiloto(pilotoId, groupModel.codeGrupo, precio);
                           await groupModel.cargarGrupo();
                           setState(() {});
                         },

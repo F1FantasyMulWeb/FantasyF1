@@ -1,4 +1,6 @@
 
+import 'package:FantasyF1/DataBase/databasecontroller.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -13,7 +15,8 @@ class ContSeleccionTipoPilotoModel
     extends FlutterFlowModel<ContSeleccionTipoPilotoWidget> {
   ///  Local state fields for this component.
 
-  List<String> listadoPilotosAMostrar = [''];
+
+  List<String> listadoPilotosAMostrar = [];
   void addToListadoPilotosAMostrar(String item) =>
       listadoPilotosAMostrar.add(item);
   void removeFromListadoPilotosAMostrar(String item) =>

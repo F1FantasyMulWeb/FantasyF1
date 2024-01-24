@@ -15,9 +15,12 @@ class GrupoActualModel extends ChangeNotifier {
   String _nombreGrupo = "";
   Map<String, Map<String, dynamic>> _nombresUsuariosGrupo = {};
   Map<String, List<Object>> _listaPilotosDelGrupo = {};
+  List<String> _pilotosGraje = [];
 
 
   int get idGrupoActual => _idGrupo;
+
+  List<String> get pilotosGaraje => _pilotosGraje;
 
   String get codeGrupo => _codeGrupo;
 
@@ -54,6 +57,11 @@ class GrupoActualModel extends ChangeNotifier {
 
   void setcodeGrupo(String codeGrupo) {
     _codeGrupo = codeGrupo;
+    notifyListeners();
+  }
+
+  void setpilotosGraje(List<String> value) {
+    _pilotosGraje = value;
     notifyListeners();
   }
 }

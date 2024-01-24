@@ -79,16 +79,6 @@ class _Infocircuito_screenState extends State<Infocircuito_screen> {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              CustomImageView(
-                                width: 100.v,
-                                alignment: Alignment.centerRight,
-                                margin: EdgeInsets.only(right: 80),
-                                border: Border.all(
-                                    width: 2.5, color: Colors.black54),
-                                fit: BoxFit.fitWidth,
-                                imagePath: ImageConstant.imgBandera(
-                                    circuit.location.country),
-                              ),
                               Align(
                                 alignment: Alignment.center,
                                 child: Container(

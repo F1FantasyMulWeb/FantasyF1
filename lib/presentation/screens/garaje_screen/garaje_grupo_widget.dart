@@ -342,7 +342,7 @@ class _GarajeGrupoWidgetState extends State<GarajeGrupoWidget> {
                                                                       context)
                                                                   .unfocus(),
                                                           child:
-                                                              ContSeleccionTipoPilotoWidget(),
+                                                              const ContSeleccionTipoPilotoWidget(),
                                                         ),
                                                       );
                                                     },

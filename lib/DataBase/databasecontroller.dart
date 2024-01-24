@@ -448,17 +448,21 @@ class DataBaseController {
     }
   }
 
-  Future<List<String>> PilotosDeUnUsuarioEnUnGrupo(var idGrupo) async {
+  Future<List<String>> pilotosDeUnUsuarioEnUnGrupo(var keyGrupo) async {
+    final response1 =
+    await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
     int idUsuario = await selectUserId();
     List<String> listaPilotos = [];
-    List<dynamic> response1 = await client
+    List<dynamic> response2 = await client
         .from('PilotosGrupo')
         .select()
         .eq('idUsuario', idUsuario)
-        .eq('idGrupo', idGrupo);
-    for (var i = 0; i < response1.length; i++) {
-      listaPilotos.add(response1[i]["idPiloto"]);
+        .eq('idGrupo', response1[0]["idGrupo"]);
+    for (var i = 0; i < response2.length; i++) {
+      listaPilotos.add(response2[i]["idPiloto"]);
     }
+    print("Esto es lo que hay en la lista de pilotos");
+    print(listaPilotos);
     return listaPilotos;
   }
 

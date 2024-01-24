@@ -1,3 +1,8 @@
+import 'package:flutter_avif/flutter_avif.dart';
+
+import '../../api/configuracionApi.dart';
+import '../../api/modelo/RaceEventModel.dart';
+import '../../core/utils/image_constant.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -18,7 +23,7 @@ class ContAnteriorCarreraWidget extends StatefulWidget {
 
 class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
   late ContAnteriorCarreraModel _model;
-
+  Race? _circuit;
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
@@ -27,6 +32,7 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
 
   @override
   void initState() {
+    getLastCarrera();
     super.initState();
     _model = createModel(context, () => ContAnteriorCarreraModel());
 
@@ -70,7 +76,7 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                 height: 25.0,
                 decoration: BoxDecoration(),
                 child: AutoSizeText(
-                  'Desconocido',
+                  _circuit?.raceName ?? 'Cargando...',
                   textAlign: TextAlign.start,
                   maxLines: 2,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -103,10 +109,16 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                             topLeft: Radius.circular(0.0),
                             topRight: Radius.circular(0.0),
                           ),
-                          child: Image.asset(
-                            'assets/images/imageCircuito_Default.png',
+                          child: _circuit == null ? AvifImage.asset(
+                            ImageConstant.imgCircuitoAvif(
+                                _circuit!.circuit.circuitId),
                             width: 300.0,
                             height: 200.0,
+                            fit: BoxFit.cover,
+                          ) :  Image.asset(
+                            'assets/images/imageCircuito_Default.png',
+                            width: 75.0,
+                            height: 75.0,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -150,7 +162,7 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 3.0, 0.0, 0.0),
                                     child: AutoSizeText(
-                                      'Desconocido',
+                                        _circuit!.results[0].driver.givenName ?? 'Cargando...',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -197,7 +209,7 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 3.0, 0.0, 0.0),
                                     child: AutoSizeText(
-                                      'Desconocido',
+                                      _circuit!.results[1].driver.givenName ?? 'Cargando...',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -244,7 +256,7 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 3.0, 0.0, 0.0),
                                     child: AutoSizeText(
-                                      'Desconocido',
+                                      _circuit!.results[2].driver.givenName ?? 'Cargando...',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -272,4 +284,15 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
       ),
     );
   }
+
+  Future<void> getLastCarrera() async {
+    Client client = new Client();
+
+  RaceEventModel? raceEventModel = await client
+      .getResults("current", "21", "results", queryParams: "limit=20");
+  print('esto es lo que hay en raceEvent'  + raceEventModel!.mrData.toString());
+   _circuit = raceEventModel!.mrData.raceTable.races.last;
+  }
+
 }
+

@@ -119,7 +119,7 @@ class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
                             height: 25.0,
                             decoration: BoxDecoration(),
                             child: Text(
-                              'Fecha:',
+                              'Fecha: ',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -138,7 +138,7 @@ class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 2.0, 0.0, 0.0),
                               child: Text(
-                                '00/00/2023',
+                                _circuit?.date.toString() ?? 'Cargando...',
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -168,7 +168,9 @@ class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
     Client client = new Client();
 
     RaceEventModel? raceEventModel = await client
-        .getResults("current", "5", "results", queryParams: "limit=15");
-    _circuit = raceEventModel!.mrData.raceTable.races.last;
+        .getResults("current", "22", "results", queryParams: "limit=20");
+    setState(() {   _circuit = raceEventModel!.mrData.raceTable.races.last;});
+    _model.onUpdate();
+
   }
 }

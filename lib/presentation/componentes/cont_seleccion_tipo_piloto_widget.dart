@@ -1,3 +1,7 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../DataBase/databasecontroller.dart';
+import '../../provider/grupoactual.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -9,17 +13,19 @@ import 'cont_cambiar_pilotos_widget.dart';
 import 'cont_seleccion_tipo_piloto_model.dart';
 export 'cont_seleccion_tipo_piloto_model.dart';
 
-class ContSeleccionTipoPilotoWidget extends StatefulWidget {
+class ContSeleccionTipoPilotoWidget extends ConsumerStatefulWidget {
   const ContSeleccionTipoPilotoWidget({Key? key}) : super(key: key);
 
   @override
-  _ContSeleccionTipoPilotoWidgetState createState() =>
+  ConsumerState<ContSeleccionTipoPilotoWidget> createState() =>
       _ContSeleccionTipoPilotoWidgetState();
 }
 
 class _ContSeleccionTipoPilotoWidgetState
-    extends State<ContSeleccionTipoPilotoWidget> {
+    extends ConsumerState<ContSeleccionTipoPilotoWidget> {
   late ContSeleccionTipoPilotoModel _model;
+  DataBaseController dataBaseController = DataBaseController();
+
 
   @override
   void setState(VoidCallback callback) {
@@ -27,13 +33,31 @@ class _ContSeleccionTipoPilotoWidgetState
     _model.onUpdate();
   }
 
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => ContSeleccionTipoPilotoModel());
+    Future.microtask(() => cargarPilotos());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
+  Future<void> cargarPilotos() async {
+    final groupModel = ref.read(grupoActualModelProvider.notifier);
+    List<String> listaPilotosGrupos =  await dataBaseController.pilotosDeUnUsuarioEnUnGrupo(groupModel.codeGrupo);
+    for (int i = 0; i < listaPilotosGrupos.length; i++){
+      String piloto = listaPilotosGrupos[i];
+      String nombrePiloto=await dataBaseController.nombrePioloto(piloto);
+
+      if(!_model.listadoPilotosAMostrar.contains(nombrePiloto)){
+        groupModel.setpilotosGraje(listaPilotosGrupos);
+        _model.addToListadoPilotosAMostrar(nombrePiloto);
+      }
+    }
+    print("pilotos:");
+    print(groupModel.pilotosGaraje);
+  }
+
 
   @override
   void dispose() {
@@ -44,6 +68,8 @@ class _ContSeleccionTipoPilotoWidgetState
 
   @override
   Widget build(BuildContext context) {
+    cargarPilotos();
+
     return Visibility(
       visible: responsiveVisibility(
         context: context,
@@ -63,7 +89,7 @@ class _ContSeleccionTipoPilotoWidgetState
           ),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -75,18 +101,18 @@ class _ContSeleccionTipoPilotoWidgetState
                   'PILOTO A CAMBIAR',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
-                        color: Color(0xFF060606),
+                        color: const Color(0xFF060606),
                         fontSize: 15.0,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 2.0,
                 color: Color(0xFF060606),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                 child: Container(
                   width: 200.0,
                   height: 40.0,
@@ -118,7 +144,7 @@ class _ContSeleccionTipoPilotoWidgetState
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: Color(0xFFF6F6F6),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -127,7 +153,7 @@ class _ContSeleccionTipoPilotoWidgetState
                                   fontSize: 15.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Color(0xFF060606),
                           width: 2.0,
                         ),
@@ -146,6 +172,7 @@ class _ContSeleccionTipoPilotoWidgetState
                   child: Builder(
                     builder: (context) => FFButtonWidget(
                       onPressed: () async {
+
                         Navigator.pop(context);
                         await showDialog(
                           context: context,
@@ -153,7 +180,7 @@ class _ContSeleccionTipoPilotoWidgetState
                             return Dialog(
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: AlignmentDirectional(0.0, 0.0)
+                              alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: ContCambiarPilotosWidget(
                                 tipoPilotoACambiar: 'PILOTO PRINCIPAL',
@@ -167,11 +194,11 @@ class _ContSeleccionTipoPilotoWidgetState
                       text: 'PILOTO SECUNDARIO',
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFFF6F6F6),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFFF6F6F6),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Readex Pro',
@@ -179,7 +206,7 @@ class _ContSeleccionTipoPilotoWidgetState
                                   fontSize: 15.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Color(0xFF060606),
                           width: 2.0,
                         ),
@@ -190,7 +217,7 @@ class _ContSeleccionTipoPilotoWidgetState
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                 child: Container(
                   width: 200.0,
                   height: 35.0,
@@ -218,9 +245,9 @@ class _ContSeleccionTipoPilotoWidgetState
                             text: 'CANCELAR',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 10.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: Color(0xFFF26457),
                               textStyle: FlutterFlowTheme.of(context)
@@ -232,7 +259,7 @@ class _ContSeleccionTipoPilotoWidgetState
                                     fontWeight: FontWeight.w500,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -251,4 +278,5 @@ class _ContSeleccionTipoPilotoWidgetState
       ),
     );
   }
+
 }
