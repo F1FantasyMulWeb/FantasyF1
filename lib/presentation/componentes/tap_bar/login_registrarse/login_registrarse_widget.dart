@@ -1,3 +1,5 @@
+import 'package:FantasyF1/presentation/componentes/ventanas_emergentes/contrasenas_no_coinciden/contrasenas_no_coinciden_widget.dart';
+import 'package:FantasyF1/presentation/componentes/ventanas_emergentes/error_en_login/error_en_login.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -126,7 +128,8 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
       vsync: this,
       length: 2,
       initialIndex: 0,
-    )..addListener(() => setState(() {}));
+    )
+      ..addListener(() => setState(() {}));
     _model.textFieldCorreoLoginController ??= TextEditingController();
     _model.textFieldCorreoLoginFocusNode ??= FocusNode();
 
@@ -157,9 +160,9 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
   Widget build(BuildContext context) {
     final userModel = ref.watch(userModelProvider);
     FormValidatorRegister formValidator =
-        FormValidatorRegister(AppLocalization.of());
+    FormValidatorRegister(AppLocalization.of());
     FormValidatorLogin formValidatorL =
-        FormValidatorLogin(AppLocalization.of());
+    FormValidatorLogin(AppLocalization.of());
     return Visibility(
       visible: responsiveVisibility(
         context: context,
@@ -183,11 +186,14 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                     labelColor: const Color(0xFF060606),
                     unselectedLabelColor: const Color(0xFFADB6BF),
                     labelStyle:
-                        FlutterFlowTheme.of(context).titleMedium.override(
-                              fontFamily: 'Inter',
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    FlutterFlowTheme
+                        .of(context)
+                        .titleMedium
+                        .override(
+                      fontFamily: 'Inter',
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                     unselectedLabelStyle: const TextStyle(),
                     indicatorColor: const Color(0xCDFF0007),
                     indicatorWeight: 3.0,
@@ -222,18 +228,19 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                 ),
                                 child: Align(
                                   alignment:
-                                      const AlignmentDirectional(0.0, 0.0),
+                                  const AlignmentDirectional(0.0, 0.0),
                                   child: AutoSizeText(
                                     'Complete los campos a continuación\npara acceder a su cuenta',
                                     textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
+                                    style: FlutterFlowTheme
+                                        .of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Color(0xFF060606),
-                                          fontSize: 15.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                      fontFamily: 'Readex Pro',
+                                      color: Color(0xFF060606),
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -266,50 +273,54 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                               .textFieldCorreoLoginFocusNode,
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
-                                            '_model.textFieldCorreoLoginController',
-                                            const Duration(milliseconds: 2000),
-                                            () => setState(() {}),
-                                          ),
+                                                '_model.textFieldCorreoLoginController',
+                                                const Duration(
+                                                    milliseconds: 2000),
+                                                    () => setState(() {}),
+                                              ),
                                           textCapitalization:
-                                              TextCapitalization.none,
+                                          TextCapitalization.none,
                                           textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'Correo electrónico',
-                                            labelStyle: FlutterFlowTheme.of(
-                                                    context)
+                                            labelStyle: FlutterFlowTheme
+                                                .of(
+                                                context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color:
-                                                      const Color(0xFF060606),
-                                                  fontSize: 15.0,
-                                                ),
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                              const Color(0xFF060606),
+                                              fontSize: 15.0,
+                                            ),
                                             alignLabelWithHint: true,
-                                            hintStyle: FlutterFlowTheme.of(
-                                                    context)
+                                            hintStyle: FlutterFlowTheme
+                                                .of(
+                                                context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color:
-                                                      const Color(0xFF060606),
-                                                  fontSize: 15.0,
-                                                ),
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                              const Color(0xFF060606),
+                                              fontSize: 15.0,
+                                            ),
                                             errorStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Color(0xFFFF0007),
-                                                      fontSize: 10.0,
-                                                    ),
+                                            FlutterFlowTheme
+                                                .of(context)
+                                                .bodyMedium
+                                                .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Color(0xFFFF0007),
+                                              fontSize: 10.0,
+                                            ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                 color: Color(0xFF060606),
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
@@ -317,7 +328,7 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                             ),
                                             errorBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
@@ -325,58 +336,59 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                             ),
                                             focusedErrorBorder:
-                                                OutlineInputBorder(
+                                            OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                 color: Color(0xFF060606),
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                             ),
                                             contentPadding:
-                                                const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                    25.0, 0.0, 25.0, 0.0),
+                                            const EdgeInsetsDirectional
+                                                .fromSTEB(
+                                                25.0, 0.0, 25.0, 0.0),
                                             prefixIcon: const Icon(
                                               Icons.email,
                                               color: Colors.black,
                                               size: 25.0,
                                             ),
                                             suffixIcon: _model
-                                                    .textFieldCorreoLoginController!
-                                                    .text
-                                                    .isNotEmpty
+                                                .textFieldCorreoLoginController!
+                                                .text
+                                                .isNotEmpty
                                                 ? InkWell(
-                                                    onTap: () async {
-                                                      _model
-                                                          .textFieldCorreoLoginController
-                                                          ?.clear();
-                                                      setState(() {});
-                                                    },
-                                                    child: const Icon(
-                                                      Icons.clear,
-                                                      color: Color(0xFF060606),
-                                                      size: 25.0,
-                                                    ),
-                                                  )
+                                              onTap: () async {
+                                                _model
+                                                    .textFieldCorreoLoginController
+                                                    ?.clear();
+                                                setState(() {});
+                                              },
+                                              child: const Icon(
+                                                Icons.clear,
+                                                color: Color(0xFF060606),
+                                                size: 25.0,
+                                              ),
+                                            )
                                                 : null,
                                           ),
-                                          style: FlutterFlowTheme.of(context)
+                                          style: FlutterFlowTheme
+                                              .of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
-                                                color: Color(0xFF060606),
-                                                fontSize: 13.0,
-                                              ),
+                                            fontFamily: 'Readex Pro',
+                                            color: Color(0xFF060606),
+                                            fontSize: 13.0,
+                                          ),
                                           textAlign: TextAlign.start,
                                           keyboardType:
-                                              TextInputType.emailAddress,
+                                          TextInputType.emailAddress,
                                           cursorColor: Colors.black,
                                           validator:
-                                              formValidatorL.isValidEmail,
+                                          formValidatorL.isValidEmail,
                                         ),
                                       ),
                                     ),
@@ -398,135 +410,140 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                               ),
                                               child: Align(
                                                 alignment:
-                                                    const AlignmentDirectional(
-                                                        0.0, -1.0),
+                                                const AlignmentDirectional(
+                                                    0.0, -1.0),
                                                 child: TextFormField(
                                                   controller: _model
                                                       .textFieldContrasenaLoginController,
                                                   focusNode: _model
                                                       .textFieldContrasenaLoginFocusNode,
                                                   textCapitalization:
-                                                      TextCapitalization.none,
+                                                  TextCapitalization.none,
                                                   textInputAction:
-                                                      TextInputAction.previous,
+                                                  TextInputAction.previous,
                                                   obscureText: !_model
                                                       .textFieldContrasenaLoginVisibility,
                                                   decoration: InputDecoration(
                                                     labelText: 'Contraseña',
                                                     labelStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                        .of(context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.black,
-                                                          fontSize: 15.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color: Colors.black,
+                                                      fontSize: 15.0,
+                                                    ),
                                                     hintStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                        .of(context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.black,
-                                                          fontSize: 15.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color: Colors.black,
+                                                      fontSize: 15.0,
+                                                    ),
                                                     errorStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Readex Pro',
-                                                              color: const Color(
-                                                                  0xFFFF0007),
-                                                              fontSize: 10.0,
-                                                            ),
+                                                    FlutterFlowTheme
+                                                        .of(
+                                                        context)
+                                                        .bodyMedium
+                                                        .override(
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color: const Color(
+                                                          0xFFFF0007),
+                                                      fontSize: 10.0,
+                                                    ),
                                                     enabledBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color: Colors.black,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     focusedBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     errorBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     focusedErrorBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(25.0, 0.0,
-                                                            25.0, 0.0),
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(25.0, 0.0,
+                                                        25.0, 0.0),
                                                     prefixIcon: const Icon(
                                                       Icons.lock,
                                                       color: Colors.black,
                                                       size: 25.0,
                                                     ),
                                                     suffixIcon: InkWell(
-                                                      onTap: () => setState(
-                                                        () => _model
+                                                      onTap: () =>
+                                                          setState(
+                                                                () =>
+                                                            _model
                                                                 .textFieldContrasenaLoginVisibility =
                                                             !_model
                                                                 .textFieldContrasenaLoginVisibility,
-                                                      ),
+                                                          ),
                                                       focusNode: FocusNode(
                                                           skipTraversal: true),
                                                       child: Icon(
-                                                        _model.textFieldContrasenaLoginVisibility
+                                                        _model
+                                                            .textFieldContrasenaLoginVisibility
                                                             ? Icons
-                                                                .visibility_outlined
+                                                            .visibility_outlined
                                                             : Icons
-                                                                .visibility_off_outlined,
+                                                            .visibility_off_outlined,
                                                         color: Colors.black,
                                                         size: 25.0,
                                                       ),
                                                     ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                                  style: FlutterFlowTheme
+                                                      .of(
+                                                      context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color: Colors.black,
-                                                        fontSize: 13.0,
-                                                      ),
+                                                    fontFamily:
+                                                    'Readex Pro',
+                                                    color: Colors.black,
+                                                    fontSize: 13.0,
+                                                  ),
                                                   textAlign: TextAlign.start,
                                                   cursorColor: Colors.black,
                                                   validator: formValidatorL
@@ -536,9 +553,9 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                             ),
                                             Padding(
                                               padding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                      270.0, 50.0, 10.0, 0.0),
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                  270.0, 50.0, 10.0, 0.0),
                                               child: Container(
                                                 width: 25.0,
                                                 height: 25.0,
@@ -547,70 +564,72 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                 ),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
-                                                          1.0, 0.0),
+                                                  const AlignmentDirectional(
+                                                      1.0, 0.0),
                                                   child: Row(
                                                     mainAxisSize:
-                                                        MainAxisSize.max,
+                                                    MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                    MainAxisAlignment
+                                                        .center,
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                1.0, 0.0),
+                                                        const AlignmentDirectional(
+                                                            1.0, 0.0),
                                                         child: Container(
                                                           width: 20.0,
                                                           height: 20.0,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                          const BoxDecoration(
                                                             color: Color(
                                                                 0xFFF6F6F6),
                                                           ),
                                                           child: AlignedTooltip(
                                                             content: Padding(
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                        .all(
-                                                                        4.0),
+                                                                const EdgeInsets
+                                                                    .all(
+                                                                    4.0),
                                                                 child: Text(
                                                                   'La contraseña debe tener:\n- Mínimo de 10 caracteres\n- Mayúsculas, minúsculas\n- Números y caracteres \n   especiales (@, #, \$, %, &, -)\n- No debe contener espacios',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
+                                                                  style: FlutterFlowTheme
+                                                                      .of(
+                                                                      context)
                                                                       .bodyLarge,
                                                                 )),
                                                             offset: 4.0,
                                                             preferredDirection:
-                                                                AxisDirection
-                                                                    .down,
+                                                            AxisDirection
+                                                                .down,
                                                             borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
+                                                            BorderRadius
+                                                                .circular(
+                                                                8.0),
                                                             backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                            FlutterFlowTheme
+                                                                .of(
+                                                                context)
+                                                                .secondaryBackground,
                                                             elevation: 4.0,
                                                             tailBaseWidth: 24.0,
                                                             tailLength: 12.0,
                                                             waitDuration:
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        100),
+                                                            const Duration(
+                                                                milliseconds:
+                                                                100),
                                                             showDuration:
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        1500),
+                                                            const Duration(
+                                                                milliseconds:
+                                                                1500),
                                                             triggerMode:
-                                                                TooltipTriggerMode
-                                                                    .tap,
+                                                            TooltipTriggerMode
+                                                                .tap,
                                                             child: const Icon(
                                                               Icons
                                                                   .info_rounded,
                                                               color:
-                                                                  Colors.black,
+                                                              Colors.black,
                                                               size: 20.0,
                                                             ),
                                                           ),
@@ -656,12 +675,12 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                               checkboxTheme: CheckboxThemeData(
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          0.0),
+                                                  BorderRadius.circular(
+                                                      0.0),
                                                 ),
                                               ),
                                               unselectedWidgetColor:
-                                                  Colors.black,
+                                              Colors.black,
                                             ),
                                             child: Checkbox(
                                               value: _isChecked1,
@@ -683,15 +702,16 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                               -1.0, 0.0),
                                           child: Text(
                                             'Mantener la\nsesion iniciada',
-                                            style: FlutterFlowTheme.of(context)
+                                            style: FlutterFlowTheme
+                                                .of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: Colors.black,
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  lineHeight: 1.0,
-                                                ),
+                                              fontFamily: 'Readex Pro',
+                                              color: Colors.black,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w600,
+                                              lineHeight: 1.0,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -720,19 +740,20 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                   options: FFButtonOptions(
                                     height: 40.0,
                                     padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            25.0, 0.0, 25.0, 0.0),
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        25.0, 0.0, 25.0, 0.0),
                                     iconPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 0.0),
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                     color: const Color(0xFFF26457),
-                                    textStyle: FlutterFlowTheme.of(context)
+                                    textStyle: FlutterFlowTheme
+                                        .of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.white,
-                                          fontSize: 15.0,
-                                        ),
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: 15.0,
+                                    ),
                                     elevation: 3.0,
                                     borderSide: const BorderSide(
                                       color: Colors.transparent,
@@ -765,19 +786,20 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                   options: FFButtonOptions(
                                     height: 40.0,
                                     padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            25.0, 0.0, 25.0, 0.0),
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        25.0, 0.0, 25.0, 0.0),
                                     iconPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 0.0),
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                     color: Color(0xFFF6F6F6),
-                                    textStyle: FlutterFlowTheme.of(context)
+                                    textStyle: FlutterFlowTheme
+                                        .of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.black,
-                                          fontSize: 15.0,
-                                        ),
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                    ),
                                     elevation: 3.0,
                                     borderSide: const BorderSide(
                                       color: Colors.black,
@@ -806,18 +828,19 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                     ),
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(0.0, 0.0),
+                                      const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         '¿Has olvidado la contraseña?',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterFlowTheme
+                                            .of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Colors.black,
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                          fontFamily: 'Readex Pro',
+                                          color: Colors.black,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -829,18 +852,19 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                     ),
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(0.0, 0.0),
+                                      const AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'Restablecer contraseña',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterFlowTheme
+                                            .of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Color(0xE5FF0010),
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xE5FF0010),
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -867,18 +891,19 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                 ),
                                 child: Align(
                                   alignment:
-                                      const AlignmentDirectional(0.0, 0.0),
+                                  const AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Complete los campos a\ncontinuación para registrarse',
                                     textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
+                                    style: FlutterFlowTheme
+                                        .of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.black,
-                                          fontSize: 15.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -911,51 +936,55 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                               .textFieldCorreoRegistrarseFocusNode,
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
-                                            '_model.textFieldCorreoRegistrarseController',
-                                            const Duration(milliseconds: 2000),
-                                            () => setState(() {}),
-                                          ),
+                                                '_model.textFieldCorreoRegistrarseController',
+                                                const Duration(
+                                                    milliseconds: 2000),
+                                                    () => setState(() {}),
+                                              ),
                                           textCapitalization:
-                                              TextCapitalization.none,
+                                          TextCapitalization.none,
                                           textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'Correo electrónico',
-                                            labelStyle: FlutterFlowTheme.of(
-                                                    context)
+                                            labelStyle: FlutterFlowTheme
+                                                .of(
+                                                context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color:
-                                                      const Color(0xFF060606),
-                                                  fontSize: 15.0,
-                                                ),
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                              const Color(0xFF060606),
+                                              fontSize: 15.0,
+                                            ),
                                             alignLabelWithHint: true,
-                                            hintStyle: FlutterFlowTheme.of(
-                                                    context)
+                                            hintStyle: FlutterFlowTheme
+                                                .of(
+                                                context)
                                                 .labelMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color:
-                                                      const Color(0xFF060606),
-                                                  fontSize: 15.0,
-                                                ),
-                                            errorStyle: FlutterFlowTheme.of(
-                                                    context)
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                              const Color(0xFF060606),
+                                              fontSize: 15.0,
+                                            ),
+                                            errorStyle: FlutterFlowTheme
+                                                .of(
+                                                context)
                                                 .bodyMedium
                                                 .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color:
-                                                      const Color(0xFFFF0007),
-                                                  fontSize: 10.0,
-                                                ),
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                              const Color(0xFFFF0007),
+                                              fontSize: 10.0,
+                                            ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                 color: Color(0xFF060606),
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
@@ -963,7 +992,7 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                             ),
                                             errorBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
@@ -971,55 +1000,56 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                             ),
                                             focusedErrorBorder:
-                                                OutlineInputBorder(
+                                            OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                 color: Color(0xFF060606),
                                                 width: 2.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10.0),
+                                              BorderRadius.circular(10.0),
                                             ),
                                             contentPadding:
-                                                const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                    25.0, 0.0, 25.0, 0.0),
+                                            const EdgeInsetsDirectional
+                                                .fromSTEB(
+                                                25.0, 0.0, 25.0, 0.0),
                                             prefixIcon: const Icon(
                                               Icons.email,
                                               color: Colors.black,
                                               size: 25.0,
                                             ),
                                             suffixIcon: _model
-                                                    .textFieldCorreoRegistrarseController!
-                                                    .text
-                                                    .isNotEmpty
+                                                .textFieldCorreoRegistrarseController!
+                                                .text
+                                                .isNotEmpty
                                                 ? InkWell(
-                                                    onTap: () async {
-                                                      _model
-                                                          .textFieldCorreoRegistrarseController
-                                                          ?.clear();
-                                                      setState(() {});
-                                                    },
-                                                    child: const Icon(
-                                                      Icons.clear,
-                                                      color: Color(0xFF060606),
-                                                      size: 25.0,
-                                                    ),
-                                                  )
+                                              onTap: () async {
+                                                _model
+                                                    .textFieldCorreoRegistrarseController
+                                                    ?.clear();
+                                                setState(() {});
+                                              },
+                                              child: const Icon(
+                                                Icons.clear,
+                                                color: Color(0xFF060606),
+                                                size: 25.0,
+                                              ),
+                                            )
                                                 : null,
                                           ),
-                                          style: FlutterFlowTheme.of(context)
+                                          style: FlutterFlowTheme
+                                              .of(context)
                                               .bodyMedium
                                               .override(
-                                                fontFamily: 'Readex Pro',
-                                                color: const Color(0xFF060606),
-                                                fontSize: 13.0,
-                                              ),
+                                            fontFamily: 'Readex Pro',
+                                            color: const Color(0xFF060606),
+                                            fontSize: 13.0,
+                                          ),
                                           textAlign: TextAlign.start,
                                           keyboardType:
-                                              TextInputType.emailAddress,
+                                          TextInputType.emailAddress,
                                           cursorColor: Colors.black,
                                           validator: formValidator.isValidEmail,
                                         ),
@@ -1043,146 +1073,150 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                               ),
                                               child: Align(
                                                 alignment:
-                                                    const AlignmentDirectional(
-                                                        0.0, -1.0),
+                                                const AlignmentDirectional(
+                                                    0.0, -1.0),
                                                 child: TextFormField(
                                                   controller: _model
                                                       .textFieldContrasenaRegistrarseController,
                                                   focusNode: _model
                                                       .textFieldContrasenaRegistrarseFocusNode,
                                                   textCapitalization:
-                                                      TextCapitalization.none,
+                                                  TextCapitalization.none,
                                                   textInputAction:
-                                                      TextInputAction.previous,
+                                                  TextInputAction.previous,
                                                   obscureText: !_model
                                                       .textFieldContrasenaRegistrarseVisibility,
                                                   decoration: InputDecoration(
                                                     labelText: 'Contraseña',
                                                     labelStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                        .of(context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.black,
-                                                          fontSize: 15.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color: Colors.black,
+                                                      fontSize: 15.0,
+                                                    ),
                                                     hintStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                        .of(context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.black,
-                                                          fontSize: 15.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color: Colors.black,
+                                                      fontSize: 15.0,
+                                                    ),
                                                     errorStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                        .of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color:
-                                                              Color(0xFFFF0007),
-                                                          fontSize: 10.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color:
+                                                      Color(0xFFFF0007),
+                                                      fontSize: 10.0,
+                                                    ),
                                                     enabledBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color: Colors.black,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     focusedBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     errorBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     focusedErrorBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(25.0, 0.0,
-                                                            25.0, 0.0),
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(25.0, 0.0,
+                                                        25.0, 0.0),
                                                     prefixIcon: const Icon(
                                                       Icons.lock,
                                                       color: Colors.black,
                                                       size: 25.0,
                                                     ),
                                                     suffixIcon: InkWell(
-                                                      onTap: () => setState(
-                                                        () => _model
+                                                      onTap: () =>
+                                                          setState(
+                                                                () =>
+                                                            _model
                                                                 .textFieldContrasenaRegistrarseVisibility =
                                                             !_model
                                                                 .textFieldContrasenaRegistrarseVisibility,
-                                                      ),
+                                                          ),
                                                       focusNode: FocusNode(
                                                           skipTraversal: true),
                                                       child: Icon(
-                                                        _model.textFieldContrasenaRegistrarseVisibility
+                                                        _model
+                                                            .textFieldContrasenaRegistrarseVisibility
                                                             ? Icons
-                                                                .visibility_outlined
+                                                            .visibility_outlined
                                                             : Icons
-                                                                .visibility_off_outlined,
+                                                            .visibility_off_outlined,
                                                         color: Colors.black,
                                                         size: 25.0,
                                                       ),
                                                     ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                                  style: FlutterFlowTheme
+                                                      .of(
+                                                      context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color: Colors.black,
-                                                        fontSize: 13.0,
-                                                      ),
+                                                    fontFamily:
+                                                    'Readex Pro',
+                                                    color: Colors.black,
+                                                    fontSize: 13.0,
+                                                  ),
                                                   textAlign: TextAlign.start,
                                                   cursorColor: Colors.black,
                                                   validator:
-                                                      formValidator.isValidPass,
+                                                  formValidator.isValidPass,
                                                 ),
                                               ),
                                             ),
                                             Padding(
                                               padding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                      270.0, 50.0, 10.0, 0.0),
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                  270.0, 50.0, 10.0, 0.0),
                                               child: Container(
                                                 width: 25.0,
                                                 height: 25.0,
@@ -1191,70 +1225,72 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                 ),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
-                                                          1.0, 0.0),
+                                                  const AlignmentDirectional(
+                                                      1.0, 0.0),
                                                   child: Row(
                                                     mainAxisSize:
-                                                        MainAxisSize.max,
+                                                    MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                    MainAxisAlignment
+                                                        .center,
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                1.0, 0.0),
+                                                        const AlignmentDirectional(
+                                                            1.0, 0.0),
                                                         child: Container(
                                                           width: 20.0,
                                                           height: 20.0,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                          const BoxDecoration(
                                                             color: Color(
                                                                 0xFFF6F6F6),
                                                           ),
                                                           child: AlignedTooltip(
                                                             content: Padding(
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                        .all(
-                                                                        4.0),
+                                                                const EdgeInsets
+                                                                    .all(
+                                                                    4.0),
                                                                 child: Text(
                                                                   'La contraseña debe tener:\n- Mínimo de 10 caracteres\n- Mayúsculas, minúsculas\n- Números y caracteres \n   especiales (@, #, \$, %, &, -)\n- No debe contener espacios',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
+                                                                  style: FlutterFlowTheme
+                                                                      .of(
+                                                                      context)
                                                                       .bodyLarge,
                                                                 )),
                                                             offset: 4.0,
                                                             preferredDirection:
-                                                                AxisDirection
-                                                                    .down,
+                                                            AxisDirection
+                                                                .down,
                                                             borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
+                                                            BorderRadius
+                                                                .circular(
+                                                                8.0),
                                                             backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                            FlutterFlowTheme
+                                                                .of(
+                                                                context)
+                                                                .secondaryBackground,
                                                             elevation: 4.0,
                                                             tailBaseWidth: 24.0,
                                                             tailLength: 12.0,
                                                             waitDuration:
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        100),
+                                                            const Duration(
+                                                                milliseconds:
+                                                                100),
                                                             showDuration:
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        1500),
+                                                            const Duration(
+                                                                milliseconds:
+                                                                1500),
                                                             triggerMode:
-                                                                TooltipTriggerMode
-                                                                    .tap,
+                                                            TooltipTriggerMode
+                                                                .tap,
                                                             child: const Icon(
                                                               Icons
                                                                   .info_rounded,
                                                               color:
-                                                                  Colors.black,
+                                                              Colors.black,
                                                               size: 20.0,
                                                             ),
                                                           ),
@@ -1288,153 +1324,157 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                               ),
                                               child: Align(
                                                 alignment:
-                                                    const AlignmentDirectional(
-                                                        0.0, -1.0),
+                                                const AlignmentDirectional(
+                                                    0.0, -1.0),
                                                 child: TextFormField(
                                                   controller: _model
                                                       .textFieldRepetirContrasenaRegistrarseController,
                                                   focusNode: _model
                                                       .textFieldRepetirContrasenaRegistrarseFocusNode,
                                                   textCapitalization:
-                                                      TextCapitalization.none,
+                                                  TextCapitalization.none,
                                                   textInputAction:
-                                                      TextInputAction.previous,
+                                                  TextInputAction.previous,
                                                   obscureText: !_model
                                                       .textFieldRepetirContrasenaRegistrarseVisibility,
                                                   decoration: InputDecoration(
                                                     labelText:
-                                                        'Repetir Contraseña',
+                                                    'Repetir Contraseña',
                                                     labelStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                        .of(context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.black,
-                                                          fontSize: 15.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color: Colors.black,
+                                                      fontSize: 15.0,
+                                                    ),
                                                     hintStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                        .of(context)
                                                         .labelMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color: Colors.black,
-                                                          fontSize: 15.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color: Colors.black,
+                                                      fontSize: 15.0,
+                                                    ),
                                                     errorStyle: FlutterFlowTheme
-                                                            .of(context)
+                                                        .of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color:
-                                                              Color(0xFFFF0007),
-                                                          fontSize: 10.0,
-                                                        ),
+                                                      fontFamily:
+                                                      'Readex Pro',
+                                                      color:
+                                                      Color(0xFFFF0007),
+                                                      fontSize: 10.0,
+                                                    ),
                                                     enabledBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color: Colors.black,
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     focusedBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     errorBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     focusedErrorBorder:
-                                                        OutlineInputBorder(
+                                                    OutlineInputBorder(
                                                       borderSide:
-                                                          const BorderSide(
+                                                      const BorderSide(
                                                         color:
-                                                            Color(0xFF060606),
+                                                        Color(0xFF060606),
                                                         width: 2.0,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                     ),
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(25.0, 0.0,
-                                                            25.0, 0.0),
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(25.0, 0.0,
+                                                        25.0, 0.0),
                                                     prefixIcon: const Icon(
                                                       Icons.lock,
                                                       color: Colors.black,
                                                       size: 25.0,
                                                     ),
                                                     suffixIcon: InkWell(
-                                                      onTap: () => setState(
-                                                        () => _model
+                                                      onTap: () =>
+                                                          setState(
+                                                                () =>
+                                                            _model
                                                                 .textFieldRepetirContrasenaRegistrarseVisibility =
                                                             !_model
                                                                 .textFieldRepetirContrasenaRegistrarseVisibility,
-                                                      ),
+                                                          ),
                                                       focusNode: FocusNode(
                                                           skipTraversal: true),
                                                       child: Icon(
-                                                        _model.textFieldRepetirContrasenaRegistrarseVisibility
+                                                        _model
+                                                            .textFieldRepetirContrasenaRegistrarseVisibility
                                                             ? Icons
-                                                                .visibility_outlined
+                                                            .visibility_outlined
                                                             : Icons
-                                                                .visibility_off_outlined,
+                                                            .visibility_off_outlined,
                                                         color: Colors.black,
                                                         size: 25.0,
                                                       ),
                                                     ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
+                                                  style: FlutterFlowTheme
+                                                      .of(
+                                                      context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color: Colors.black,
-                                                        fontSize: 13.0,
-                                                      ),
+                                                    fontFamily:
+                                                    'Readex Pro',
+                                                    color: Colors.black,
+                                                    fontSize: 13.0,
+                                                  ),
                                                   textAlign: TextAlign.start,
                                                   cursorColor: Colors.black,
                                                   validator: (text) {
                                                     return formValidator
                                                         .isValidRepeatedPassword(
-                                                            text,
-                                                            _model
-                                                                .textFieldContrasenaRegistrarseController
-                                                                .text);
+                                                        text,
+                                                        _model
+                                                            .textFieldContrasenaRegistrarseController
+                                                            .text);
                                                   },
                                                 ),
                                               ),
                                             ),
                                             Padding(
                                               padding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                      270.0, 50.0, 10.0, 0.0),
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                  270.0, 50.0, 10.0, 0.0),
                                               child: Container(
                                                 width: 25.0,
                                                 height: 25.0,
@@ -1443,70 +1483,72 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                 ),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
-                                                          1.0, 0.0),
+                                                  const AlignmentDirectional(
+                                                      1.0, 0.0),
                                                   child: Row(
                                                     mainAxisSize:
-                                                        MainAxisSize.max,
+                                                    MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
+                                                    MainAxisAlignment
+                                                        .center,
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
-                                                                1.0, 0.0),
+                                                        const AlignmentDirectional(
+                                                            1.0, 0.0),
                                                         child: Container(
                                                           width: 20.0,
                                                           height: 20.0,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                          const BoxDecoration(
                                                             color: Color(
                                                                 0xFFF6F6F6),
                                                           ),
                                                           child: AlignedTooltip(
                                                             content: Padding(
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                        .all(
-                                                                        4.0),
+                                                                const EdgeInsets
+                                                                    .all(
+                                                                    4.0),
                                                                 child: Text(
                                                                   'La contraseña debe tener:\n- Mínimo de 10 caracteres\n- Mayúsculas, minúsculas\n- Números y caracteres \n   especiales (@, #, \$, %, &, -)\n- No debe contener espacios',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
+                                                                  style: FlutterFlowTheme
+                                                                      .of(
+                                                                      context)
                                                                       .bodyLarge,
                                                                 )),
                                                             offset: 4.0,
                                                             preferredDirection:
-                                                                AxisDirection
-                                                                    .down,
+                                                            AxisDirection
+                                                                .down,
                                                             borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
+                                                            BorderRadius
+                                                                .circular(
+                                                                8.0),
                                                             backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                            FlutterFlowTheme
+                                                                .of(
+                                                                context)
+                                                                .secondaryBackground,
                                                             elevation: 4.0,
                                                             tailBaseWidth: 24.0,
                                                             tailLength: 12.0,
                                                             waitDuration:
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        100),
+                                                            const Duration(
+                                                                milliseconds:
+                                                                100),
                                                             showDuration:
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        1500),
+                                                            const Duration(
+                                                                milliseconds:
+                                                                1500),
                                                             triggerMode:
-                                                                TooltipTriggerMode
-                                                                    .tap,
+                                                            TooltipTriggerMode
+                                                                .tap,
                                                             child: const Icon(
                                                               Icons
                                                                   .info_rounded,
                                                               color:
-                                                                  Colors.black,
+                                                              Colors.black,
                                                               size: 20.0,
                                                             ),
                                                           ),
@@ -1524,8 +1566,8 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                     ),
                                     Padding(
                                       padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 10.0),
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 10.0),
                                       child: Container(
                                         width: 300.0,
                                         height: 30.0,
@@ -1542,7 +1584,7 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                   width: 30.0,
                                                   height: 30.0,
                                                   decoration:
-                                                      const BoxDecoration(
+                                                  const BoxDecoration(
                                                     color: Color(0xFFF6F6F6),
                                                   ),
                                                   child: Checkbox(
@@ -1561,34 +1603,34 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                                 ),
                                                 child: Row(
                                                   mainAxisSize:
-                                                      MainAxisSize.max,
+                                                  MainAxisSize.max,
                                                   children: [
                                                     Text(
                                                       'Acepto la ',
                                                       style: FlutterFlowTheme
-                                                              .of(context)
+                                                          .of(context)
                                                           .bodyMedium
                                                           .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
+                                                        fontFamily:
+                                                        'Readex Pro',
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                        FontWeight.w600,
+                                                      ),
                                                     ),
                                                     Text(
                                                       'Política de Privacidad',
                                                       style: FlutterFlowTheme
-                                                              .of(context)
+                                                          .of(context)
                                                           .bodyMedium
                                                           .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: const Color(
-                                                                0xE5FF0010),
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
+                                                        fontFamily:
+                                                        'Readex Pro',
+                                                        color: const Color(
+                                                            0xE5FF0010),
+                                                        fontWeight:
+                                                        FontWeight.w600,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -1627,19 +1669,20 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                   options: FFButtonOptions(
                                     height: 40.0,
                                     padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            25.0, 0.0, 25.0, 0.0),
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        25.0, 0.0, 25.0, 0.0),
                                     iconPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 0.0),
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                     color: const Color(0xFFF26457),
-                                    textStyle: FlutterFlowTheme.of(context)
+                                    textStyle: FlutterFlowTheme
+                                        .of(context)
                                         .titleSmall
                                         .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Colors.white,
-                                          fontSize: 15.0,
-                                        ),
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                      fontSize: 15.0,
+                                    ),
                                     elevation: 3.0,
                                     borderSide: const BorderSide(
                                       color: Colors.transparent,
@@ -1670,16 +1713,17 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       25.0, 0.0, 25.0, 0.0),
                                   iconPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
+                                  const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
                                   color: const Color(0xFFF6F6F6),
-                                  textStyle: FlutterFlowTheme.of(context)
+                                  textStyle: FlutterFlowTheme
+                                      .of(context)
                                       .titleSmall
                                       .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Colors.black,
-                                        fontSize: 15.0,
-                                      ),
+                                    fontFamily: 'Readex Pro',
+                                    color: Colors.black,
+                                    fontSize: 15.0,
+                                  ),
                                   elevation: 3.0,
                                   borderSide: const BorderSide(
                                     color: Colors.black,
@@ -1744,55 +1788,81 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
   Future<void> _iniciarSesion(BuildContext context) async {
     final correo = _model.textFieldCorreoLoginController.text;
     final contrasena = _model.textFieldContrasenaLoginController.text;
+
     try {
       final response = await SupabaseService()
           .client
           .auth
           .signInWithPassword(email: correo, password: contrasena);
-      final user = response.user;
-      if (user != null) {
-        // Verificar si el widget todavía está montado antes de usar el context
-        if (!mounted) return;
 
+      final user = response.user;
+
+      if (user != null) {
+        if (!mounted) return;
         ref.read(userModelProvider).cargarDato();
         onTapIniciarsesin(context);
-      } else {}
+      } else {
+        if (!mounted) return;
+        _mostrarErrorDialog(context);
+      }
     } catch (e) {
       if (kDebugMode) {
         print("Error: $e");
       }
+      _mostrarErrorDialog(context);
     }
   }
-}
 
-onTapIniciarsesin(BuildContext context) {
-  Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen);
-}
+  void _mostrarErrorDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: const EdgeInsets.all(20),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            width: double.infinity,
+            child:  CustomErrorWidget(
+              onClose: () => Navigator.of(context).pop(),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
-void mostrarDialogoCuentaCreada(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: const CuentaCreadaWidget(),
-      );
-    },
-  );
-}
 
-void mostrarDialogoCorreoEnUso(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: const CorreoEnUsoWidget(),
-      );
-    },
-  );
+
+
+  onTapIniciarsesin(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen);
+  }
+
+  void mostrarDialogoCuentaCreada(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: const CuentaCreadaWidget(),
+        );
+      },
+    );
+  }
+
+  void mostrarDialogoCorreoEnUso(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: const CorreoEnUsoWidget(),
+        );
+      },
+    );
+  }
 }
