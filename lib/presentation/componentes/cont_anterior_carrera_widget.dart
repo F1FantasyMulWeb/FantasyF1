@@ -32,10 +32,10 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
 
   @override
   void initState() {
-    getLastCarrera();
+
     super.initState();
     _model = createModel(context, () => ContAnteriorCarreraModel());
-
+    getLastCarrera();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -109,12 +109,12 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                             topLeft: Radius.circular(0.0),
                             topRight: Radius.circular(0.0),
                           ),
-                          child: _circuit == null ? AvifImage.asset(
+                          child: _circuit != null ? AvifImage.asset(
                             ImageConstant.imgCircuitoAvif(
                                 _circuit!.circuit.circuitId),
-                            width: 300.0,
-                            height: 200.0,
-                            fit: BoxFit.cover,
+                            width: 75.0,
+                            height: 75.0,
+                            fit: BoxFit.contain,
                           ) :  Image.asset(
                             'assets/images/imageCircuito_Default.png',
                             width: 75.0,
@@ -162,7 +162,8 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 3.0, 0.0, 0.0),
                                     child: AutoSizeText(
-                                        _circuit!.results[0].driver.givenName ?? 'Cargando...',
+                                      _circuit?.results[0].driver.familyName ?? 'Cargando...',
+
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -209,7 +210,7 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 3.0, 0.0, 0.0),
                                     child: AutoSizeText(
-                                      _circuit!.results[1].driver.givenName ?? 'Cargando...',
+                                      _circuit?.results[1].driver.familyName ?? 'Cargando...',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -256,7 +257,7 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 3.0, 0.0, 0.0),
                                     child: AutoSizeText(
-                                      _circuit!.results[2].driver.givenName ?? 'Cargando...',
+                                      _circuit?.results[2].driver.familyName ?? 'Cargando...',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -289,9 +290,9 @@ class _ContAnteriorCarreraWidgetState extends State<ContAnteriorCarreraWidget> {
     Client client = new Client();
 
   RaceEventModel? raceEventModel = await client
-      .getResults("current", "21", "results", queryParams: "limit=20");
-  print('esto es lo que hay en raceEvent'  + raceEventModel!.mrData.toString());
+      .getResults("current", "21", "results", queryParams: "limit=3");
    _circuit = raceEventModel!.mrData.raceTable.races.last;
+   setState(() { });
   }
 
 }

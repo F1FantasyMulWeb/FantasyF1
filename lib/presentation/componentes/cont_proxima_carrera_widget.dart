@@ -1,7 +1,9 @@
 import 'package:FantasyF1/api/configuracionApi.dart';
 import 'package:FantasyF1/api/modelo/RaceEventModel.dart';
 import 'package:FantasyF1/api/modelo/RaceScheduleModel.dart';
+import 'package:flutter_avif/flutter_avif.dart';
 
+import '../../core/utils/image_constant.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -75,7 +77,13 @@ class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
                 decoration: BoxDecoration(),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
+                  child: _circuit != null ? AvifImage.asset(
+                    ImageConstant.imgCircuitoAvif(
+                        _circuit!.circuit.circuitId),
+                    width: 100.0,
+                    height: 100.0,
+                    fit: BoxFit.contain,
+                  ) :  Image.asset(
                     'assets/images/imageCircuito_Default.png',
                     width: 75.0,
                     height: 75.0,
@@ -168,8 +176,8 @@ class _ContProximaCarreraWidgetState extends State<ContProximaCarreraWidget> {
     Client client = new Client();
 
     RaceEventModel? raceEventModel = await client
-        .getResults("current", "22", "results", queryParams: "limit=20");
-    setState(() {   _circuit = raceEventModel!.mrData.raceTable.races.last;});
+        .getResults("current", "22", "results", queryParams: "limit=5");
+   setState(() {   _circuit = raceEventModel!.mrData.raceTable.races.last;});
     _model.onUpdate();
 
   }
