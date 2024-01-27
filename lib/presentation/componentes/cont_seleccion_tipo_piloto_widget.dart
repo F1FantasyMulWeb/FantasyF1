@@ -127,7 +127,7 @@ class _ContSeleccionTipoPilotoWidgetState
                             return Dialog(
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: AlignmentDirectional(0.0, 0.0)
+                              alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: ContCambiarPilotosWidget(
                                 tipoPilotoACambiar: 'PILOTO PRINCIPAL',

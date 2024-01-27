@@ -9,7 +9,11 @@ import 'cont_vista_piloto1_mv_model.dart';
 export 'cont_vista_piloto1_mv_model.dart';
 
 class ContVistaPiloto1MvWidget extends StatefulWidget {
-  const ContVistaPiloto1MvWidget({Key? key}) : super(key: key);
+  //const ContVistaPiloto1MvWidget({Key? key}) : super(key: key);
+
+  String? pilotoId;
+  ContVistaPiloto1MvWidget.piloto(
+      {required this.pilotoId});
 
   @override
   _ContVistaPiloto1MvWidgetState createState() =>
@@ -42,6 +46,7 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
 
   @override
   Widget build(BuildContext context) {
+
     return Visibility(
       visible: responsiveVisibility(
         context: context,
@@ -77,7 +82,7 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
                   decoration: BoxDecoration(),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Stack(
                       children: [
                         Container(

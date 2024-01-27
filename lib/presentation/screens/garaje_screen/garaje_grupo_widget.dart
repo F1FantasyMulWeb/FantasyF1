@@ -239,14 +239,14 @@ class _GarajeGrupoWidgetState extends State<GarajeGrupoWidget> {
                                               _model.contVistaPiloto1MvModel1,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              const ContVistaPiloto1MvWidget(),
+                                               ContVistaPiloto1MvWidget.piloto(pilotoId: 'albon'),
                                         ),
                                         wrapWithModel(
                                           model:
                                               _model.contVistaPiloto1MvModel2,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              const ContVistaPiloto1MvWidget(),
+                                              ContVistaPiloto1MvWidget.piloto(pilotoId: 'albon'),
                                         ),
                                       ].divide(SizedBox(width: 30.0)),
                                     ),
