@@ -1,3 +1,6 @@
+import 'package:flutter_avif/flutter_avif.dart';
+
+import '../../../core/utils/image_constant.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -9,7 +12,9 @@ import 'cont_vista_piloto2_mv_model.dart';
 export 'cont_vista_piloto2_mv_model.dart';
 
 class ContVistaPiloto2MvWidget extends StatefulWidget {
-  const ContVistaPiloto2MvWidget({Key? key}) : super(key: key);
+  String? pilotoId;
+  ContVistaPiloto2MvWidget.piloto(
+      {required this.pilotoId});
 
   @override
   _ContVistaPiloto2MvWidgetState createState() =>
@@ -78,10 +83,16 @@ class _ContVistaPiloto2MvWidgetState extends State<ContVistaPiloto2MvWidget> {
                   decoration: BoxDecoration(),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(50.0),
-                    child: Image.asset(
+                    child: widget.pilotoId != null && widget.pilotoId!.length > 0 ? AvifImage.asset(
+                      ImageConstant.imgDriverAvif(
+                          widget.pilotoId!),
+                      width: 75.0,
+                      height: 75.0,
+                      fit: BoxFit.contain,
+                    ) :  Image.asset(
                       'assets/images/imagenPiloto_Default.png',
-                      width: 100.0,
-                      height: 100.0,
+                      width: 75.0,
+                      height: 75.0,
                       fit: BoxFit.cover,
                     ),
                   ),

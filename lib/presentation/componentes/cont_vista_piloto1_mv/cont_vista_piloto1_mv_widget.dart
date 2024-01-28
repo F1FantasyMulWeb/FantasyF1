@@ -1,3 +1,6 @@
+import 'package:flutter_avif/flutter_avif.dart';
+
+import '../../../core/utils/image_constant.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -22,6 +25,8 @@ class ContVistaPiloto1MvWidget extends StatefulWidget {
 
 class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
   late ContVistaPiloto1MvModel _model;
+
+
 
   @override
   void setState(VoidCallback callback) {
@@ -91,10 +96,16 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
                           decoration: BoxDecoration(),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50.0),
-                            child: Image.asset(
+                            child: widget.pilotoId != null && widget.pilotoId!.length > 0 ? AvifImage.asset(
+                              ImageConstant.imgDriverAvif(
+                                  widget.pilotoId!),
+                              width: 75.0,
+                              height: 75.0,
+                              fit: BoxFit.contain,
+                            ) :  Image.asset(
                               'assets/images/imagenPiloto_Default.png',
-                              width: 100.0,
-                              height: 100.0,
+                              width: 75.0,
+                              height: 75.0,
                               fit: BoxFit.cover,
                             ),
                           ),

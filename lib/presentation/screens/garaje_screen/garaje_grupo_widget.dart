@@ -239,14 +239,14 @@ class _GarajeGrupoWidgetState extends State<GarajeGrupoWidget> {
                                               _model.contVistaPiloto1MvModel1,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                               ContVistaPiloto1MvWidget.piloto(pilotoId: 'albon'),
+                                               ContVistaPiloto1MvWidget.piloto(pilotoId: 'hamilton' ),
                                         ),
                                         wrapWithModel(
                                           model:
                                               _model.contVistaPiloto1MvModel2,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              ContVistaPiloto1MvWidget.piloto(pilotoId: 'albon'),
+                                              ContVistaPiloto1MvWidget.piloto(pilotoId: ''),
                                         ),
                                       ].divide(SizedBox(width: 30.0)),
                                     ),
@@ -431,14 +431,14 @@ class _GarajeGrupoWidgetState extends State<GarajeGrupoWidget> {
                                               _model.contVistaPiloto2MvModel1,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              const ContVistaPiloto2MvWidget(),
+                                              ContVistaPiloto2MvWidget.piloto(pilotoId: ''),
                                         ),
                                         wrapWithModel(
                                           model:
                                               _model.contVistaPiloto2MvModel2,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              const ContVistaPiloto2MvWidget(),
+                                              ContVistaPiloto2MvWidget.piloto(pilotoId: ''),
                                         ),
                                       ].divide(SizedBox(width: 30.0)),
                                     ),
