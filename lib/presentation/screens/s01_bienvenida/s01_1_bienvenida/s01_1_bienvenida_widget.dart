@@ -15,7 +15,7 @@ class S011BienvenidaWidget extends StatefulWidget {
   const S011BienvenidaWidget({Key? key}) : super(key: key);
 
   @override
-  _S011BienvenidaWidgetState createState() => _S011BienvenidaWidgetState();
+  State<S011BienvenidaWidget> createState() => _S011BienvenidaWidgetState();
 }
 
 class _S011BienvenidaWidgetState extends State<S011BienvenidaWidget> {
@@ -104,7 +104,7 @@ class _S011BienvenidaWidgetState extends State<S011BienvenidaWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 50.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -112,7 +112,7 @@ class _S011BienvenidaWidgetState extends State<S011BienvenidaWidget> {
                                   children: [
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(1.0, -1.0),
+                                          const AlignmentDirectional(1.0, -1.0),
                                       child: Container(
                                         width:
                                             MediaQuery.sizeOf(context).width *
