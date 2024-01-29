@@ -243,14 +243,18 @@ class _GarajeGrupoWidgetState extends ConsumerState<GarajeGrupoWidget> {
                                               _model.contVistaPiloto1MvModel1,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                               ContVistaPiloto1MvWidget.piloto(pilotoId: grupoModel.pilotoPrincipal),
+                                              ContVistaPiloto1MvWidget.piloto(
+                                                  pilotoId: grupoModel
+                                                      .pilotoPrincipal),
                                         ),
                                         wrapWithModel(
                                           model:
                                               _model.contVistaPiloto1MvModel2,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              ContVistaPiloto1MvWidget.piloto(pilotoId: grupoModel.pilotoSecundario),
+                                              ContVistaPiloto1MvWidget.piloto(
+                                                  pilotoId: grupoModel
+                                                      .pilotoSecundario),
                                         ),
                                       ].divide(const SizedBox(width: 30.0)),
                                     ),
@@ -435,14 +439,16 @@ class _GarajeGrupoWidgetState extends ConsumerState<GarajeGrupoWidget> {
                                               _model.contVistaPiloto2MvModel1,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              const ContVistaPiloto2MvWidget(),
+                                              ContVistaPiloto2MvWidget.piloto(
+                                                  pilotoId: ''),
                                         ),
                                         wrapWithModel(
                                           model:
                                               _model.contVistaPiloto2MvModel2,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              const ContVistaPiloto2MvWidget(),
+                                              ContVistaPiloto2MvWidget.piloto(
+                                                  pilotoId: ''),
                                         ),
                                       ].divide(SizedBox(width: 30.0)),
                                     ),

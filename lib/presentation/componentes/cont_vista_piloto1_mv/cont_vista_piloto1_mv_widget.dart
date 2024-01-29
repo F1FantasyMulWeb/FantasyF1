@@ -25,6 +25,8 @@ class ContVistaPiloto1MvWidget extends StatefulWidget {
 class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
   late ContVistaPiloto1MvModel _model;
 
+
+
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
@@ -92,10 +94,16 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
                           decoration: BoxDecoration(),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50.0),
-                            child: AvifImage.asset(
-                              ImageConstant.imgDriverAvif(widget.pilotoId!),
-                              width: 100.0,
-                              height: 100.0,
+                            child: widget.pilotoId != null && widget.pilotoId!.length > 0 ? AvifImage.asset(
+                              ImageConstant.imgDriverAvif(
+                                  widget.pilotoId!),
+                              width: 75.0,
+                              height: 75.0,
+                              fit: BoxFit.contain,
+                            ) :  Image.asset(
+                              'assets/images/imagenPiloto_Default.png',
+                              width: 75.0,
+                              height: 75.0,
                               fit: BoxFit.cover,
                               errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                                 return Image.asset(
