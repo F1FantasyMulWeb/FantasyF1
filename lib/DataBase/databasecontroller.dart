@@ -494,6 +494,12 @@ class DataBaseController {
         await client.from('Pilotos').select().eq('idName', idPiloto);
     return response1[0]["Name"];
   }
+  Future<String> idPioloto(var nombrePiloto) async {
+    List<dynamic> response1 =
+    await client.from('Pilotos').select().eq('Name', nombrePiloto);
+    return response1[0]["idName"];
+  }
+
 
   Future<Map<String, List<Object>>> selectPilotosDisponiblesDelGrupo1(
       var keyGrupo) async {

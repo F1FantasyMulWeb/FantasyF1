@@ -15,10 +15,6 @@ import '../presentation/screens/cambiarcontrase_a3screen_one_screen/cambiarcontr
 import '../presentation/screens/cambiarcontrase_a3screen_screen/cambiarcontrase_a3screen_screen.dart';
 import '../presentation/screens/creargrupo_screen/s54_pantalla_crear_grupo_widget.dart';
 import '../presentation/screens/edit_avatar_screen/edit_avatar_screen.dart';
-import '../presentation/screens/el_nano_screen/el_nano_screen.dart';
-import '../presentation/screens/escuderia_aston_martin_screen/escuderia_aston_martin_screen.dart';
-import '../presentation/screens/escuderia_mercedes_screen/escuderia_mercedes_screen.dart';
-import '../presentation/screens/escuderia_red_bull_screen/escuderia_red_bull_screen.dart';
 import '../presentation/screens/grupo_screen/pantalla_interna_grupo_widget.dart';
 import '../presentation/screens/info_pilotos_screen/info_pilotos.dart';
 import '../presentation/screens/informaci_n_screen/informaci_n_screen.dart';
@@ -30,7 +26,6 @@ import '../presentation/screens/lista_pilotos_screen/lista_pilotos_screen.dart';
 import '../presentation/screens/loginscreen_screen/s21_login_registrarse_widget.dart';
 import '../presentation/screens/mercado_screen/mercado_screen.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
-import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
 import '../presentation/screens/seleccionar_nombre_usuario_screen/seleccionar_nombre_usuario_screen.dart';
 import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 
@@ -132,19 +127,19 @@ static const String seleccionarNombreUsuarioScreen = '/seleccionar_nombre_usuari
     anadirGrupoScreen: (context) => const S53PantallaUnirseGrupoWidget(),
     listaGruposScreen: (context) => S51PantallaListadoGruposWidget(),
     grupoScreen: (context) => PantallaInternaGrupoWidget(),
-    escuderiaRedBullScreen: (context) => EscuderiaRedBullScreen(),
-    pilotoVerstapenScreen: (context) => PilotoVerstapenScreen(),
+   // escuderiaRedBullScreen: (context) => EscuderiaRedBullScreen(),
+    // pilotoVerstapenScreen: (context) => PilotoVerstapenScreen(),
     tuspilotosScreen: (context) => TuspilotosScreen(),
     //circuitoBahrInScreen: (context) => CircuitoBahrInScreen(),
     cambiarcontraseA2screenScreen: (context) => CambiarcontraseA2screenScreen(),
-    escuderiaAstonMartinScreen: (context) => EscuderiaAstonMartinScreen(),
-    infopilotos: (context) => Info_Pilotos(driver: null),
+    // escuderiaAstonMartinScreen: (context) => EscuderiaAstonMartinScreen(),
+    //infopilotos: (context) => Info_Pilotos(driver: null),
     mercadoScreen: (context) => MercadoScreen(),
     cambiarcontraseA3screenOneScreen: (context) =>
         CambiarcontraseA3screenOneScreen(),
     cambiarcontraseA3screenScreen: (context) => CambiarcontraseA3screenScreen(),
-    escuderiaMercedesScreen: (context) => EscuderiaMercedesScreen(),
-    elNanoScreen: (context) => ElNanoScreen(),
+    // escuderiaMercedesScreen: (context) => EscuderiaMercedesScreen(),
+    // elNanoScreen: (context) => ElNanoScreen(),
     ajustesScreen: (context) => AjustesScreen()
   };
 }

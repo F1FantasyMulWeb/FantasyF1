@@ -3,19 +3,22 @@ import 'package:FantasyF1/core/app_export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
 
-import '../../../api/modelo/DriversModel.dart';
-
-class Info_Pilotos extends StatelessWidget {
-  Driver? driver;
-  String? driverName;
+import '../../../api/modelo/DriversModel.dart' as driverModel;
+import '../../../api/modelo/singleDriver.dart' as singletonDriver;
+class Info_Pilotos extends StatefulWidget {
+  driverModel.Driver? driver;
+  singletonDriver.Driver? singleDriver;
   Info_Pilotos({super.key, required this.driver});
-  Info_Pilotos.s({super.key, required this.driverName}) {
-    setDriver(driverName);
+  Info_Pilotos.s({super.key, required this.singleDriver}) {
   }
-  setDriver(driverName) async {
-    Client client = Client();
-    driver = await client.getDriver(driverName!);
-  }
+
+
+  @override
+  State<Info_Pilotos> createState() => _Info_PilotosState();
+}
+
+class _Info_PilotosState extends State<Info_Pilotos> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class Info_Pilotos extends StatelessWidget {
                                                         image: DecorationImage(
                                                           image: AssetImage(
                                                               ImageConstant
-                                                                  .imgGroup3),
+                                                                  .imgGroup36),
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
@@ -72,11 +75,11 @@ class Info_Pilotos extends StatelessWidget {
                                                         children: [
                                                           Center(
                                                             child: Text(
-                                                              driver == null
-                                                                  ? "".tr
-                                                                  : '${driver!.givenName} ${driver!.familyName}',
+                                                              widget.driver == null
+                                                                  ? widget.singleDriver == null ? "".tr : '${widget.singleDriver!.givenName} ${widget.singleDriver!.familyName}'
+                                                                  : '${widget.driver!.givenName} ${widget.driver!.familyName}',
                                                               style: CustomTextStyles
-                                                                  .displaySmallWhiteA70001,
+                                                                  .displaySmallMedium,
                                                               textAlign:
                                                               TextAlign
                                                                   .center,
@@ -90,9 +93,9 @@ class Info_Pilotos extends StatelessWidget {
                                               ),
                                               AvifImage.asset(
                                                   ImageConstant.imgDriverAvif(
-                                                      driver == null
-                                                          ? "".tr
-                                                          : driver!.driverId),
+                                                      widget.driver == null
+                                                          ? widget.singleDriver == null ? "".tr : widget.singleDriver!.driverId
+                                                          : widget.driver!.driverId),
                                                   height: 250,
                                                   fit: BoxFit.scaleDown,
                                                   alignment:
@@ -107,7 +110,7 @@ class Info_Pilotos extends StatelessWidget {
                                                   child: FittedBox(
                                                     fit: BoxFit.contain,
                                                     child: Image.asset(
-                                                      ImageConstant.imgBandera(driver == null ? "".tr : driver!.nationality),
+                                                      ImageConstant.imgBandera(widget.driver == null ? widget.singleDriver == null? "".tr : widget.singleDriver!.nationality : widget.driver!.nationality),
                                                     ),
                                                   ),
                                                 ),
@@ -140,65 +143,39 @@ class Info_Pilotos extends StatelessWidget {
                                                     onTapImgArrowleftone(
                                                         context);
                                                   }),
-                                              Column(children: [
-                                                CustomImageView(
-                                                    svgPath: ImageConstant
-                                                        .imgArrowup,
-                                                    height: 20.adaptSize,
-                                                    width: 20.adaptSize),
-                                                SizedBox(height: 6.v),
-                                                CustomImageView(
-                                                    imagePath: ImageConstant
-                                                        .img_max_verstappen_icon,
-                                                    height: 45.adaptSize,
-                                                    width: 45.adaptSize,
-                                                    radius:
-                                                    BorderRadius.circular(
-                                                        22.h)),
-                                                SizedBox(height: 6.v),
-                                                CustomImageView(
-                                                    svgPath: ImageConstant
-                                                        .imgArrowdown,
-                                                    height: 20.adaptSize,
-                                                    width: 20.adaptSize,
-                                                    onTap: () {
-                                                      onTapImgArrowdownone(
-                                                          context);
-                                                    })
-                                              ])
                                             ]))
                                   ]))))
                 ]))));
   }
 
-  /// Navigates to the listaPilotosScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the listaPilotosScreen.
+ ///Navigate to the last screen
   onTapImgArrowleftone(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.listaPilotosScreen);
-  }
-
-  /// Navigates to the checoPerezScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the checoPerezScreen.
-  onTapImgArrowdownone(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.infopilotos);
+    Navigator.pop(context);
   }
 
   String informacionPiloto() {
     StringBuffer stringBuffer = new StringBuffer();
-    stringBuffer.write("Nombre: " + driver!.givenName + "\n");
-    stringBuffer.write("Nombre familia: " + driver!.familyName + "\n");
+    if(widget.driver == null){
+      stringBuffer.write("Nombre: " + widget.singleDriver!.givenName + "\n");
+      stringBuffer.write("Nombre familia: " + widget.singleDriver!.familyName + "\n");
+      stringBuffer.write("Fecha de nacimiento: " +
+          widget.singleDriver!.dateOfBirth.format('dd-MM-yyyy') +
+          "\n");
+      stringBuffer.write("Nacionalidad: " + widget.singleDriver!.nationality + "\n");
+      stringBuffer.write("Codigo: " + widget.singleDriver!.code + "\n");
+      stringBuffer.write("Numero: " + widget.singleDriver!.permanentNumber + "\n");
+
+      String info = stringBuffer.toString();
+      return info;
+    }
+    stringBuffer.write("Nombre: " + widget.singleDriver!.givenName + "\n");
+    stringBuffer.write("Nombre familia: " + widget.singleDriver!.familyName + "\n");
     stringBuffer.write("Fecha de nacimiento: " +
-        driver!.dateOfBirth.format('dd-MM-yyyy') +
+        widget.singleDriver!.dateOfBirth.format('dd-MM-yyyy') +
         "\n");
-    stringBuffer.write("Nacionalidad: " + driver!.nationality + "\n");
-    stringBuffer.write("Codigo: " + driver!.code + "\n");
-    stringBuffer.write("Numero: " + driver!.permanentNumber + "\n");
+    stringBuffer.write("Nacionalidad: " + widget.singleDriver!.nationality + "\n");
+    stringBuffer.write("Codigo: " + widget.singleDriver!.code + "\n");
+    stringBuffer.write("Numero: " + widget.singleDriver!.permanentNumber + "\n");
 
     String info = stringBuffer.toString();
     return info;

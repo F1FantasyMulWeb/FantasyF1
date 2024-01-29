@@ -49,6 +49,7 @@ class _S11PreLoginWidgetState extends State<S11PreLoginWidget> {
     }
 
     return GestureDetector(
+      key: Key('S11PreLoginWidget'),
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),

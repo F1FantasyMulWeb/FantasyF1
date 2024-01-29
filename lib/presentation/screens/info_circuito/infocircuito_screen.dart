@@ -88,7 +88,7 @@ class _Infocircuito_screenState extends State<Infocircuito_screen> {
                                       image: AssetImage(
                                         ImageConstant.imgVector1,
                                       ),
-                                      fit: BoxFit.cover,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                   child: Column(
@@ -103,18 +103,9 @@ class _Infocircuito_screenState extends State<Infocircuito_screen> {
                                           ImageConstant.imgCircuitoAvif(
                                               circuit.circuitId),
                                           height: 200,
-                                          fit: BoxFit.scaleDown,
+                                          fit: BoxFit.fitHeight,
                                           alignment: Alignment.centerLeft),
-                                      SizedBox(height: 18.v),
-                                  CustomImageView(
-                                    width: 100.v,
-                                    alignment: Alignment.centerRight,
-                                    margin: EdgeInsets.only(right: 80),
-                                    border: Border.all(
-                                        width: 2.5, color: Colors.black54),
-                                    fit: BoxFit.fitWidth,
-                                    imagePath: ImageConstant.imgBandera(
-                                        circuit.location.country)),
+
                                     ],
                                   ),
                                 ),
@@ -122,7 +113,7 @@ class _Infocircuito_screenState extends State<Infocircuito_screen> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 52.v),
+
                         SizedBox(
                           height: 286.v,
                           width: 295.h,
@@ -143,6 +134,15 @@ class _Infocircuito_screenState extends State<Infocircuito_screen> {
                                   ),
                                 ),
                               ),
+                              CustomImageView(
+                                  width: 100.v,
+                                  alignment: Alignment.centerRight,
+
+                                  border: Border.all(
+                                      width: 2.5, color: Colors.black54),
+                                  fit: BoxFit.fitWidth,
+                                  imagePath: ImageConstant.imgBandera(
+                                      circuit.location.country)),
                               CustomImageView(
                                 svgPath: ImageConstant.imgArrowleft,
                                 height: 33.adaptSize,

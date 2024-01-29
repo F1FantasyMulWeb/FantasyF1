@@ -256,6 +256,9 @@ class ImageConstant {
 
   static String imgBandera(String pais) {
     String l = pais.toLowerCase();
+    if (l.contains(' ')) {
+      l = l.replaceAll(' ', '');
+    }
     switch (pais) {
       case 'Spanish':
         l = 'spain';
@@ -279,6 +282,7 @@ class ImageConstant {
         l = 'france';
         break;
       case 'British':
+      case 'UK':
         l = 'britain';
         break;
       case 'Chinese':
@@ -292,6 +296,9 @@ class ImageConstant {
         break;
       case 'German':
         l = 'germany';
+        break;
+      case 'saudiarabia':
+        l = 'saudiArabia';
         break;
       case 'Monegasque':
         l = 'monaco';

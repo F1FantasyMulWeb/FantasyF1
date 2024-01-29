@@ -1,6 +1,11 @@
+import 'package:FantasyF1/DataBase/databasecontroller.dart';
+import 'package:FantasyF1/api/modelo/singleDriver.dart';
 import 'package:FantasyF1/core/app_export.dart';
 import 'package:flutter/material.dart';
 
+import '../api/configuracionApi.dart';
+import '../api/modelo/DriversModel.dart' as driverModel;
+import '../api/modelo/singleDriver.dart' as singletonDriver;
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../presentation/screens/info_pilotos_screen/info_pilotos.dart';
 
@@ -130,13 +135,16 @@ class DriverCard extends StatelessWidget {
     );
   }
 
-  void onTapDriver(BuildContext context, String driverId) {
-    print('Tapped on $driverName');
+  Future<void> onTapDriver(BuildContext context, String driverId) async {
+    //print('Tapped $driverName');
+
+    DataBaseController dataBaseController = DataBaseController();
+    String? driverId = await dataBaseController.idPioloto(driverName);
+    Client client = Client();
+    Driver? driver = await client.getDriver(driverId!);
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => Info_Pilotos.s(
-              driverName: driverName,
-            )));
+          builder: (context) => Info_Pilotos.s(singleDriver: driver)));
   }
 }

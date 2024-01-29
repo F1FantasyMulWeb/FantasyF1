@@ -1,6 +1,11 @@
 import 'package:flutter_avif/flutter_avif.dart';
 
+import '../../../DataBase/databasecontroller.dart';
+import '../../../api/configuracionApi.dart';
+import '../../../api/modelo/DriversModel.dart';
+import '../../../api/modelo/singleDriver.dart' as singletonDriver;
 import '../../../core/utils/image_constant.dart';
+import '../../screens/info_pilotos_screen/info_pilotos.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -136,7 +141,10 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
                                 size: 25.0,
                               ),
                               onPressed: () {
-                                print('Boton_Info pressed ...');
+                                if (widget.pilotoId != null  && widget.pilotoId!.length > 0 ){
+                                  onTapDriver(context, widget.pilotoId!);
+                                }
+
                               },
                             ),
                           ),
@@ -152,4 +160,16 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
       ),
     );
   }
+}
+Future<void> onTapDriver(BuildContext context, String driverId) async {
+  //print('Tapped $driverName');
+
+  DataBaseController dataBaseController = DataBaseController();
+
+  Client client = Client();
+  singletonDriver.Driver? driver = await client.getDriver(driverId);
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => Info_Pilotos.s(singleDriver: driver)));
 }
