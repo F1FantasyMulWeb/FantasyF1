@@ -1,5 +1,7 @@
 import 'package:FantasyF1/core/app_export.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../provider/grupoactual.dart';
 import '../../componentes/cont_proxima_carrera_widget.dart';
 import '../../componentes/cont_seleccion_tipo_piloto_widget.dart';
 import '../../componentes/cont_vista_piloto1_mv/cont_vista_piloto1_mv_widget.dart';
@@ -15,7 +17,7 @@ import 'package:flutter/services.dart';
 import 'garaje_grupo_model.dart';
 export 'garaje_grupo_model.dart';
 
-class GarajeGrupoWidget extends StatefulWidget {
+class GarajeGrupoWidget extends ConsumerStatefulWidget {
   const GarajeGrupoWidget({
     Key? key,
     String? rutaPagina,
@@ -25,10 +27,10 @@ class GarajeGrupoWidget extends StatefulWidget {
   final String rutaPagina;
 
   @override
-  _GarajeGrupoWidgetState createState() => _GarajeGrupoWidgetState();
+  ConsumerState<GarajeGrupoWidget> createState() => _GarajeGrupoWidgetState();
 }
 
-class _GarajeGrupoWidgetState extends State<GarajeGrupoWidget> {
+class _GarajeGrupoWidgetState extends ConsumerState<GarajeGrupoWidget> {
   late GarajeGrupoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -50,6 +52,8 @@ class _GarajeGrupoWidgetState extends State<GarajeGrupoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final grupoModel = ref.watch(grupoActualModelProvider);
+
     if (isiOS) {
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
@@ -239,16 +243,16 @@ class _GarajeGrupoWidgetState extends State<GarajeGrupoWidget> {
                                               _model.contVistaPiloto1MvModel1,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                               ContVistaPiloto1MvWidget.piloto(pilotoId: 'albon'),
+                                               ContVistaPiloto1MvWidget.piloto(pilotoId: grupoModel.pilotoPrincipal),
                                         ),
                                         wrapWithModel(
                                           model:
                                               _model.contVistaPiloto1MvModel2,
                                           updateCallback: () => setState(() {}),
                                           child:
-                                              ContVistaPiloto1MvWidget.piloto(pilotoId: 'albon'),
+                                              ContVistaPiloto1MvWidget.piloto(pilotoId: grupoModel.pilotoSecundario),
                                         ),
-                                      ].divide(SizedBox(width: 30.0)),
+                                      ].divide(const SizedBox(width: 30.0)),
                                     ),
                                   ),
                                   Padding(

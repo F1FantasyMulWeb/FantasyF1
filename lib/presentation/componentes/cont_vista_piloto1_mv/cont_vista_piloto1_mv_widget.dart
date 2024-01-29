@@ -1,3 +1,6 @@
+import 'package:flutter_avif/flutter_avif.dart';
+
+import '../../../core/utils/image_constant.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,8 +15,7 @@ class ContVistaPiloto1MvWidget extends StatefulWidget {
   //const ContVistaPiloto1MvWidget({Key? key}) : super(key: key);
 
   String? pilotoId;
-  ContVistaPiloto1MvWidget.piloto(
-      {required this.pilotoId});
+  ContVistaPiloto1MvWidget.piloto({required this.pilotoId});
 
   @override
   _ContVistaPiloto1MvWidgetState createState() =>
@@ -46,7 +48,6 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return Visibility(
       visible: responsiveVisibility(
         context: context,
@@ -81,8 +82,8 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
                   height: 115.0,
                   decoration: BoxDecoration(),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 10.0),
                     child: Stack(
                       children: [
                         Container(
@@ -91,11 +92,19 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
                           decoration: BoxDecoration(),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50.0),
-                            child: Image.asset(
-                              'assets/images/imagenPiloto_Default.png',
+                            child: AvifImage.asset(
+                              ImageConstant.imgDriverAvif(widget.pilotoId!),
                               width: 100.0,
                               height: 100.0,
                               fit: BoxFit.cover,
+                              errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                return Image.asset(
+                                  'assets/images/imagenPiloto_Default.png',
+                                  width: 100.0,
+                                  height: 100.0,
+                                  fit: BoxFit.cover,
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -113,7 +122,7 @@ class _ContVistaPiloto1MvWidgetState extends State<ContVistaPiloto1MvWidget> {
                               borderWidth: 1.0,
                               buttonSize: 25.0,
                               fillColor: Color(0xFF060606),
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.leaderboard_rounded,
                                 color: Color(0xFFF6F6F6),
                                 size: 25.0,

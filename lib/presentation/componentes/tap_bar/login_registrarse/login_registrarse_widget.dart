@@ -1776,7 +1776,7 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
           mostrarDialogoCorreoEnUso(context);
         }
       } else {
-//Fallo con su conexion a internet
+
       }
     } catch (e) {
       if (kDebugMode) {
@@ -1798,9 +1798,16 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
       final user = response.user;
 
       if (user != null) {
-        if (!mounted) return;
-        ref.read(userModelProvider).cargarDato();
-        onTapIniciarsesin(context);
+        bool noesPrimerLogin = await clienteController.verificarPrimerLogin(correo);
+        print(noesPrimerLogin);
+        if (noesPrimerLogin) {
+          if (!mounted) return;
+          ref.read(userModelProvider).cargarDato();
+          onTapIniciarsesin(context);
+        } else {
+          if (!mounted) return;
+          onTapEstablecerNombre(context);
+        }
       } else {
         if (!mounted) return;
         _mostrarErrorDialog(context);
@@ -1836,6 +1843,9 @@ class _LoginRegistrarseWidgetState extends ConsumerState<LoginRegistrarseWidget>
 
   onTapIniciarsesin(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.mainscreensinligasScreen);
+  }
+  onTapEstablecerNombre(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.seleccionarNombreUsuarioScreen);
   }
 
   void mostrarDialogoCuentaCreada(BuildContext context) {

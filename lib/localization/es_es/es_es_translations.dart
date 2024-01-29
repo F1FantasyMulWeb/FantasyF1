@@ -34,6 +34,7 @@
   "lbl_bak": "Bakú", "lbl_circuitos": "Circuitos", "lbl_melbourne": "Melbourne",
   "lbl_miami": "Miami", "lbl_yeda": "Yeda",
 
+
   // loginScreen Screen
   "lbl_password_error": "Su contraseña es incorrecta",
   "lbl_correo_error": "El correo introducido es erroneo",

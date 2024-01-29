@@ -8,7 +8,7 @@ class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({
     Key? key,
     this.title = "Hubo un problema al iniciar sesión",
-    this.content = "Por favor, revisa tu conexión a Internet o las credenciales.",
+    this.content = "Por favor, revisa tu conexión a Internet o las credenciales.\n Si ha creado la cuenta recientemente, revise su correo electrónico para verificar su cuenta.",
     required this.onClose,
   }) : super(key: key);
 

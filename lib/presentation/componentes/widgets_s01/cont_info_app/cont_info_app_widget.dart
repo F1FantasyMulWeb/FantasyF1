@@ -59,7 +59,7 @@ class _ContInfoAppWidgetState extends State<ContInfoAppWidget> {
             children: [
               Container(
                 width: MediaQuery.sizeOf(context).width * 0.5,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xCDFFFFFF),
                   boxShadow: [
                     BoxShadow(

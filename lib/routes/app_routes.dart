@@ -31,6 +31,7 @@ import '../presentation/screens/loginscreen_screen/s21_login_registrarse_widget.
 import '../presentation/screens/mercado_screen/mercado_screen.dart';
 import '../presentation/screens/perfil_carreras_screen/perfil_carreras_screen.dart';
 import '../presentation/screens/piloto_verstapen_screen/piloto_verstapen_screen.dart';
+import '../presentation/screens/seleccionar_nombre_usuario_screen/seleccionar_nombre_usuario_screen.dart';
 import '../presentation/screens/tuspilotos_screen/tuspilotos_screen.dart';
 
 class AppRoutes {
@@ -90,7 +91,7 @@ class AppRoutes {
 
   static const String mercadoScreen = '/mercado_screen';
 
-
+static const String seleccionarNombreUsuarioScreen = '/seleccionar_nombre_usuario_screen';
 
   static const String cambiarcontraseA3screenOneScreen =
       '/cambiarcontrase_a3screen_one_screen';
@@ -112,6 +113,7 @@ class AppRoutes {
 
   static Map<String, WidgetBuilder> routes = {
     s01_1_bienvenida: (context) => S011BienvenidaWidget(),
+    seleccionarNombreUsuarioScreen: (context) => SeleccionarNombreUsuarioWidget(),
     ajustesScreen: (context) => AjustesWidget(),
     garaje_screen: (context) => GarajeGrupoWidget(),
     campeonatosScreen: (context) => CampeonatosWidget(),

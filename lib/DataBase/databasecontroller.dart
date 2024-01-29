@@ -21,7 +21,7 @@ class DataBaseController {
 
   Future<bool> sendCorreo(String email) async {
     final response = await client.from('UsuarioApp').insert([
-      {'correo': email}
+      {'correo': email, 'PrimerLogin': false}
     ]);
     if (response == null) {
       return true;
@@ -298,9 +298,8 @@ class DataBaseController {
     return file.path;
   }
 
-
-
-  Future<Map<String, Map<String, dynamic>>> seleccionarInfoJugadores(String codeGrupo) async {
+  Future<Map<String, Map<String, dynamic>>> seleccionarInfoJugadores(
+      String codeGrupo) async {
     int idGrupo;
     Map<String, int> idUsuarioPuntos = {};
     Map<String, String> nombreUsuarioImagen = {};
@@ -312,7 +311,8 @@ class DataBaseController {
     idGrupo = responseGrupo[0]["idGrupo"];
 
     // Obtiene los usuarios del grupo
-    var queryUsuarios = client.from('UsuarioAppGrupo').select().eq('idGrupo', idGrupo);
+    var queryUsuarios =
+        client.from('UsuarioAppGrupo').select().eq('idGrupo', idGrupo);
     var responseUsuarios = await queryUsuarios;
 
     // Procesa cada usuario
@@ -321,7 +321,8 @@ class DataBaseController {
       String nombreUsuario;
 
       // Obtiene el nombre del usuario
-      var queryNombre = client.from('UsuarioApp').select().eq('idUsuario', idUsuario);
+      var queryNombre =
+          client.from('UsuarioApp').select().eq('idUsuario', idUsuario);
       var responseNombre = await queryNombre;
       nombreUsuario = responseNombre[0]["userName"];
 
@@ -338,15 +339,18 @@ class DataBaseController {
 
     // Ordena y combina la información
     var jugadoresPuntosOrdenados = Map.fromEntries(
-        idUsuarioPuntos.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)));
+        idUsuarioPuntos.entries.toList()
+          ..sort((e1, e2) => e2.value.compareTo(e1.value)));
 
     jugadoresPuntosOrdenados.forEach((nombre, puntos) {
-      resultado[nombre] = {"puntos": puntos, "imagen": nombreUsuarioImagen[nombre]};
+      resultado[nombre] = {
+        "puntos": puntos,
+        "imagen": nombreUsuarioImagen[nombre]
+      };
     });
 
     return resultado;
   }
-
 
   Future<int> selectPuntosUsuarioGrupo(var idUsuario) async {
     List<dynamic> response1 = await client
@@ -450,7 +454,7 @@ class DataBaseController {
 
   Future<List<String>> pilotosDeUnUsuarioEnUnGrupo(var keyGrupo) async {
     final response1 =
-    await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
+        await client.from('Grupos').select().eq('keyGrupo', keyGrupo);
     int idUsuario = await selectUserId();
     List<String> listaPilotos = [];
     List<dynamic> response2 = await client
@@ -521,4 +525,29 @@ class DataBaseController {
     return listaPilotosDatos;
   }
 
+  Future<void> actualizarPrimerLoginDatos(String userName) async {
+    final email =client.auth.currentUser?.email;
+    await client.from('UsuarioApp').update(
+        {'PrimerLogin': true, 'userName': userName}).eq('correo', email);
+  }
+
+  Future<bool> verificarNombreUsuarioDisponible(String userName) async {
+    List<dynamic> response =
+        await client.from('UsuarioApp').select().eq('userName', userName);
+    print(response.isNotEmpty);
+    return response.isNotEmpty;
+  }
+
+  Future<bool> verificarPrimerLogin(String email) async {
+    List<dynamic> response = await client
+        .from('UsuarioApp')
+        .select('PrimerLogin')
+        .eq('correo', email);
+
+    if (response.isEmpty) {
+      return false;
+    } else {
+      return response[0]["PrimerLogin"];
+    }
+  }
 }

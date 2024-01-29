@@ -15,12 +15,13 @@ class GrupoActualModel extends ChangeNotifier {
   String _nombreGrupo = "";
   Map<String, Map<String, dynamic>> _nombresUsuariosGrupo = {};
   Map<String, List<Object>> _listaPilotosDelGrupo = {};
-  List<String> _pilotosGraje = [];
+  Map<String, String> _pilotosGraje = {};
+  Map<int, String> _pilotosPrinSecunGaraje = {};
 
 
   int get idGrupoActual => _idGrupo;
 
-  List<String> get pilotosGaraje => _pilotosGraje;
+  Map<String, String> get pilotosGaraje => _pilotosGraje;
 
   String get codeGrupo => _codeGrupo;
 
@@ -60,8 +61,48 @@ class GrupoActualModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setpilotosGraje(List<String> value) {
+  void setpilotosGraje(Map<String, String> value) {
     _pilotosGraje = value;
     notifyListeners();
   }
+  void setPilotoPrincipal(String nombrePiloto) {
+    String? idPilotoEncontrado = _pilotosGraje.keys.firstWhere(
+          (k) => _pilotosGraje[k] == nombrePiloto,
+      orElse: () => '',
+    );
+
+    if (idPilotoEncontrado.isNotEmpty) {
+      _pilotosPrinSecunGaraje[1] = idPilotoEncontrado;
+    } else {
+      _pilotosPrinSecunGaraje[1] = "";
+    }
+
+    notifyListeners();
+  }
+
+  void setPilotoSecundario(String nombrePiloto) {
+    String? idPilotoEncontrado = _pilotosGraje.keys.firstWhere(
+          (k) => _pilotosGraje[k] == nombrePiloto,
+      orElse: () => '',
+    );
+
+    if (idPilotoEncontrado.isNotEmpty) {
+      _pilotosPrinSecunGaraje[2] = idPilotoEncontrado;
+    } else {
+      _pilotosPrinSecunGaraje[2] = "";
+    }
+
+    notifyListeners();
+  }
+
+
+  String get pilotoPrincipal {
+    return _pilotosPrinSecunGaraje[1] ?? '';
+  }
+
+  String get pilotoSecundario {
+    return _pilotosPrinSecunGaraje[2] ?? '';
+  }
+
+
 }

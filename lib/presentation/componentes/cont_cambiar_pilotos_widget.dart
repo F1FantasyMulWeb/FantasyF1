@@ -1,3 +1,6 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../provider/grupoactual.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,7 +13,7 @@ import 'package:provider/provider.dart';
 import 'cont_cambiar_pilotos_model.dart';
 export 'cont_cambiar_pilotos_model.dart';
 
-class ContCambiarPilotosWidget extends StatefulWidget {
+class ContCambiarPilotosWidget extends ConsumerStatefulWidget {
   const ContCambiarPilotosWidget({
     Key? key,
     String? tipoPilotoACambiar,
@@ -22,11 +25,12 @@ class ContCambiarPilotosWidget extends StatefulWidget {
   final List<String>? listaPilotosMostrar;
 
   @override
-  _ContCambiarPilotosWidgetState createState() =>
+  ConsumerState<ContCambiarPilotosWidget> createState() =>
       _ContCambiarPilotosWidgetState();
 }
 
-class _ContCambiarPilotosWidgetState extends State<ContCambiarPilotosWidget> {
+class _ContCambiarPilotosWidgetState
+    extends ConsumerState<ContCambiarPilotosWidget> {
   late ContCambiarPilotosModel _model;
 
   @override
@@ -123,7 +127,7 @@ class _ContCambiarPilotosWidgetState extends State<ContCambiarPilotosWidget> {
                                 fontWeight: FontWeight.w600,
                               ),
                       hintText: 'Elige un piloto',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.keyboard_arrow_down_rounded,
                         color: Color(0xFF060606),
                         size: 25.0,
@@ -186,7 +190,7 @@ class _ContCambiarPilotosWidgetState extends State<ContCambiarPilotosWidget> {
                                     fontWeight: FontWeight.w500,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -206,28 +210,44 @@ class _ContCambiarPilotosWidgetState extends State<ContCambiarPilotosWidget> {
                         child: Container(
                           width: 90.0,
                           height: 35.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              String pilotoSeleccionado =
+                                  _model.dropDownPilotoPrincipalValue ?? '';
+
+                              final grupoActualModel =
+                                  ref.read(grupoActualModelProvider.notifier);
+
+                              if (widget.tipoPilotoACambiar ==
+                                  'PILOTO PRINCIPAL') {
+                                grupoActualModel
+                                    .setPilotoPrincipal(pilotoSeleccionado);
+                              } else if (widget.tipoPilotoACambiar ==
+                                  'PILOTO SECUNDARIO') {
+                                grupoActualModel
+                                    .setPilotoSecundario(pilotoSeleccionado);
+                              }
+                              print('pilotoSeleccionado: $pilotoSeleccionado');
                               Navigator.pop(context);
                             },
                             text: 'GUARDAR',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 10.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: Color(0xFF060606),
+                              color: const Color(0xFF060606),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: Color(0xFFF6F6F6),
+                                    color: const Color(0xFFF6F6F6),
                                     fontSize: 15.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
